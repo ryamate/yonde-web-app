@@ -1,23 +1,43 @@
 version: "3.8"
+volumes:
+  php-fpm-socket:
+  db-store:
 services:
-  app: # => サービス名は任意
-    build: ./infra/php
+  app:
+    build:
+      context: .
+      dockerfile: ./infra/docker/php/Dockerfile
     volumes:
-      - ./backend:/work
+      - php-fpm-socket:/var/run/php-fpm
+      - ./backend:/work/backend
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_NAME:-laravel_local}
+      - DB_USERNAME=${DB_USER:-phper}
+      - DB_PASSWORD=${DB_PASS:-secret}
 
   web:
-    image: nginx:1.18-alpine
+    build:
+      context: .
+      dockerfile: ./infra/docker/nginx/Dockerfile
     ports:
-      - 10080:80
+      - ${WEB_PORT:-80}:80
     volumes:
-      - ./backend:/work
-      - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    working_dir: /work
+      - php-fpm-socket:/var/run/php-fpm
+      - ./backend:/work/backend
 
   db:
-    build: ./infra/mysql
+    build:
+      context: .
+      dockerfile: ./infra/docker/mysql/Dockerfile
+    ports:
+      - ${DB_PORT:-3306}:3306
     volumes:
       - db-store:/var/lib/mysql
-
-volumes:
-  db-store:
+    environment:
+      - MYSQL_DATABASE=${DB_NAME:-laravel_local}
+      - MYSQL_USER=${DB_USER:-phper}
+      - MYSQL_PASSWORD=${DB_PASS:-secret}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}

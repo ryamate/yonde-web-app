@@ -65,9 +65,10 @@ return [
     | will be used by the PHP date and date-time functions. We have gone
     | ahead and set this to a sensible default for you out of the box.
     |
+    （ここでは、アプリケーションのデフォルトのタイムゾーンを指定することができます。このタイムゾーンは、PHPの日付と時刻の関数で使用されます。）
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Tokyo',
 
     /*
     |--------------------------------------------------------------------------

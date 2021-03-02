@@ -26,9 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('introduction', 1000);
             $table->timestamps();
 
-            $table->foreign('family_id')
-                ->references('id')
-                ->on('families');
+            $table->foreign('family_id')->references('id')->on('families');
         });
     }
 

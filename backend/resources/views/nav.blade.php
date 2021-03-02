@@ -24,7 +24,7 @@
 
                 {{-- search bar --}}
                 <div class="d-none d-sm-block pt-2">
-                    <form action="#" method="POST" class="form-inline">
+                    <form action="" method="POST" class="form-inline">
                         <div class="input-group input-group-sm">
                             <input type="search" id="search" name="search" class="form-control" placeholder="絵本をさがす">
                             <div class="input-group-append">
@@ -35,7 +35,7 @@
                 </div>
                 {{-- search bar (toggle) --}}
                 <div class="d-block d-sm-none pt-2">
-                    <form action="#" method="POST" class="form-inline">
+                    <form action="" method="POST" class="form-inline">
                         <div class="input-group input-group-sm">
                             <input type="search" id="search" name="search" class="form-control" placeholder="絵本をさがす">
                             <div class="input-group-append">
@@ -48,11 +48,11 @@
                 {{-- picture bookshelf button --}}
                 <li class="nav-item">
                     <div class="d-none d-sm-block">
-                        <a href="#" title="絵本棚" class="nav-link btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center ml-3" style="width: 45px; height:45px;"><i class="fas fa-book fa-lg"></i></a>
+                        <a href="" title="絵本棚" class="nav-link btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center ml-3" style="width: 45px; height:45px;"><i class="fas fa-book fa-lg"></i></a>
                     </div>
                     {{-- picture bookshelf button (toggle) --}}
                     <div class="d-block d-sm-none">
-                        <a href="#" title="絵本棚" class="nav-link">絵本棚</a>
+                        <a href="" title="絵本棚" class="nav-link">絵本棚</a>
                     </div>
                 </li>
 
@@ -63,18 +63,18 @@
                     </div>
                     {{-- timeline button (toggle) --}}
                     <div class="d-block d-sm-none">
-                        <a href="#" title="タイムライン" class="nav-link">タイムライン</a>
+                        <a href="" title="タイムライン" class="nav-link">タイムライン</a>
                     </div>
                 </li>
 
                 {{-- setting profile button --}}
                 <li class="nav-item">
                     <div class="d-none d-sm-block">
-                        <a href="#" title="プロフィール設定" class="nav-link btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-cog fa-lg"></i></a>
+                        <a href="" title="プロフィール設定" class="nav-link btn-teal1 text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height:45px;"><i class="fas fa-cog fa-lg"></i></a>
                     </div>
                     {{-- setting profile button (toggle) --}}
                     <div class="d-block d-sm-none">
-                        <a href="#" title="プロフィール設定" class="nav-link">プロフィール設定</a>
+                        <a href="" title="プロフィール設定" class="nav-link">プロフィール設定</a>
                     </div>
                 </li>
 
@@ -83,7 +83,7 @@
                     <div class="d-none d-sm-block">
                         <div class="mt-1 ml-1 mr-2">
                             <div class="dropdown drop-hover">
-                                <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="far fa-user-circle fa-2x text-white rounded-circle"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
@@ -101,7 +101,7 @@
                     </div>
                     {{-- home button (toggle) --}}
                     <div class="d-block d-sm-none">
-                        <a href="#" title="ホーム" class="nav-link">ホーム</a>
+                        <a href="" title="ホーム" class="nav-link">ホーム</a>
                     </div>
                 </li>
                 {{-- logout button (toggle) --}}

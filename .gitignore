@@ -6,7 +6,10 @@
 
 # laravel
 /backend/node_modules
+/backend/public/css
 /backend/public/hot
+/backend/public/js
+/backend/public/mix-manifest.json
 /backend/public/storage
 /backend/storage/*.key
 /backend/vendor

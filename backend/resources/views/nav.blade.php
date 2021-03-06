@@ -89,7 +89,11 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item small" href="../bookshelf.php">ホーム</a>
-                                <a class="dropdown-item small" href="../auth/logout.php">ログアウト</a>
+                                {{-- <a href="{{ route('logout') }}" class="dropdown-item small">ログアウト</a> --}}
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button class="dropdown-item small">ログアウト</button>
+                                </form>
                             </div>
 
                             <style>
@@ -108,7 +112,11 @@
             {{-- logout button (toggle) --}}
             <li class="nav-item">
                 <div class="d-block d-sm-none">
-                    <a href="../auth/logout.php" title="ログアウト" class="nav-link">ログアウト</a>
+                    {{-- <a href="{{ route('logout') }}" title="ログアウト" class="nav-link">ログアウト</a> --}}
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="nav-link">ログアウト</button>
+                    </form>
                 </div>
             </li>
             @endauth
@@ -120,18 +128,18 @@
             {{-- register user button --}}
             <li class="nav-item">
                 <div class="d-none d-sm-block">
-                    <a class="btn btn-sm shadow-sm bg-warning text-decoration-none text-white font-weight-bold mx-2" href="../auth/signup.php" role="button">新規登録</a>
+                    <a href="{{ route('register') }}" class="btn btn-sm shadow-sm bg-warning text-decoration-none text-white font-weight-bold mx-2" role="button">新規登録</a>
                 </div>
                 {{-- register user button (toggle) --}}
                 <div class="d-block d-sm-none">
-                    <a href="" class="btn btn-sm btn-block bg-warning text-decoration-none text-white font-weight-bold">新規登録</a>
+                    <a href="{{ route('register') }}" class="btn btn-sm btn-block bg-warning text-decoration-none text-white font-weight-bold">新規登録</a>
                 </div>
             </li>
 
             {{-- login user button --}}
             <li class="nav-item">
                 <div class="d-none d-sm-block">
-                    <a class="btn btn-sm shadow-sm btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold mx-2" href="../auth/login.php" role="button" disabled>ログイン</a>
+                    <a href="" class="btn btn-sm shadow-sm btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold mx-2" role="button" disabled>ログイン</a>
                 </div>
             </li>
             {{-- login user button (toggle) --}}

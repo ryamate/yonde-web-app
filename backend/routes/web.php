@@ -11,4 +11,5 @@
 |
 */
 
+Auth::routes();
 Route::get('/', 'PictureBookController@showBookshelf');

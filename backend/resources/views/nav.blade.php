@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-teal1 shadow-sm bd-navbar" style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #26a69a, #a1c4fd) fixed; opacity: 0.97;">
 
         {{-- left: application logo --}}
-        <a class="navbar-brand mt-1 mr-2" href="/">
-            <img src="image/logo.png" height="35" class="d-inline-block align-top text-white text-decoration-none" alt=" yonde">
+        <a class="navbar-brand mt-1 mr-2 p-0" href="/">
+            <img src="image/logo.png" height="45" class="d-inline-block align-top text-white text-decoration-none" alt=" yonde">
         </a>
 
         {{-- toggle button --}}

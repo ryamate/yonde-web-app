@@ -16,6 +16,9 @@
                     <h2 class="text-center"><a class="text-dark" href="/">よんで の新規登録</a></h2>
                     <h4 class="text-center"><b>ようこそ、 よんで へ。</b></h4>
                     <div class="card mt-4 p-4 shadow-sm">
+
+                        @include('error_card_list')
+
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <p style="font-size: 1px;">(<span class="text-danger">*</span>は必須項目です)</p>
@@ -24,7 +27,7 @@
                                 <input class="form-control" type="text" id="email" name="email" placeholder="メールアドレスを入力" required value="{{ old('email') }}" >
                             </div>
                             <div class="form-group">
-                                <label for="user_name">よんでID</label><span class="text-danger">*</span>
+                                <label for="yonde_id">よんでID</label><span class="text-danger">*</span>
                                 <input class="form-control" type="text" id="yonde_id" name="yonde_id" placeholder="よんでIDを作成" required value="{{ old('yonde_id') }}">
                                 <ul class="text-dark small">
                                     <li>半角英数小文字：3～16文字</li>

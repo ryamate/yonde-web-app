@@ -139,12 +139,12 @@
             {{-- login user button --}}
             <li class="nav-item">
                 <div class="d-none d-sm-block">
-                    <a href="" class="btn btn-sm shadow-sm btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold mx-2" role="button" disabled>ログイン</a>
+                    <a href="{{ route('login') }}" class="btn btn-sm shadow-sm btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold mx-2" role="button" disabled>ログイン</a>
                 </div>
             </li>
             {{-- login user button (toggle) --}}
             <div class="d-block d-sm-none">
-                <a href="" class="btn btn-sm btn-block btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold">ログイン</a>
+                <a href="{{ route('login') }}" class="btn btn-sm btn-block btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold">ログイン</a>
             </div>
             @endguest
         </ul>

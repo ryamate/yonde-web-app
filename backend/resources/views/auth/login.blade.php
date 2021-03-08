@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'ユーザー登録-Yonde-')
+@section('title', 'ログイン-Yonde-')
 
 @section('content')
     <nav class="navbar navbar-light bg-teal1 shadow-sm bd-navbar justify-content-center" style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #22968a, #45d9c8) fixed; opacity: 0.97;">
@@ -13,42 +13,33 @@
         <div class="container">
             <div class="row">
                 <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 mt-4" style="margin-bottom: 90px">
-                    <h2 class="text-center"><a class="text-dark text-decoration-none">よんで の新規登録</a></h2>
-                    <h4 class="text-center"><b>ようこそ、 よんで へ。</b></h4>
+                    <h2 class="text-center"><a class="text-dark text-decoration-none">ログイン</a></h2>
+                    <p class="text-center pt-4"style="font-size: 14px;">
+                        よんで に登録している方は、下記からログインしてください。<br>
+                        まだ登録していない方は<a class="text-decoration-none text-info" href="{{ route('register') }}">こちらから登録</a>してください。</p>
                     <div class="card mt-4 p-4 shadow-sm">
 
                         @include('error_card_list')
 
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('login') }}">
                             @csrf
-                            <p style="font-size: 1px;">(<span class="text-danger">*</span>は必須項目です)</p>
                             <div class="form-group">
-                                <label for="email">メールアドレス</label><span class="text-danger">*</span>
+                                <label for="email">メールアドレス</label>
                                 <input class="form-control" type="text" id="email" name="email" placeholder="メールアドレスを入力" required value="{{ old('email') }}" >
                             </div>
                             <div class="form-group">
-                                <label for="yonde_id">よんでID</label><span class="text-danger">*</span>
-                                <input class="form-control" type="text" id="yonde_id" name="yonde_id" placeholder="よんでIDを作成" required value="{{ old('yonde_id') }}">
-                                <ul class="text-dark small">
-                                    <li>半角英数小文字：3～16文字</li>
-                                </ul>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">パスワード</label><span class="text-danger">*</span>
+                                <label for="password">パスワード</label>
                                 <input class="form-control" type="password" placeholder="パスワードを作成" id="password" name="password" required>
-                                <ul class="text-dark small">
-                                    <li>半角英数・記号：8文字以上</p>
-                                </ul>
                             </div>
-                            <div class="form-group">
-                                <label for="password_confirmation">パスワード(確認)</label><span class="text-danger">*</span>
-                                <input class="form-control" type="password" placeholder="パスワードを確認" id="password_confirmation" name="password_confirmation" required>
-                            </div>
-                            <button type="submit" class="btn btn-block bg-warning text-decoration-none text-white mt-4"><b>登録</b></button>
+
+                            <input type="hidden" name="remember" id="remember" value="on">
+
+                            <button type="submit" class="btn btn-block bg-white btn-outline-info text-decoration-none text-info mt-4"><b>ログイン</b></button>
                         </form>
+
                         <div class="card-body border-top border-bottom mt-4 px-0">
-                            <p class="card-title">アカウントをお持ちの方はこちら</p>
-                            <a href="{{ route('login') }}" class="btn btn-block bg-white btn-outline-info text-decoration-none text-info"><b>ログイン</b></a>
+                            <p class="card-title">アカウントをお持ちでない方はこちら</p>
+                            <a href="{{ route('register') }}" class="btn btn-block btn-warning  text-decoration-none text-white"><b>新規登録</b></a>
                         </div>
                         <div class="card-body px-0">
                             <form action="" method="POST">

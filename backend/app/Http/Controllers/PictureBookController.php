@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use GuzzleHttp\Client;
+
 class PictureBookController extends Controller
 {
     public function showBookshelf()
@@ -61,5 +63,34 @@ class PictureBookController extends Controller
         ];
 
         return view('picture_books.bookshelf', ['stored_picture_books' => $stored_picture_books]);
+    }
+
+
+    /**
+     * Google Books APIから取得した検索結果を一覧表示する。
+     */
+    public function listPictureBookSearchResults(Request $request)
+    {
+
+        $data = [];
+
+        $items = null;
+
+        if (!empty($request->keyword)) {
+            $title = urlencode($request->keyword);
+            $url = 'https://www.googleapis.com/books/v1/volumes?q=' . $title . '&country=JP&tbm=bks';
+            $client = new Client();
+            $response = $client->request("GET", $url);
+            $body = $response->getBody();
+            $bodyArray = json_decode($body, true);
+            $items = $bodyArray['items'];
+        }
+
+        $data = [
+            'items' => $items,
+            'keyword' => $request->keyword,
+        ];
+
+        return view('picture_books.list_picture_book_search_results', $data);
     }
 }

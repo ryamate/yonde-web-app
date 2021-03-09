@@ -13,3 +13,4 @@
 
 Auth::routes();
 Route::get('/', 'PictureBookController@showBookshelf');
+Route::get('/search', 'PictureBookController@listPictureBookSearchResults')->name('search');

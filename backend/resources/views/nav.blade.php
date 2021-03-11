@@ -1,12 +1,15 @@
-<nav class="navbar navbar-expand-md navbar-light bg-teal1 shadow-sm bd-navbar py-1" style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #22968a, #45d9c8) fixed; opacity: 0.97;">
+<nav class="navbar navbar-expand-md navbar-light bg-teal1 shadow-sm bd-navbar py-1"
+    style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #22968a, #45d9c8) fixed; opacity: 0.97;">
 
     {{-- left: application logo --}}
     <a class="navbar-brand mr-2 p-0" href="/">
-        <img src="image/logo.png" height="45" class="d-inline-block align-top text-white text-decoration-none" alt=" yonde">
+        <img src="image/logo.png" height="45" class="d-inline-block align-top text-white text-decoration-none"
+            alt=" yonde">
     </a>
 
     {{-- toggle button --}}
-    <button class="navbar-toggler p-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler p-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -28,9 +31,11 @@
                     <form action="{{ route('search') }}" method="GET" class="form-inline">
                         @csrf
                         <div class="input-group input-group-sm">
-                            <input type="search" id="search" name="keyword" class="form-control" placeholder="絵本をさがす">
+                            <input type="search" id="search" name="keyword" class="form-control border"
+                                placeholder="絵本をさがす">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-teal1 bg-white text-teal1" type="submit" id="search"><i class="fas fa-search"></i></button>
+                                <button class="btn border bg-white text-teal1" type="submit" id="search"><i
+                                        class="fas fa-search"></i></button>
                             </div>
                         </div>
                     </form>
@@ -44,7 +49,8 @@
                         <div class="input-group input-group-sm">
                             <input type="search" id="search" name="keyword" class="form-control" placeholder="絵本をさがす">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-teal1 bg-white text-teal1" type="submit" id="search"><i class="fas fa-search"></i></button>
+                                <button class="btn btn-outline-teal1 bg-white text-teal1" type="submit" id="search"><i
+                                        class="fas fa-search"></i></button>
                             </div>
                         </div>
                     </form>
@@ -55,7 +61,9 @@
             {{-- picture bookshelf button --}}
             <li class="nav-item d-flex align-items-center justify-content-center">
                 <div class="d-none d-md-block">
-                    <a href="" title="絵本棚" class="nav-link btn-light text-teal1 rounded-circle d-flex align-items-center justify-content-center ml-3 mr-1" style="width: 35px; height:35px;"><i class="fas fa-book fa-lg"></i></a>
+                    <a href="" title="絵本棚"
+                        class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center ml-3 mr-1"
+                        style="width: 35px; height:35px;border-radius: 4px;"><i class="fas fa-book fa-lg"></i></a>
                 </div>
                 {{-- picture bookshelf button (toggle) --}}
                 <div class="d-block d-md-none">
@@ -66,7 +74,9 @@
             {{-- timeline button --}}
             <li class="nav-item d-flex align-items-center justify-content-center">
                 <div class="d-none d-md-block">
-                    <a href="" title="タイムライン" class="nav-link btn-light text-teal1 rounded-circle d-flex align-items-center justify-content-center mx-1" style="width: 35px; height:35px;"><i class="far fa-clock fa-lg"></i></a>
+                    <a href="" title="タイムライン"
+                        class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center mx-1"
+                        style="width: 35px; height:35px; border-radius: 4px;"><i class="far fa-clock fa-lg"></i></a>
                 </div>
                 {{-- timeline button (toggle) --}}
                 <div class="d-block d-md-none">
@@ -77,7 +87,9 @@
             {{-- setting profile button --}}
             <li class="nav-item d-flex align-items-center justify-content-center">
                 <div class="d-none d-md-block">
-                    <a href="" title="プロフィール設定" class="nav-link btn-light text-teal1 rounded-circle d-flex align-items-center justify-content-center mx-1" style="width: 35px; height:35px;"><i class="fas fa-cog fa-lg"></i></a>
+                    <a href="" title="プロフィール設定"
+                        class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center mx-1"
+                        style="width: 35px; height:35px; border-radius: 4px;"><i class="fas fa-cog fa-lg"></i></a>
                 </div>
                 {{-- setting profile button (toggle) --}}
                 <div class="d-block d-md-none">
@@ -90,8 +102,9 @@
                 <div class="d-none d-md-block">
                     <div class="mx-2">
                         <div class="dropdown drop-hover">
-                            <a href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="far fa-user-circle fa-2x text-white rounded-circle"></i>
+                            <a href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <i class="far fa-user-circle fa-2x text-white rounded-circle"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item small" href="../bookshelf.php">ホーム</a>
@@ -134,23 +147,29 @@
             {{-- register user button --}}
             <li class="nav-item">
                 <div class="d-none d-md-block">
-                    <a href="{{ route('register') }}" class="btn btn-sm shadow-sm bg-warning text-decoration-none text-white font-weight-bold mx-2" role="button">新規登録</a>
+                    <a href="{{ route('register') }}"
+                        class="btn btn-sm shadow-sm bg-warning text-decoration-none text-white font-weight-bold mx-2"
+                        role="button">新規登録</a>
                 </div>
                 {{-- register user button (toggle) --}}
                 <div class="d-block d-md-none">
-                    <a href="{{ route('register') }}" class="btn btn-sm btn-block bg-warning text-decoration-none text-white font-weight-bold">新規登録</a>
+                    <a href="{{ route('register') }}"
+                        class="btn btn-sm btn-block bg-warning text-decoration-none text-white font-weight-bold">新規登録</a>
                 </div>
             </li>
 
             {{-- login user button --}}
             <li class="nav-item">
                 <div class="d-none d-md-block">
-                    <a href="{{ route('login') }}" class="btn btn-sm shadow-sm btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold mx-2" role="button" disabled>ログイン</a>
+                    <a href="{{ route('login') }}"
+                        class="btn btn-sm shadow-sm btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold mx-2"
+                        role="button" disabled>ログイン</a>
                 </div>
             </li>
             {{-- login user button (toggle) --}}
             <div class="d-block d-md-none">
-                <a href="{{ route('login') }}" class="btn btn-sm btn-block btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold">ログイン</a>
+                <a href="{{ route('login') }}"
+                    class="btn btn-sm btn-block btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold">ログイン</a>
             </div>
             @endguest
         </ul>

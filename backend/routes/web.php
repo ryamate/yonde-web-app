@@ -12,5 +12,7 @@
 */
 
 Auth::routes();
-Route::get('/', 'PictureBookController@showBookshelf');
-Route::get('/search', 'PictureBookController@listPictureBookSearchResults')->name('search');
+Route::get('/', 'PictureBookController@index')->name('picture_books.index');
+Route::resource('/picture_books', 'PictureBookController')->except(['index', 'create'])->middleware('auth');
+Route::post('/picture_books/create', 'PictureBookController@create')->name('picture_books.create')->middleware('auth');
+Route::get('/search', 'PictureBookController@listSearchedPictureBooks')->name('search');

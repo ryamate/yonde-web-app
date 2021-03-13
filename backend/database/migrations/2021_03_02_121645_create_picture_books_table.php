@@ -19,6 +19,7 @@ class CreatePictureBooksTable extends Migration
             $table->string('isbn_13', 100)->nullable();
             $table->string('title');
             $table->string('authors');
+            $table->string('published_date', 100)->nullable();
             $table->string('thumbnail_uri', 1000);
             $table->timestamps();
         });

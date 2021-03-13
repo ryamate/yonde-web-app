@@ -16,16 +16,14 @@ class CreateStoredPictureBooksTable extends Migration
         Schema::create('stored_picture_books', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('picture_book_id');
-            $table->unsignedBigInteger('family_id');
-            $table->unsignedBigInteger('created_user_id');
+            $table->unsignedBigInteger('user_id');
             $table->integer('five_star_rating');
             $table->string('read_status', 100);
             $table->string('summary', 1000);
             $table->timestamps();
 
             $table->foreign('picture_book_id')->references('id')->on('picture_books');
-            $table->foreign('family_id')->references('id')->on('families');
-            $table->foreign('created_user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

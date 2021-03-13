@@ -2,74 +2,71 @@
 
 namespace App\Http\Controllers;
 
+use App\PictureBook;
+use App\StoredPictureBook;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\PictureBookRequest;
+use Exception;
 use Illuminate\Http\Request;
-
 use GuzzleHttp\Client;
 
 class PictureBookController extends Controller
 {
-    public function showBookshelf()
+    /**
+     * ログインユーザーの登録済み絵本を一覧表示する。
+     */
+    public function index()
     {
-        // ダミーデータ
-        $stored_picture_books = [
-            (object) [
-                'id' => 1,
-                'title' => 'タイトル1',
-                'authors' => '作者1',
-                'published_date' => now(),
-                'thumbnail_uri' => 'サムネイルURI1',
-                'five_star_rating' => '1',
-                'read_status' => 'よみきかせ状況1',
-                'summary' => 'レビュー1です。レビュー1です。レビュー1です。',
-                'created_at' => now(),
-                'updated_at' => now(),
-                'user' => (object) [
-                    'id' => 1,
-                    'name' => 'ユーザー名1',
-                ],
-            ],
-            (object) [
-                'id' => 2,
-                'title' => 'タイトル2',
-                'authors' => '作者2',
-                'published_date' => now(),
-                'thumbnail_uri' => 'サムネイルURI2',
-                'five_star_rating' => '2',
-                'read_status' => 'よみきかせ状況2',
-                'summary' => 'レビュー2です。レビュー2です。レビュー2です。',
-                'updated_at' => now(),
-                'created_at' => now(),
-                'user' => (object) [
-                    'id' => 2,
-                    'name' => 'ユーザー名2',
-                ],
-            ],
-            (object) [
-                'id' => 3,
-                'title' => 'タイトル3',
-                'authors' => '作者3',
-                'published_date' => now(),
-                'thumbnail_uri' => 'サムネイルURI3',
-                'five_star_rating' => '3',
-                'read_status' => 'よみきかせ状況3',
-                'summary' => 'レビュー3です。レビュー3です。レビュー3です。',
-                'created_at' => now(),
-                'updated_at' => now(),
-                'user' => (object) [
-                    'id' => 3,
-                    'name' => 'ユーザー名3',
-                ],
-            ],
-        ];
+        $stored_picture_books = PictureBook::with('storedPictureBook')->get()->sortByDesc('created_at');
 
-        return view('picture_books.bookshelf', ['stored_picture_books' => $stored_picture_books]);
+        return view('picture_books.index', ['stored_picture_books' => $stored_picture_books]);
+    }
+
+    /**
+     * 絵本を登録するフォーム画面を表示する。
+     */
+    public function create(Request $request, PictureBook $picture_book)
+    {
+        $picture_book->fill($request->all());
+
+        return view('picture_books.create', ['picture_book' => $picture_book]);
     }
 
 
     /**
+     * 絵本を登録する。
+     */
+    public function store(PictureBookRequest $request, PictureBook $picture_book, StoredPictureBook $stored_picture_book)
+    {
+
+        try {
+            DB::beginTransaction();
+
+            $picture_book->fill($request->all());
+            $picture_book->save();
+
+            $picture_book_id = $picture_book->id;
+
+            // $stored_picture_book->fill($request->all());
+            $stored_picture_book->picture_book_id = $picture_book_id;
+            $stored_picture_book->user_id = $request->user()->id;
+            $stored_picture_book->fill($request->five_star_rating);
+            $stored_picture_book->fill($request->read_status);
+            $stored_picture_book->fill($request->summary);
+            $stored_picture_book->save();
+
+            DB::commit();
+            return redirect()->route('picture_books.index');
+        } catch (Exception $e) {
+            DB::rollBack();
+            return redirect()->route('picture_books.index')->withInput()->with('flash_message', 'エラーが発生しました。');
+        }
+    }
+
+    /**
      * Google Books APIから取得した検索結果を一覧表示する。
      */
-    public function listPictureBookSearchResults(Request $request)
+    public function listSearchedPictureBooks(Request $request)
     {
 
         $data = [];
@@ -86,11 +83,13 @@ class PictureBookController extends Controller
             $items = $bodyArray['items'];
         }
 
+        //$item['id'] = $picture_book->google_books_id
+
         $data = [
             'items' => $items,
             'keyword' => $request->keyword,
         ];
 
-        return view('picture_books.list_picture_book_search_results', $data);
+        return view('picture_books.list_searched_picture_books', $data);
     }
 }

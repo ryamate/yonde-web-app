@@ -7,14 +7,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class StoredPictureBook extends Model
 {
+    protected $fillable = [
+        'picture_book_id',
+        'user_id',
+        'five_star_rating',
+        'read_status',
+        'summary',
+    ];
+
     public function pictureBook(): BelongsTo
     {
         return $this->belongsTo('App\PictureBook');
-    }
-
-    public function family(): BelongsTo
-    {
-        return $this->belongsTo('App\Family');
     }
 
     public function user(): BelongsTo

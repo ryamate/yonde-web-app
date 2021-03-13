@@ -24,7 +24,7 @@ class PictureBookRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'summary' => 'required|max:1000',
         ];
     }
 
@@ -34,7 +34,7 @@ class PictureBookRequest extends FormRequest
     public function attributes()
     {
         return [
-            //
+            'summary' => 'レビュー',
         ];
     }
 }

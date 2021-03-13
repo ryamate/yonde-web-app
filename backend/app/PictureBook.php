@@ -12,6 +12,7 @@ class PictureBook extends Model
         'isbn_13',
         'title',
         'authors',
+        'published_date',
         'thumbnail_uri',
     ];
 

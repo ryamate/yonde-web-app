@@ -61,13 +61,13 @@
             {{-- picture bookshelf button --}}
             <li class="nav-item d-flex align-items-center justify-content-center">
                 <div class="d-none d-md-block">
-                    <a href="" title="絵本棚"
+                    <a href="/" title="絵本棚"
                         class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center ml-3 mr-1"
                         style="width: 35px; height:35px;border-radius: 4px;"><i class="fas fa-book fa-lg"></i></a>
                 </div>
                 {{-- picture bookshelf button (toggle) --}}
                 <div class="d-block d-md-none">
-                    <a href="" title="絵本棚" class="nav-link">絵本棚</a>
+                    <a href="/" title="絵本棚" class="nav-link">絵本棚</a>
                 </div>
             </li>
 
@@ -107,7 +107,7 @@
                                 <i class="far fa-user-circle fa-2x text-white rounded-circle"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item small" href="../bookshelf.php">ホーム</a>
+                                <a class="dropdown-item small" href="">ホーム</a>
                                 {{-- logout button 1/2 --}}
                                 <button form="logout-button" class="dropdown-item small">ログアウト</button>
                             </div>

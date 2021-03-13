@@ -97,9 +97,20 @@
                             <div class="col-sm-3 d-flex align-items-center">
                                 <div class="card-body">
                                     @auth
-                                    <form action="" method="POST">
+                                    <form action="{{ route('picture_books.create') }}" method="POST">
+                                        @csrf
                                         <button type="submit" class="btn btn btn-teal1 shadow-sm btn-block"><i
                                                 class="fas fa-plus-circle"></i> 本棚に登録</button>
+                                        <input type="hidden" name="google_books_id" value="{{ $item['id'] }}" />
+                                        <input type="hidden" name="isbn_13"
+                                            value="{{ $item['volumeInfo']['industryIdentifiers'][1]['identifier'] }}" />
+                                        <input type="hidden" name="title" value="{{ $item['volumeInfo']['title'] }}" />
+                                        <input type="hidden" name="authors"
+                                            value="{{ $item['volumeInfo']['authors'][0] }}" />
+                                        <input type="hidden" name="published_date"
+                                            value="{{ $item['volumeInfo']['publishedDate'] }}" />
+                                        <input type="hidden" name="thumbnail_uri"
+                                            value="{{ $item['volumeInfo']['imageLinks']['thumbnail'] }}" />
                                     </form>
                                     @endauth
                                     @guest

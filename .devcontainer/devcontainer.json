@@ -1,0 +1,20 @@
+{
+  "name": "Yonde-app",
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+  ],
+  "service": "app",
+  "workspaceFolder": "/work/backend",
+  "forwardPorts": [
+    9003
+  ],
+  "extensions": [
+    "felixfbecker.php-debug",
+    "bmewburn.vscode-intelephense-client",
+    "coenraads.bracket-pair-colorizer-2",
+    "oderwat.indent-rainbow",
+    "streetsidesoftware.code-spell-checker",
+    "onecentlin.laravel-extension-pack",
+    "hollowtree.vue-snippets"
+  ]
+}

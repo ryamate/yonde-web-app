@@ -23,7 +23,7 @@ class PictureBookController extends Controller
     }
 
     /**
-     * 絵本を登録するフォーム画面を表示する。
+     * 絵本登録フォーム画面を表示する。
      */
     public function create(Request $request, PictureBook $picture_book)
     {
@@ -47,31 +47,30 @@ class PictureBookController extends Controller
 
             $picture_book_id = $picture_book->id;
 
-            // $stored_picture_book->fill($request->all());
+            $stored_picture_book->fill($request->all());
             $stored_picture_book->picture_book_id = $picture_book_id;
             $stored_picture_book->user_id = $request->user()->id;
-            $stored_picture_book->fill($request->five_star_rating);
-            $stored_picture_book->fill($request->read_status);
-            $stored_picture_book->fill($request->summary);
             $stored_picture_book->save();
 
             DB::commit();
+
             return redirect()->route('picture_books.index');
         } catch (Exception $e) {
             DB::rollBack();
-            return redirect()->route('picture_books.index')->withInput()->with('flash_message', 'エラーが発生しました。');
+            return redirect()->route('picture_books.create')->withInput($request->all())
+                ->with('flash_message', 'エラーが発生しました。');
         }
     }
 
     /**
-     * Google Books APIから取得した検索結果を一覧表示する。
+     * 検索結果を一覧表示する（Google Books APIから書籍情報取得）。
      */
-    public function listSearchedPictureBooks(Request $request)
+    public function search(Request $request)
     {
 
         $data = [];
 
-        $items = null;
+        $searched_picture_books = null;
 
         if (!empty($request->keyword)) {
             $title = urlencode($request->keyword);
@@ -81,15 +80,33 @@ class PictureBookController extends Controller
             $body = $response->getBody();
             $bodyArray = json_decode($body, true);
             $items = $bodyArray['items'];
+
+            error_reporting(E_ALL);
+            foreach ($items as $item) {
+                $authors_array = @$item["volumeInfo"]["authors"];
+                if ($authors_array !== null) {
+                    $authors = implode(",", $authors_array);
+                } else {
+                    $authors = null;
+                }
+
+                $searched_picture_books[] = [
+                    'google_books_id' => @$item["id"],
+                    'isbn_13' => @$item["volumeInfo"]["industryIdentifiers"][1]["identifier"],
+                    'title' =>  @$item["volumeInfo"]["title"],
+                    'authors' =>  $authors,
+                    'published_date' => @$item["volumeInfo"]["publishedDate"],
+                    'thumbnail_uri' => @$item["volumeInfo"]["imageLinks"]["thumbnail"],
+                    'description' => @$item["volumeInfo"]["description"],
+                ];
+            }
         }
 
-        //$item['id'] = $picture_book->google_books_id
-
         $data = [
-            'items' => $items,
+            'searched_picture_books' => $searched_picture_books,
             'keyword' => $request->keyword,
         ];
 
-        return view('picture_books.list_searched_picture_books', $data);
+        return view('picture_books.search', $data);
     }
 }

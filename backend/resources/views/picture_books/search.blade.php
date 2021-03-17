@@ -11,18 +11,20 @@
         <div class="container" style="padding-bottom:60px; max-width: 900px;">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-light small pl-0 mb-0">
-                    @if ($items === null)
-                    <li class="breadcrumb-item"><a href="/" class="text-teal1">よんで</a></li>
+                    @if ($searched_picture_books === null)
+                    <li class="breadcrumb-item"><a href="{{ route('picture_books.index') }}" class="text-teal1">よんで</a>
+                    </li>
                     <li class="breadcrumb-item active" aria-current="page">絵本検索</li>
                     @else
-                    <li class="breadcrumb-item"><a href="/" class="text-teal1">よんで</a></li>
-                    <li class="breadcrumb-item"><a href="/search" class="text-teal1">絵本検索</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('picture_books.index') }}" class="text-teal1">よんで</a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="{{ route('search') }}" class="text-teal1">絵本検索</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ $keyword }}</li>
                     @endif
                 </ol>
             </nav>
             <h2>絵本の検索</h2>
-            @if ($items === null)
+            @if ($searched_picture_books === null)
             <div class="alert alert-teal1" style="max-width: 360px;">
                 <p>書籍名を入力してください。</p>
             </div>
@@ -48,18 +50,18 @@
     <div class="container">
         <div class="row">
             <div class="container" style="max-width: 900px;">
-                @if ($items !== null)
+                @if ($searched_picture_books !== null)
                 <h3>検索結果</h3>
                 <section class="card shadow-sm mb-4">
-                    @foreach ($items as $item)
+                    @foreach ($searched_picture_books as $searched_picture_book)
                     <div class="card-body border-bottom p-0">
                         <div class="row no-gutters">
                             {{-- サムネイル --}}
                             <div class="col-sm-3">
                                 <div class="card-body py-0">
                                     <div class="book-cover">
-                                        @if (array_key_exists('imageLinks', $item['volumeInfo']))
-                                        <img src="{{ $item['volumeInfo']['imageLinks']['thumbnail'] }}" alt="book-cover"
+                                        @if ($searched_picture_book['thumbnail_uri'] !== null)
+                                        <img src="{{ $searched_picture_book['thumbnail_uri'] }}" alt="book-cover"
                                             class="book-cover-image">
                                         @else
                                         <img src="image/no_image.png" alt="No Image" class="book-cover-image">
@@ -72,7 +74,7 @@
                             <div class="col-sm-6 d-flex align-items-center">
                                 <div class="card-body">
                                     <a href=""
-                                        class="card-title text-teal1 h5"><b>{{ $item['volumeInfo']['title'] }}</b></a>
+                                        class="card-title text-teal1 h5"><b>{{ $searched_picture_book['title'] }}</b></a>
                                     {{-- ダミー値 --}}
                                     <div class="card-text small mt-2">
                                         <p>
@@ -82,39 +84,40 @@
                                     </div>
                                     <div class="card-text small">
                                         <p>
-                                            @if (array_key_exists('authors', $item['volumeInfo']))
-                                            {{ $item['volumeInfo']['authors'][0] }}/
+                                            @if ($searched_picture_book['authors'] !== null)
+                                            {{ $searched_picture_book['authors'] }}/
                                             @endif
-                                            @if (array_key_exists('publishedDate', $item['volumeInfo']))
-                                            {{ $item['volumeInfo']['publishedDate'] }}出版
+                                            @if ($searched_picture_book['published_date'] !== null)
+                                            {{ $searched_picture_book['published_date'] }}出版
                                             @endif
                                         </p>
                                     </div>
-
                                 </div>
                             </div>
                             <!-- 登録ボタン -->
                             <div class="col-sm-3 d-flex align-items-center">
                                 <div class="card-body">
                                     @auth
-                                    <form action="{{ route('picture_books.create') }}" method="POST">
+                                    <form action="{{ route('picture_books.create') }}" method="GET">
                                         @csrf
                                         <button type="submit" class="btn btn btn-teal1 shadow-sm btn-block"><i
                                                 class="fas fa-plus-circle"></i> 本棚に登録</button>
-                                        <input type="hidden" name="google_books_id" value="{{ $item['id'] }}" />
+                                        <input type="hidden" name="google_books_id"
+                                            value="{{ $searched_picture_book['google_books_id'] }}" />
                                         <input type="hidden" name="isbn_13"
-                                            value="{{ $item['volumeInfo']['industryIdentifiers'][1]['identifier'] }}" />
-                                        <input type="hidden" name="title" value="{{ $item['volumeInfo']['title'] }}" />
+                                            value="{{ $searched_picture_book['isbn_13'] }}" />
+                                        <input type="hidden" name="title"
+                                            value="{{ $searched_picture_book['title'] }}" />
                                         <input type="hidden" name="authors"
-                                            value="{{ $item['volumeInfo']['authors'][0] }}" />
+                                            value="{{ $searched_picture_book['authors'] }}" />
                                         <input type="hidden" name="published_date"
-                                            value="{{ $item['volumeInfo']['publishedDate'] }}" />
+                                            value="{{ $searched_picture_book['published_date'] }}" />
                                         <input type="hidden" name="thumbnail_uri"
-                                            value="{{ $item['volumeInfo']['imageLinks']['thumbnail'] }}" />
+                                            value="{{ $searched_picture_book['thumbnail_uri'] }}" />
                                     </form>
                                     @endauth
                                     @guest
-                                    <form action="" method="POST">
+                                    <form action="" method="">
                                         <button type="submit"
                                             class="btn btn btn-outline-teal1 bg-white text-teal1 shadow-sm btn-block">レビューを読む</button>
                                     </form>

@@ -3,8 +3,8 @@
 
     {{-- left: application logo --}}
     <a class="navbar-brand mr-2 p-0" href="/">
-        <img src="image/logo.png" height="45" class="d-inline-block align-top text-white text-decoration-none"
-            alt=" yonde">
+        <img src="{{ asset('image/logo.png') }}" height="45"
+            class="d-inline-block align-top text-white text-decoration-none" alt=" yonde">
     </a>
 
     {{-- toggle button --}}

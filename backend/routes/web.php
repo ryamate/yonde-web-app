@@ -13,6 +13,5 @@
 
 Auth::routes();
 Route::get('/', 'PictureBookController@index')->name('picture_books.index');
-Route::resource('/picture_books', 'PictureBookController')->except(['index', 'create'])->middleware('auth');
-Route::post('/picture_books/create', 'PictureBookController@create')->name('picture_books.create')->middleware('auth');
-Route::get('/search', 'PictureBookController@listSearchedPictureBooks')->name('search');
+Route::resource('/picture_books', 'PictureBookController')->except(['index'])->middleware('auth');
+Route::get('/search', 'PictureBookController@search')->name('search');

@@ -6,116 +6,201 @@
 
 @include('nav')
 
-<div class="container" style="max-width: 540px;">
-    {{-- 絵本の記録表示 --}}
-    @foreach($stored_picture_books as $stored_picture_book)
-    <div class="card mb-3">
-        <!-- 登録絵本情報 -->
-        <div class="row no-gutters">
-            <div class="col-sm-5">
-                {{-- <img src="" alt="表紙イメージ" class="border-right border-bottom" width="100%" height="100%" style="max-width: 280px; border-radius: 2px;"> --}}
-                <svg class="bd-placeholder-img" width="100%" height="200" xmlns="http://www.w3.org/2000/svg"
-                    preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image">
-                    <title>表紙のイメージがありません</title>
-                    <rect fill="#868e96" width="100%" height="100%" /><text fill="#dee2e6" dy=".3em" x="20%" y="50%">No
-                        Image</text>
-                </svg>
-            </div>
-            <div class="col-sm-7">
-                <div class="card-body">
-                    <h5 class="card-title"><b>{{ $stored_picture_book->title }}</b></h5>
-                    <p class="card-text">
-                        @if ($stored_picture_book->authors !== null)
-                        {{ $stored_picture_book->authors }}
-                        @endif
-                    </p>
-                    <p class="card-text">
-                        <small class="text-muted">
-                            @if ($stored_picture_book->published_date !== null)
-                            {{ $stored_picture_book->published_date }}発売
+<header>
+    <div class="bg-light">
+        <div class="container" style="max-width: 900px;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-light small pl-0 mb-0">
+                    <li class="breadcrumb-item"><a href="{{ route('picture_books.index') }}" class="text-teal1">よんで</a>
+                    </li>
+                    @auth
+                    <li class="breadcrumb-item active" aria-current="page">{{ Auth::user()->name }}さんの本棚</li>
+                    @endauth
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="container" style="max-width: 900px;">
+                @if ($stored_picture_books !== null)
+                {{-- 絵本の記録表示 --}}
+                @foreach($stored_picture_books as $stored_picture_book)
+                <section class="card shadow-sm mb-4">
+                    <div class="card-body border-bottom p-0">
+                        <div class="row no-gutters">
+                            {{-- サムネイル --}}
+                            <div class="col-sm-3">
+                                <div class="card-body py-0">
+                                    <div class="book-cover">
+                                        @if ($stored_picture_book->pictureBook->thumbnail_uri !== null)
+                                        <img src="{{ $stored_picture_book->pictureBook->thumbnail_uri }}"
+                                            alt="book-cover" class="book-cover-image">
+                                        @else
+                                        <img src="{{ asset('image/no_image.png') }}" alt="No Image"
+                                            class="book-cover-image">
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 d-flex align-items-center">
+                                <div class="card-body text-center">
+                                    <a href=""
+                                        class="card-title text-teal1 h5"><b>{{ $stored_picture_book->pictureBook->title }}</b></a>
+                                    <div class="card-text text-secondary small">
+                                        <p>
+                                            @if ($stored_picture_book->pictureBook->authors !== null)
+                                            {{ $stored_picture_book->pictureBook->authors }}
+                                            @endif
+                                        </p>
+                                        <p class="card-text text-center">
+                                            <small class="text-muted">
+                                                @if ($stored_picture_book->pictureBook->published_date !== null)
+                                                {{ $stored_picture_book->pictureBook->published_date }}発売
+                                                @endif
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 絵本の読み聞かせ記録ボタン -->
+                            @if( Auth::id() === $stored_picture_book->user_id )
+                            <div class="col-sm-3 d-flex align-items-center">
+                                <div class="card-body">
+                                    <form action="" method="GET">
+                                        @csrf
+                                        <button type="submit" class="btn btn btn-teal1 shadow-sm btn-block"
+                                            title="絵本の読み聞かせ記録をする"><i class="fas fa-book-reader"></i>
+                                            よみきかせを記録</button>
+                                    </form>
+                                </div>
+                            </div>
                             @endif
-                        </small>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- 絵本の読み聞かせ記録ボタン -->
-        <div class="card-body bg-light">
-            <form action="" method="POST">
-                <button type="submit" class="btn btn-teal1 btn-sm btn-block" title="絵本の読み聞かせ記録をする"><i
-                        class="fas fa-book-reader"></i>よみきかせの記録をする</button>
-            </form>
-        </div>
-
-        <div class="card-body bg-light">
-            <h5 class="card-title small"><i class="fas fa-book-reader"></i><b>よみきかせ記録</b></h5>
-        </div>
-
-        <div class="card-body pb-0 pr-0">
-            <h5 class="card-title small"><i class="far fa-edit"></i><b>レビュー</b></h5>
-            <p title="{{ date('Y-m-d', strtotime($stored_picture_book->created_at)) }}本棚登録">
-                <small class="text-muted">
-                    <i class="far fa-clock"></i>{{ date('Y-m-d', strtotime($stored_picture_book->updated_at)) }}更新
-                </small>
-            </p>
-        </div>
-        <div class="row no-gutters">
-            <div class="col-sm-12">
-                <div class="card border-0">
-                    <div class="card-body pt-0 pb-0">
-                        @if ($stored_picture_book->five_star_rating !== '0')
-                        <p class="small text-warning">
-                            @for ($i = 0; $i < (int)$stored_picture_book->five_star_rating; $i++)
-                                <i class="fas fa-star"></i>
-                                @endfor
-                                @for ($i = 0; $i < 5 - (int)$stored_picture_book->five_star_rating; $i++)
-                                    <i class="far fa-star"></i>
-                                    @endfor
-                        </p>
-                        @else
-                        <p class="text-secondary">未評価</p>
-                        @endif
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="card border-0">
-                    <div class="card-body pt-0 pb-0">
-                        <p class="mb-0">
+
+                    <div class="card-body border-bottom">
+                        <h5 class="card-title small"><i class="fas fa-book-reader"></i><b>よみきかせ記録</b></h5>
+                        {{-- ダミー値 --}}
+                        <p class="small">2021.3.20</p>
+                    </div>
+
+                    @if( Auth::id() === $stored_picture_book->user_id )
+                    <!-- dropdown -->
+                    <div class="ml-auto card-text">
+                        <div class="dropdown">
+                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <button type="button" class="btn btn-link text-muted m-0 p-2">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item small"
+                                    href="{{ route("picture_books.edit", ['stored_picture_book' => $stored_picture_book->id]) }}">
+                                    <i class="fas fa-pen mr-1"></i>レビューを編集する
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger small" data-toggle="modal"
+                                    data-target="#modal-delete-{{ $stored_picture_book->id }}">
+                                    <i class="fas fa-trash-alt mr-1"></i>本棚から削除する
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- dropdown -->
+
+                    <!-- modal -->
+                    <div id="modal-delete-{{ $stored_picture_book->id }}" class="modal fade" tabindex="-1"
+                        role="dialog">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form method="POST"
+                                    action="{{ route('picture_books.destroy', ['stored_picture_book' => $stored_picture_book->id]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <div class="modal-body">
+                                        {{ $stored_picture_book->pictureBook->title }}を削除します。よろしいですか？
+                                    </div>
+                                    <div class="modal-footer justify-content-between">
+                                        <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                                        <button type="submit" class="btn btn-danger">削除する</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal -->
+                    @endif
+
+                    <div class="card-body pb-0 pr-0">
+                        <h5 class="card-title small"><i class="far fa-edit"></i><b>レビュー・感想</b></h5>
+                        <p title="{{ $stored_picture_book->pictureBook->created_at->format('Y/m/d H:i') }}本棚登録">
                             <small class="text-muted">
-                                よみきかせ状況： {{ $stored_picture_book->read_status }}
+                                <i
+                                    class="far fa-clock"></i>{{ $stored_picture_book->pictureBook->updated_at->format('Y/m/d H:i') }}更新
                             </small>
                         </p>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="card border-0">
-            <div class="card-body">
-                <p class="card-text small">{{ nl2br($stored_picture_book->summary, false) }}</p>
-            </div>
-        </div>
-        <!-- レビューを編集するボタン -->
-        <div class="row no-gutters">
-            <div class="col-sm-10">
-                <div class="card border-0">
-                    <div class="card-body pb-0">
-                        <form action="" method="POST">
-                            <button type="submit" class="btn btn-outline-teal1 bg-white text-teal1 btn-sm btn-block"
-                                title="レビュー（おすすめ度や感想）を編集する"><i class="far fa-edit"></i>レビューを編集する</button>
-                        </form>
+                    <div class="row no-gutters">
+                        <div class="col-sm-12">
+                            <div class="card border-0">
+                                <div class="card-body pt-0 pb-0">
+                                    @if ($stored_picture_book->five_star_rating !== 0)
+                                    <p class="small text-warning">
+                                        @for ($i = 0; $i < (int)$stored_picture_book->five_star_rating; $i++)
+                                            <i class="fas fa-star"></i>
+                                            @endfor
+                                            @for ($i = 0; $i < 5 - (int)$stored_picture_book->five_star_rating;
+                                                $i++)
+                                                <i class="far fa-star"></i>
+                                                @endfor
+                                    </p>
+                                    @else
+                                    <p class="text-secondary small">未評価</p>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="card border-0">
+                                <div class="card-body pt-0 pb-0">
+                                    <p class="card-text small">{{ nl2br($stored_picture_book->summary, false) }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="card border-0">
+                                <div class="card-body">
+                                    <p class="mb-0">
+                                        <small class="text-muted">
+                                            よみきかせ状況： {{ $stored_picture_book->read_status }}
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+
+
+                </section>
+                @endforeach
+                @else
+                <div class="alert alert-teal1" style="max-width: 360px;">
+                    <p>絵本がまだありません。</p>
                 </div>
-            </div>
-            <!-- 登録絵本の削除ボタン -->
-            <div class="col-sm-2">
-                <div class="card border-0 text-right">
-                    <div class="card-body">
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>
-    @endforeach
 </div>
 @endsection

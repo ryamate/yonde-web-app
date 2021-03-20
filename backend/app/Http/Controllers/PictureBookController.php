@@ -17,7 +17,7 @@ class PictureBookController extends Controller
      */
     public function index()
     {
-        $stored_picture_books = PictureBook::with('storedPictureBook')->get()->sortByDesc('created_at');
+        $stored_picture_books = StoredPictureBook::with(['pictureBook', 'user'])->get()->sortByDesc('created_at');
 
         return view('picture_books.index', ['stored_picture_books' => $stored_picture_books]);
     }
@@ -60,6 +60,12 @@ class PictureBookController extends Controller
             return redirect()->route('picture_books.create')->withInput($request->all())
                 ->with('flash_message', 'エラーが発生しました。');
         }
+    }
+
+    public function edit(StoredPictureBook $stored_picture_book)
+    {
+        $stored_picture_book = $stored_picture_book->with('pictureBook')->find($stored_picture_book->id);
+        return view('picture_books.edit', ['stored_picture_book' => $stored_picture_book]);
     }
 
     /**

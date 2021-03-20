@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\PictureBook;
 use App\StoredPictureBook;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\PictureBookRequest;
+use App\Http\Requests\StoredPictureBookRequest;
 use Exception;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -36,7 +36,7 @@ class PictureBookController extends Controller
     /**
      * 絵本を登録する。
      */
-    public function store(PictureBookRequest $request, PictureBook $picture_book, StoredPictureBook $stored_picture_book)
+    public function store(StoredPictureBookRequest $request, PictureBook $picture_book, StoredPictureBook $stored_picture_book)
     {
 
         try {
@@ -66,6 +66,24 @@ class PictureBookController extends Controller
     {
         $stored_picture_book = $stored_picture_book->with('pictureBook')->find($stored_picture_book->id);
         return view('picture_books.edit', ['stored_picture_book' => $stored_picture_book]);
+    }
+
+    /**
+     * 登録絵本情報を編集画面での編集内容に更新する。
+     */
+    public function update(StoredPictureBookRequest $request, StoredPictureBook $stored_picture_book)
+    {
+        $stored_picture_book->fill($request->all())->save();
+        return redirect()->route('picture_books.index');
+    }
+
+    /**
+     * 登録絵本を削除する。
+     */
+    public function destroy(StoredPictureBook $stored_picture_book)
+    {
+        $stored_picture_book->delete();
+        return redirect()->route('picture_books.index');
     }
 
     /**

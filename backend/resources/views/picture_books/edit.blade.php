@@ -2,7 +2,6 @@
 
 @section('title', '絵本情報編集-Yonde-')
 
-
 @section('content')
 
 @include('nav')
@@ -59,7 +58,7 @@
                                             {{ $stored_picture_book->pictureBook->authors }}/
                                             @endif
                                             @if ($stored_picture_book->pictureBook->published_date !== null)
-                                            {{ $stored_picture_book->pictureBook->published_date }}出版
+                                            {{ $stored_picture_book->pictureBook->published_date }}発売
                                             @endif
                                         </p>
                                     </div>

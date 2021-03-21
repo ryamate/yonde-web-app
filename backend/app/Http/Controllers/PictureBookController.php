@@ -13,6 +13,14 @@ use GuzzleHttp\Client;
 class PictureBookController extends Controller
 {
     /**
+     * あるユーザーが登録した絵本を、別のユーザーが更新・削除することを防ぐためのポリシー。
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(StoredPictureBook::class, 'stored_picture_book');
+    }
+
+    /**
      * 登録絵本を一覧表示する。
      */
     public function index()

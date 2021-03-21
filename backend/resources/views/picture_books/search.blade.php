@@ -18,7 +18,8 @@
                     @else
                     <li class="breadcrumb-item"><a href="{{ route('picture_books.index') }}" class="text-teal1">よんで</a>
                     </li>
-                    <li class="breadcrumb-item"><a href="{{ route('search') }}" class="text-teal1">絵本検索</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('picture_books.search') }}"
+                            class="text-teal1">絵本検索</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ $keyword }}</li>
                     @endif
                 </ol>
@@ -31,7 +32,7 @@
             @endif
             <p>まずは絵本のタイトル、作家名、出版社名などを入力して検索してください。</p>
             <p>例えば… パンやのろくちゃん や はらぺこあおむし など。</p>
-            <form action="{{ route('search') }}" method="GET" class="form-inline">
+            <form action="{{ route('picture_books.search') }}" method="GET" class="form-inline">
                 @csrf
                 <div class="input-group">
                     <input type="text" id="search" name="keyword" class="form-control border" placeholder="絵本をさがす"

@@ -13,7 +13,15 @@ use GuzzleHttp\Client;
 class PictureBookController extends Controller
 {
     /**
-     * ログインユーザーの登録済み絵本を一覧表示する。
+     * あるユーザーが登録した絵本を、別のユーザーが更新・削除することを防ぐためのポリシー。
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(StoredPictureBook::class, 'stored_picture_book');
+    }
+
+    /**
+     * 登録絵本を一覧表示する。
      */
     public function index()
     {
@@ -62,6 +70,9 @@ class PictureBookController extends Controller
         }
     }
 
+    /**
+     * 登録絵本情報の編集画面を表示する。
+     */
     public function edit(StoredPictureBook $stored_picture_book)
     {
         $stored_picture_book = $stored_picture_book->with('pictureBook')->find($stored_picture_book->id);
@@ -85,6 +96,16 @@ class PictureBookController extends Controller
         $stored_picture_book->delete();
         return redirect()->route('picture_books.index');
     }
+
+    /**
+     * 登録絵本詳細画面を表示する。
+     */
+    public function show(StoredPictureBook $stored_picture_book)
+    {
+        $stored_picture_book = $stored_picture_book->with('pictureBook')->find($stored_picture_book->id);
+        return view('picture_books.show', ['stored_picture_book' => $stored_picture_book]);
+    }
+
 
     /**
      * 検索結果を一覧表示する（Google Books APIから書籍情報取得）。

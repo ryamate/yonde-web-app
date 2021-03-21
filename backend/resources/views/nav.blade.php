@@ -28,7 +28,7 @@
             {{-- search bar --}}
             <li class="nav-item d-flex align-items-center justify-content-center">
                 <div class="d-none d-md-block">
-                    <form action="{{ route('search') }}" method="GET" class="form-inline">
+                    <form action="{{ route('picture_books.search') }}" method="GET" class="form-inline">
                         @csrf
                         <div class="input-group input-group-sm">
                             <input type="search" id="search" name="keyword" class="form-control border"
@@ -44,7 +44,7 @@
             {{-- search bar (toggle) --}}
             <li class="nav-item">
                 <div class="d-block d-md-none pt-2">
-                    <form action="{{ route('search') }}" method="GET" class="form-inline">
+                    <form action="{{ route('picture_books.search') }}" method="GET" class="form-inline">
                         @csrf
                         <div class="input-group input-group-sm">
                             <input type="search" id="search" name="keyword" class="form-control" placeholder="絵本をさがす">

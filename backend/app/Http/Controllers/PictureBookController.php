@@ -21,6 +21,16 @@ class PictureBookController extends Controller
     }
 
     /**
+     * ホーム画面を表示する。
+     */
+    public function home()
+    {
+        $stored_picture_books = StoredPictureBook::with(['pictureBook', 'user'])->get()->sortByDesc('created_at');
+
+        return view('picture_books.home', ['stored_picture_books' => $stored_picture_books]);
+    }
+
+    /**
      * 登録絵本を一覧表示する。
      */
     public function index()

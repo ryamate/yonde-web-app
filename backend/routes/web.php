@@ -12,7 +12,8 @@
 */
 
 Auth::routes();
-Route::get('/', 'PictureBookController@index')->name('picture_books.index');
+Route::get('/', 'PictureBookController@home')->name('picture_books.home');
+Route::get('/picture_books', 'PictureBookController@index')->name('picture_books.index');
 Route::resource('/picture_books', 'PictureBookController')->except(['index', 'edit', 'destroy', 'update', 'show'])->middleware('auth');
 Route::get('/picture_books/search', 'PictureBookController@search')->name('picture_books.search');
 Route::get('/picture_books/{stored_picture_book}/edit', 'PictureBookController@edit')->name('picture_books.edit')->middleware('auth');

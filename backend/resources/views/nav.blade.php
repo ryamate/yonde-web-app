@@ -2,7 +2,7 @@
     style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #22968a, #45d9c8) fixed; opacity: 0.97;">
 
     {{-- left: application logo --}}
-    <a class="navbar-brand mr-2 p-0" href="/">
+    <a class="navbar-brand mr-2 p-0" href="{{ route('picture_books.home') }}">
         <img src="{{ asset('image/logo.png') }}" height="45"
             class="d-inline-block align-top text-white text-decoration-none" alt=" yonde">
     </a>
@@ -18,7 +18,8 @@
         {{-- left: application name --}}
         <ul class="navbar-nav mr-auto d-none d-md-block">
             <li class="nav-item">
-                <a class="nav-link text-white text-decoration-none mb-0 h4" href="/">よんで</a>
+                <a class="nav-link text-white text-decoration-none mb-0 h4"
+                    href="{{ route('picture_books.home') }}">よんで</a>
             </li>
         </ul>
 
@@ -61,13 +62,13 @@
             {{-- picture bookshelf button --}}
             <li class="nav-item d-flex align-items-center justify-content-center">
                 <div class="d-none d-md-block">
-                    <a href="/" title="絵本棚"
+                    <a href="{{ route('picture_books.index') }}" title="絵本棚"
                         class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center ml-3 mr-1"
                         style="width: 35px; height:35px;border-radius: 4px;"><i class="fas fa-book fa-lg"></i></a>
                 </div>
                 {{-- picture bookshelf button (toggle) --}}
                 <div class="d-block d-md-none">
-                    <a href="/" title="絵本棚" class="nav-link">絵本棚</a>
+                    <a href="{{ route('picture_books.index') }}" title="絵本棚" class="nav-link">絵本棚</a>
                 </div>
             </li>
 
@@ -122,7 +123,7 @@
                 </div>
                 {{-- home button (toggle) --}}
                 <div class="d-block d-md-none">
-                    <a href="" title="ホーム" class="nav-link">ホーム</a>
+                    <a href="{{ route('picture_books.home') }}" title="ホーム" class="nav-link">ホーム</a>
                 </div>
             </li>
             {{-- logout button 2/2 --}}

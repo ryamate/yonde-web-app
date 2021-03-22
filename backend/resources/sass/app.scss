@@ -89,10 +89,10 @@ body{
 }
 
 .book-cover-image {
-  display: block;
-  width: 100%;
-  max-width: 180px;
-  border-radius: 2px;
+    display: block;
+    width: 100%;
+    max-width: 180px;
+    border-radius: 2px;
 }
 
 // 本の配置を調整するためだけのスタイル
@@ -100,4 +100,36 @@ body{
     width: 100%;
     max-width: 180px;
     margin: 2.5rem auto;
+}
+
+.carousel-responsive .img-fluid {
+    width:100%;
+    height:auto;
+}
+
+.carousel-responsive{
+    height: auto;
+}
+
+.carousel-responsive a {
+    display: block;
+    width:100%;
+}
+
+.carousel-responsive .show-image {
+    display: block;
+    width:100%;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    width: 5%;
+    background-color: white;
+}
+
+
+.carousel-control-next-teal,
+.carousel-control-prev-teal {
+    width: 5%;
+    background-color: #9acac5;
 }

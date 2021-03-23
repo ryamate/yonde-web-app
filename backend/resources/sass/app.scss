@@ -88,48 +88,49 @@ body{
   }
 }
 
-.book-cover-image {
-    display: block;
-    width: 100%;
-    max-width: 180px;
-    border-radius: 2px;
-}
-
 // 本の配置を調整するためだけのスタイル
 .book-cover {
     width: 100%;
     max-width: 180px;
     margin: 2.5rem auto;
+    &-image {
+        display: block;
+        width: 100%;
+        max-width: 180px;
+        border-radius: 2px;
+    }
 }
 
-.carousel-responsive .img-fluid {
-    width:100%;
-    height:auto;
+// home.blade.phpで使用
+.carousel {
+    &-responsive{
+        height: auto;
+        & .img-fluid{
+            width:100%;
+            height:auto;
+        }
+        & a{
+            display: block;
+            width:100%;
+        }
+        & .show-image {
+            display: block;
+            width:100%;
+        }
+    }
+    &-control{
+        &-next, &-prev {
+            width: 5%;
+            background-color: white;
+            &-teal{
+                width: 5%;
+                background-color: #9acac5;
+            }
+        }
+    }
 }
 
-.carousel-responsive{
-    height: auto;
-}
-
-.carousel-responsive a {
+// nav.blade.phpで使用
+.drop-hover:hover>.dropdown-menu {
     display: block;
-    width:100%;
-}
-
-.carousel-responsive .show-image {
-    display: block;
-    width:100%;
-}
-
-.carousel-control-next,
-.carousel-control-prev {
-    width: 5%;
-    background-color: white;
-}
-
-
-.carousel-control-next-teal,
-.carousel-control-prev-teal {
-    width: 5%;
-    background-color: #9acac5;
 }

@@ -13,6 +13,7 @@
 
 Auth::routes();
 Route::get('/', 'PictureBookController@home')->name('picture_books.home');
+Route::get('/about', 'PictureBookController@about')->name('picture_books.about');
 Route::get('/picture_books', 'PictureBookController@index')->name('picture_books.index');
 Route::resource('/picture_books', 'PictureBookController')->except(['index', 'edit', 'destroy', 'update', 'show'])->middleware('auth');
 Route::get('/picture_books/search', 'PictureBookController@search')->name('picture_books.search');

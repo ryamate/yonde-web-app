@@ -31,6 +31,14 @@ class PictureBookController extends Controller
     }
 
     /**
+     * サービス概要紹介画面を表示する。
+     */
+    public function about()
+    {
+        return view('picture_books.about');
+    }
+
+    /**
      * 登録絵本を一覧表示する。
      */
     public function index()

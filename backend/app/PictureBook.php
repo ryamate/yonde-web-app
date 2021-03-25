@@ -24,7 +24,7 @@ class PictureBook extends Model
     public function isStoredBy(?User $user): bool
     {
         return $user
-            ? (bool)$this->stored_picture_books->where('id', $user->id)->count()
+            ? (bool)$this->storedPictureBooks->where('id', $user->id)->count()
             : false;
     }
 }

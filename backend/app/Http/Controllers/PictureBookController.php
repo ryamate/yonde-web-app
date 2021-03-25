@@ -25,9 +25,9 @@ class PictureBookController extends Controller
      */
     public function home()
     {
-        $stored_picture_books = StoredPictureBook::with(['pictureBook', 'user'])->get()->sortByDesc('created_at');
+        $storedPictureBooks = StoredPictureBook::with(['pictureBook', 'user'])->get()->sortByDesc('created_at');
 
-        return view('picture_books.home', ['stored_picture_books' => $stored_picture_books]);
+        return view('picture_books.home', ['storedPictureBooks' => $storedPictureBooks]);
     }
 
     /**
@@ -43,40 +43,43 @@ class PictureBookController extends Controller
      */
     public function index()
     {
-        $stored_picture_books = StoredPictureBook::with(['pictureBook', 'user'])->get()->sortByDesc('created_at');
+        $storedPictureBooks = StoredPictureBook::with(['pictureBook', 'user'])->get()->sortByDesc('created_at');
 
-        return view('picture_books.index', ['stored_picture_books' => $stored_picture_books]);
+        return view('picture_books.index', ['storedPictureBooks' => $storedPictureBooks]);
     }
 
     /**
      * 絵本登録フォーム画面を表示する。
      */
-    public function create(Request $request, PictureBook $picture_book)
+    public function create(Request $request, PictureBook $pictureBook)
     {
-        $picture_book->fill($request->all());
+        $pictureBook->fill($request->all());
 
-        return view('picture_books.create', ['picture_book' => $picture_book]);
+        return view('picture_books.create', ['pictureBook' => $pictureBook]);
     }
 
 
     /**
      * 絵本を登録する。
      */
-    public function store(StoredPictureBookRequest $request, PictureBook $picture_book, StoredPictureBook $stored_picture_book)
-    {
+    public function store(
+        StoredPictureBookRequest $request,
+        PictureBook $pictureBook,
+        StoredPictureBook $storedPictureBook
+    ) {
 
         try {
             DB::beginTransaction();
 
-            $picture_book->fill($request->all());
-            $picture_book->save();
+            $pictureBook->fill($request->all());
+            $pictureBook->save();
 
-            $picture_book_id = $picture_book->id;
+            $pictureBookId = $pictureBook->id;
 
-            $stored_picture_book->fill($request->all());
-            $stored_picture_book->picture_book_id = $picture_book_id;
-            $stored_picture_book->user_id = $request->user()->id;
-            $stored_picture_book->save();
+            $storedPictureBook->fill($request->all());
+            $storedPictureBook->picture_book_id = $pictureBookId;
+            $storedPictureBook->user_id = $request->user()->id;
+            $storedPictureBook->save();
 
             DB::commit();
 
@@ -91,37 +94,37 @@ class PictureBookController extends Controller
     /**
      * 登録絵本情報の編集画面を表示する。
      */
-    public function edit(StoredPictureBook $stored_picture_book)
+    public function edit(StoredPictureBook $storedPictureBook)
     {
-        $stored_picture_book = $stored_picture_book->with('pictureBook')->find($stored_picture_book->id);
-        return view('picture_books.edit', ['stored_picture_book' => $stored_picture_book]);
+        $storedPictureBook = $storedPictureBook->with('pictureBook')->find($storedPictureBook->id);
+        return view('picture_books.edit', ['storedPictureBook' => $storedPictureBook]);
     }
 
     /**
      * 登録絵本情報を編集画面での編集内容に更新する。
      */
-    public function update(StoredPictureBookRequest $request, StoredPictureBook $stored_picture_book)
+    public function update(StoredPictureBookRequest $request, StoredPictureBook $storedPictureBook)
     {
-        $stored_picture_book->fill($request->all())->save();
+        $storedPictureBook->fill($request->all())->save();
         return redirect()->route('picture_books.index');
     }
 
     /**
      * 登録絵本を削除する。
      */
-    public function destroy(StoredPictureBook $stored_picture_book)
+    public function destroy(StoredPictureBook $storedPictureBook)
     {
-        $stored_picture_book->delete();
+        $storedPictureBook->delete();
         return redirect()->route('picture_books.index');
     }
 
     /**
      * 登録絵本詳細画面を表示する。
      */
-    public function show(StoredPictureBook $stored_picture_book)
+    public function show(StoredPictureBook $storedPictureBook)
     {
-        $stored_picture_book = $stored_picture_book->with('pictureBook')->find($stored_picture_book->id);
-        return view('picture_books.show', ['stored_picture_book' => $stored_picture_book]);
+        $storedPictureBook = $storedPictureBook->with('pictureBook')->find($storedPictureBook->id);
+        return view('picture_books.show', ['storedPictureBook' => $storedPictureBook]);
     }
 
 
@@ -133,7 +136,7 @@ class PictureBookController extends Controller
 
         $data = [];
 
-        $searched_picture_books = null;
+        $searchedPictureBooks = null;
 
         if (!empty($request->keyword)) {
             $title = urlencode($request->keyword);
@@ -146,14 +149,14 @@ class PictureBookController extends Controller
 
             error_reporting(E_ALL);
             foreach ($items as $item) {
-                $authors_array = @$item["volumeInfo"]["authors"];
-                if ($authors_array !== null) {
-                    $authors = implode(",", $authors_array);
+                $authorsArray = @$item["volumeInfo"]["authors"];
+                if ($authorsArray !== null) {
+                    $authors = implode(",", $authorsArray);
                 } else {
                     $authors = null;
                 }
 
-                $searched_picture_books[] = [
+                $searchedPictureBooks[] = [
                     'google_books_id' => @$item["id"],
                     'isbn_13' => @$item["volumeInfo"]["industryIdentifiers"][1]["identifier"],
                     'title' =>  @$item["volumeInfo"]["title"],
@@ -166,7 +169,7 @@ class PictureBookController extends Controller
         }
 
         $data = [
-            'searched_picture_books' => $searched_picture_books,
+            'searchedPictureBooks' => $searchedPictureBooks,
             'keyword' => $request->keyword,
         ];
 

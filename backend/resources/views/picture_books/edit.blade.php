@@ -16,7 +16,7 @@
                     <li class="breadcrumb-item"><a href="{{ route('picture_books.index') }}" class="text-teal1">絵本一覧</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $stored_picture_book->pictureBook->title }}</li>
+                        {{ $storedPictureBook->pictureBook->title }}</li>
                 </ol>
             </nav>
         </div>
@@ -35,9 +35,9 @@
                             <div class="col-sm-6">
                                 <div class="card-body py-0">
                                     <div class="book-cover">
-                                        @if ($stored_picture_book->pictureBook->thumbnail_uri !== null)
-                                        <img src="{{ $stored_picture_book->pictureBook->thumbnail_uri }}"
-                                            alt="book-cover" class="book-cover-image">
+                                        @if ($storedPictureBook->pictureBook->thumbnail_uri !== null)
+                                        <img src="{{ $storedPictureBook->pictureBook->thumbnail_uri }}" alt="book-cover"
+                                            class="book-cover-image">
                                         @else
                                         <img src="{{ asset('image/no_image.png') }}" alt="No Image"
                                             class="book-cover-image">
@@ -50,15 +50,15 @@
                             <div class="col-sm-6 d-flex align-items-center justify-content-center">
                                 <div class="card-body">
                                     <div class="card-title h5 d-flex justify-content-center">
-                                        <b>{{ $stored_picture_book->pictureBook->title }}</b>
+                                        <b>{{ $storedPictureBook->pictureBook->title }}</b>
                                     </div>
                                     <div class="card-text small d-flex justify-content-center">
                                         <p>
-                                            @if ($stored_picture_book->pictureBook->authors !== null)
-                                            {{ $stored_picture_book->pictureBook->authors }}/
+                                            @if ($storedPictureBook->pictureBook->authors !== null)
+                                            {{ $storedPictureBook->pictureBook->authors }}/
                                             @endif
-                                            @if ($stored_picture_book->pictureBook->published_date !== null)
-                                            {{ $stored_picture_book->pictureBook->published_date }}発売
+                                            @if ($storedPictureBook->pictureBook->published_date !== null)
+                                            {{ $storedPictureBook->pictureBook->published_date }}発売
                                             @endif
                                         </p>
                                     </div>
@@ -70,7 +70,7 @@
                         @include('error_card_list')
                         <div class="card-text">
                             <form method="POST"
-                                action="{{ route('picture_books.update',['stored_picture_book' => $stored_picture_book ]) }}">
+                                action="{{ route('picture_books.update',['stored_picture_book' => $storedPictureBook ]) }}">
                                 @method('PATCH')
                                 @include('picture_books.form')
                                 <button type="submit" class="btn btn btn-teal1 shadow-sm btn-block">更新する</button>

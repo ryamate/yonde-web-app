@@ -187,26 +187,26 @@
     <div class="carousel-inner">
         <div class="carousel-item active" style="padding-right: 70px; padding-left: 70px;">
             <div class="row">
-                @foreach($stored_picture_books as $stored_picture_book)
+                @foreach($storedPictureBooks as $storedPictureBook)
                 @if ($loop->iteration === 7)
                 @break
                 @endif
                 <div class="col-md-2 col-6">
                     <div class="card border-0 py-0">
                         <div class="card-img-top book-cover my-auto">
-                            @if ($stored_picture_book->pictureBook->thumbnail_uri !== null)
-                            <img src="{{ $stored_picture_book->pictureBook->thumbnail_uri }}" alt="book-cover"
+                            @if ($storedPictureBook->pictureBook->thumbnail_uri !== null)
+                            <img src="{{ $storedPictureBook->pictureBook->thumbnail_uri }}" alt="book-cover"
                                 class="book-cover-image">
                             @else
                             <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
                             @endif
                         </div>
                         <div class="card-body px-0">
-                            <a href="{{ route('picture_books.show', ['stored_picture_book' => $stored_picture_book]) }}"
-                                class="card-title text-dark small"><b>{{ $stored_picture_book->pictureBook->title }}</b></a><br>
+                            <a href="{{ route('picture_books.show', ['stored_picture_book' => $storedPictureBook]) }}"
+                                class="card-title text-dark small"><b>{{ $storedPictureBook->pictureBook->title }}</b></a><br>
                             <a href="" class="card-text text-teal1 small">
-                                @if ($stored_picture_book->pictureBook->authors !== null)
-                                {{ $stored_picture_book->pictureBook->authors }}
+                                @if ($storedPictureBook->pictureBook->authors !== null)
+                                {{ $storedPictureBook->pictureBook->authors }}
                                 @endif
                             </a>
                         </div>
@@ -217,24 +217,24 @@
         </div>
         <div class="carousel-item" style="padding-right: 70px; padding-left: 70px;">
             <div class="row">
-                @foreach($stored_picture_books as $stored_picture_book)
+                @foreach($storedPictureBooks as $storedPictureBook)
                 @if ($loop->iteration === 7)
                 <div class="col-md-2 col-6">
                     <div class="card border-0 py-0">
                         <div class="card-img-top book-cover my-auto">
-                            @if ($stored_picture_book->pictureBook->thumbnail_uri !== null)
-                            <img src="{{ $stored_picture_book->pictureBook->thumbnail_uri }}" alt="book-cover"
+                            @if ($storedPictureBook->pictureBook->thumbnail_uri !== null)
+                            <img src="{{ $storedPictureBook->pictureBook->thumbnail_uri }}" alt="book-cover"
                                 class="book-cover-image">
                             @else
                             <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
                             @endif
                         </div>
                         <div class="card-body px-0">
-                            <a href="{{ route('picture_books.show', ['stored_picture_book' => $stored_picture_book]) }}"
-                                class="card-title text-dark small"><b>{{ $stored_picture_book->pictureBook->title }}</b></a><br>
+                            <a href="{{ route('picture_books.show', ['stored_picture_book' => $storedPictureBook]) }}"
+                                class="card-title text-dark small"><b>{{ $storedPictureBook->pictureBook->title }}</b></a><br>
                             <a href="" class="card-text text-teal1 small">
-                                @if ($stored_picture_book->pictureBook->authors !== null)
-                                {{ $stored_picture_book->pictureBook->authors }}
+                                @if ($storedPictureBook->pictureBook->authors !== null)
+                                {{ $storedPictureBook->pictureBook->authors }}
                                 @endif
                             </a>
                         </div>
@@ -248,24 +248,24 @@
         </div>
         <div class="carousel-item" style="padding-right: 70px; padding-left: 70px;">
             <div class="row">
-                @foreach($stored_picture_books as $stored_picture_book)
+                @foreach($storedPictureBooks as $storedPictureBook)
                 @if ($loop->iteration === 13)
                 <div class="col-md-2 col-6">
                     <div class="card border-0 py-0">
                         <div class="card-img-top book-cover my-auto">
-                            @if ($stored_picture_book->pictureBook->thumbnail_uri !== null)
-                            <img src="{{ $stored_picture_book->pictureBook->thumbnail_uri }}" alt="book-cover"
+                            @if ($storedPictureBook->pictureBook->thumbnail_uri !== null)
+                            <img src="{{ $storedPictureBook->pictureBook->thumbnail_uri }}" alt="book-cover"
                                 class="book-cover-image">
                             @else
                             <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
                             @endif
                         </div>
                         <div class="card-body px-0">
-                            <a href="{{ route('picture_books.show', ['stored_picture_book' => $stored_picture_book]) }}"
-                                class="card-title text-dark small"><b>{{ $stored_picture_book->pictureBook->title }}</b></a><br>
+                            <a href="{{ route('picture_books.show', ['stored_picture_book' => $storedPictureBook]) }}"
+                                class="card-title text-dark small"><b>{{ $storedPictureBook->pictureBook->title }}</b></a><br>
                             <a href="" class="card-text text-teal1 small">
-                                @if ($stored_picture_book->pictureBook->authors !== null)
-                                {{ $stored_picture_book->pictureBook->authors }}
+                                @if ($storedPictureBook->pictureBook->authors !== null)
+                                {{ $storedPictureBook->pictureBook->authors }}
                                 @endif
                             </a>
                         </div>
@@ -299,15 +299,15 @@
             <div class="carousel-inner">
                 <div class="carousel-item active" style="padding-right: 70px; padding-left: 70px;">
                     <div class="row">
-                        @foreach($stored_picture_books as $stored_picture_book)
+                        @foreach($storedPictureBooks as $storedPictureBook)
                         @if ($loop->iteration === 5)
                         @break
                         @endif
                         <div class="col-md-3 col-6">
                             <div class="card border-0 py-0">
                                 <div class="card-img-top book-cover my-auto">
-                                    @if ($stored_picture_book->pictureBook->thumbnail_uri !== null)
-                                    <img src="{{ $stored_picture_book->pictureBook->thumbnail_uri }}" alt="book-cover"
+                                    @if ($storedPictureBook->pictureBook->thumbnail_uri !== null)
+                                    <img src="{{ $storedPictureBook->pictureBook->thumbnail_uri }}" alt="book-cover"
                                         class="book-cover-image">
                                     @else
                                     <img src="{{ asset('image/no_image.png') }}" alt="No Image"
@@ -315,11 +315,11 @@
                                     @endif
                                 </div>
                                 <div class="card-body px-0">
-                                    <a href="{{ route('picture_books.show', ['stored_picture_book' => $stored_picture_book]) }}"
-                                        class="card-title text-dark small"><b>{{ $stored_picture_book->pictureBook->title }}</b></a><br>
+                                    <a href="{{ route('picture_books.show', ['stored_picture_book' => $storedPictureBook]) }}"
+                                        class="card-title text-dark small"><b>{{ $storedPictureBook->pictureBook->title }}</b></a><br>
                                     <a href="" class="card-text text-teal1 small">
-                                        @if ($stored_picture_book->pictureBook->authors !== null)
-                                        {{ $stored_picture_book->pictureBook->authors }}
+                                        @if ($storedPictureBook->pictureBook->authors !== null)
+                                        {{ $storedPictureBook->pictureBook->authors }}
                                         @endif
                                     </a>
                                 </div>
@@ -330,13 +330,13 @@
                 </div>
                 <div class="carousel-item" style="padding-right: 70px; padding-left: 70px;">
                     <div class="row">
-                        @foreach($stored_picture_books as $stored_picture_book)
+                        @foreach($storedPictureBooks as $storedPictureBook)
                         @if ($loop->iteration === 5)
                         <div class="col-md-2 col-6">
                             <div class="card border-0 py-0">
                                 <div class="card-img-top book-cover my-auto">
-                                    @if ($stored_picture_book->pictureBook->thumbnail_uri !== null)
-                                    <img src="{{ $stored_picture_book->pictureBook->thumbnail_uri }}" alt="book-cover"
+                                    @if ($storedPictureBook->pictureBook->thumbnail_uri !== null)
+                                    <img src="{{ $storedPictureBook->pictureBook->thumbnail_uri }}" alt="book-cover"
                                         class="book-cover-image">
                                     @else
                                     <img src="{{ asset('image/no_image.png') }}" alt="No Image"
@@ -344,11 +344,11 @@
                                     @endif
                                 </div>
                                 <div class="card-body px-0">
-                                    <a href="{{ route('picture_books.show', ['stored_picture_book' => $stored_picture_book]) }}"
-                                        class="card-title text-dark small"><b>{{ $stored_picture_book->pictureBook->title }}</b></a><br>
+                                    <a href="{{ route('picture_books.show', ['stored_picture_book' => $storedPictureBook]) }}"
+                                        class="card-title text-dark small"><b>{{ $storedPictureBook->pictureBook->title }}</b></a><br>
                                     <a href="" class="card-text text-teal1 small">
-                                        @if ($stored_picture_book->pictureBook->authors !== null)
-                                        {{ $stored_picture_book->pictureBook->authors }}
+                                        @if ($storedPictureBook->pictureBook->authors !== null)
+                                        {{ $storedPictureBook->pictureBook->authors }}
                                         @endif
                                     </a>
                                 </div>
@@ -377,15 +377,15 @@
             <div class="carousel-inner">
                 <div class="carousel-item active" style="padding-right: 70px; padding-left: 70px;">
                     <div class="row">
-                        @foreach($stored_picture_books as $stored_picture_book)
+                        @foreach($storedPictureBooks as $storedPictureBook)
                         @if ($loop->iteration === 5)
                         @break
                         @endif
                         <div class="col-md-3 col-6">
                             <div class="card border-0 py-0">
                                 <div class="card-img-top book-cover my-auto">
-                                    @if ($stored_picture_book->pictureBook->thumbnail_uri !== null)
-                                    <img src="{{ $stored_picture_book->pictureBook->thumbnail_uri }}" alt="book-cover"
+                                    @if ($storedPictureBook->pictureBook->thumbnail_uri !== null)
+                                    <img src="{{ $storedPictureBook->pictureBook->thumbnail_uri }}" alt="book-cover"
                                         class="book-cover-image">
                                     @else
                                     <img src="{{ asset('image/no_image.png') }}" alt="No Image"
@@ -393,11 +393,11 @@
                                     @endif
                                 </div>
                                 <div class="card-body px-0">
-                                    <a href="{{ route('picture_books.show', ['stored_picture_book' => $stored_picture_book]) }}"
-                                        class="card-title text-dark small"><b>{{ $stored_picture_book->pictureBook->title }}</b></a><br>
+                                    <a href="{{ route('picture_books.show', ['stored_picture_book' => $storedPictureBook]) }}"
+                                        class="card-title text-dark small"><b>{{ $storedPictureBook->pictureBook->title }}</b></a><br>
                                     <a href="" class="card-text text-teal1 small">
-                                        @if ($stored_picture_book->pictureBook->authors !== null)
-                                        {{ $stored_picture_book->pictureBook->authors }}
+                                        @if ($storedPictureBook->pictureBook->authors !== null)
+                                        {{ $storedPictureBook->pictureBook->authors }}
                                         @endif
                                     </a>
                                 </div>
@@ -408,13 +408,13 @@
                 </div>
                 <div class="carousel-item" style="padding-right: 70px; padding-left: 70px;">
                     <div class="row">
-                        @foreach($stored_picture_books as $stored_picture_book)
+                        @foreach($storedPictureBooks as $storedPictureBook)
                         @if ($loop->iteration === 5)
                         <div class="col-md-3 col-6">
                             <div class="card border-0 py-0">
                                 <div class="card-img-top book-cover my-auto">
-                                    @if ($stored_picture_book->pictureBook->thumbnail_uri !== null)
-                                    <img src="{{ $stored_picture_book->pictureBook->thumbnail_uri }}" alt="book-cover"
+                                    @if ($storedPictureBook->pictureBook->thumbnail_uri !== null)
+                                    <img src="{{ $storedPictureBook->pictureBook->thumbnail_uri }}" alt="book-cover"
                                         class="book-cover-image">
                                     @else
                                     <img src="{{ asset('image/no_image.png') }}" alt="No Image"
@@ -422,11 +422,11 @@
                                     @endif
                                 </div>
                                 <div class="card-body px-0">
-                                    <a href="{{ route('picture_books.show', ['stored_picture_book' => $stored_picture_book]) }}"
-                                        class="card-title text-dark small"><b>{{ $stored_picture_book->pictureBook->title }}</b></a><br>
+                                    <a href="{{ route('picture_books.show', ['stored_picture_book' => $storedPictureBook]) }}"
+                                        class="card-title text-dark small"><b>{{ $storedPictureBook->pictureBook->title }}</b></a><br>
                                     <a href="" class="card-text text-teal1 small">
-                                        @if ($stored_picture_book->pictureBook->authors !== null)
-                                        {{ $stored_picture_book->pictureBook->authors }}
+                                        @if ($storedPictureBook->pictureBook->authors !== null)
+                                        {{ $storedPictureBook->pictureBook->authors }}
                                         @endif
                                     </a>
                                 </div>

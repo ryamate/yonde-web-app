@@ -26,9 +26,9 @@
     <div class="container">
         <div class="row">
             <div class="container" style="max-width: 900px;">
-                @if ($stored_picture_books !== null)
+                @if ($storedPictureBooks !== null)
                 {{-- 絵本の記録表示 --}}
-                @foreach($stored_picture_books as $stored_picture_book)
+                @foreach($storedPictureBooks as $storedPictureBook)
                 @include('picture_books.card')
                 @endforeach
                 @else

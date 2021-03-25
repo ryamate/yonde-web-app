@@ -25,10 +25,10 @@ class StoredPictureBookPolicy
      * Determine whether the user can view the stored picture book.
      *
      * @param  \App\User  $user
-     * @param  \App\StoredPictureBook  $stored_picture_book
+     * @param  \App\StoredPictureBook  $storedPictureBook
      * @return mixed
      */
-    public function view(?User $user, StoredPictureBook $stored_picture_book)
+    public function view(?User $user, StoredPictureBook $storedPictureBook)
     {
         return true;
     }
@@ -48,34 +48,34 @@ class StoredPictureBookPolicy
      * Determine whether the user can update the stored picture book.
      *
      * @param  \App\User  $user
-     * @param  \App\StoredPictureBook  $stored_picture_book
+     * @param  \App\StoredPictureBook  $storedPictureBook
      * @return mixed
      */
-    public function update(User $user, StoredPictureBook $stored_picture_book)
+    public function update(User $user, StoredPictureBook $storedPictureBook)
     {
-        return $user->id === $stored_picture_book->user_id;
+        return $user->id === $storedPictureBook->user_id;
     }
 
     /**
      * Determine whether the user can delete the stored picture book.
      *
      * @param  \App\User  $user
-     * @param  \App\StoredPictureBook  $stored_picture_book
+     * @param  \App\StoredPictureBook  $storedPictureBook
      * @return mixed
      */
-    public function delete(User $user, StoredPictureBook $stored_picture_book)
+    public function delete(User $user, StoredPictureBook $storedPictureBook)
     {
-        return $user->id === $stored_picture_book->user_id;
+        return $user->id === $storedPictureBook->user_id;
     }
 
     /**
      * Determine whether the user can restore the stored picture book.
      *
      * @param  \App\User  $user
-     * @param  \App\StoredPictureBook  $stored_picture_book
+     * @param  \App\StoredPictureBook  $storedPictureBook
      * @return mixed
      */
-    public function restore(User $user, StoredPictureBook $stored_picture_book)
+    public function restore(User $user, StoredPictureBook $storedPictureBook)
     {
         //
     }
@@ -84,10 +84,10 @@ class StoredPictureBookPolicy
      * Determine whether the user can permanently delete the stored picture book.
      *
      * @param  \App\User  $user
-     * @param  \App\StoredPictureBook  $stored_picture_book
+     * @param  \App\StoredPictureBook  $storedPictureBook
      * @return mixed
      */
-    public function forceDelete(User $user, StoredPictureBook $stored_picture_book)
+    public function forceDelete(User $user, StoredPictureBook $storedPictureBook)
     {
         //
     }

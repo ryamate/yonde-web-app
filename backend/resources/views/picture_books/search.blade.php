@@ -11,7 +11,7 @@
         <div class="container" style="padding-bottom:60px; max-width: 900px;">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-light small pl-0 mb-0">
-                    @if ($searched_picture_books === null)
+                    @if ($searchedPictureBooks === null)
                     <li class="breadcrumb-item"><a href="{{ route('picture_books.index') }}" class="text-teal1">よんで</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">絵本検索</li>
@@ -25,7 +25,7 @@
                 </ol>
             </nav>
             <h2>絵本の検索</h2>
-            @if ($searched_picture_books === null)
+            @if ($searchedPictureBooks === null)
             <div class="alert alert-teal1" style="max-width: 360px;">
                 <p>書籍名を入力してください。</p>
             </div>
@@ -51,18 +51,18 @@
     <div class="container">
         <div class="row">
             <div class="container" style="max-width: 900px;">
-                @if ($searched_picture_books !== null)
+                @if ($searchedPictureBooks !== null)
                 <h3>検索結果</h3>
                 <section class="card shadow-sm mb-4">
-                    @foreach ($searched_picture_books as $searched_picture_book)
+                    @foreach ($searchedPictureBooks as $searchedPictureBook)
                     <div class="card-body border-bottom p-0">
                         <div class="row no-gutters">
                             {{-- サムネイル --}}
                             <div class="col-sm-3">
                                 <div class="card-body py-0">
                                     <div class="book-cover">
-                                        @if ($searched_picture_book['thumbnail_uri'] !== null)
-                                        <img src="{{ $searched_picture_book['thumbnail_uri'] }}" alt="book-cover"
+                                        @if ($searchedPictureBook['thumbnail_uri'] !== null)
+                                        <img src="{{ $searchedPictureBook['thumbnail_uri'] }}" alt="book-cover"
                                             class="book-cover-image">
                                         @else
                                         <img src="image/no_image.png" alt="No Image" class="book-cover-image">
@@ -75,7 +75,7 @@
                             <div class="col-sm-6 d-flex align-items-center">
                                 <div class="card-body">
                                     <a href=""
-                                        class="card-title text-teal1 h5"><b>{{ $searched_picture_book['title'] }}</b></a>
+                                        class="card-title text-teal1 h5"><b>{{ $searchedPictureBook['title'] }}</b></a>
                                     {{-- ダミー値 --}}
                                     <div class="card-text small mt-2">
                                         <p>
@@ -85,11 +85,11 @@
                                     </div>
                                     <div class="card-text small">
                                         <p>
-                                            @if ($searched_picture_book['authors'] !== null)
-                                            {{ $searched_picture_book['authors'] }}/
+                                            @if ($searchedPictureBook['authors'] !== null)
+                                            {{ $searchedPictureBook['authors'] }}/
                                             @endif
-                                            @if ($searched_picture_book['published_date'] !== null)
-                                            {{ $searched_picture_book['published_date'] }}出版
+                                            @if ($searchedPictureBook['published_date'] !== null)
+                                            {{ $searchedPictureBook['published_date'] }}出版
                                             @endif
                                         </p>
                                     </div>
@@ -104,17 +104,16 @@
                                         <button type="submit" class="btn btn btn-teal1 shadow-sm btn-block"><i
                                                 class="fas fa-plus-circle"></i> 本棚に登録</button>
                                         <input type="hidden" name="google_books_id"
-                                            value="{{ $searched_picture_book['google_books_id'] }}" />
+                                            value="{{ $searchedPictureBook['google_books_id'] }}" />
                                         <input type="hidden" name="isbn_13"
-                                            value="{{ $searched_picture_book['isbn_13'] }}" />
-                                        <input type="hidden" name="title"
-                                            value="{{ $searched_picture_book['title'] }}" />
+                                            value="{{ $searchedPictureBook['isbn_13'] }}" />
+                                        <input type="hidden" name="title" value="{{ $searchedPictureBook['title'] }}" />
                                         <input type="hidden" name="authors"
-                                            value="{{ $searched_picture_book['authors'] }}" />
+                                            value="{{ $searchedPictureBook['authors'] }}" />
                                         <input type="hidden" name="published_date"
-                                            value="{{ $searched_picture_book['published_date'] }}" />
+                                            value="{{ $searchedPictureBook['published_date'] }}" />
                                         <input type="hidden" name="thumbnail_uri"
-                                            value="{{ $searched_picture_book['thumbnail_uri'] }}" />
+                                            value="{{ $searchedPictureBook['thumbnail_uri'] }}" />
                                     </form>
                                     @endauth
                                     @guest

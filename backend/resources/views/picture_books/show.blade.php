@@ -18,7 +18,7 @@
                         <a href="{{ route('picture_books.index') }}" class="text-teal1">タイムライン</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $stored_picture_book->pictureBook->title }}
+                        {{ $storedPictureBook->pictureBook->title }}
                     </li>
 
                 </ol>

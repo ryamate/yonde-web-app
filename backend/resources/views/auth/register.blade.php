@@ -3,13 +3,8 @@
 @section('title', 'ユーザー登録-Yonde-')
 
 @section('content')
-<nav class="navbar navbar-light bg-teal1 shadow-sm bd-navbar justify-content-center"
-    style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #22968a, #45d9c8) fixed; opacity: 0.97;">
-    <a class="navbar-brand p-0" href="/">
-        <img src="image/logo.png" height="45" class="d-inline-block align-center text-white text-decoration-none"
-            alt="yonde">
-    </a>
-</nav>
+
+@include('auth.nav')
 
 <div class="bg-light">
     <div class="container">
@@ -42,7 +37,7 @@
                             <input class="form-control" type="password" placeholder="パスワードを作成" id="password"
                                 name="password" required>
                             <ul class="text-dark small">
-                                <li>半角英数・記号：8文字以上</p>
+                                <li>半角英数・記号：8文字以上</li>
                             </ul>
                         </div>
                         <div class="form-group">
@@ -56,7 +51,7 @@
                     <div class="card-body border-top border-bottom mt-4 px-0">
                         <p class="card-title">アカウントをお持ちの方はこちら</p>
                         <a href="{{ route('login') }}"
-                            class="btn btn-block bg-white btn-outline-info text-decoration-none text-info"><b>ログイン</b></a>
+                            class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1"><b>ログイン</b></a>
                     </div>
                     <div class="card-body px-0">
                         <form action="" method="POST">

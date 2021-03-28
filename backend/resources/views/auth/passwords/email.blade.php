@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <label for="email">メールアドレス</label>
                             <input class="form-control" type="text" id="email" name="email" required
-                                value="{{ old('email') }}">
+                                placeholder="メールアドレスを入力" value="{{ old('email') }}">
                             <ul class="text-dark small">
                                 <li>ご登録のメールアドレスを入力してください。</li>
                             </ul>

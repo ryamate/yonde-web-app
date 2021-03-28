@@ -29,11 +29,12 @@
                         <div class="form-group">
                             <label for="email">メールアドレス</label>
                             <input class="form-control" type="text" id="email" name="email" required
-                                value="{{ old('email') }}">
+                                placeholder="メールアドレスを入力" value="{{ old('email') }}">
                         </div>
                         <div class="form-group">
                             <label for="password">パスワード</label>
-                            <input class="form-control" type="password" id="password" name="password" required>
+                            <input class="form-control" type="password" id="password" name="password" required
+                                placeholder="パスワードを入力">
                         </div>
 
                         <input type="hidden" name="remember" id="remember" value="on">

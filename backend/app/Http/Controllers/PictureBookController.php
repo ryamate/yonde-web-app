@@ -9,6 +9,8 @@ use App\Http\Requests\StoredPictureBookRequest;
 use Exception;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Scriptotek\GoogleBooks\GoogleBooks;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PictureBookController extends Controller
 {
@@ -43,7 +45,7 @@ class PictureBookController extends Controller
      */
     public function index()
     {
-        $storedPictureBooks = StoredPictureBook::with(['pictureBook', 'user'])->get()->sortByDesc('created_at');
+        $storedPictureBooks = StoredPictureBook::with(['pictureBook', 'user'])->orderBy('created_at', 'DESC')->paginate(5);
 
         return view('picture_books.index', ['storedPictureBooks' => $storedPictureBooks]);
     }
@@ -133,43 +135,22 @@ class PictureBookController extends Controller
      */
     public function search(Request $request)
     {
-
         $data = [];
+        $books = new GoogleBooks(['maxResults' => 30]);
 
-        $searchedPictureBooks = null;
+        $searchedBooks = collect($books->volumes->search($request->keyword));
 
-        if (!empty($request->keyword)) {
-            $title = urlencode($request->keyword);
-            $url = 'https://www.googleapis.com/books/v1/volumes?q=' . $title . '&country=JP&tbm=bks';
-            $client = new Client();
-            $response = $client->request("GET", $url);
-            $body = $response->getBody();
-            $bodyArray = json_decode($body, true);
-            $items = $bodyArray['items'];
-
-            error_reporting(E_ALL);
-            foreach ($items as $item) {
-                $authorsArray = @$item["volumeInfo"]["authors"];
-                if ($authorsArray !== null) {
-                    $authors = implode(",", $authorsArray);
-                } else {
-                    $authors = null;
-                }
-
-                $searchedPictureBooks[] = [
-                    'google_books_id' => @$item["id"],
-                    'isbn_13' => @$item["volumeInfo"]["industryIdentifiers"][1]["identifier"],
-                    'title' =>  @$item["volumeInfo"]["title"],
-                    'authors' =>  $authors,
-                    'published_date' => @$item["volumeInfo"]["publishedDate"],
-                    'thumbnail_uri' => @$item["volumeInfo"]["imageLinks"]["thumbnail"],
-                    'description' => @$item["volumeInfo"]["description"],
-                ];
-            }
-        }
+        //自前のページネーション
+        $paginatedSearchedBooks = new LengthAwarePaginator(
+            $searchedBooks->forPage($request->page, 10),
+            $searchedBooks->count(),
+            10,
+            null,
+            ['path' => $request->url()]
+        );
 
         $data = [
-            'searchedPictureBooks' => $searchedPictureBooks,
+            'searchedBooks' => $paginatedSearchedBooks,
             'keyword' => $request->keyword,
         ];
 

@@ -31,6 +31,7 @@
                 @foreach($storedPictureBooks as $storedPictureBook)
                 @include('picture_books.card')
                 @endforeach
+                {{ $storedPictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
                 @else
                 <div class="alert alert-teal1" style="max-width: 360px;">
                     <p>絵本がまだありません。</p>

@@ -136,18 +136,22 @@ class PictureBookController extends Controller
     public function search(Request $request)
     {
         $data = [];
-        $books = new GoogleBooks(['maxResults' => 30]);
+        $paginatedSearchedBooks = null;
 
-        $searchedBooks = collect($books->volumes->search($request->keyword));
+        if (!empty($request->keyword)) {
 
-        //自前のページネーション
-        $paginatedSearchedBooks = new LengthAwarePaginator(
-            $searchedBooks->forPage($request->page, 10),
-            $searchedBooks->count(),
-            10,
-            null,
-            ['path' => $request->url()]
-        );
+            $books = new GoogleBooks(['maxResults' => 30]);
+            $searchedBooks = collect($books->volumes->search($request->keyword));
+
+            //独自ページネータ
+            $paginatedSearchedBooks = new LengthAwarePaginator(
+                $searchedBooks->forPage($request->page, 10),
+                $searchedBooks->count(),
+                10,
+                null,
+                ['path' => $request->url()]
+            );
+        }
 
         $data = [
             'searchedBooks' => $paginatedSearchedBooks,

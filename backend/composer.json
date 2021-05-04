@@ -70,6 +70,7 @@
         ],
         "phpcs": "vendor/bin/phpcs --standard=phpcs.xml",
         "phpmd": "vendor/bin/phpmd . text phpmd.xml --suffixes php --exclude node_modules,resources,storage,vendor",
-        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon"
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
+        "phpunit": "vendor/bin/phpunit"
     }
 }

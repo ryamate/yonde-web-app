@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', '絵本検索結果-Yonde-')
+@section('title', '絵本検索結果-よんで-')
 
 @section('content')
 

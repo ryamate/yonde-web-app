@@ -37,7 +37,7 @@
                         <button type="submit"
                             class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-4"><b>ログイン</b></button>
 
-                        <div class="text-center mt-4">
+                        <div class="text-center mt-2">
                             <a href="{{ route('password.request') }}"
                                 class="card-text text-teal1 text-decoration-none small">パスワードを忘れた方</a>
                         </div>

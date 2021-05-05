@@ -16,6 +16,9 @@ Route::prefix('login')->name('login.')->group(function () {
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
     Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('{provider}.callback');
 });
+Route::prefix('register')->name('register.')->group(function () {
+    Route::get('/{provider}', 'Auth\RegisterController@showProviderUserRegistrationForm')->name('{provider}');
+});
 Route::get('/', 'PictureBookController@home')->name('picture_books.home');
 Route::get('/about', 'PictureBookController@about')->name('picture_books.about');
 Route::get('/picture_books', 'PictureBookController@index')->name('picture_books.index');

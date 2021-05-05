@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'よんで-Yonde-')
+@section('title', 'よんで')
 
 @section('content')
 
@@ -26,7 +26,7 @@
                             <h3><b>こどもの「よんで」が<br>
                                     楽しみになる</b>
                             </h3>
-                            <p>Web上の絵本棚にいれた本の、読み聞かせ記録・管理をして、家族と共有できるサービスです。</p>
+                            <p>Web上の本棚にいれた絵本の、読み聞かせ記録・管理をして、家族と共有できるサービスです。</p>
                             <div class="text-center">
                                 <a href="" class="btn btn-block btn-warning mt-2 mb-2 rounded-pill text-white"
                                     role="button">いますぐはじめる！</a>
@@ -453,15 +453,19 @@
         @guest
         <div class="card mt-4 mx-2 mb-2">
             <div class="card-body">
-                <p class="card-title">「よんで」をはじめよう</p>
+                <p class="card-title"><b>「よんで」をはじめよう</b></p>
                 <a href="{{ route('register') }}"
-                    class="btn btn-block btn-sm btn-warning text-decoration-none text-white"><b>新規登録</b></a>
-            </div>
-            <div class="card-body">
+                    class="btn btn-block btn-sm btn-warning text-decoration-none text-white my-2"><b>新規登録</b></a>
+
+                <p class="card-title text-center my-2"><b>または</b></p>
+                <a href="{{ route('login.{provider}', ['provider' => 'google']) }}"
+                    class="btn btn-block btn-sm btn-danger my-2">
+                    <i class="fab fa-google mr-4"></i><b>Googleで登録</b>
+                </a>
+
                 <form action="" method="POST">
-                    <p class="card-title">または</p>
                     <button type="submit"
-                        class="btn btn-block btn-sm bg-white btn-outline-secondary text-secondary"><b>ゲストユーザーログイン</b></button>
+                        class="btn btn-block btn-sm bg-white btn-outline-secondary text-secondary my-2"><b>ゲストユーザーログイン</b></button>
                 </form>
             </div>
         </div>

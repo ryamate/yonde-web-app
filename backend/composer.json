@@ -13,6 +13,7 @@
         "fideloper/proxy": "^4.4",
         "guzzlehttp/guzzle": "^6.2",
         "laravel/framework": "^6.20",
+        "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
         "scriptotek/google-books": "^0.2.5",
         "twbs/bootstrap": "4.5.0"

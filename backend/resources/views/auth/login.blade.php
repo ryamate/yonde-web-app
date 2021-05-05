@@ -43,11 +43,20 @@
                         </div>
                     </form>
 
+                    <div class="card-body px-0">
+                        <p class="card-title text-center"><b>または</b></p>
+                        <a href="{{ route('login.{provider}', ['provider' => 'google']) }}"
+                            class="btn btn-block btn-danger">
+                            <i class="fab fa-google mr-4"></i><b>Googleでログイン</b>
+                        </a>
+                    </div>
+
                     <div class="card-body border-top border-bottom mt-4 px-0">
-                        <p class="card-title text-center">アカウントをお持ちでない方はこちら</p>
+                        <p class="card-title text-center"><b>アカウントをお持ちでない方はこちら</b></p>
                         <a href="{{ route('register') }}"
                             class="btn btn-block btn-warning  text-decoration-none text-white"><b>新規登録</b></a>
                     </div>
+
                     <div class="card-body px-0">
                         <form action="" method="POST">
                             <p class="card-title text-center">ユーザー登録せずに機能を試したい方はこちら</p>

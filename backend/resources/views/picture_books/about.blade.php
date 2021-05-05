@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'よんで-Yonde-')
+@section('title', 'よんで')
 
 @section('content')
 
@@ -70,7 +70,7 @@
                 <h2>
                     <b>絵本読み聞かせの記録を<br>
                         アルバムのように管理できるサービス<br>
-                        『よんで - Yonde - 』</b>
+                        『よんで』</b>
                 </h2>
                 <p class="text-dark pt-4">
                     「よんで」は、<br>
@@ -91,7 +91,7 @@
                 <h5>
                     <b>絵本読み聞かせの記録を<br>
                         アルバムのように管理できるアプリ<br>
-                        『よんで - Yonde - 』</b>
+                        『よんで』</b>
                 </h5>
                 <p class="small">
                     「よんで」は、<br>

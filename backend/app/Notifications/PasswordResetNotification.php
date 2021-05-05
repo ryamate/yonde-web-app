@@ -48,7 +48,7 @@ class PasswordResetNotification extends Notification
         return $this->mail
             ->from(config('mail.from.address'), config('mail.from.name'))
             ->to($notifiable->email)
-            ->subject('[よんで-Yonde-]パスワード再設定')
+            ->subject('[よんで]パスワード再設定')
             ->text('emails.password_reset')
             ->with([
                 'url' => route('password.reset', [

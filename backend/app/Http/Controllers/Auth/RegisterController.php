@@ -89,4 +89,31 @@ class RegisterController extends Controller
             'token' => $token,
         ]);
     }
+
+    /**
+     * よんでIDの登録画面で「登録」ボタンを押した後の、ユーザー登録処理
+     */
+    public function registerProviderUser(Request $request, string $provider)
+    {
+        $request->validate([
+            'yonde_id' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
+            'token' => ['required', 'string'],
+        ]);
+
+        $token = $request->token;
+
+        $providerUser = Socialite::driver($provider)->userFromToken($token);
+
+        $user = User::create([
+            'yonde_id' => $request->yonde_id,
+            'name' => $request->yonde_id,
+            'email' => $providerUser->getEmail(),
+            'password' => null,
+        ]);
+
+        $this->guard()->login($user, true);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
 }

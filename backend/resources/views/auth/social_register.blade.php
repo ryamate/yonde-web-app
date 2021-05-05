@@ -16,7 +16,7 @@
 
                     @include('error_card_list')
 
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('register.{provider}', ['provider' => $provider]) }}">
                         @csrf
 
                         <p style="font-size: 1px;">(<span class="text-danger">*</span>は必須項目です)</p>

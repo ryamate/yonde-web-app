@@ -63,7 +63,7 @@
             {{-- setting profile button --}}
             <div class="d-none d-md-block">
                 <li class="nav-item d-flex align-items-center justify-content-center">
-                    <a href="" title="プロフィール設定"
+                    <a href="/users/{{ Auth::user()->id }}" title="プロフィール設定"
                         class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center mx-1"
                         style="width: 35px; height:35px; border-radius: 4px;"><i class="fas fa-cog fa-lg"></i></a>
                 </li>
@@ -154,7 +154,8 @@
                     {{-- setting profile button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="" title="プロフィール設定" class="nav-link"><i class="fas fa-cog"></i> プロフィール設定</a>
+                            <a href="/users/{{ Auth::user()->id }}" title="プロフィール設定" class="nav-link"><i
+                                    class="fas fa-cog"></i> プロフィール設定</a>
                         </li>
                     </div>
                     {{-- home button (toggle) --}}

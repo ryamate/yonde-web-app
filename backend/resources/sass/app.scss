@@ -3,13 +3,14 @@ $headings-line-height: 1.5;
 $line-height-base: 1.65;
 
 // Colors
-$gray-dark: #546E7A;
+$gray-dark: #546e7a;
 $theme-colors: (
     "teal1": #26a69a
 );
 
 // Font-family
-$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    "Yu Gothic", YuGothic, Verdana, Meiryo, "M+ 1p", sans-serif;
 
 @font-face {
     font-family: "Yu Gothic";
@@ -56,36 +57,36 @@ $font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Y
     }
 }
 
-@import '/work/backend/vendor/twbs/bootstrap/scss/bootstrap';
+@import "/work/backend/vendor/twbs/bootstrap/scss/bootstrap";
 
-body{
+body {
     letter-spacing: 0.1em;
     text-align: justify;
-};
+}
 
 .book-cover {
-  position: relative;
-  // 周囲の影
-  box-shadow: 10px 15px 22px -5px rgba(0, 0, 0, 0.2),
-    0 0 2px rgba(0, 0, 0, 0.15);
-  border-radius: 2px;
-  // 光沢と影を表現する
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(
-      -90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.1) 80%,
-      rgba(255, 255, 255, 0.4) 95%,
-      rgba(255, 255, 255, 0.5) 97%,
-      rgba(255, 255, 255, 0) 100%
-    );
-  }
+    position: relative;
+    // 周囲の影
+    box-shadow: 10px 15px 22px -5px rgba(0, 0, 0, 0.2),
+        0 0 2px rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+    // 光沢と影を表現する
+    &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(
+            -90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 80%,
+            rgba(255, 255, 255, 0.4) 95%,
+            rgba(255, 255, 255, 0.5) 97%,
+            rgba(255, 255, 255, 0) 100%
+        );
+    }
 }
 
 // 本の配置を調整するためだけのスタイル
@@ -103,26 +104,27 @@ body{
 
 // home.blade.phpで使用
 .carousel {
-    &-responsive{
+    &-responsive {
         height: auto;
-        & .img-fluid{
-            width:100%;
-            height:auto;
+        & .img-fluid {
+            width: 100%;
+            height: auto;
         }
-        & a{
+        & a {
             display: block;
-            width:100%;
+            width: 100%;
         }
         & .show-image {
             display: block;
-            width:100%;
+            width: 100%;
         }
     }
-    &-control{
-        &-next, &-prev {
+    &-control {
+        &-next,
+        &-prev {
             width: 5%;
             background-color: white;
-            &-teal{
+            &-teal {
                 width: 5%;
                 background-color: #9acac5;
             }
@@ -131,6 +133,6 @@ body{
 }
 
 // nav.blade.phpで使用
-.drop-hover:hover>.dropdown-menu {
+.drop-hover:hover > .dropdown-menu {
     display: block;
 }

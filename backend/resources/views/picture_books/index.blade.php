@@ -41,4 +41,7 @@
         </div>
     </div>
 </div>
+
+@include('footer')
+
 @endsection

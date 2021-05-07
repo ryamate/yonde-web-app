@@ -29,3 +29,5 @@ Route::get('/picture_books/{stored_picture_book}/edit', 'PictureBookController@e
 Route::delete('/picture_books/{stored_picture_book}', 'PictureBookController@destroy')->name('picture_books.destroy')->middleware('auth');
 Route::match(['put', 'patch'], '/picture_books/{stored_picture_book}', 'PictureBookController@update')->name('picture_books.update')->middleware('auth');
 Route::get('/picture_books/{stored_picture_book}', 'PictureBookController@show')->name('picture_books.show');
+// ユーザ詳細画面
+Route::get('/users/{user_id}', 'UserController@show');

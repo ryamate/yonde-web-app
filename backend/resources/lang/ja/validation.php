@@ -149,6 +149,7 @@ return [
         'yonde_id' => 'よんでID',
         'email' => 'メールアドレス',
         'password' => 'パスワード',
+        'introduction' => '自己紹介文',
     ],
 
 ];

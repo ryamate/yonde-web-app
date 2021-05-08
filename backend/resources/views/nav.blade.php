@@ -63,7 +63,8 @@
             {{-- setting profile button --}}
             <div class="d-none d-md-block">
                 <li class="nav-item d-flex align-items-center justify-content-center">
-                    <a href="/users/{{ Auth::user()->id }}" title="プロフィール設定"
+                    <a href="{{ route('users.show_setting_profile', ['yonde_id' => Auth::user()->yonde_id]) }}"
+                        title="プロフィール設定"
                         class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center mx-1"
                         style="width: 35px; height:35px; border-radius: 4px;"><i class="fas fa-cog fa-lg"></i></a>
                 </li>
@@ -73,10 +74,18 @@
                 <div class="d-none d-md-block">
                     <div class="mx-2">
                         <div class="dropdown drop-hover">
-                            <a href="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
+                            <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false" title="マイページ"
+                                onclick="location.href='{{ route("users.show", ["yonde_id" => Auth::user()->yonde_id]) }}'">
+                                @if (Auth::user()->user_icon)
+                                <img src="{{ asset('storage/user_images/' . Auth::user()->user_icon) }}" alt="プロフィール画像"
+                                    class="rounded-circle bg-white border" width="35" height="35" style="background-position: center center;
+                                object-fit:cover;" />
+                                @else
                                 <i class="far fa-user-circle fa-2x text-white rounded-circle"></i>
+                                @endif
                             </a>
+
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                 <a href="{{ route('picture_books.home') }}" class="dropdown-item small"><i
                                         class="fas fa-home"></i> ホーム</a>
@@ -151,11 +160,18 @@
                                     class="far fa-clock"></i> タイムライン</a>
                         </li>
                     </div>
+                    {{-- my page button (toggle) --}}
+                    <div class="col-6">
+                        <li class="nav-item d-flex align-items-center">
+                            <a href="{{ route("users.show", ["yonde_id" => Auth::user()->yonde_id]) }}" title="マイページ"
+                                class="nav-link"><i class="fas fa-user-circle"></i> マイページ</a>
+                        </li>
+                    </div>
                     {{-- setting profile button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="/users/{{ Auth::user()->id }}" title="プロフィール設定" class="nav-link"><i
-                                    class="fas fa-cog"></i> プロフィール設定</a>
+                            <a href="{{ route('users.show_setting_profile', ['yonde_id' => Auth::user()->yonde_id]) }}"
+                                title="プロフィール設定" class="nav-link"><i class="fas fa-cog"></i> プロフィール設定</a>
                         </li>
                     </div>
                     {{-- home button (toggle) --}}

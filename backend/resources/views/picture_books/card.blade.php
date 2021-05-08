@@ -1,6 +1,17 @@
 <section class="card shadow-sm mb-4">
     <div class="card-body border-bottom p-0">
         <div class="row no-gutters">
+            <div class="col-sm-12">
+                <a href="{{ route('users.show', ['yonde_id' => $storedPictureBook->user->yonde_id]) }}"
+                    class="text-dark">
+                    @if ($storedPictureBook->user->user_icon)
+                    <img src="{{ asset('storage/user_images/' . $storedPictureBook->user->user_icon) }}" alt="プロフィール画像"
+                        style="width: 100px; height:100px;background-position: center center;object-fit:cover;">
+                    @else
+                    <i class="far fa-user-circle fa-5x text-secondary"></i>
+                    @endif
+                </a>
+            </div>
             {{-- サムネイル --}}
             <div class="col-sm-3">
                 <div class="card-body py-0">

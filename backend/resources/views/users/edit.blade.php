@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('auth.nav')
+@include('nav')
 
 <div class="bg-light">
     <div class="container">
@@ -16,8 +16,8 @@
 
                     @include('error_card_list')
 
-                    <form class="edit_user" enctype="multipart/form-data" action="/users/update" accept-charset="UTF-8"
-                        method="post">
+                    <form class="edit_user" enctype="multipart/form-data" action="{{ route('users.update') }}"
+                        accept-charset="UTF-8" method="post">
                         <input name="utf8" type="hidden" value="&#x2713;" />
                         <input type="hidden" name="id" value="{{ $user->id }}" />
                         @csrf

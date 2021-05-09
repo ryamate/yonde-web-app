@@ -173,7 +173,8 @@
             <div class="card border-0">
                 <div class="card-body">
                     <div class="card-text">
-                        <review-like>
+                        <review-like :initial-is-liked-by='@json($storedPictureBook->isLikedBy(Auth::user()))'
+                            :initial-count-likes='@json($storedPictureBook->count_likes)'>
                         </review-like>
                     </div>
                 </div>

@@ -167,5 +167,17 @@
                 </div>
             </div>
         </div>
+
+        {{-- レビューいいね機能 --}}
+        <div class="col-sm-12">
+            <div class="card border-0">
+                <div class="card-body">
+                    <div class="card-text">
+                        <review-like>
+                        </review-like>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>

@@ -57,8 +57,8 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="summary">レビュー・感想</label>
-        <textarea type="text" name="summary" id="summary" rows="5" class="form-control">{{ $storedPictureBook->summary ?? old('summary') }}
+        <label for="review">レビュー・感想</label>
+        <textarea type="text" name="review" id="review" rows="5" class="form-control">{{ $storedPictureBook->review ?? old('review') }}
         </textarea>
     </div>
     <div class="form-group">

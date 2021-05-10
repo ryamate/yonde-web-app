@@ -13,7 +13,7 @@ class StoredPictureBook extends Model
         'user_id',
         'five_star_rating',
         'read_status',
-        'summary',
+        'review',
     ];
 
     public function pictureBook(): BelongsTo
@@ -41,5 +41,10 @@ class StoredPictureBook extends Model
     public function getCountLikesAttribute(): int
     {
         return $this->likes->count();
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 }

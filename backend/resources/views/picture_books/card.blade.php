@@ -149,13 +149,29 @@
                 </div>
             </div>
         </div>
+        {{-- レビュー・感想 --}}
         <div class="col-sm-12">
             <div class="card border-0">
                 <div class="card-body pt-0 pb-0">
-                    <p class="card-text small">{{ nl2br($storedPictureBook->summary, false) }}</p>
+                    <p class="card-text small">{{ nl2br($storedPictureBook->review, false) }}</p>
                 </div>
+                {{-- タグ --}}
+                @foreach($storedPictureBook->tags as $tag)
+                @if($loop->first)
+                <div class="card-body pt-0 pb-4 pl-3">
+                    <div class="card-text line-height">
+                        @endif
+                        <a href="" class="border p-1 mr-1 mt-1 text-muted">
+                            {{ $tag->name }}
+                        </a>
+                        @if($loop->last)
+                    </div>
+                </div>
+                @endif
+                @endforeach
             </div>
         </div>
+
         <div class="col-sm-12">
             <div class="card border-0">
                 <div class="card-body">

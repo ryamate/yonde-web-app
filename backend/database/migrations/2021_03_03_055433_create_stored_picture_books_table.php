@@ -19,11 +19,15 @@ class CreateStoredPictureBooksTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('five_star_rating');
             $table->integer('read_status');
-            $table->string('summary', 1000)->nullable();
+            $table->string('review', 1000)->nullable();
             $table->timestamps();
 
-            $table->foreign('picture_book_id')->references('id')->on('picture_books');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('picture_book_id')
+                ->references('id')
+                ->on('picture_books');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
     }
 

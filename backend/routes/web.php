@@ -29,6 +29,10 @@ Route::get('/picture_books/{stored_picture_book}/edit', 'PictureBookController@e
 Route::delete('/picture_books/{stored_picture_book}', 'PictureBookController@destroy')->name('picture_books.destroy')->middleware('auth');
 Route::match(['put', 'patch'], '/picture_books/{stored_picture_book}', 'PictureBookController@update')->name('picture_books.update')->middleware('auth');
 Route::get('/picture_books/{stored_picture_book}', 'PictureBookController@show')->name('picture_books.show');
+Route::prefix('picture_books')->name('picture_books.')->group(function () {
+    Route::put('/{stored_picture_book}/like', 'PictureBookController@like')->name('like')->middleware('auth');
+    Route::delete('/{stored_picture_book}/like', 'PictureBookController@unlike')->name('unlike')->middleware('auth');
+});
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/edit', 'UserController@edit')->name('edit');
     Route::post('/update', 'UserController@update')->name('update');

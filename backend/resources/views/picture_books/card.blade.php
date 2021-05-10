@@ -174,7 +174,9 @@
                 <div class="card-body">
                     <div class="card-text">
                         <review-like :initial-is-liked-by='@json($storedPictureBook->isLikedBy(Auth::user()))'
-                            :initial-count-likes='@json($storedPictureBook->count_likes)'>
+                            :initial-count-likes='@json($storedPictureBook->count_likes)'
+                            :authorized='@json(Auth::check())'
+                            endpoint="{{ route('picture_books.like', ['stored_picture_book' => $storedPictureBook]) }}">
                         </review-like>
                     </div>
                 </div>

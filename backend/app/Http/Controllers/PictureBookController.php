@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\PictureBook;
 use App\StoredPictureBook;
+use App\Tag;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoredPictureBookRequest;
 use Exception;
@@ -84,6 +85,11 @@ class PictureBookController extends Controller
             $storedPictureBook->save();
 
             DB::commit();
+
+            $request->tags->each(function ($tagName) use ($storedPictureBook) {
+                $tag = Tag::firstOrCreate(['name' => $tagName]);
+                $storedPictureBook->tags()->attach($tag);
+            });
 
             return redirect()->route('picture_books.index');
         } catch (Exception $e) {

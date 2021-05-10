@@ -24,17 +24,34 @@ class StoredPictureBookRequest extends FormRequest
     public function rules()
     {
         return [
-            'summary' => 'max:1000',
+            'review' => 'max:1000',
+            'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
+
         ];
     }
 
     /**
      * バリデーションエラーメッセージに表示される項目名をカスタマイズする。
+     *
+     * @return array
      */
     public function attributes()
     {
         return [
-            'summary' => 'レビュー',
+            'review' => 'レビュー・感想',
+            'tags' => 'タグ',
         ];
+    }
+
+    /**
+     * tagsの整形を行う。
+     */
+    public function passedValidation()
+    {
+        $this->tags = collect(json_decode($this->tags))
+            ->slice(0, 5)
+            ->map(function ($requestTag) {
+                return $requestTag->text;
+            });
     }
 }

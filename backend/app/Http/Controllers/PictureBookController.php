@@ -104,8 +104,16 @@ class PictureBookController extends Controller
      */
     public function edit(StoredPictureBook $storedPictureBook)
     {
-        $storedPictureBook = $storedPictureBook->with('pictureBook')->find($storedPictureBook->id);
-        return view('picture_books.edit', ['storedPictureBook' => $storedPictureBook]);
+        $storedPictureBook = $storedPictureBook->with('pictureBook')
+            ->find($storedPictureBook->id);
+
+        $tagNames = $storedPictureBook->tags->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+        return view('picture_books.edit', [
+            'storedPictureBook' => $storedPictureBook,
+            'tagNames' => $tagNames,
+        ]);
     }
 
     /**
@@ -114,6 +122,13 @@ class PictureBookController extends Controller
     public function update(StoredPictureBookRequest $request, StoredPictureBook $storedPictureBook)
     {
         $storedPictureBook->fill($request->all())->save();
+
+        $storedPictureBook->tags()->detach();
+        $request->tags->each(function ($tagName) use ($storedPictureBook) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $storedPictureBook->tags()->attach($tag);
+        });
+
         return redirect()->route('picture_books.index');
     }
 

@@ -61,4 +61,8 @@
         <textarea type="text" name="summary" id="summary" rows="5" class="form-control">{{ $storedPictureBook->summary ?? old('summary') }}
         </textarea>
     </div>
+    <div class="form-group">
+        <review-tags-input>
+        </review-tags-input>
+    </div>
 </section>

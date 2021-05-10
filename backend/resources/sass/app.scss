@@ -136,3 +136,32 @@ body {
 .drop-hover:hover > .dropdown-menu {
     display: block;
 }
+
+// いいねハートアニメーション
+@keyframes heartAnimation {
+    0% {
+        transform: scale(0);
+    }
+    30% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.2, 1.2);
+    }
+    60% {
+        transform: scale(1, 1) translate(0%, -10%);
+    }
+    70% {
+        transform: scale(1.1, 0.9) translate(0%, 5%);
+    }
+    80% {
+        transform: scale(0.95, 1.05) translate(0%, -3%);
+    }
+    100% {
+        transform: scale(1, 1) translate(0%, 0%);
+    }
+}
+
+.LikesIcon-fa-heart.heart {
+    animation: heartAnimation 0.8s;
+}

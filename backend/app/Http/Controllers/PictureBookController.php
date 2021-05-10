@@ -160,4 +160,25 @@ class PictureBookController extends Controller
 
         return view('picture_books.search', $data);
     }
+
+    public function like(Request $request, StoredPictureBook $storedPictureBook)
+    {
+        $storedPictureBook->likes()->detach($request->user()->id);
+        $storedPictureBook->likes()->attach($request->user()->id);
+
+        return [
+            'id' => $storedPictureBook->id,
+            'countLikes' => $storedPictureBook->count_likes,
+        ];
+    }
+
+    public function unlike(Request $request, StoredPictureBook $storedPictureBook)
+    {
+        $storedPictureBook->likes()->detach($request->user()->id);
+
+        return [
+            'id' => $storedPictureBook->id,
+            'countLikes' => $storedPictureBook->count_likes,
+        ];
+    }
 }

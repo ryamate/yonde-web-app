@@ -1,4 +1,4 @@
-<section class="card shadow-sm mb-4">
+<section class="card shadow-sm my-4">
     <div class="card-body border-bottom p-0">
         <div class="row no-gutters">
             <div class="col-sm-12">

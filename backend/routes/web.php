@@ -38,6 +38,7 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::post('/update', 'UserController@update')->name('update');
     Route::get('/{yonde_id}/setting_profile', 'UserController@showSettingProfile')->name('show_setting_profile');
     Route::get('/{yonde_id}', 'UserController@show')->name('show');
+    Route::get('/{yonde_id}/likes', 'UserController@likes')->name('likes');
     Route::middleware('auth')->group(function () {
         Route::put('/{yonde_id}/follow', 'UserController@follow')->name('follow');
         Route::delete('/{yonde_id}/follow', 'UserController@unfollow')->name('unfollow');

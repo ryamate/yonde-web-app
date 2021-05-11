@@ -19,8 +19,23 @@ class UserController extends Controller
     {
         $user = User::where('yonde_id', $yonde_id)->first();
 
+        $storedPictureBooks = $user->storedPictureBooks->sortByDesc('created_at');
+
         return view('users.show', [
             'user' => $user,
+            'storedPictureBooks' => $storedPictureBooks,
+        ]);
+    }
+
+    public function likes(string $yonde_id)
+    {
+        $user = User::where('yonde_id', $yonde_id)->first();
+
+        $storedPictureBooks = $user->likes->sortByDesc('created_at');
+
+        return view('users.likes', [
+            'user' => $user,
+            'storedPictureBooks' => $storedPictureBooks,
         ]);
     }
 

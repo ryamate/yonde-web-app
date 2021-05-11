@@ -161,8 +161,9 @@
                 <div class="card-body pt-0 pb-4 pl-3">
                     <div class="card-text line-height">
                         @endif
-                        <a href="" class="border p-1 mr-1 mt-1 text-muted">
-                            {{ $tag->name }}
+                        <a href="{{ route('tags.show', ['name' => $tag->name]) }}"
+                            class="p-1 mr-1 mt-1 text-teal1 small">
+                            {{ $tag->hashtag }}
                         </a>
                         @if($loop->last)
                     </div>
@@ -188,7 +189,7 @@
         <div class="col-sm-12">
             <div class="card border-0">
                 <div class="card-body">
-                    <div class="card-text">
+                    <div class="card-text small">
                         <review-like :initial-is-liked-by='@json($storedPictureBook->isLikedBy(Auth::user()))'
                             :initial-count-likes='@json($storedPictureBook->count_likes)'
                             :authorized='@json(Auth::check())'

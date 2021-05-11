@@ -39,3 +39,4 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{yonde_id}/setting_profile', 'UserController@showSettingProfile')->name('show_setting_profile');
     Route::get('/{yonde_id}', 'UserController@show')->name('show');
 });
+Route::get('/tags/{name}', 'TagController@show')->name('tags.show');

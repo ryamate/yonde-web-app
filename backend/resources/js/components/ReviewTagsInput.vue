@@ -1,6 +1,6 @@
 <template>
   <div>
-      <input
+    <input
       type="hidden"
       name="tags"
       :value="tagsJson"
@@ -9,9 +9,16 @@
       v-model="tag"
       :tags="tags"
       placeholder="タグを5個まで入力できます"
-      :autocomplete-items="filteredItems"
+      :autocomplete-items="basicItems"
+      :add-on-key="[13, 32]"
       @tags-changed="newTags => tags = newTags"
-    />
+    >
+  <template slot="autocomplete-header">
+    <strong>タグを作成するか、以下から選択してください ↓</strong>
+  </template>
+  <template slot="autocomplete-footer">
+  </template>
+</vue-tags-input>
   </div>
 </template>
 
@@ -27,21 +34,57 @@ export default {
       type: Array,
       default: [],
     },
+    autocompleteItems: {
+      type: Array,
+      default: [],
+    },
   },
   data() {
     return {
       tag: '',
       tags: this.initialTags,
-      autocompleteItems: [{
-        text: 'ママ',
+      basicItems: [{
+        text: 'なんども',
       }, {
-        text: 'パパ',
+        text: 'どハマり',
       }, {
-        text: 'わらった',
+        text: 'ストーリー◎',
+      }, {
+        text: 'キャラ◎',
+      }, {
+        text: 'かわいい',
+      }, {
+        text: '絵が好き',
+      }, {
+        text: '笑った',
+      }, {
+        text: '感動！',
+      }, {
+        text: '怖かった',
+      }, {
+        text: 'ねむZzz',
+      }, {
+        text: 'なみだ',
+      }, {
+        text: 'マネした',
+      }, {
+        text: 'まなび',
+      }, {
+        text: '一人で',
       }, {
         text: '女の子',
       }, {
         text: '男の子',
+      }, {
+        text: '１さい',
+      }, {
+        text: '２さい',
+      }, {
+        text: '３さい',
+      }, {
+        text: '４さい',
+      }, {
+        text: '５さい',
       }],
     };
   },
@@ -68,7 +111,11 @@ export default {
     border: 1px solid #747373;
     color: #747373;
     margin-right: 4px;
-    border-radius: 0px;
+    padding: 6px;
+    border-radius: 1px;
     font-size: 13px;
+  }
+  .vue-tags-input .ti-tag::before {
+    content: "#";
   }
 </style>

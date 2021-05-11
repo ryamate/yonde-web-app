@@ -58,7 +58,14 @@ class PictureBookController extends Controller
     {
         $pictureBook->fill($request->all());
 
-        return view('picture_books.create', ['pictureBook' => $pictureBook]);
+        $allTagNames = Tag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+
+        return view('picture_books.create', [
+            'pictureBook' => $pictureBook,
+            'allTagNames' => $allTagNames,
+        ]);
     }
 
 
@@ -110,9 +117,15 @@ class PictureBookController extends Controller
         $tagNames = $storedPictureBook->tags->map(function ($tag) {
             return ['text' => $tag->name];
         });
+
+        $allTagNames = Tag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+
         return view('picture_books.edit', [
             'storedPictureBook' => $storedPictureBook,
             'tagNames' => $tagNames,
+            'allTagNames' => $allTagNames,
         ]);
     }
 

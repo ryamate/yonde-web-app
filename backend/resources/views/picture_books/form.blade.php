@@ -62,7 +62,7 @@
         </textarea>
     </div>
     <div class="form-group">
-        <review-tags-input :initial-tags='@json($tagNames ?? [])'>
+        <review-tags-input :initial-tags='@json($tagNames ?? [])' :autocomplete-items='@json($allTagNames ?? [])'>
         </review-tags-input>
     </div>
 </section>

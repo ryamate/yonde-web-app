@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $user->name . 'さんのいいねした記事-よんで-')
+@section('title', $user->name . 'さんのフォロワー-よんで-')
 
 @section('content')
 
@@ -16,14 +16,16 @@
                             よんで
                         </a>
                     </li>
+                    @auth
                     <li class="breadcrumb-item">
                         <a href="{{ route("users.show", ["yonde_id" => $user->yonde_id]) }}" class="text-teal1">
                             {{ $user->name }}さんのページ
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $user->name }}さんのいいね
+                        {{ $user->name }}さんのフォロワー
                     </li>
+                    @endauth
                 </ol>
             </nav>
         </div>
@@ -33,10 +35,16 @@
 <div class="bg-light">
     <div class="container">
         <div class="row">
-            <div class="container" style="max-width: 900px;"> @include('users.user')
-                @include('users.tabs', ['hasStoredPictureBooks' => false, 'hasLikes' => true])
-                @foreach($storedPictureBooks as $storedPictureBook)
-                @include('picture_books.card')
+            <div class="container" style="max-width: 900px;">
+                @include('users.user')
+                @include('users.tabs', [
+                'hasStoredPictureBooks' => false,
+                'hasLikes' => false,
+                'hasFollowers' => true,
+                'hasFollowings' => false,
+                ])
+                @foreach($followers as $person)
+                @include('users.person')
                 @endforeach
             </div>
         </div>

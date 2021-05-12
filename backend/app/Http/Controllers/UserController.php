@@ -39,6 +39,57 @@ class UserController extends Controller
         ]);
     }
 
+    public function followings(string $yonde_id)
+    {
+        $user = User::where('yonde_id', $yonde_id)->first();
+
+        $followings = $user->followings->sortByDesc('created_at');
+
+        return view('users.followings', [
+            'user' => $user,
+            'followings' => $followings,
+        ]);
+    }
+
+    public function followers(string $yonde_id)
+    {
+        $user = User::where('yonde_id', $yonde_id)->first();
+
+        $followers = $user->followers->sortByDesc('created_at');
+
+        return view('users.followers', [
+            'user' => $user,
+            'followers' => $followers,
+        ]);
+    }
+
+    public function follow(Request $request, string $yonde_id)
+    {
+        $user = User::where('yonde_id', $yonde_id)->first();
+
+        if ($user->id === $request->user()->id) {
+            return abort('404', 'Cannot follow yourself.');
+        }
+
+        $request->user()->followings()->detach($user);
+        $request->user()->followings()->attach($user);
+
+        return ['yonde_id' => $yonde_id];
+    }
+
+    public function unfollow(Request $request, string $yonde_id)
+    {
+        $user = User::where('yonde_id', $yonde_id)->first();
+
+        if ($user->id === $request->user()->id) {
+            return abort('404', 'Cannot follow yourself.');
+        }
+
+        $request->user()->followings()->detach($user);
+
+        return ['yonde_id' => $yonde_id];
+    }
+
     public function showSettingProfile(string $yonde_id)
     {
         $user = User::where('yonde_id', $yonde_id)->firstOrFail();
@@ -85,35 +136,8 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return view('users.show_setting_profile', [
-            'user' => $user,
+        return redirect()->route('users.show_setting_profile', [
+            'yonde_id' => $user->yonde_id,
         ]);
-    }
-
-    public function follow(Request $request, string $yonde_id)
-    {
-        $user = User::where('yonde_id', $yonde_id)->first();
-
-        if ($user->id === $request->user()->id) {
-            return abort('404', 'Cannot follow yourself.');
-        }
-
-        $request->user()->followings()->detach($user);
-        $request->user()->followings()->attach($user);
-
-        return ['yonde_id' => $yonde_id];
-    }
-
-    public function unfollow(Request $request, string $yonde_id)
-    {
-        $user = User::where('yonde_id', $yonde_id)->first();
-
-        if ($user->id === $request->user()->id) {
-            return abort('404', 'Cannot follow yourself.');
-        }
-
-        $request->user()->followings()->detach($user);
-
-        return ['yonde_id' => $yonde_id];
     }
 }

@@ -6,9 +6,9 @@
                     class="text-dark">
                     @if ($storedPictureBook->user->user_icon)
                     <img src="{{ asset('storage/user_images/' . $storedPictureBook->user->user_icon) }}" alt="プロフィール画像"
-                        style="width: 100px; height:100px;background-position: center center;object-fit:cover;">
+                        style="width: 50px; height:50px;background-position: center center;object-fit:cover;">
                     @else
-                    <i class="far fa-user-circle fa-5x text-secondary"></i>
+                    <i class="fas fa-user-circle fa-3x"></i>
                     @endif
                 </a>
             </div>

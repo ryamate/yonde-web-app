@@ -44,17 +44,3 @@
         </div>
     </div>
 </div>
-
-<div class="row no-gutters">
-    <div class="col-sm-12">
-    </div>
-    <div class="col-sm-3">
-    </div>
-
-    <div class="col-sm-6 d-flex align-items-center">
-    </div>
-    <div class="col-sm-3 d-flex align-items-center">
-        <div class="card-body">
-        </div>
-    </div>
-</div>

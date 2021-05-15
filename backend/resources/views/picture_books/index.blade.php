@@ -14,7 +14,7 @@
                     <li class="breadcrumb-item"><a href="{{ route('picture_books.index') }}" class="text-teal1">よんで</a>
                     </li>
                     @auth
-                    <li class="breadcrumb-item active" aria-current="page">{{ Auth::user()->name }}さんの本棚</li>
+                    <li class="breadcrumb-item active" aria-current="page">みんなのタイムライン</li>
                     @endauth
                 </ol>
             </nav>

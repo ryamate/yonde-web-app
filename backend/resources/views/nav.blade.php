@@ -47,7 +47,7 @@
             {{-- picture bookshelf button --}}
             <div class="d-none d-md-block">
                 <li class="nav-item d-flex align-items-center justify-content-center">
-                    <a href="{{ route('picture_books.index') }}" title="絵本棚"
+                    <a href="{{ route('users.bookshelf', ["yonde_id" => Auth::user()->yonde_id]) }}" title="あなたの本棚"
                         class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center ml-3 mr-1"
                         style="width: 35px; height:35px;border-radius: 4px;"><i class="fas fa-book fa-lg"></i></a>
                 </li>
@@ -55,7 +55,7 @@
             {{-- timeline button --}}
             <div class="d-none d-md-block">
                 <li class="nav-item d-flex align-items-center justify-content-center">
-                    <a href="{{ route('picture_books.index') }}" title="タイムライン"
+                    <a href="{{ route('picture_books.index') }}" title="みんなのタイムライン"
                         class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center mx-1"
                         style="width: 35px; height:35px; border-radius: 4px;"><i class="far fa-clock fa-lg"></i></a>
                 </li>
@@ -75,7 +75,7 @@
                     <div class="mx-2">
                         <div class="dropdown drop-hover">
                             <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" title="マイページ"
+                                aria-expanded="false" title="あなたのタイムライン"
                                 onclick="location.href='{{ route("users.show", ["yonde_id" => Auth::user()->yonde_id]) }}'">
                                 @if (Auth::user()->user_icon)
                                 <img src="{{ asset('storage/user_images/' . Auth::user()->user_icon) }}" alt="プロフィール画像"
@@ -149,36 +149,37 @@
                     {{-- picture bookshelf button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="{{ route('picture_books.index') }}" title="絵本棚" class="nav-link"><i
-                                    class="fas fa-book"></i> 絵本棚</a>
+                            <a href="{{ route('users.bookshelf', ["yonde_id" => Auth::user()->yonde_id]) }}"
+                                title="あなたの本棚" class="nav-link"><i class="fas fa-book"></i> <small>あなたの本棚</small></a>
                         </li>
                     </div>
                     {{-- timeline button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
                             <a href="{{ route('picture_books.index') }}" title="タイムライン" class="nav-link"><i
-                                    class="far fa-clock"></i> タイムライン</a>
+                                    class="far fa-clock"></i> <small>タイムライン</small></a>
                         </li>
                     </div>
                     {{-- my page button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
                             <a href="{{ route("users.show", ["yonde_id" => Auth::user()->yonde_id]) }}" title="マイページ"
-                                class="nav-link"><i class="fas fa-user-circle"></i> マイページ</a>
+                                class="nav-link"><i class="fas fa-user-circle"></i>
+                                <small>マイページ</small></a>
                         </li>
                     </div>
                     {{-- setting profile button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
                             <a href="{{ route('users.show_setting_profile', ['yonde_id' => Auth::user()->yonde_id]) }}"
-                                title="プロフィール設定" class="nav-link"><i class="fas fa-cog"></i> プロフィール設定</a>
+                                title="プロフィール設定" class="nav-link"><i class="fas fa-cog"></i> <small>プロフィール設定</small></a>
                         </li>
                     </div>
                     {{-- home button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
                             <a href="{{ route('picture_books.home') }}" title="ホーム" class="nav-link"><i
-                                    class="fas fa-home"></i> ホーム</a>
+                                    class="fas fa-home"></i> <small>ホーム</small></a>
                         </li>
                     </div>
                     {{-- logout button (toggle) --}}
@@ -187,7 +188,7 @@
                             <form method="POST" name="form1" action="{{ route('logout') }}">
                                 @csrf
                                 <a href="javascript:form1.submit()" class="nav-link"><i class="fas fa-sign-out-alt"></i>
-                                    ログアウト</a>
+                                    <small>ログアウト</small></a>
                             </form>
                         </li>
                     </div>

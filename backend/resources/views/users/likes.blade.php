@@ -16,11 +16,6 @@
                             よんで
                         </a>
                     </li>
-                    <li class="breadcrumb-item">
-                        <a href="{{ route("users.show", ["yonde_id" => $user->yonde_id]) }}" class="text-teal1">
-                            {{ $user->name }}さんのページ
-                        </a>
-                    </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         {{ $user->name }}さんのいいね
                     </li>
@@ -34,7 +29,11 @@
     <div class="container">
         <div class="row">
             <div class="container" style="max-width: 900px;"> @include('users.user')
-                @include('users.tabs', ['hasStoredPictureBooks' => false, 'hasLikes' => true])
+                @include('users.tabs', [
+                'hasBookshelf' => false,
+                'hasStoredPictureBooks' => false,
+                'hasLikes' => true
+                ])
                 @foreach($storedPictureBooks as $storedPictureBook)
                 @include('picture_books.card')
                 @endforeach

@@ -18,7 +18,7 @@
                     </li>
                     @auth
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $user->name }}さんのページ
+                        {{ $user->name }}さんのタイムライン
                     </li>
                     @endauth
                 </ol>
@@ -32,7 +32,11 @@
         <div class="row">
             <div class="container" style="max-width: 900px;">
                 @include('users.user')
-                @include('users.tabs', ['hasStoredPictureBooks' => true, 'hasLikes' => false])
+                @include('users.tabs', [
+                'hasBookshelf' => false,
+                'hasStoredPictureBooks' => true,
+                'hasLikes' => false
+                ])
                 @foreach($storedPictureBooks as $storedPictureBook)
                 @include('picture_books.card')
                 @endforeach

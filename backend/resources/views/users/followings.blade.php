@@ -38,6 +38,7 @@
             <div class="container" style="max-width: 900px;">
                 @include('users.user')
                 @include('users.tabs', [
+                'hasBookshelf' => false,
                 'hasStoredPictureBooks' => false,
                 'hasLikes' => false,
                 'hasFollowers' => false,

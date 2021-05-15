@@ -3,7 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class PictureBook extends Model
 {
@@ -14,17 +15,37 @@ class PictureBook extends Model
         'authors',
         'published_date',
         'thumbnail_uri',
+        'picture_book_id',
+        'user_id',
+        'five_star_rating',
+        'read_status',
+        'review',
     ];
 
-    public function storedPictureBook(): HasMany
+    public function user(): BelongsTo
     {
-        return $this->hasMany('App\StoredPictureBook');
+        return $this->belongsTo('App\User');
     }
 
-    public function isStoredBy(?User $user): bool
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany('App\User', 'likes')->withTimestamps();
+    }
+
+    public function isLikedBy(?User $user): bool
     {
         return $user
-            ? (bool)$this->storedPictureBooks->where('id', $user->id)->count()
+            ? (bool)$this->likes->where('id', $user->id)->count()
             : false;
+    }
+
+    public function getCountLikesAttribute(): int
+    {
+        return $this->likes->count();
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 }

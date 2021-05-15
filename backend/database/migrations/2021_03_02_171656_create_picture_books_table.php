@@ -21,7 +21,15 @@ class CreatePictureBooksTable extends Migration
             $table->string('authors');
             $table->string('published_date', 100)->nullable();
             $table->string('thumbnail_uri', 1000);
+            $table->unsignedBigInteger('user_id');
+            $table->integer('five_star_rating');
+            $table->integer('read_status');
+            $table->string('review', 1000)->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
     }
 

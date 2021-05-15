@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\PictureBook;
-use App\StoredPictureBook;
 use App\Tag;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\StoredPictureBookRequest;
+use App\Http\Requests\PictureBookRequest;
 use Exception;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -20,7 +19,7 @@ class PictureBookController extends Controller
      */
     public function __construct()
     {
-        $this->authorizeResource(StoredPictureBook::class, 'stored_picture_book');
+        $this->authorizeResource(PictureBook::class, 'picture_book');
     }
 
     /**
@@ -28,9 +27,9 @@ class PictureBookController extends Controller
      */
     public function home()
     {
-        $storedPictureBooks = StoredPictureBook::with(['pictureBook', 'user'])->get()->sortByDesc('created_at');
+        $pictureBooks = PictureBook::with('user')->get()->sortByDesc('created_at');
 
-        return view('picture_books.home', ['storedPictureBooks' => $storedPictureBooks]);
+        return view('picture_books.home', ['pictureBooks' => $pictureBooks]);
     }
 
     /**
@@ -46,9 +45,9 @@ class PictureBookController extends Controller
      */
     public function index()
     {
-        $storedPictureBooks = StoredPictureBook::with(['pictureBook', 'user'])->orderBy('updated_at', 'DESC')->paginate(5);
+        $pictureBooks = PictureBook::with('user')->orderBy('updated_at', 'DESC')->paginate(5);
 
-        return view('picture_books.index', ['storedPictureBooks' => $storedPictureBooks]);
+        return view('picture_books.index', ['pictureBooks' => $pictureBooks]);
     }
 
     /**
@@ -72,49 +71,28 @@ class PictureBookController extends Controller
     /**
      * 絵本を登録する。
      */
-    public function store(
-        StoredPictureBookRequest $request,
-        PictureBook $pictureBook,
-        StoredPictureBook $storedPictureBook
-    ) {
+    public function store(PictureBookRequest $request, PictureBook $pictureBook)
+    {
+        $pictureBook->fill($request->all());
+        $pictureBook->user_id = $request->user()->id;
+        $pictureBook->save();
 
-        try {
-            DB::beginTransaction();
+        $request->tags->each(function ($tagName) use ($pictureBook) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $pictureBook->tags()->attach($tag);
+        });
 
-            $pictureBook->fill($request->all());
-            $pictureBook->save();
-
-            $pictureBookId = $pictureBook->id;
-
-            $storedPictureBook->fill($request->all());
-            $storedPictureBook->picture_book_id = $pictureBookId;
-            $storedPictureBook->user_id = $request->user()->id;
-            $storedPictureBook->save();
-
-            DB::commit();
-
-            $request->tags->each(function ($tagName) use ($storedPictureBook) {
-                $tag = Tag::firstOrCreate(['name' => $tagName]);
-                $storedPictureBook->tags()->attach($tag);
-            });
-
-            return redirect()->route('picture_books.index');
-        } catch (Exception $e) {
-            DB::rollBack();
-            return redirect()->route('picture_books.create')->withInput($request->all())
-                ->with('flash_message', 'エラーが発生しました。');
-        }
+        return redirect()->route('picture_books.index');
     }
 
     /**
      * 登録絵本情報の編集画面を表示する。
      */
-    public function edit(StoredPictureBook $storedPictureBook)
+    public function edit(PictureBook $pictureBook)
     {
-        $storedPictureBook = $storedPictureBook->with('pictureBook')
-            ->find($storedPictureBook->id);
+        $pictureBook = $pictureBook->find($pictureBook->id);
 
-        $tagNames = $storedPictureBook->tags->map(function ($tag) {
+        $tagNames = $pictureBook->tags->map(function ($tag) {
             return ['text' => $tag->name];
         });
 
@@ -123,7 +101,7 @@ class PictureBookController extends Controller
         });
 
         return view('picture_books.edit', [
-            'storedPictureBook' => $storedPictureBook,
+            'pictureBook' => $pictureBook,
             'tagNames' => $tagNames,
             'allTagNames' => $allTagNames,
         ]);
@@ -132,14 +110,14 @@ class PictureBookController extends Controller
     /**
      * 登録絵本情報を編集画面での編集内容に更新する。
      */
-    public function update(StoredPictureBookRequest $request, StoredPictureBook $storedPictureBook)
+    public function update(PictureBookRequest $request, PictureBook $pictureBook)
     {
-        $storedPictureBook->fill($request->all())->save();
+        $pictureBook->fill($request->all())->save();
 
-        $storedPictureBook->tags()->detach();
-        $request->tags->each(function ($tagName) use ($storedPictureBook) {
+        $pictureBook->tags()->detach();
+        $request->tags->each(function ($tagName) use ($pictureBook) {
             $tag = Tag::firstOrCreate(['name' => $tagName]);
-            $storedPictureBook->tags()->attach($tag);
+            $pictureBook->tags()->attach($tag);
         });
 
         return redirect()->route('picture_books.index');
@@ -148,19 +126,19 @@ class PictureBookController extends Controller
     /**
      * 登録絵本を削除する。
      */
-    public function destroy(StoredPictureBook $storedPictureBook)
+    public function destroy(PictureBook $pictureBook)
     {
-        $storedPictureBook->delete();
+        $pictureBook->delete();
         return redirect()->route('picture_books.index');
     }
 
     /**
      * 登録絵本詳細画面を表示する。
      */
-    public function show(StoredPictureBook $storedPictureBook)
+    public function show(PictureBook $pictureBook)
     {
-        $storedPictureBook = $storedPictureBook->with('pictureBook')->find($storedPictureBook->id);
-        return view('picture_books.show', ['storedPictureBook' => $storedPictureBook]);
+        $pictureBook = $pictureBook->find($pictureBook->id);
+        return view('picture_books.show', ['pictureBook' => $pictureBook]);
     }
 
 
@@ -195,24 +173,24 @@ class PictureBookController extends Controller
         return view('picture_books.search', $data);
     }
 
-    public function like(Request $request, StoredPictureBook $storedPictureBook)
+    public function like(Request $request, PictureBook $pictureBook)
     {
-        $storedPictureBook->likes()->detach($request->user()->id);
-        $storedPictureBook->likes()->attach($request->user()->id);
+        $pictureBook->likes()->detach($request->user()->id);
+        $pictureBook->likes()->attach($request->user()->id);
 
         return [
-            'id' => $storedPictureBook->id,
-            'countLikes' => $storedPictureBook->count_likes,
+            'id' => $pictureBook->id,
+            'countLikes' => $pictureBook->count_likes,
         ];
     }
 
-    public function unlike(Request $request, StoredPictureBook $storedPictureBook)
+    public function unlike(Request $request, PictureBook $pictureBook)
     {
-        $storedPictureBook->likes()->detach($request->user()->id);
+        $pictureBook->likes()->detach($request->user()->id);
 
         return [
-            'id' => $storedPictureBook->id,
-            'countLikes' => $storedPictureBook->count_likes,
+            'id' => $pictureBook->id,
+            'countLikes' => $pictureBook->count_likes,
         ];
     }
 }

@@ -26,12 +26,12 @@
     <div class="container">
         <div class="row">
             <div class="container" style="max-width: 900px;">
-                @if ($storedPictureBooks !== null)
+                @if ($pictureBooks !== null)
                 {{-- 絵本の記録表示 --}}
-                @foreach($storedPictureBooks as $storedPictureBook)
+                @foreach($pictureBooks as $pictureBook)
                 @include('picture_books.card')
                 @endforeach
-                {{ $storedPictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
+                {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
                 @else
                 <div class="alert alert-teal1" style="max-width: 360px;">
                     <p>絵本がまだありません。</p>

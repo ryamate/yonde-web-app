@@ -39,7 +39,7 @@
                 @include('users.user')
                 @include('users.tabs', [
                 'hasBookshelf' => false,
-                'hasStoredPictureBooks' => false,
+                'hasPictureBooks' => false,
                 'hasLikes' => false,
                 'hasFollowers' => true,
                 'hasFollowings' => false,

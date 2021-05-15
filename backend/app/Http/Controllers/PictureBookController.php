@@ -46,7 +46,7 @@ class PictureBookController extends Controller
      */
     public function index()
     {
-        $storedPictureBooks = StoredPictureBook::with(['pictureBook', 'user'])->orderBy('created_at', 'DESC')->paginate(5);
+        $storedPictureBooks = StoredPictureBook::with(['pictureBook', 'user'])->orderBy('updated_at', 'DESC')->paginate(5);
 
         return view('picture_books.index', ['storedPictureBooks' => $storedPictureBooks]);
     }

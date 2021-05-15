@@ -11,11 +11,11 @@
         <div class="card-body">
             <h2 class="h4 card-title m-0">{{ $tag->hashtag }}</h2>
             <div class="card-text text-right">
-                {{ $tag->storedPictureBooks->count() }}件
+                {{ $tag->pictureBooks->count() }}件
             </div>
         </div>
     </div>
-    @foreach($tag->storedPictureBooks as $storedPictureBook)
+    @foreach($tag->pictureBooks as $pictureBook)
     @include('picture_books.card')
     @endforeach
 </div>

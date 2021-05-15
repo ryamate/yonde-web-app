@@ -31,10 +31,10 @@
             <div class="container" style="max-width: 900px;"> @include('users.user')
                 @include('users.tabs', [
                 'hasBookshelf' => false,
-                'hasStoredPictureBooks' => false,
+                'hasPictureBooks' => false,
                 'hasLikes' => true
                 ])
-                @foreach($storedPictureBooks as $storedPictureBook)
+                @foreach($pictureBooks as $pictureBook)
                 @include('picture_books.card')
                 @endforeach
             </div>

@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs nav-justified mt-3">
-    @if ($hasBookshelf || $hasStoredPictureBooks || $hasLikes)
+    @if ($hasBookshelf || $hasPictureBooks || $hasLikes)
     <li class="nav-item">
         <a class="nav-link {{ $hasBookshelf ? 'active text-dark' : 'text-muted' }}"
             href="{{ route('users.bookshelf', ['yonde_id' => $user->yonde_id]) }}">
@@ -7,7 +7,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ $hasStoredPictureBooks ? 'active text-dark' : 'text-muted' }}"
+        <a class="nav-link {{ $hasPictureBooks ? 'active text-dark' : 'text-muted' }}"
             href="{{ route('users.show', ['yonde_id' => $user->yonde_id]) }}">
             タイムライン
         </a>

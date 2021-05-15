@@ -16,8 +16,8 @@ class Tag extends Model
         return '#' . $this->name;
     }
 
-    public function storedPictureBooks(): BelongsToMany
+    public function pictureBooks(): BelongsToMany
     {
-        return $this->belongsToMany('App\StoredPictureBook')->withTimestamps();
+        return $this->belongsToMany('App\PictureBook')->withTimestamps();
     }
 }

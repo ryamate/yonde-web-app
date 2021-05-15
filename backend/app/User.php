@@ -20,7 +20,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'yonde_id', 'name', 'email', 'password',
+        'yonde_id',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -29,7 +32,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -46,9 +50,9 @@ class User extends Authenticatable
         $this->notify(new PasswordResetNotification($token, new BareMail()));
     }
 
-    public function storedPictureBooks(): HasMany
+    public function pictureBooks(): HasMany
     {
-        return $this->hasMany('App\storedPictureBook');
+        return $this->hasMany('App\pictureBook');
     }
 
     public function followers(): BelongsToMany
@@ -63,7 +67,7 @@ class User extends Authenticatable
 
     public function likes(): BelongsToMany
     {
-        return $this->belongsToMany('App\storedPictureBook', 'likes')->withTimestamps();
+        return $this->belongsToMany('App\pictureBook', 'likes')->withTimestamps();
     }
 
     public function isFollowedBy(?User $user): bool

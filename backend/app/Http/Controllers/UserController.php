@@ -19,11 +19,11 @@ class UserController extends Controller
     {
         $user = User::where('yonde_id', $yonde_id)->first();
 
-        $storedPictureBooks = $user->storedPictureBooks->sortByDesc('created_at');
+        $pictureBooks = $user->pictureBooks->sortByDesc('created_at');
 
         return view('users.show', [
             'user' => $user,
-            'storedPictureBooks' => $storedPictureBooks,
+            'pictureBooks' => $pictureBooks,
         ]);
     }
 
@@ -31,11 +31,11 @@ class UserController extends Controller
     {
         $user = User::where('yonde_id', $yonde_id)->first();
 
-        $storedPictureBooks = $user->storedPictureBooks->sortByDesc('created_at');
+        $pictureBooks = $user->pictureBooks->sortByDesc('created_at');
 
         return view('users.bookshelf', [
             'user' => $user,
-            'storedPictureBooks' => $storedPictureBooks,
+            'pictureBooks' => $pictureBooks,
         ]);
     }
 
@@ -43,11 +43,11 @@ class UserController extends Controller
     {
         $user = User::where('yonde_id', $yonde_id)->first();
 
-        $storedPictureBooks = $user->likes->sortByDesc('created_at');
+        $pictureBooks = $user->likes->sortByDesc('created_at');
 
         return view('users.likes', [
             'user' => $user,
-            'storedPictureBooks' => $storedPictureBooks,
+            'pictureBooks' => $pictureBooks,
         ]);
     }
 

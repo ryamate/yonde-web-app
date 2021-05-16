@@ -28,12 +28,14 @@ Route::get('/picture_books', 'PictureBookController@index')->name('picture_books
 Route::resource('/picture_books', 'PictureBookController')->except(['index', 'edit', 'destroy', 'update', 'show'])->middleware('auth');
 Route::prefix('picture_books')->name('picture_books.')->group(function () {
     Route::get('/search', 'PictureBookController@search')->name('search');
-    Route::get('/{picture_book}/edit', 'PictureBookController@edit')->name('edit')->middleware('auth');
-    Route::delete('/{picture_book}', 'PictureBookController@destroy')->name('destroy')->middleware('auth');
-    Route::match(['put', 'patch'], '/{picture_book}', 'PictureBookController@update')->name('update')->middleware('auth');
     Route::get('/{picture_book}', 'PictureBookController@show')->name('show');
-    Route::put('/{picture_book}/like', 'PictureBookController@like')->name('like')->middleware('auth');
-    Route::delete('/{picture_book}/like', 'PictureBookController@unlike')->name('unlike')->middleware('auth');
+    Route::middleware('auth')->group(function () {
+        Route::delete('/{picture_book}', 'PictureBookController@destroy')->name('destroy');
+        Route::get('/{picture_book}/edit', 'PictureBookController@edit')->name('edit');
+        Route::match(['put', 'patch'], '/{picture_book}', 'PictureBookController@update')->name('update');
+        Route::put('/{picture_book}/like', 'PictureBookController@like')->name('like');
+        Route::delete('/{picture_book}/like', 'PictureBookController@unlike')->name('unlike');
+    });
 });
 
 Route::prefix('users')->name('users.')->group(function () {

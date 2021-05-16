@@ -15,6 +15,9 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * タイムライン画面表示
+     */
     public function show(string $yonde_id)
     {
         $user = User::where('yonde_id', $yonde_id)->first();
@@ -27,6 +30,9 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * 本棚画面表示
+     */
     public function bookshelf(string $yonde_id)
     {
         $user = User::where('yonde_id', $yonde_id)->first();
@@ -39,6 +45,9 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * いいね画面を表示
+     */
     public function likes(string $yonde_id)
     {
         $user = User::where('yonde_id', $yonde_id)->first();
@@ -51,6 +60,9 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * フォロー中画面表示
+     */
     public function followings(string $yonde_id)
     {
         $user = User::where('yonde_id', $yonde_id)->first();
@@ -63,6 +75,9 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * フォロワー画面表示
+     */
     public function followers(string $yonde_id)
     {
         $user = User::where('yonde_id', $yonde_id)->first();
@@ -75,6 +90,9 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * フォローする
+     */
     public function follow(Request $request, string $yonde_id)
     {
         $user = User::where('yonde_id', $yonde_id)->first();
@@ -89,6 +107,9 @@ class UserController extends Controller
         return ['yonde_id' => $yonde_id];
     }
 
+    /**
+     * フォロー解除する
+     */
     public function unfollow(Request $request, string $yonde_id)
     {
         $user = User::where('yonde_id', $yonde_id)->first();
@@ -102,6 +123,9 @@ class UserController extends Controller
         return ['yonde_id' => $yonde_id];
     }
 
+    /**
+     * プロフィール設定画面表示
+     */
     public function showSettingProfile(string $yonde_id)
     {
         $user = User::where('yonde_id', $yonde_id)->firstOrFail();
@@ -111,6 +135,9 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * プロフィール編集画面表示
+     */
     public function edit()
     {
         $user = Auth::user();
@@ -120,6 +147,9 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * プロフィール設定更新する
+     */
     public function update(Request $request)
     {
         //バリデーション（入力値チェック）

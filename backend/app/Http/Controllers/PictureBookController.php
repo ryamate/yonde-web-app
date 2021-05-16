@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\PictureBook;
 use App\Tag;
+use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PictureBookRequest;
 use Exception;
@@ -15,7 +16,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class PictureBookController extends Controller
 {
     /**
-     * あるユーザーが登録した絵本を、別のユーザーが更新・削除することを防ぐためのポリシー。
+     * あるユーザーが登録した絵本を、別のユーザーが更新・削除することを防ぐためのポリシー
      */
     public function __construct()
     {
@@ -23,7 +24,7 @@ class PictureBookController extends Controller
     }
 
     /**
-     * ホーム画面を表示する。
+     * ホーム画面表示
      */
     public function home()
     {
@@ -33,7 +34,7 @@ class PictureBookController extends Controller
     }
 
     /**
-     * サービス概要紹介画面を表示する。
+     * サービス概要紹介画面表示
      */
     public function about()
     {
@@ -41,7 +42,7 @@ class PictureBookController extends Controller
     }
 
     /**
-     * 登録絵本を一覧表示する。
+     * 登録絵本の一覧画面表示
      */
     public function index()
     {
@@ -51,7 +52,7 @@ class PictureBookController extends Controller
     }
 
     /**
-     * 絵本登録フォーム画面を表示する。
+     * 絵本登録フォーム画面表示
      */
     public function create(Request $request, PictureBook $pictureBook)
     {
@@ -69,7 +70,7 @@ class PictureBookController extends Controller
 
 
     /**
-     * 絵本を登録する。
+     * 絵本を登録する
      */
     public function store(PictureBookRequest $request, PictureBook $pictureBook)
     {
@@ -86,7 +87,7 @@ class PictureBookController extends Controller
     }
 
     /**
-     * 登録絵本情報の編集画面を表示する。
+     * 登録絵本の編集画面表示
      */
     public function edit(PictureBook $pictureBook)
     {
@@ -108,7 +109,7 @@ class PictureBookController extends Controller
     }
 
     /**
-     * 登録絵本情報を編集画面での編集内容に更新する。
+     * 登録絵本情報を編集画面での編集内容に更新する
      */
     public function update(PictureBookRequest $request, PictureBook $pictureBook)
     {
@@ -124,7 +125,7 @@ class PictureBookController extends Controller
     }
 
     /**
-     * 登録絵本を削除する。
+     * 登録絵本を削除する
      */
     public function destroy(PictureBook $pictureBook)
     {
@@ -133,7 +134,7 @@ class PictureBookController extends Controller
     }
 
     /**
-     * 登録絵本詳細画面を表示する。
+     * 登録絵本の詳細画面表示
      */
     public function show(PictureBook $pictureBook)
     {
@@ -143,7 +144,7 @@ class PictureBookController extends Controller
 
 
     /**
-     * 検索結果を一覧表示する（Google Books APIから書籍情報取得）。
+     * 検索結果の一覧画面表示（Google Books APIから書籍情報取得）
      */
     public function search(Request $request)
     {
@@ -165,14 +166,20 @@ class PictureBookController extends Controller
             );
         }
 
+        $user = Auth::user();
+
         $data = [
             'searchedBooks' => $paginatedSearchedBooks,
+            'user' => $user,
             'keyword' => $request->keyword,
         ];
 
         return view('picture_books.search', $data);
     }
 
+    /**
+     * いいねする
+     */
     public function like(Request $request, PictureBook $pictureBook)
     {
         $pictureBook->likes()->detach($request->user()->id);
@@ -184,6 +191,9 @@ class PictureBookController extends Controller
         ];
     }
 
+    /**
+     * いいね解除する
+     */
     public function unlike(Request $request, PictureBook $pictureBook)
     {
         $pictureBook->likes()->detach($request->user()->id);

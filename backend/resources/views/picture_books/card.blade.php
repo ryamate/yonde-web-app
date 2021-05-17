@@ -27,17 +27,19 @@
                 </div>
             </div>
             {{-- サムネイル --}}
-            <div class=" col-sm-6">
-                <div class="card-body py-0">
-                    <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}">
-                        <div class="book-cover">
-                            @if ($pictureBook->thumbnail_uri !== null)
-                            <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover" class="book-cover-image">
-                            @else
-                            <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
-                            @endif
-                        </div>
-                    </a>
+            <div class="col-sm-6">
+                <div class="card border-0" style="background-color: transparent">
+                    <div class="card-body py-0">
+                        <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}">
+                            <div class="book-cover">
+                                @if ($pictureBook->thumbnail_uri !== null)
+                                <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover" class="book-cover-image">
+                                @else
+                                <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
+                                @endif
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -172,7 +174,7 @@
 
                     {{-- レビュー・感想 --}}
                     <div class="card-body pt-0 pb-0">
-                        <p class="card-text small">{{ nl2br($pictureBook->review, false) }}</p>
+                        <p class="card-text small">{!! nl2br(e($pictureBook->review, false)) !!}</p>
                     </div>
 
                     {{-- タグ --}}

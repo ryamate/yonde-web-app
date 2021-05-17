@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Auth;
-use Validator;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -150,22 +150,8 @@ class UserController extends Controller
     /**
      * プロフィール設定更新する
      */
-    public function update(Request $request)
+    public function update(UserRequest $request)
     {
-        //バリデーション（入力値チェック）
-        $validator = Validator::make($request->all(), [
-            'yonde_id' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
-            'name' => ['required', 'string', 'max:255'],
-            'introduction' => ['string', 'max:1000'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        //バリデーションの結果がエラーの場合
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator->errors())->withInput();
-        }
-
         $user = User::find($request->id);
         $user->yonde_id = $request->yonde_id;
         $user->name = $request->name;
@@ -175,7 +161,6 @@ class UserController extends Controller
             $request->user_icon->storeAs('public/user_images', $user->id . '.jpg');
             $user->user_icon = $user->id . '.jpg';
         }
-        $user->password = bcrypt($request->password);
         $user->save();
 
         return redirect()->route('users.show_setting_profile', [

@@ -63,16 +63,6 @@
                                 name="email" required />
                         </div>
 
-                        <div class="form-group">
-                            <label for="password">パスワード</label>
-                            <input class="form-control" type="password" name="password" />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password_confirmation">パスワードの確認</label>
-                            <input class="form-control" type="password" name="password_confirmation" />
-                        </div>
-
                         <button type="submit"
                             class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-4"><b>変更する</b></button>
 

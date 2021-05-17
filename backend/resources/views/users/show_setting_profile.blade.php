@@ -33,7 +33,7 @@
 
         <dl>
             <dt>自己紹介</dt>
-            <dd>{{ $user->introduction }}</dd>
+            <dd>{!! nl2br(e($user->introduction)) !!}</dd>
         </dl>
     </table>
     <!-- 絵本の読み聞かせ記録ボタン -->

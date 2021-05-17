@@ -15,10 +15,10 @@ class CreatePictureBooksTable extends Migration
     {
         Schema::create('picture_books', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('google_books_id', 100)->unique();
+            $table->string('google_books_id', 100);
             $table->string('isbn_13', 100)->nullable();
-            $table->string('title');
-            $table->string('authors');
+            $table->string('title', 255);
+            $table->string('authors', 255)->nullable();
             $table->string('published_date', 100)->nullable();
             $table->string('thumbnail_uri', 1000);
             $table->unsignedBigInteger('user_id');

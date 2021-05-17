@@ -21,7 +21,7 @@
                     </a>
                 </h2>
                 <p class="small text-muted">{{ '@' . $user->yonde_id }}</p>
-                <p class="small">{{ $user->introduction }}</p>
+                <p class="small">{!! nl2br(e($user->introduction)) !!}</p>
             </div>
             <div class="col-sm-3 d-flex align-items-center">
                 @if( Auth::id() !== $user->id )

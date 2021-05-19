@@ -8,9 +8,15 @@ jobs:
       - run:
           working_directory: ./backend
           command: sudo composer self-update --1
+      - restore_cache:
+          key: composer-v1-{{ checksum "backend/composer.lock" }}
       - run:
           working_directory: ./backend
           command: composer install -n --prefer-dist
+      - save_cache:
+          key: composer-v1-{{ checksum "backend/composer.lock" }}
+          paths:
+            - vendor
       - run:
           working_directory: ./backend
           command: npm ci

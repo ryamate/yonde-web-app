@@ -52,7 +52,7 @@ class User extends Authenticatable
 
     public function pictureBooks(): HasMany
     {
-        return $this->hasMany('App\pictureBook');
+        return $this->hasMany('App\PictureBook');
     }
 
     public function followers(): BelongsToMany
@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function likes(): BelongsToMany
     {
-        return $this->belongsToMany('App\pictureBook', 'likes')->withTimestamps();
+        return $this->belongsToMany('App\PictureBook', 'likes')->withTimestamps();
     }
 
     public function isFollowedBy(?User $user): bool

@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           working_directory: ./backend
-          command: sudo composer self-update --1
+          command: sudo composer self-update --2
       - restore_cache:
           key: composer-v1-{{ checksum "backend/composer.lock" }}
       - run:

@@ -287,7 +287,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-8 pr-0">
+    <div class="col-md-8 px-4">
         <div class="container pt-4">
             <h4><b>よんでランキング</b></h4>
             <h5 class="text-secondary">絵本棚登録数</h5>

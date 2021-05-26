@@ -22,8 +22,8 @@
         <dl>
             <dt>プロフィール画像</dt>
             <dd>
-                @if ($user->user_icon)
-                <img src="{{ asset('storage/user_images/' . $user->user_icon) }}" alt="プロフィール画像"
+                @if ($user->icon_path)
+                <img src="{{ asset($user->icon_path) }}" alt="プロフィール画像"
                     style="width: 100px; height:100px;background-position: center center;object-fit:cover;">
                 @else
                 <i class="far fa-user-circle fa-5x text-secondary"></i>

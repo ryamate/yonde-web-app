@@ -4,9 +4,8 @@
             <div class="col-sm-12">
                 <div class="card-body pt-3 pb-0">
                     <a href="{{ route('users.show', ['yonde_id' => $pictureBook->user->yonde_id]) }}" class="text-dark">
-                        @if ($pictureBook->user->user_icon)
-                        <img src="{{ asset('storage/user_images/' . $pictureBook->user->user_icon) }}" alt="プロフィール画像"
-                            style="width:30px; height:30px;background-position: center
+                        @if ($pictureBook->user->icon_path)
+                        <img src="{{ asset($pictureBook->user->icon_path) }}" alt="プロフィール画像" style="width:30px; height:30px;background-position: center
                             center;border-radius: 50%;object-fit:cover;">
                         @else
                         <i class="fas fa-user-circle fa-1x"></i>

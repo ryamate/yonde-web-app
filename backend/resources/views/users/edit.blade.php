@@ -22,14 +22,14 @@
                         <input type="hidden" name="id" value="{{ $user->id }}" />
                         @csrf
                         <div class="form-group">
-                            <label for="user_icon">プロフィール画像</label><br>
-                            @if ($user->user_icon)
+                            <label for="icon_path">プロフィール画像</label><br>
+                            @if ($user->icon_path)
                             <p>
-                                <img src="{{ asset('storage/user_images/' . $user->user_icon) }}" alt="プロフィール画像"
+                                <img src="{{ asset($user->icon_path) }}" alt="プロフィール画像"
                                     style="width: 100px; height:100px;background-position: center center;object-fit:cover;" />
                             </p>
                             @endif
-                            <input type="file" name="user_icon" value="{{ old('user_icon',$user->id) }}"
+                            <input type="file" name="image" value="{{ old('image',$user->id) }}"
                                 accept="image/jpeg,image/gif,image/png" />
                         </div>
 

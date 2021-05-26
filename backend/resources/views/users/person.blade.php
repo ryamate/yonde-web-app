@@ -4,9 +4,8 @@
             <div class="col-sm-2">
                 <div class="d-flex flex-row">
                     <a href="{{ route('users.show', ['yonde_id' => $person->yonde_id]) }}" class="text-dark">
-                        @if ($person->user_icon)
-                        <img src="{{ asset('storage/user_images/' . $person->user_icon) }}" alt="プロフィール画像"
-                            class="bg-white border" style="width: 50px; height:50px;background-position: center
+                        @if ($person->icon_path)
+                        <img src="{{ asset($person->icon_path) }}" alt="プロフィール画像" class="bg-white border" style="width: 50px; height:50px;background-position: center
                                 center;border-radius: 50%;object-fit:cover;" />
                         @else
                         <i class="fas fa-user-circle fa-3x"></i>

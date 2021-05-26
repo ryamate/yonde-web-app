@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Storage;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
@@ -157,10 +158,19 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->introduction = $request->introduction;
         $user->email = $request->email;
-        if ($request->user_icon != null) {
-            $request->user_icon->storeAs('public/user_images', $user->id . '.jpg');
-            $user->user_icon = $user->id . '.jpg';
+
+        // 画像ファイルのアップロード
+        $image = $request->file('image');
+        if (app()->isLocal() || app()->runningUnitTests()) {
+            // 開発環境
+            $path = $image->storeAs('public/user_images', $user->id . '.jpg');
+            $user->icon_path = Storage::url($path);
+        } else {
+            // 本番環境
+            $path = Storage::disk('s3')->put('/', $image, 'public');
+            $user->icon_path = Storage::disk('s3')->url($path);
         }
+
         $user->save();
 
         return redirect()->route('users.show_setting_profile', [

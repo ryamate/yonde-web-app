@@ -77,8 +77,8 @@
                             <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" title="あなたのタイムライン"
                                 onclick="location.href='{{ route("users.show", ["yonde_id" => Auth::user()->yonde_id]) }}'">
-                                @if (Auth::user()->user_icon)
-                                <img src="{{ asset('storage/user_images/' . Auth::user()->user_icon) }}" alt="プロフィール画像"
+                                @if (Auth::user()->icon_path)
+                                <img src="{{ asset(Auth::user()->icon_path) }}" alt="プロフィール画像"
                                     class="rounded-circle bg-white border" width="35" height="35" style="background-position: center center;
                                 object-fit:cover;" />
                                 @else

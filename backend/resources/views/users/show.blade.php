@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $user->name . 'さんのページ-よんで-')
+@section('title', $user->nickname . 'さんのページ-よんで-')
 
 @section('content')
 
@@ -18,7 +18,7 @@
                     </li>
                     @auth
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $user->name }}さんのタイムライン
+                        {{ $user->nickname }}さんのタイムライン
                     </li>
                     @endauth
                 </ol>

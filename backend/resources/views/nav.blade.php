@@ -47,7 +47,7 @@
             {{-- picture bookshelf button --}}
             <div class="d-none d-md-block">
                 <li class="nav-item d-flex align-items-center justify-content-center">
-                    <a href="{{ route('users.bookshelf', ["yonde_id" => Auth::user()->yonde_id]) }}" title="あなたの本棚"
+                    <a href="{{ route('users.bookshelf', ["name" => Auth::user()->name]) }}" title="あなたの本棚"
                         class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center ml-3 mr-1"
                         style="width: 35px; height:35px;border-radius: 4px;"><i class="fas fa-book fa-lg"></i></a>
                 </li>
@@ -63,8 +63,7 @@
             {{-- setting profile button --}}
             <div class="d-none d-md-block">
                 <li class="nav-item d-flex align-items-center justify-content-center">
-                    <a href="{{ route('users.show_setting_profile', ['yonde_id' => Auth::user()->yonde_id]) }}"
-                        title="プロフィール設定"
+                    <a href="{{ route('users.show_setting_profile', ['name' => Auth::user()->name]) }}" title="プロフィール設定"
                         class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center mx-1"
                         style="width: 35px; height:35px; border-radius: 4px;"><i class="fas fa-cog fa-lg"></i></a>
                 </li>
@@ -76,7 +75,7 @@
                         <div class="dropdown drop-hover">
                             <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false" title="あなたのタイムライン"
-                                onclick="location.href='{{ route("users.show", ["yonde_id" => Auth::user()->yonde_id]) }}'">
+                                onclick="location.href='{{ route("users.show", ["name" => Auth::user()->name]) }}'">
                                 @if (Auth::user()->icon_path)
                                 <img src="{{ asset(Auth::user()->icon_path) }}" alt="プロフィール画像"
                                     class="rounded-circle bg-white border" width="35" height="35" style="background-position: center center;
@@ -149,8 +148,8 @@
                     {{-- picture bookshelf button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="{{ route('users.bookshelf', ["yonde_id" => Auth::user()->yonde_id]) }}"
-                                title="あなたの本棚" class="nav-link"><i class="fas fa-book"></i> <small>あなたの本棚</small></a>
+                            <a href="{{ route('users.bookshelf', ["name" => Auth::user()->name]) }}" title="あなたの本棚"
+                                class="nav-link"><i class="fas fa-book"></i> <small>あなたの本棚</small></a>
                         </li>
                     </div>
                     {{-- timeline button (toggle) --}}
@@ -163,7 +162,7 @@
                     {{-- my page button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="{{ route("users.show", ["yonde_id" => Auth::user()->yonde_id]) }}" title="マイページ"
+                            <a href="{{ route("users.show", ["name" => Auth::user()->name]) }}" title="マイページ"
                                 class="nav-link"><i class="fas fa-user-circle"></i>
                                 <small>マイページ</small></a>
                         </li>
@@ -171,7 +170,7 @@
                     {{-- setting profile button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="{{ route('users.show_setting_profile', ['yonde_id' => Auth::user()->yonde_id]) }}"
+                            <a href="{{ route('users.show_setting_profile', ['name' => Auth::user()->name]) }}"
                                 title="プロフィール設定" class="nav-link"><i class="fas fa-cog"></i> <small>プロフィール設定</small></a>
                         </li>
                     </div>

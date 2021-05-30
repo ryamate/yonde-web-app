@@ -24,9 +24,9 @@
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group">
-                            <label for="yonde_id">よんでID</label><span class="text-danger">*</span>
-                            <input class="form-control" type="text" id="yonde_id" name="yonde_id" placeholder="よんでIDを作成"
-                                required value="{{ old('yonde_id') }}">
+                            <label for="name">よんでID</label><span class="text-danger">*</span>
+                            <input class="form-control" type="text" id="name" name="name" placeholder="よんでIDを作成"
+                                required value="{{ old('name') }}">
                             <ul class="text-dark small">
                                 <li>半角英数小文字：3～16文字</li>
                             </ul>

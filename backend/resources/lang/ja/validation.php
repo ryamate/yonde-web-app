@@ -146,10 +146,10 @@ return [
     */
 
     'attributes' => [
-        'yonde_id' => 'よんでID',
+        'name' => 'よんでID',
         'email' => 'メールアドレス',
         'password' => 'パスワード',
-        'introduction' => '自己紹介文',
+        'relation' => '子どもとの関係',
     ],
 
 ];

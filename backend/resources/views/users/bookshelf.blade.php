@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $user->name . 'さんの本棚-よんで-')
+@section('title', $user->nickname . 'さんの本棚-よんで-')
 
 @section('content')
 
@@ -17,7 +17,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $user->name }}さんの本棚
+                        {{ $user->nickname }}さんの本棚
                     </li>
                 </ol>
             </nav>
@@ -44,8 +44,8 @@
                                     <div class="card-body py-0 px-1">
                                         <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}">
                                             <div class="book-cover">
-                                                @if ($pictureBook->thumbnail_uri !== null)
-                                                <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover"
+                                                @if ($pictureBook->thumbnail_url !== null)
+                                                <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover"
                                                     class="book-cover-image">
                                                 @else
                                                 <img src="{{ asset('image/no_image.png') }}" alt="No Image"

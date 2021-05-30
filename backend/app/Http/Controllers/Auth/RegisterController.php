@@ -52,7 +52,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'yonde_id' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
+            'name' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -67,8 +67,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'yonde_id' => $data['yonde_id'],
-            'name' => $data['yonde_id'],
+            'name' => $data['name'],
+            'nickname' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
@@ -96,7 +96,7 @@ class RegisterController extends Controller
     public function registerProviderUser(Request $request, string $provider)
     {
         $request->validate([
-            'yonde_id' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
+            'name' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
             'token' => ['required', 'string'],
         ]);
 
@@ -105,8 +105,8 @@ class RegisterController extends Controller
         $providerUser = Socialite::driver($provider)->userFromToken($token);
 
         $user = User::create([
-            'yonde_id' => $request->yonde_id,
-            'name' => $request->yonde_id,
+            'name' => $request->name,
+            'nickname' => $request->name,
             'email' => $providerUser->getEmail(),
             'password' => null,
         ]);

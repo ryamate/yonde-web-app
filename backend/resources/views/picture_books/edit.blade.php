@@ -38,8 +38,8 @@
                             <div class="col-sm-6">
                                 <div class="card-body py-0">
                                     <div class="book-cover">
-                                        @if ($pictureBook->thumbnail_uri !== null)
-                                        <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover"
+                                        @if ($pictureBook->thumbnail_url !== null)
+                                        <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover"
                                             class="book-cover-image">
                                         @else
                                         <img src="{{ asset('image/no_image.png') }}" alt="No Image"

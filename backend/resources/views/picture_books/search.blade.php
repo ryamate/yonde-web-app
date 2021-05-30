@@ -118,7 +118,7 @@
                                         <input type="hidden" name="authors" value="{{ $searchedBook->authors }}" />
                                         <input type="hidden" name="published_date"
                                             value="{{ @$searchedBook->publishedDate }}" />
-                                        <input type="hidden" name="thumbnail_uri"
+                                        <input type="hidden" name="thumbnail_url"
                                             value="{{ @$searchedBook->imageLinks->thumbnail }}" />
                                     </form>
                                     @endif

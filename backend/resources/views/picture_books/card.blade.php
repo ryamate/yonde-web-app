@@ -3,7 +3,7 @@
         <div class="row no-gutters">
             <div class="col-sm-12">
                 <div class="card-body pt-3 pb-0">
-                    <a href="{{ route('users.show', ['yonde_id' => $pictureBook->user->yonde_id]) }}" class="text-dark">
+                    <a href="{{ route('users.show', ['name' => $pictureBook->user->name]) }}" class="text-dark">
                         @if ($pictureBook->user->icon_path)
                         <img src="{{ asset($pictureBook->user->icon_path) }}" alt="プロフィール画像" style="width:30px; height:30px;background-position: center
                             center;border-radius: 50%;object-fit:cover;">
@@ -11,7 +11,7 @@
                         <i class="fas fa-user-circle fa-1x"></i>
                         @endif
                         <span class="text-teal1">
-                            {{ ' ' . $pictureBook->user->name}}
+                            {{ ' ' . $pictureBook->user->nickname}}
                         </span>
                     </a>
                     @if ($pictureBook->created_at == $pictureBook->updated_at)
@@ -31,8 +31,8 @@
                     <div class="card-body py-0">
                         <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}">
                             <div class="book-cover">
-                                @if ($pictureBook->thumbnail_uri !== null)
-                                <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover" class="book-cover-image">
+                                @if ($pictureBook->thumbnail_url !== null)
+                                <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
                                 @else
                                 <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
                                 @endif

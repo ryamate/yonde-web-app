@@ -19,9 +19,9 @@ class UserController extends Controller
     /**
      * タイムライン画面表示
      */
-    public function show(string $yonde_id)
+    public function show(string $name)
     {
-        $user = User::where('yonde_id', $yonde_id)->first();
+        $user = User::where('name', $name)->first();
 
         $pictureBooks = $user->pictureBooks->sortByDesc('created_at');
 
@@ -34,9 +34,9 @@ class UserController extends Controller
     /**
      * 本棚画面表示
      */
-    public function bookshelf(string $yonde_id)
+    public function bookshelf(string $name)
     {
-        $user = User::where('yonde_id', $yonde_id)->first();
+        $user = User::where('name', $name)->first();
 
         $pictureBooks = $user->pictureBooks->sortByDesc('created_at');
 
@@ -49,9 +49,9 @@ class UserController extends Controller
     /**
      * いいね画面を表示
      */
-    public function likes(string $yonde_id)
+    public function likes(string $name)
     {
-        $user = User::where('yonde_id', $yonde_id)->first();
+        $user = User::where('name', $name)->first();
 
         $pictureBooks = $user->likes->sortByDesc('created_at');
 
@@ -64,9 +64,9 @@ class UserController extends Controller
     /**
      * フォロー中画面表示
      */
-    public function followings(string $yonde_id)
+    public function followings(string $name)
     {
-        $user = User::where('yonde_id', $yonde_id)->first();
+        $user = User::where('name', $name)->first();
 
         $followings = $user->followings->sortByDesc('created_at');
 
@@ -79,9 +79,9 @@ class UserController extends Controller
     /**
      * フォロワー画面表示
      */
-    public function followers(string $yonde_id)
+    public function followers(string $name)
     {
-        $user = User::where('yonde_id', $yonde_id)->first();
+        $user = User::where('name', $name)->first();
 
         $followers = $user->followers->sortByDesc('created_at');
 
@@ -94,9 +94,9 @@ class UserController extends Controller
     /**
      * フォローする
      */
-    public function follow(Request $request, string $yonde_id)
+    public function follow(Request $request, string $name)
     {
-        $user = User::where('yonde_id', $yonde_id)->first();
+        $user = User::where('name', $name)->first();
 
         if ($user->id === $request->user()->id) {
             return abort('404', 'Cannot follow yourself.');
@@ -105,15 +105,15 @@ class UserController extends Controller
         $request->user()->followings()->detach($user);
         $request->user()->followings()->attach($user);
 
-        return ['yonde_id' => $yonde_id];
+        return ['name' => $name];
     }
 
     /**
      * フォロー解除する
      */
-    public function unfollow(Request $request, string $yonde_id)
+    public function unfollow(Request $request, string $name)
     {
-        $user = User::where('yonde_id', $yonde_id)->first();
+        $user = User::where('name', $name)->first();
 
         if ($user->id === $request->user()->id) {
             return abort('404', 'Cannot follow yourself.');
@@ -121,15 +121,15 @@ class UserController extends Controller
 
         $request->user()->followings()->detach($user);
 
-        return ['yonde_id' => $yonde_id];
+        return ['name' => $name];
     }
 
     /**
      * プロフィール設定画面表示
      */
-    public function showSettingProfile(string $yonde_id)
+    public function showSettingProfile(string $name)
     {
-        $user = User::where('yonde_id', $yonde_id)->firstOrFail();
+        $user = User::where('name', $name)->firstOrFail();
 
         return view('users.show_setting_profile', [
             'user' => $user,
@@ -154,9 +154,9 @@ class UserController extends Controller
     public function update(UserRequest $request)
     {
         $user = User::find($request->id);
-        $user->yonde_id = $request->yonde_id;
         $user->name = $request->name;
-        $user->introduction = $request->introduction;
+        $user->nickname = $request->nickname;
+        $user->relation = $request->relation;
         $user->email = $request->email;
 
         // 画像ファイルのアップロード
@@ -176,7 +176,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('users.show_setting_profile', [
-            'yonde_id' => $user->yonde_id,
+            'name' => $user->name,
         ]);
     }
 }

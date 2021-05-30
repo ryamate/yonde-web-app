@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $user->name . 'さんのフォロワー-よんで-')
+@section('title', $user->nickname . 'さんのフォロワー-よんで-')
 
 @section('content')
 
@@ -18,12 +18,12 @@
                     </li>
                     @auth
                     <li class="breadcrumb-item">
-                        <a href="{{ route("users.show", ["yonde_id" => $user->yonde_id]) }}" class="text-teal1">
-                            {{ $user->name }}さんのページ
+                        <a href="{{ route("users.show", ["name" => $user->name]) }}" class="text-teal1">
+                            {{ $user->nickname }}さんのページ
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $user->name }}さんのフォロワー
+                        {{ $user->nickname }}さんのフォロワー
                     </li>
                     @endauth
                 </ol>

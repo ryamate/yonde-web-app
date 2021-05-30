@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLikesTable extends Migration
+class CreateReadRecordChildTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateLikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('likes', function (Blueprint $table) {
+        Schema::create('read_record_child', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('picture_book_id');
+            $table->unsignedBigInteger('read_record_id');
+            $table->unsignedBigInteger('child_id');
             $table->timestamps();
 
-            $table->foreign('user_id')
+            $table->foreign('read_record_id')
                 ->references('id')
-                ->on('users')
+                ->on('read_records')
                 ->onDelete('cascade');
-            $table->foreign('picture_book_id')
+            $table->foreign('child_id')
                 ->references('id')
-                ->on('picture_books')
+                ->on('children')
                 ->onDelete('cascade');
         });
     }
@@ -37,6 +37,6 @@ class CreateLikesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('likes');
+        Schema::dropIfExists('read_record_child');
     }
 }

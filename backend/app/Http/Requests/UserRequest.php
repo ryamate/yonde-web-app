@@ -27,16 +27,16 @@ class UserRequest extends FormRequest
     {
         $user = Auth::user();
         return [
-            'yonde_id' => [
+            'name' => [
                 'required',
                 'string',
                 'alpha_num',
                 'min:3',
                 'max:16',
-                Rule::unique('users', 'yonde_id')->whereNot('yonde_id', $user->yonde_id),
+                Rule::unique('users', 'name')->whereNot('name', $user->name),
             ],
-            'name' => ['required', 'string', 'max:255'],
-            'introduction' => ['nullable', 'string', 'max:1000'],
+            'nickname' => ['required', 'string', 'max:255'],
+            'relation' => ['nullable', 'string', 'max:100'],
             'email' => [
                 'required',
                 'string',

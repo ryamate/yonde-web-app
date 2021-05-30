@@ -194,8 +194,8 @@
                 <div class="col-md-2 col-6">
                     <div class="card border-0 py-0">
                         <div class="card-img-top book-cover my-auto">
-                            @if ($pictureBook->thumbnail_uri !== null)
-                            <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover" class="book-cover-image">
+                            @if ($pictureBook->thumbnail_url !== null)
+                            <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
                             @else
                             <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
                             @endif
@@ -221,8 +221,8 @@
                 <div class="col-md-2 col-6">
                     <div class="card border-0 py-0">
                         <div class="card-img-top book-cover my-auto">
-                            @if ($pictureBook->thumbnail_uri !== null)
-                            <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover" class="book-cover-image">
+                            @if ($pictureBook->thumbnail_url !== null)
+                            <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
                             @else
                             <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
                             @endif
@@ -251,8 +251,8 @@
                 <div class="col-md-2 col-6">
                     <div class="card border-0 py-0">
                         <div class="card-img-top book-cover my-auto">
-                            @if ($pictureBook->thumbnail_uri !== null)
-                            <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover" class="book-cover-image">
+                            @if ($pictureBook->thumbnail_url !== null)
+                            <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
                             @else
                             <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
                             @endif
@@ -303,8 +303,8 @@
                         <div class="col-md-3 col-6">
                             <div class="card border-0 py-0">
                                 <div class="card-img-top book-cover my-auto">
-                                    @if ($pictureBook->thumbnail_uri !== null)
-                                    <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover"
+                                    @if ($pictureBook->thumbnail_url !== null)
+                                    <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover"
                                         class="book-cover-image">
                                     @else
                                     <img src="{{ asset('image/no_image.png') }}" alt="No Image"
@@ -332,8 +332,8 @@
                         <div class="col-md-2 col-6">
                             <div class="card border-0 py-0">
                                 <div class="card-img-top book-cover my-auto">
-                                    @if ($pictureBook->thumbnail_uri !== null)
-                                    <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover"
+                                    @if ($pictureBook->thumbnail_url !== null)
+                                    <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover"
                                         class="book-cover-image">
                                     @else
                                     <img src="{{ asset('image/no_image.png') }}" alt="No Image"
@@ -381,8 +381,8 @@
                         <div class="col-md-3 col-6">
                             <div class="card border-0 py-0">
                                 <div class="card-img-top book-cover my-auto">
-                                    @if ($pictureBook->thumbnail_uri !== null)
-                                    <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover"
+                                    @if ($pictureBook->thumbnail_url !== null)
+                                    <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover"
                                         class="book-cover-image">
                                     @else
                                     <img src="{{ asset('image/no_image.png') }}" alt="No Image"
@@ -410,8 +410,8 @@
                         <div class="col-md-3 col-6">
                             <div class="card border-0 py-0">
                                 <div class="card-img-top book-cover my-auto">
-                                    @if ($pictureBook->thumbnail_uri !== null)
-                                    <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover"
+                                    @if ($pictureBook->thumbnail_url !== null)
+                                    <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover"
                                         class="book-cover-image">
                                     @else
                                     <img src="{{ asset('image/no_image.png') }}" alt="No Image"

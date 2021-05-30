@@ -11,12 +11,12 @@
     <table class="container table table-bordered">
         <dl>
             <dt>よんでID</dt>
-            <dd>{{ $user->yonde_id }}</dd>
+            <dd>{{ $user->name }}</dd>
         </dl>
 
         <dl>
             <dt>ニックネーム</dt>
-            <dd>{{ $user->name }}</dd>
+            <dd>{{ $user->nickname }}</dd>
         </dl>
 
         <dl>
@@ -32,8 +32,8 @@
         </dl>
 
         <dl>
-            <dt>自己紹介</dt>
-            <dd>{!! nl2br(e($user->introduction)) !!}</dd>
+            <dt>子どもとの関係</dt>
+            <dd>{{ $user->relation }}</dd>
         </dl>
     </table>
 

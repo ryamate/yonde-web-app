@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePictureBookTagTable extends Migration
+class CreateReadRecordTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreatePictureBookTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('picture_book_tag', function (Blueprint $table) {
+        Schema::create('read_record_tag', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('picture_book_id');
+            $table->unsignedBigInteger('read_record_id');
             $table->unsignedBigInteger('tag_id');
             $table->timestamps();
 
-            $table->foreign('picture_book_id')
+            $table->foreign('read_record_id')
                 ->references('id')
-                ->on('picture_books')
+                ->on('read_records')
                 ->onDelete('cascade');
             $table->foreign('tag_id')
                 ->references('id')
@@ -37,6 +37,6 @@ class CreatePictureBookTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('picture_book_tag');
+        Schema::dropIfExists('read_record_tag');
     }
 }

@@ -34,27 +34,24 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="yonde_id">よんでID</label>
-                            <input autofocus class="form-control" type="text" id="yonde_id"
-                                value="{{ old('yonde_id',$user->yonde_id) }}" name="yonde_id" required />
+                            <label for="name">よんでID</label>
+                            <input autofocus class="form-control" type="text" id="name"
+                                value="{{ old('name',$user->name) }}" name="name" required />
                             <ul class="text-dark small">
                                 <li>半角英数小文字：3～16文字</li>
                             </ul>
                         </div>
 
                         <div class="form-group">
-                            <label for="name">ニックネーム</label>
-                            <input class="form-control" type="text" id="name" value="{{ old('name',$user->name) }}"
-                                name="name" required />
+                            <label for="nickname">ニックネーム</label>
+                            <input class="form-control" type="text" id="nickname"
+                                value="{{ old('nickname',$user->nickname) }}" name="nickname" required />
                         </div>
 
                         <div class="form-group">
-                            <label for="introduction">自己紹介文</label>
-                            <textarea class="form-control" id="introduction"
-                                name="introduction">{{ old('introduction',$user->introduction) }}</textarea>
-                            <ul class="text-dark small">
-                                <li>1000文字以内 / HTMLタグ使用不可</li>
-                            </ul>
+                            <label for="relation">子どもとの関係</label>
+                            <input class="form-control" type="text" id="relation"
+                                value="{{old('relation',$user->relation) }}" name="relation" />
                         </div>
 
                         <div class="form-group">

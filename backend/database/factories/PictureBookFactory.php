@@ -13,7 +13,7 @@ $factory->define(PictureBook::class, function (Faker $faker) {
         'title' => $faker->text(50),
         'authors' => $faker->text(50),
         'published_date' => $faker->text(50),
-        'thumbnail_uri' => $faker->url,
+        'thumbnail_url' => $faker->url,
         'five_star_rating' => $faker->randomDigit() . "\n",
         'read_status' => $faker->randomDigit() . "\n",
         'review' => $faker->text(500),

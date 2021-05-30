@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $user->name . 'さんのいいねした記事-よんで-')
+@section('title', $user->nickname . 'さんのいいねした記事-よんで-')
 
 @section('content')
 
@@ -17,7 +17,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $user->name }}さんのいいね
+                        {{ $user->nickname }}さんのいいね
                     </li>
                 </ol>
             </nav>

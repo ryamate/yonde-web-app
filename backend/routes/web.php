@@ -41,15 +41,15 @@ Route::prefix('picture_books')->name('picture_books.')->group(function () {
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/edit', 'UserController@edit')->name('edit');
     Route::post('/update', 'UserController@update')->name('update');
-    Route::get('/{yonde_id}/setting_profile', 'UserController@showSettingProfile')->name('show_setting_profile');
-    Route::get('/{yonde_id}', 'UserController@show')->name('show');
-    Route::get('/{yonde_id}/bookshelf', 'UserController@bookshelf')->name('bookshelf');
-    Route::get('/{yonde_id}/likes', 'UserController@likes')->name('likes');
-    Route::get('/{yonde_id}/followings', 'UserController@followings')->name('followings');
-    Route::get('/{yonde_id}/followers', 'UserController@followers')->name('followers');
+    Route::get('/{name}/setting_profile', 'UserController@showSettingProfile')->name('show_setting_profile');
+    Route::get('/{name}', 'UserController@show')->name('show');
+    Route::get('/{name}/bookshelf', 'UserController@bookshelf')->name('bookshelf');
+    Route::get('/{name}/likes', 'UserController@likes')->name('likes');
+    Route::get('/{name}/followings', 'UserController@followings')->name('followings');
+    Route::get('/{name}/followers', 'UserController@followers')->name('followers');
     Route::middleware('auth')->group(function () {
-        Route::put('/{yonde_id}/follow', 'UserController@follow')->name('follow');
-        Route::delete('/{yonde_id}/follow', 'UserController@unfollow')->name('unfollow');
+        Route::put('/{name}/follow', 'UserController@follow')->name('follow');
+        Route::delete('/{name}/follow', 'UserController@unfollow')->name('unfollow');
     });
 });
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');

@@ -38,8 +38,8 @@
                             <div class="col-sm-6">
                                 <div class="card-body py-0">
                                     <div class="book-cover">
-                                        @if ($pictureBook->thumbnail_uri !== null)
-                                        <img src="{{ $pictureBook->thumbnail_uri }}" alt="book-cover"
+                                        @if ($pictureBook->thumbnail_url !== null)
+                                        <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover"
                                             class="book-cover-image">
                                         @else
                                         <img src="{{ asset('image/no_image.png') }}" alt="No Image"
@@ -81,7 +81,7 @@
                                 <input type="hidden" name="title" value="{{ $pictureBook->title }}" />
                                 <input type="hidden" name="authors" value="{{ $pictureBook->authors }}" />
                                 <input type="hidden" name="published_date" value="{{ $pictureBook->published_date }}" />
-                                <input type="hidden" name="thumbnail_uri" value="{{ $pictureBook->thumbnail_uri }}" />
+                                <input type="hidden" name="thumbnail_url" value="{{ $pictureBook->thumbnail_url }}" />
                             </form>
                         </div>
                     </div>

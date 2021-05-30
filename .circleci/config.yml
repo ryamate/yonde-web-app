@@ -55,15 +55,15 @@ jobs:
               php artisan migrate --force && \
               php artisan config:cache"
 
-workflows:
-  version: 2
-  build_deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - main
+# workflows:
+#   version: 2
+#   build_deploy:
+#     jobs:
+#       - build
+#       - deploy:
+#           requires:
+#             - build
+#           filters:
+#             branches:
+#               only:
+#                 - main

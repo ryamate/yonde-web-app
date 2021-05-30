@@ -15,7 +15,6 @@ class CreateFamiliesTable extends Migration
     {
         Schema::create('families', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('created_user_id');
             $table->string('family_name', 100)->nullable();
             $table->timestamps();
         });

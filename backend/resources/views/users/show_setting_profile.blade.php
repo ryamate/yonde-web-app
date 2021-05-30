@@ -36,7 +36,7 @@
             <dd>{!! nl2br(e($user->introduction)) !!}</dd>
         </dl>
     </table>
-    <!-- 絵本の読み聞かせ記録ボタン -->
+
     @if( Auth::id() === $user->id )
     <a class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1"
         href="{{ route('users.edit') }}">プロフィールを編集</a>

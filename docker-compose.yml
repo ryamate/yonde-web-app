@@ -42,6 +42,20 @@ services:
       - MYSQL_PASSWORD=${DB_PASS:-secret}
       - MYSQL_ROOT_PASSWORD=${DB_PASS:-secret}
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=${DB_USER:-phper}
+      - PMA_PASSWORD=${DB_PASS:-secret}
+    links:
+      - db
+    ports:
+      - 40080:80
+    volumes:
+      - /sessions
+
   mail:
     image: mailhog/mailhog
     ports:

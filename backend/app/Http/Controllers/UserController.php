@@ -160,15 +160,17 @@ class UserController extends Controller
         $user->email = $request->email;
 
         // 画像ファイルのアップロード
-        $image = $request->file('image');
-        if (app()->isLocal() || app()->runningUnitTests()) {
-            // 開発環境
-            $path = $image->storeAs('public/user_images', $user->id . '.jpg');
-            $user->icon_path = Storage::url($path);
-        } else {
-            // 本番環境
-            $path = Storage::disk('s3')->put('/', $image, 'public');
-            $user->icon_path = Storage::disk('s3')->url($path);
+        if ($request->image != null) {
+            $image = $request->file('image');
+            if (app()->isLocal() || app()->runningUnitTests()) {
+                // 開発環境
+                $path = $image->storeAs('public/user_images', $user->id . '.jpg');
+                $user->icon_path = Storage::url($path);
+            } else {
+                // 本番環境
+                $path = Storage::disk('s3')->put('/', $image, 'public');
+                $user->icon_path = Storage::disk('s3')->url($path);
+            }
         }
 
         $user->save();

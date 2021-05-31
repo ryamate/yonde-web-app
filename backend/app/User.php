@@ -7,6 +7,7 @@ use App\Notifications\PasswordResetNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -24,6 +25,7 @@ class User extends Authenticatable
         'nickname',
         'email',
         'password',
+        'family_id',
     ];
 
     /**
@@ -48,6 +50,11 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new PasswordResetNotification($token, new BareMail()));
+    }
+
+    public function family(): BelongsTo
+    {
+        return $this->belongsTo('App\Family');
     }
 
     public function pictureBooks(): HasMany

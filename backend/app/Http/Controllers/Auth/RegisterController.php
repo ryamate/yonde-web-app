@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Family;
+use App\Child;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -66,11 +68,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $family = Family::create([
+            'name' => '未設定',
+            'introduction' => '未設定',
+        ]);
+
+        Child::create([
+            'name' => '未設定',
+            'family_id' => $family->id,
+        ]);
+
         return User::create([
             'name' => $data['name'],
             'nickname' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'family_id' => $family->id,
         ]);
     }
 
@@ -104,11 +117,23 @@ class RegisterController extends Controller
 
         $providerUser = Socialite::driver($provider)->userFromToken($token);
 
+        $family = Family::create([
+            'name' => '未設定',
+            'introduction' => '未設定',
+        ]);
+
+        Child::create([
+            'name' => '未設定',
+            'family_id' => $family->id,
+        ]);
+
         $user = User::create([
             'name' => $request->name,
             'nickname' => $request->name,
             'email' => $providerUser->getEmail(),
             'password' => null,
+            'family_id' => $family->id,
+
         ]);
 
         $this->guard()->login($user, true);

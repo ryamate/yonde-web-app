@@ -11,7 +11,7 @@
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::prefix('login')->name('login.')->group(function () {
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
     Route::get('/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('{provider}.callback');
@@ -24,8 +24,7 @@ Route::prefix('register')->name('register.')->group(function () {
 
 Route::get('/', 'PictureBookController@home')->name('picture_books.home');
 Route::get('/about', 'PictureBookController@about')->name('picture_books.about');
-Route::get('/picture_books', 'PictureBookController@index')->name('picture_books.index');
-Route::resource('/picture_books', 'PictureBookController')->except(['index', 'edit', 'destroy', 'update', 'show'])->middleware('auth');
+Route::resource('/picture_books', 'PictureBookController')->except(['edit', 'destroy', 'update', 'show'])->middleware('auth');
 Route::prefix('picture_books')->name('picture_books.')->group(function () {
     Route::get('/search', 'PictureBookController@search')->name('search');
     Route::get('/{picture_book}', 'PictureBookController@show')->name('show');
@@ -41,7 +40,7 @@ Route::prefix('picture_books')->name('picture_books.')->group(function () {
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/edit', 'UserController@edit')->name('edit');
     Route::post('/update', 'UserController@update')->name('update');
-    Route::get('/{name}/setting_profile', 'UserController@showSettingProfile')->name('show_setting_profile');
+    Route::get('/{name}/setting_profile', 'UserController@showSettingProfile')->name('show_setting_profile')->middleware('auth');
     Route::get('/{name}', 'UserController@show')->name('show');
     Route::get('/{name}/bookshelf', 'UserController@bookshelf')->name('bookshelf');
     Route::get('/{name}/likes', 'UserController@likes')->name('likes');

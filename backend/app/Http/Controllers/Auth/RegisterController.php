@@ -88,7 +88,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * ユーザー名登録画面表示処理
+     * ユーザー名登録画面表示処理（Googleアカウント利用）
      */
     public function showProviderUserRegistrationForm(Request $request, string $provider)
     {
@@ -104,7 +104,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * よんでIDの登録画面で「登録」ボタンを押した後の、ユーザー登録処理
+     * よんでIDの登録画面で「登録」ボタンを押した後の、ユーザー登録処理（Googleアカウント利用）
      */
     public function registerProviderUser(Request $request, string $provider)
     {
@@ -131,6 +131,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'nickname' => $request->name,
             'email' => $providerUser->getEmail(),
+            'email_verified_at' => now(),
             'password' => null,
             'family_id' => $family->id,
 

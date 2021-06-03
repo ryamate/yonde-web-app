@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Mail\BareMail;
+use App\Notifications\VerifyEmailJapanese;
 use App\Notifications\PasswordResetNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
@@ -24,6 +25,7 @@ class User extends Authenticatable
         'name',
         'nickname',
         'email',
+        'email_verified_at',
         'password',
         'family_id',
     ];
@@ -46,6 +48,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailJapanese);
+    }
 
     public function sendPasswordResetNotification($token)
     {

@@ -142,4 +142,18 @@ class RegisterController extends Controller
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+        return $user->email_verified_at === null
+            ? view('auth.registered') // 通常の新規登録
+            : redirect($this->redirectPath()); // Googleアカウントでの新規登録
+    }
 }

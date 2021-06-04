@@ -22,6 +22,8 @@ Route::prefix('register')->name('register.')->group(function () {
     Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
 });
 
+Route::get('/email/verified', 'Auth\VerificationController@verified');
+
 Route::get('/', 'PictureBookController@home')->name('picture_books.home');
 Route::get('/about', 'PictureBookController@about')->name('picture_books.about');
 Route::resource('/picture_books', 'PictureBookController')->except(['edit', 'destroy', 'update', 'show'])->middleware('auth');

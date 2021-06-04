@@ -101,12 +101,12 @@
                             <div class="col-sm-3 d-flex align-items-center">
                                 <div class="card-body">
                                     @auth
-                                    @if ($user->isStoredBy($searchedBook))
+                                    {{-- @if ($user->isStoredBy($searchedBook))
                                     <a class="btn btn-block btn-outline-teal1 text-teal1 shadow-sm"
                                         href="{{ route("picture_books.edit", ['picture_book' => $user->pictureBooks->firstWhere('google_books_id', $searchedBook->id)]) }}">
-                                        <i class="fas fa-edit mr-1"></i>編集する
+                                    <i class="fas fa-edit mr-1"></i>編集する
                                     </a>
-                                    @else
+                                    @else --}}
                                     <form action="{{ route('picture_books.create') }}" method="GET">
                                         @csrf
                                         <button type="submit" class="btn btn btn-teal1 shadow-sm btn-block"><i
@@ -121,7 +121,7 @@
                                         <input type="hidden" name="thumbnail_url"
                                             value="{{ @$searchedBook->imageLinks->thumbnail }}" />
                                     </form>
-                                    @endif
+                                    {{-- @endif --}}
                                     @endauth
                                     @guest
                                     <form action="" method="">

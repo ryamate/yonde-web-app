@@ -157,7 +157,10 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->nickname = $request->nickname;
         $user->relation = $request->relation;
-        $user->email = $request->email;
+        if ($user->email !== $request->email) {
+            $user->email_verified_at = null;
+            $user->email = $request->email;
+        }
 
         // 画像ファイルのアップロード
         if ($request->image != null) {

@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-light bg-teal1 shadow-sm bd-navbar py-1"
-    style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #22968a, #45d9c8) fixed; opacity: 0.97;">
+<nav class="navbar navbar-expand-md navbar-light shadow-sm bd-navbar py-1"
+    style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #22968a, #45d9c8) fixed;">
 
     {{-- left: application logo --}}
     <a class="navbar-brand mr-2 p-0" href="{{ route('picture_books.home') }}">
@@ -214,3 +214,14 @@
         </ul>
     </div>
 </nav>
+@auth
+@if (Auth::user()->email_verified_at === null)
+<nav class="navbar navbar-expand-md navbar-light shadow-sm bd-navbar py-1"
+    style="background: linear-gradient(-135deg, #F1C565, #F2BF6C) fixed;">
+    <small>
+        <i class="fas fa-exclamation-triangle"></i>ご利用中のよんでIDは、メールアドレス認証がされていません。 <a
+            href="{{ route('users.show_setting_profile', ['name' => Auth::user()->name]) }}">メールアドレス認証はこちら</a>
+    </small>
+</nav>
+@endif
+@endauth

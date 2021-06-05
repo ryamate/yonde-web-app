@@ -168,13 +168,13 @@
 
 {{-- pc --}}
 <div class="text-center d-none d-md-block border-bottom pb-4 mx-5">
-    <a href="{{ route('picture_books.about') }}" class="btn btn-outline-teal1 mt-2 mb-2" role="button"
+    <a href="{{ route('about') }}" class="btn btn-outline-teal1 mt-2 mb-2" role="button"
         style="border-radius: 24px">　　　よんでについて　　<i class="fas fa-chevron-right"></i></a>
 </div>
 {{-- smart phone --}}
 <div class="container">
     <div class="text-center d-block d-md-none border-bottom py-4">
-        <a href="{{ route('picture_books.about') }}" class="btn btn-block btn-outline-teal1 mt-2 mb-2 rounded-pill"
+        <a href="{{ route('about') }}" class="btn btn-block btn-outline-teal1 mt-2 mb-2 rounded-pill"
             role="button">　　　よんでについて　　<i class="fas fa-chevron-right"></i></a>
     </div>
 </div>

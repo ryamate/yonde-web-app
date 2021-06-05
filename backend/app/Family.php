@@ -21,4 +21,9 @@ class Family extends Model
     {
         return $this->hasMany('App\Child');
     }
+
+    public function pictureBooks(): HasMany
+    {
+        return $this->hasMany('App\PictureBook');
+    }
 }

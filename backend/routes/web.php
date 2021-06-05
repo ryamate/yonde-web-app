@@ -24,8 +24,9 @@ Route::prefix('register')->name('register.')->group(function () {
 
 Route::get('/email/verified', 'Auth\VerificationController@verified');
 
-Route::get('/', 'PictureBookController@home')->name('picture_books.home');
-Route::get('/about', 'PictureBookController@about')->name('picture_books.about');
+Route::get('/', 'HomeController@home')->name('home');
+Route::get('/about', 'HomeController@about')->name('about');
+
 Route::resource('/picture_books', 'PictureBookController')->except(['edit', 'destroy', 'update', 'show'])->middleware('auth');
 Route::prefix('picture_books')->name('picture_books.')->group(function () {
     Route::get('/search', 'PictureBookController@search')->name('search');

@@ -50,8 +50,8 @@
             class="form-control">{{ $pictureBook->review ?? old('review') }}</textarea>
     </div>
 
-    <div class="form-group">
+    {{-- <div class="form-group">
         <review-tags-input :initial-tags='@json($tagNames ?? [])' :autocomplete-items='@json($allTagNames ?? [])'>
         </review-tags-input>
-    </div>
+    </div> --}}
 </section>

@@ -25,7 +25,7 @@ class PictureBookRequest extends FormRequest
     {
         return [
             'review' => 'max:1000',
-            'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
+            // 'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
 
         ];
     }

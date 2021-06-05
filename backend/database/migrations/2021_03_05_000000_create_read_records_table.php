@@ -15,15 +15,15 @@ class CreateReadRecordsTable extends Migration
     {
         Schema::create('read_records', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('stored_picture_book_id');
+            $table->unsignedBigInteger('picture_book_id');
             $table->unsignedBigInteger('record_user_id');
             $table->string('memo', 1000)->nullable();
             $table->date('read_date');
             $table->timestamps();
 
-            $table->foreign('stored_picture_book_id')
+            $table->foreign('picture_book_id')
                 ->references('id')
-                ->on('stored_picture_books')
+                ->on('picture_books')
                 ->onDelete('cascade');
             $table->foreign('record_user_id')
                 ->references('id')

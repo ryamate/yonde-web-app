@@ -19,7 +19,7 @@
                         あなたの本棚のご用意ができました。<br>
                         まずは好きな絵本を本棚に入れてみよう。
                     </p>
-                    <a class="text-decoration-none text-warning h5" href="{{ route('picture_books.home') }}">
+                    <a class="text-decoration-none text-warning h5" href="{{ route('home') }}">
                         ログインする<i class="fas fa-chevron-circle-right"></i>
                     </a>
                 </div>

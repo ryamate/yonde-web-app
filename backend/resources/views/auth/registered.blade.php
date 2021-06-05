@@ -24,7 +24,7 @@
                     <p>
                         登録メールアドレス宛てに送信したメールを確認の上、メールアドレス認証を行ってください。
                     </p>
-                    <a class="text-decoration-none text-teal1 h5" href="{{ route('picture_books.home') }}">
+                    <a class="text-decoration-none text-teal1 h5" href="{{ route('home') }}">
                         このままでログインする<i class="fas fa-chevron-circle-right"></i>
                     </a>
                 </div>

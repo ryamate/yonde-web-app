@@ -2,7 +2,7 @@
     style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #22968a, #45d9c8) fixed;">
 
     {{-- left: application logo --}}
-    <a class="navbar-brand mr-2 p-0" href="{{ route('picture_books.home') }}">
+    <a class="navbar-brand mr-2 p-0" href="{{ route('home') }}">
         <img src="{{ asset('image/logo.png') }}" height="30"
             class="d-inline-block align-top text-white text-decoration-none" alt="yonde">
     </a>
@@ -18,8 +18,7 @@
         {{-- left: application name --}}
         <ul class="navbar-nav mr-auto d-none d-md-block">
             <li class="nav-item">
-                <a class="nav-link text-white text-decoration-none mb-0 h4"
-                    href="{{ route('picture_books.home') }}">よんで</a>
+                <a class="nav-link text-white text-decoration-none mb-0 h4" href="{{ route('home') }}">よんで</a>
             </li>
         </ul>
 
@@ -86,8 +85,8 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                <a href="{{ route('picture_books.home') }}" class="dropdown-item small"><i
-                                        class="fas fa-home"></i> ホーム</a>
+                                <a href="{{ route('home') }}" class="dropdown-item small"><i class="fas fa-home"></i>
+                                    ホーム</a>
                                 {{-- logout button 1/2 --}}
                                 <button form="logout-button" class="dropdown-item small"><i
                                         class="fas fa-sign-out-alt"></i> ログアウト</button>
@@ -105,8 +104,8 @@
             @guest
             <div class="d-none d-md-block">
                 <li class="nav-item">
-                    <a href="{{ route('picture_books.about') }}"
-                        class="card-title text-decoration-none text-white small ml-3" role="button"><b>よんでとは</b></a>
+                    <a href="{{ route('about') }}" class="card-title text-decoration-none text-white small ml-3"
+                        role="button"><b>よんでとは</b></a>
                 </li>
             </div>
             {{-- register user button --}}
@@ -177,8 +176,8 @@
                     {{-- home button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="{{ route('picture_books.home') }}" title="ホーム" class="nav-link"><i
-                                    class="fas fa-home"></i> <small>ホーム</small></a>
+                            <a href="{{ route('home') }}" title="ホーム" class="nav-link"><i class="fas fa-home"></i>
+                                <small>ホーム</small></a>
                         </li>
                     </div>
                     {{-- logout button (toggle) --}}
@@ -196,7 +195,7 @@
 
                 @guest
                 <li class="nav-item mb-1">
-                    <a href="{{ route('picture_books.about') }}"
+                    <a href="{{ route('about') }}"
                         class="btn btn-sm btn-block bg-teal1 text-white font-weight-bold">よんでとは</a>
                 </li>
                 {{-- register user button (toggle) --}}

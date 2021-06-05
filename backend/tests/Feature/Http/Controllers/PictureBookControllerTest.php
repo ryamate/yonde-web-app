@@ -13,18 +13,18 @@ class PictureBookControllerTest extends TestCase
 
     // public function testHome()
     // {
-    //     $response = $this->get(route('picture_books.home'));
+    //     $response = $this->get(route('home'));
 
     //     $response->assertStatus(200)
-    //         ->assertViewIs('picture_books.home');
+    //         ->assertViewIs('home');
     // }
 
     // public function testAbout()
     // {
-    //     $response = $this->get(route('picture_books.about'));
+    //     $response = $this->get(route('about'));
 
     //     $response->assertStatus(200)
-    //         ->assertViewIs('picture_books.about');
+    //         ->assertViewIs('about');
     // }
 
     // public function testIndex()

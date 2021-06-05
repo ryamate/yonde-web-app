@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\PictureBook;
 use App\Tag;
 use Auth;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PictureBookRequest;
-use Exception;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
 use Scriptotek\GoogleBooks\GoogleBooks;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -21,24 +18,6 @@ class PictureBookController extends Controller
     public function __construct()
     {
         $this->authorizeResource(PictureBook::class, 'picture_book');
-    }
-
-    /**
-     * ホーム画面表示
-     */
-    public function home()
-    {
-        $pictureBooks = PictureBook::with('user')->get()->sortByDesc('created_at');
-
-        return view('picture_books.home', ['pictureBooks' => $pictureBooks]);
-    }
-
-    /**
-     * サービス概要紹介画面表示
-     */
-    public function about()
-    {
-        return view('picture_books.about');
     }
 
     /**
@@ -68,20 +47,20 @@ class PictureBookController extends Controller
         ]);
     }
 
-
     /**
      * 絵本を登録する
      */
     public function store(PictureBookRequest $request, PictureBook $pictureBook)
     {
         $pictureBook->fill($request->all());
-        $pictureBook->user_id = $request->user()->id;
+        $pictureBook->stored_user_id = $request->user()->id;
+        $pictureBook->family_id = $request->user()->family_id;
         $pictureBook->save();
 
-        $request->tags->each(function ($tagName) use ($pictureBook) {
-            $tag = Tag::firstOrCreate(['name' => $tagName]);
-            $pictureBook->tags()->attach($tag);
-        });
+        // $request->tags->each(function ($tagName) use ($pictureBook) {
+        //     $tag = Tag::firstOrCreate(['name' => $tagName]);
+        //     $pictureBook->tags()->attach($tag);
+        // });
 
         return redirect()->route('picture_books.index');
     }

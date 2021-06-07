@@ -12,10 +12,11 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-light small pl-0 mb-0">
                     <li class="breadcrumb-item">
-                        <a href="{{ route('picture_books.index') }}" class="text-teal1">よんで</a>
+                        <a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        <a href="{{ route('picture_books.index') }}" class="text-teal1">タイムライン</a>
+                        <a href="{{ route('families.index', ['id' => Auth::user()->family_id]) }}"
+                            class="text-teal1">家族のタイムライン</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         {{ $pictureBook->title }}

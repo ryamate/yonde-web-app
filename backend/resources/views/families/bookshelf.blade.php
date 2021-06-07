@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $user->nickname . 'さんの本棚-よんで-')
+@section('title', $family->name . 'ファミリーの本棚-よんで-')
 
 @section('content')
 
@@ -17,7 +17,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $user->nickname }}さんの本棚
+                        {{ $family->name }}ファミリーの本棚
                     </li>
                 </ol>
             </nav>
@@ -28,13 +28,13 @@
 <div class="bg-light">
     <div class="container">
         <div class="row">
-            <div class="container" style="max-width: 900px;"> @include('users.user')
+            <div class="container" style="max-width: 900px;">
+                {{-- @include('users.user')
                 @include('users.tabs', [
                 'hasBookshelf' => true,
                 'hasPictureBooks' => false,
                 'hasLikes' => false
-                ])
-
+                ]) --}}
                 <section class="card shadow-sm my-4">
                     <div class="card-body p-0" style="background-color: #E6D7D2">
                         <div class="row no-gutters">

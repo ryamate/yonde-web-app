@@ -13,21 +13,11 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class PictureBookController extends Controller
 {
     /**
-     * あるユーザーが登録した絵本を、別のユーザーが更新・削除することを防ぐためのポリシー
+     * あるユーザーが登録した絵本を、家族以外のユーザーが更新・削除することを防ぐためのポリシー
      */
     public function __construct()
     {
         $this->authorizeResource(PictureBook::class, 'picture_book');
-    }
-
-    /**
-     * 登録絵本の一覧画面表示
-     */
-    public function index()
-    {
-        $pictureBooks = PictureBook::with('user')->orderBy('updated_at', 'DESC')->paginate(5);
-
-        return view('picture_books.index', ['pictureBooks' => $pictureBooks]);
     }
 
     /**
@@ -37,13 +27,13 @@ class PictureBookController extends Controller
     {
         $pictureBook->fill($request->all());
 
-        $allTagNames = Tag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
+        // $allTagNames = Tag::all()->map(function ($tag) {
+        //     return ['text' => $tag->name];
+        // });
 
         return view('picture_books.create', [
             'pictureBook' => $pictureBook,
-            'allTagNames' => $allTagNames,
+            // 'allTagNames' => $allTagNames,
         ]);
     }
 
@@ -53,7 +43,7 @@ class PictureBookController extends Controller
     public function store(PictureBookRequest $request, PictureBook $pictureBook)
     {
         $pictureBook->fill($request->all());
-        $pictureBook->stored_user_id = $request->user()->id;
+        $pictureBook->user_id = $request->user()->id;
         $pictureBook->family_id = $request->user()->family_id;
         $pictureBook->save();
 
@@ -62,7 +52,7 @@ class PictureBookController extends Controller
         //     $pictureBook->tags()->attach($tag);
         // });
 
-        return redirect()->route('picture_books.index');
+        return redirect()->route('families.index', ['id' => Auth::user()->family_id]);
     }
 
     /**
@@ -72,18 +62,18 @@ class PictureBookController extends Controller
     {
         $pictureBook = $pictureBook->find($pictureBook->id);
 
-        $tagNames = $pictureBook->tags->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
+        // $tagNames = $pictureBook->tags->map(function ($tag) {
+        //     return ['text' => $tag->name];
+        // });
 
-        $allTagNames = Tag::all()->map(function ($tag) {
-            return ['text' => $tag->name];
-        });
+        // $allTagNames = Tag::all()->map(function ($tag) {
+        //     return ['text' => $tag->name];
+        // });
 
         return view('picture_books.edit', [
             'pictureBook' => $pictureBook,
-            'tagNames' => $tagNames,
-            'allTagNames' => $allTagNames,
+            // 'tagNames' => $tagNames,
+            // 'allTagNames' => $allTagNames,
         ]);
     }
 
@@ -92,15 +82,17 @@ class PictureBookController extends Controller
      */
     public function update(PictureBookRequest $request, PictureBook $pictureBook)
     {
-        $pictureBook->fill($request->all())->save();
+        $pictureBook->fill($request->all());
+        $pictureBook->user_id = $request->user()->id;
+        $pictureBook->save();
 
-        $pictureBook->tags()->detach();
-        $request->tags->each(function ($tagName) use ($pictureBook) {
-            $tag = Tag::firstOrCreate(['name' => $tagName]);
-            $pictureBook->tags()->attach($tag);
-        });
+        // $pictureBook->tags()->detach();
+        // $request->tags->each(function ($tagName) use ($pictureBook) {
+        //     $tag = Tag::firstOrCreate(['name' => $tagName]);
+        //     $pictureBook->tags()->attach($tag);
+        // });
 
-        return redirect()->route('picture_books.index');
+        return redirect()->route('families.index', ['id' => Auth::user()->family_id]);
     }
 
     /**
@@ -109,7 +101,7 @@ class PictureBookController extends Controller
     public function destroy(PictureBook $pictureBook)
     {
         $pictureBook->delete();
-        return redirect()->route('picture_books.index');
+        return redirect()->route('families.index', ['id' => Auth::user()->family_id]);
     }
 
     /**
@@ -118,6 +110,9 @@ class PictureBookController extends Controller
     public function show(PictureBook $pictureBook)
     {
         $pictureBook = $pictureBook->find($pictureBook->id);
+
+        // 全ユーザーの絵本についてのレビューを並べる。
+
         return view('picture_books.show', ['pictureBook' => $pictureBook]);
     }
 

@@ -11,7 +11,7 @@ class PictureBook extends Model
 {
     protected $fillable = [
         'family_id',
-        'stored_user_id',
+        'user_id',
         'google_books_id',
         'isbn_13',
         'title',

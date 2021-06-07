@@ -12,11 +12,11 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-light small pl-0 mb-0">
                     @if ($searchedBooks === null)
-                    <li class="breadcrumb-item"><a href="{{ route('picture_books.index') }}" class="text-teal1">よんで</a>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">絵本検索</li>
                     @else
-                    <li class="breadcrumb-item"><a href="{{ route('picture_books.index') }}" class="text-teal1">よんで</a>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
                     <li class="breadcrumb-item"><a href="{{ route('picture_books.search') }}"
                             class="text-teal1">絵本検索</a></li>

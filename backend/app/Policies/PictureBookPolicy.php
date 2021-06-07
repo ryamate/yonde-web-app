@@ -53,7 +53,7 @@ class PictureBookPolicy
      */
     public function update(User $user, PictureBook $pictureBook)
     {
-        return $user->id === $pictureBook->user_id;
+        return $user->family_id === $pictureBook->family_id;
     }
 
     /**
@@ -65,7 +65,7 @@ class PictureBookPolicy
      */
     public function delete(User $user, PictureBook $pictureBook)
     {
-        return $user->id === $pictureBook->user_id;
+        return $user->family_id === $pictureBook->family_id;
     }
 
     /**

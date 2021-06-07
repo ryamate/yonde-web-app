@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $user->nickname . 'さんのページ-よんで-')
+@section('title', $family->name . 'ファミリーのページ-よんで-')
 
 @section('content')
 
@@ -16,11 +16,9 @@
                             よんで
                         </a>
                     </li>
-                    @auth
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $user->nickname }}さんのタイムライン
+                        {{ $family->name }}ファミリーのタイムライン
                     </li>
-                    @endauth
                 </ol>
             </nav>
         </div>
@@ -31,8 +29,8 @@
     <div class="container">
         <div class="row">
             <div class="container" style="max-width: 900px;">
-                @include('users.user')
-                {{-- @include('users.tabs', [
+                {{-- @include('users.user')
+                @include('users.tabs', [
                 'hasBookshelf' => false,
                 'hasPictureBooks' => true,
                 'hasLikes' => false
@@ -40,6 +38,7 @@
                 @foreach($pictureBooks as $pictureBook)
                 @include('picture_books.card')
                 @endforeach
+                {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
             </div>
         </div>
     </div>

@@ -11,7 +11,11 @@ class HomeController extends Controller
      */
     public function home()
     {
+        // 新しく登録された絵本
         $pictureBooks = PictureBook::with('user')->get()->sortByDesc('created_at');
+
+        // 本棚登録数ランキング
+        // よみきかせ回数ランキング
 
         return view('home', ['pictureBooks' => $pictureBooks]);
     }

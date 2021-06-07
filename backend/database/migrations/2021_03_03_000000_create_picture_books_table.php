@@ -16,7 +16,7 @@ class CreatePictureBooksTable extends Migration
         Schema::create('picture_books', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('family_id');
-            $table->unsignedBigInteger('stored_user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('google_books_id', 100);
             $table->string('isbn_13', 100)->nullable();
             $table->string('title', 255);
@@ -31,7 +31,7 @@ class CreatePictureBooksTable extends Migration
             $table->foreign('family_id')
                 ->references('id')
                 ->on('families');
-            $table->foreign('stored_user_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users');
         });

@@ -177,48 +177,47 @@
                     </div>
 
                     {{-- タグ --}}
-                    @foreach($pictureBook->tags as $tag)
+                    {{-- @foreach($pictureBook->tags as $tag)
                     @if($loop->first)
                     <div class="card-body pt-0 pb-4 pl-3">
                         <div class="card-text line-height">
                             @endif
                             <a href="{{ route('tags.show', ['name' => $tag->name]) }}"
-                                class="p-1 mr-1 mt-1 text-teal1 small">
-                                {{ $tag->hashtag }}
-                            </a>
-                            @if($loop->last)
-                        </div>
-                    </div>
-                    @endif
-                    @endforeach
+                    class="p-1 mr-1 mt-1 text-teal1 small">
+                    {{ $tag->hashtag }}
+                    </a>
+                    @if($loop->last)
+                </div>
+            </div>
+            @endif
+            @endforeach --}}
 
-                    {{-- レビューいいね機能 --}}
-                    <div class="card-body pt-0">
-                        <div class="card-text small">
-                            <review-like :initial-is-liked-by='@json($pictureBook->isLikedBy(Auth::user()))'
-                                :initial-count-likes='@json($pictureBook->count_likes)'
-                                :authorized='@json(Auth::check())'
-                                endpoint="{{ route('picture_books.like', ['picture_book' => $pictureBook]) }}">
-                            </review-like>
-                        </div>
-                    </div>
-
+            {{-- レビューいいね機能 --}}
+            <div class="card-body pt-0">
+                <div class="card-text small">
+                    <review-like :initial-is-liked-by='@json($pictureBook->isLikedBy(Auth::user()))'
+                        :initial-count-likes='@json($pictureBook->count_likes)' :authorized='@json(Auth::check())'
+                        endpoint="{{ route('picture_books.like', ['picture_book' => $pictureBook]) }}">
+                    </review-like>
                 </div>
             </div>
 
-            <div class="col-sm-6">
-                <div class="card border-0">
-                    <div class="card-body pt-2 pb-0">
-                        <div class="card-title">
-                            <span class="small">
-                                <i class="fas fa-book-reader"></i><b>よんだよ記録</b>
-                            </span>
-                        </div>
-                        {{-- ダミー値 --}}
-                        <p class="small">2021.3.20</p>
-                    </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="card border-0">
+            <div class="card-body pt-2 pb-0">
+                <div class="card-title">
+                    <span class="small">
+                        <i class="fas fa-book-reader"></i><b>よんだよ記録</b>
+                    </span>
                 </div>
+                {{-- ダミー値 --}}
+                <p class="small">2021.3.20</p>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 </section>

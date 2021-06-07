@@ -33,12 +33,12 @@
     </div>
     <div class="card-body">
         <div class="card-text">
-            <a href="{{ route('users.followings', ['name' => $user->name]) }}" class="text-muted">
-                <span class="text-dark"><b>{{ $user->count_followings }}</b></span> フォロー中
+            {{-- <a href="{{ route('users.followings', ['name' => $user->name]) }}" class="text-muted">
+            <span class="text-dark"><b>{{ $user->count_followings }}</b></span> フォロー中
             </a>
             <a href="{{ route('users.followers', ['name' => $user->name]) }}" class="text-muted">
                 <span class="text-dark"><b>{{ $user->count_followers }}</b></span> フォロワー
-            </a>
+            </a> --}}
         </div>
     </div>
 </div>

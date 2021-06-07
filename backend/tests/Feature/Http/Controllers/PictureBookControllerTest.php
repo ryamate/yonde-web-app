@@ -29,10 +29,10 @@ class PictureBookControllerTest extends TestCase
 
     // public function testIndex()
     // {
-    //     $response = $this->get(route('picture_books.index'));
+    //     $response = $this->get(route('home'));
 
     //     $response->assertStatus(200)
-    //         ->assertViewIs('picture_books.index');
+    //         ->assertViewIs('home');
     // }
 
     // public function testGuestCreate()

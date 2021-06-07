@@ -46,7 +46,7 @@
             {{-- picture bookshelf button --}}
             <div class="d-none d-md-block">
                 <li class="nav-item d-flex align-items-center justify-content-center">
-                    <a href="{{ route('users.bookshelf', ["name" => Auth::user()->name]) }}" title="あなたの本棚"
+                    <a href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}" title="家族の本棚"
                         class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center ml-3 mr-1"
                         style="width: 35px; height:35px;border-radius: 4px;"><i class="fas fa-book fa-lg"></i></a>
                 </li>
@@ -54,7 +54,7 @@
             {{-- timeline button --}}
             <div class="d-none d-md-block">
                 <li class="nav-item d-flex align-items-center justify-content-center">
-                    <a href="{{ route('picture_books.index') }}" title="みんなのタイムライン"
+                    <a href="{{ route('families.index', ['id' => Auth::user()->family_id]) }}" title="家族のタイムライン"
                         class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center mx-1"
                         style="width: 35px; height:35px; border-radius: 4px;"><i class="far fa-clock fa-lg"></i></a>
                 </li>
@@ -73,7 +73,7 @@
                     <div class="mx-2">
                         <div class="dropdown drop-hover">
                             <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" title="あなたのタイムライン"
+                                aria-expanded="false" title="{{ Auth::user()->nickname }}さんのタイムライン"
                                 onclick="location.href='{{ route("users.show", ["name" => Auth::user()->name]) }}'">
                                 @if (Auth::user()->icon_path)
                                 <img src="{{ asset(Auth::user()->icon_path) }}" alt="プロフィール画像"
@@ -147,23 +147,24 @@
                     {{-- picture bookshelf button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="{{ route('users.bookshelf', ["name" => Auth::user()->name]) }}" title="あなたの本棚"
-                                class="nav-link"><i class="fas fa-book"></i> <small>あなたの本棚</small></a>
+                            <a href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}" title="家族の本棚"
+                                class="nav-link"><i class="fas fa-book"></i> <small>家族の本棚</small></a>
                         </li>
                     </div>
                     {{-- timeline button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="{{ route('picture_books.index') }}" title="タイムライン" class="nav-link"><i
-                                    class="far fa-clock"></i> <small>タイムライン</small></a>
+                            <a href="{{ route('families.index', ['id' => Auth::user()->family_id]) }}" title="家族のタイムライン"
+                                class="nav-link"><i class="far fa-clock"></i> <small>家族のタイムライン</small></a>
                         </li>
                     </div>
                     {{-- my page button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="{{ route("users.show", ["name" => Auth::user()->name]) }}" title="マイページ"
-                                class="nav-link"><i class="fas fa-user-circle"></i>
-                                <small>マイページ</small></a>
+                            <a href="{{ route("users.show", ["name" => Auth::user()->name]) }}"
+                                title="{{ Auth::user()->nickname }}さんのタイムライン" class="nav-link"><i
+                                    class="fas fa-user-circle"></i>
+                                <small>{{ Auth::user()->nickname }}さんのタイムライン</small></a>
                         </li>
                     </div>
                     {{-- setting profile button (toggle) --}}

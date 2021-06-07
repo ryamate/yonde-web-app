@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
-        $pictureBooks = $user->pictureBooks->sortByDesc('created_at');
+        $pictureBooks = $user->pictureBooks->sortByDesc('updated_at');
 
         return view('users.show', [
             'user' => $user,
@@ -31,20 +31,20 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * 本棚画面表示
-     */
-    public function bookshelf(string $name)
-    {
-        $user = User::where('name', $name)->first();
+    // /**
+    //  * 本棚画面表示
+    //  */
+    // public function bookshelf(string $name)
+    // {
+    //     $user = User::where('name', $name)->first();
 
-        $pictureBooks = $user->pictureBooks->sortByDesc('created_at');
+    //     $pictureBooks = $user->pictureBooks->sortByDesc('created_at');
 
-        return view('users.bookshelf', [
-            'user' => $user,
-            'pictureBooks' => $pictureBooks,
-        ]);
-    }
+    //     return view('users.bookshelf', [
+    //         'user' => $user,
+    //         'pictureBooks' => $pictureBooks,
+    //     ]);
+    // }
 
     /**
      * いいね画面を表示

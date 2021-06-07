@@ -11,7 +11,7 @@
         <div class="container" style="max-width: 900px;">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-light small pl-0 mb-0">
-                    <li class="breadcrumb-item"><a href="{{ route('picture_books.index') }}" class="text-teal1">よんで</a>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
                     @auth
                     <li class="breadcrumb-item active" aria-current="page">みんなのタイムライン</li>

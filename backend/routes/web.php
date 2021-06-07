@@ -27,7 +27,7 @@ Route::get('/email/verified', 'Auth\VerificationController@verified');
 Route::get('/', 'HomeController@home')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
 
-Route::resource('/picture_books', 'PictureBookController')->except(['edit', 'destroy', 'update', 'show'])->middleware('auth');
+Route::resource('/picture_books', 'PictureBookController')->except(['index', 'edit', 'destroy', 'update', 'show'])->middleware('auth');
 Route::prefix('picture_books')->name('picture_books.')->group(function () {
     Route::get('/search', 'PictureBookController@search')->name('search');
     Route::get('/{picture_book}', 'PictureBookController@show')->name('show');
@@ -45,7 +45,6 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::post('/update', 'UserController@update')->name('update');
     Route::get('/{name}/setting_profile', 'UserController@showSettingProfile')->name('show_setting_profile')->middleware('auth');
     Route::get('/{name}', 'UserController@show')->name('show');
-    Route::get('/{name}/bookshelf', 'UserController@bookshelf')->name('bookshelf');
     Route::get('/{name}/likes', 'UserController@likes')->name('likes');
     Route::get('/{name}/followings', 'UserController@followings')->name('followings');
     Route::get('/{name}/followers', 'UserController@followers')->name('followers');
@@ -55,3 +54,8 @@ Route::prefix('users')->name('users.')->group(function () {
     });
 });
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
+
+Route::prefix('families')->name('families.')->group(function () {
+    Route::get('/{id}', 'FamilyController@index')->name('index');
+    Route::get('/{id}/bookshelf', 'FamilyController@bookshelf')->name('bookshelf');
+});

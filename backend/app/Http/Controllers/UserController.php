@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Family;
 use Storage;
 use Auth;
 use Illuminate\Http\Request;
@@ -130,9 +131,11 @@ class UserController extends Controller
     public function showSettingProfile(string $name)
     {
         $user = User::where('name', $name)->firstOrFail();
+        $family = Family::where('id', $user->family_id)->first();
 
         return view('users.show_setting_profile', [
             'user' => $user,
+            'family' => $family,
         ]);
     }
 

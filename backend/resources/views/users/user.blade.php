@@ -23,11 +23,11 @@
                 <p class="small">{{ $user->relation }}</p>
             </div>
             <div class="col-sm-3 d-flex align-items-center">
-                @if( Auth::id() !== $user->id )
+                {{-- @if( Auth::id() !== $user->id )
                 <follow-button class="ml-auto" :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))'
                     :authorized='@json(Auth::check())' endpoint="{{ route('users.follow', ['name' => $user->name]) }}">
                 </follow-button>
-                @endif
+                @endif --}}
             </div>
         </div>
     </div>

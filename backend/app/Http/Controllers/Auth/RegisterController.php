@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Family;
 use App\Child;
+use App\Invite;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -142,6 +143,56 @@ class RegisterController extends Controller
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }
+
+
+    /**
+     * ユーザー名登録画面表示処理（招待ユーザー登録）
+     */
+    public function showInvitedUserRegistrationForm(string $token)
+    {
+        $invite = Invite::where('token', $token)->first();
+
+        return view('auth.invite_register', [
+            'token' => $invite->token,
+            'family_id' => $invite->family_id,
+            'email' => $invite->email,
+        ]);
+    }
+
+    /**
+     * よんでIDの登録画面で「登録」ボタンを押した後の、ユーザー登録処理（招待ユーザー登録）
+     */
+    public function registerInvitedUser(Request $request)
+    {
+
+        if (!$invite = Invite::where('token', $request->token)->first()) {
+            //if the invite doesn't exist do something more graceful than this
+            abort(404);
+        }
+
+        $request->validate([
+            'name' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'nickname' => $request->name,
+            'email' => $request->email,
+            'email_verified_at' => now(),
+            'password' => Hash::make($request->password),
+            'family_id' => $request->family_id,
+        ]);
+
+        $this->guard()->login($user, true);
+
+        $invite->delete();
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
 
     /**
      * The user has been registered.

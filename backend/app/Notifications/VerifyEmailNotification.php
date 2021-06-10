@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Mail\BareMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -9,18 +10,20 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Support\Facades\Lang;
 
-class VerifyEmailJapanese extends VerifyEmail
+class VerifyEmailNotification extends VerifyEmail
 {
     use Queueable;
+
+    public $mail;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(BareMail $mail)
     {
-        //
+        $this->mail = $mail;
     }
 
     /**
@@ -48,11 +51,19 @@ class VerifyEmailJapanese extends VerifyEmail
             return call_user_func(static::$toMailCallback, $notifiable, $verificationUrl);
         }
 
-        return (new MailMessage)
-            ->subject(Lang::get('mail.verification.subject'))
-            ->line(Lang::get('mail.verification.line_01'))
-            ->action(Lang::get('mail.verification.action'), $verificationUrl)
-            ->line(Lang::get('mail.verification.line_02'));
+        return $this->mail
+            ->from(config('mail.from.address'), config('mail.from.name'))
+            ->to($notifiable->email)
+            ->subject('[よんで] メールアドレス認証')
+            ->text('emails.verify_email')
+            ->with([
+                'url' => $verificationUrl,
+                'count' => config(
+                    'auth.passwords.' .
+                        config('auth.defaults.passwords') .
+                        '.expire'
+                ),
+            ]);
     }
 
     /**

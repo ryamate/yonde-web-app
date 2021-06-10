@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Mail\BareMail;
-use App\Notifications\VerifyEmailJapanese;
+use App\Notifications\VerifyEmailNotification;
 use App\Notifications\PasswordResetNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -52,7 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
     // メールアドレス認証通知送信
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new VerifyEmailJapanese);
+        $this->notify(new VerifyEmailNotification(new BareMail()));
     }
 
     // パスワードリセット通知送信

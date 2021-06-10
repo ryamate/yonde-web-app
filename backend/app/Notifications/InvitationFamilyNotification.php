@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PasswordResetNotification extends Notification
+class InvitationFamilyNotification extends Notification
 {
     use Queueable;
 
@@ -48,12 +48,11 @@ class PasswordResetNotification extends Notification
         return $this->mail
             ->from(config('mail.from.address'), config('mail.from.name'))
             ->to($notifiable->email)
-            ->subject('[よんで] パスワード再設定')
-            ->text('emails.password_reset')
+            ->subject('[よんで] 家族招待')
+            ->text('emails.invite')
             ->with([
-                'url' => route('password.reset', [
-                    'token' => $this->token,
-                    'email' => $notifiable->email,
+                'url' => route('register.invited.{token}', [
+                    'token' => $notifiable->token,
                 ]),
                 'count' => config(
                     'auth.passwords.' .

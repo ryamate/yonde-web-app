@@ -18,6 +18,8 @@ Route::prefix('login')->name('login.')->group(function () {
 });
 
 Route::prefix('register')->name('register.')->group(function () {
+    Route::get('/invited/{token}', 'Auth\RegisterController@showInvitedUserRegistrationForm')->name('invited.{token}');
+    Route::post('/invited', 'Auth\RegisterController@registerInvitedUser')->name('invited');
     Route::get('/{provider}', 'Auth\RegisterController@showProviderUserRegistrationForm')->name('{provider}');
     Route::post('/{provider}', 'Auth\RegisterController@registerProviderUser')->name('{provider}');
 });
@@ -59,3 +61,6 @@ Route::prefix('families')->name('families.')->group(function () {
     Route::get('/{id}', 'FamilyController@index')->name('index');
     Route::get('/{id}/bookshelf', 'FamilyController@bookshelf')->name('bookshelf');
 });
+
+Route::get('invite', 'InviteController@showLinkRequestForm')->name('invite')->middleware('auth');
+Route::post('invite', 'InviteController@sendInviteFamilyEmail')->name('invite.email')->middleware('auth');

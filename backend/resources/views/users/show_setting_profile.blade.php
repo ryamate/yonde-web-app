@@ -64,8 +64,56 @@
 
             @if( Auth::id() === $user->id )
             <a class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1"
-                href="{{ route('users.edit') }}">プロフィールを編集</a>
+                href="{{ route('users.edit') }}">
+                プロフィールを編集
+            </a>
             @endif
+        </div>
+
+        <h2 class="mt-4 mb-0">家族設定</h2>
+        <div class="card p-4 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">ファミリーネーム</h5>
+                <p class="card-text">{{ $family->name }}</p>
+            </div>
+            @if( Auth::id() === $user->id )
+            <a class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mb-4"
+                href="{{ route('users.edit') }}">
+                家族設定を編集
+            </a>
+            @endif
+
+            <div class="card-body border-top">
+                <h5 class="card-title">家族一覧</h5>
+                <p class="card-text">{{ $user->nickname }}</p>
+                <p class="card-text small text-secondary">{{ $user->relation }}</p>
+                {{-- ダミー --}}
+                <a href="" class="text-teal1">
+                    <p class="card-text">パートナー（本人以外の家族表示予定）</p>
+                </a>
+                <p class="card-text small text-secondary">ママ</p>
+                @if( Auth::id() === $user->id )
+                <a class="btn btn-block bg-white text-decoration-none text-teal1 text-left"
+                    href="{{ route('invite') }}">
+                    ＋ 家族を招待する
+                </a>
+                @endif
+            </div>
+
+            <div class="card-body border-top">
+                <h5 class="card-title">お子さま一覧</h5>
+                <a href="" class="text-teal1">
+                    <p class="card-text">コドモ</p>
+                </a>
+                <p class="card-text small text-secondary">男の子 / 2021年6月7日</p>
+                @if( Auth::id() === $user->id )
+                <a class="btn btn-block bg-white text-decoration-none text-teal1 text-left"
+                    href="{{ route('users.edit') }}">
+                    ＋ お子さまを追加する
+                </a>
+                @endif
+            </div>
+
         </div>
     </div>
 </div>

@@ -49,11 +49,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    // メールアドレス認証通知送信
     public function sendEmailVerificationNotification()
     {
         $this->notify(new VerifyEmailJapanese);
     }
 
+    // パスワードリセット通知送信
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new PasswordResetNotification($token, new BareMail()));

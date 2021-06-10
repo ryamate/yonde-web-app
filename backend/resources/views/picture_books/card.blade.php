@@ -61,7 +61,7 @@
                         </p>
                     </div>
                     <!-- 絵本の読み聞かせ記録ボタン -->
-                    @if( Auth::id() === $pictureBook->user_id )
+                    @if( Auth::user()->family_id === $pictureBook->family_id )
                     <div class="card-body">
                         <form action="" method="GET">
                             @csrf
@@ -86,7 +86,7 @@
                                 <i class="far fa-edit"></i><b>レビュー・感想</b>
                             </span>
 
-                            @if( Auth::id() === $pictureBook->user_id )
+                            @if( Auth::user()->family_id === $pictureBook->family_id )
                             <!-- dropdown -->
                             <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <button type="button" class="btn btn-link text-muted m-0 px-2 py-0">

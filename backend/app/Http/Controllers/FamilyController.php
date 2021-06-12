@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Family;
+use App\User;
 use App\PictureBook;
 use Storage;
 use Auth;
@@ -67,13 +68,17 @@ class FamilyController extends Controller
     /**
      * 家族設定画面表示
      */
-    public function showSettingFamily(string $name)
+    public function showSetting(string $family_id)
     {
-        // $user = User::where('name', $name)->firstOrFail();
+        $family = Family::with('users')->where('id', $family_id)->first();
+        $user = User::where('id', Auth::id())->firstOrFail();
+        $familyUsers = $family->users->whereNotIn('id', $user->id)->sortBy('created_at');
 
-        // return view('users.show_setting_profile', [
-        //     'user' => $user,
-        // ]);
+        return view('families.show_setting', [
+            'user' => $user,
+            'family' => $family,
+            'familyUsers' => $familyUsers,
+        ]);
     }
 
     /**
@@ -81,45 +86,24 @@ class FamilyController extends Controller
      */
     public function edit()
     {
-        // $user = Auth::user();
+        $family = Family::where('id', Auth::user()->family_id)->first();
 
-        // return view('users.edit', [
-        //     'user' => $user,
-        // ]);
+        return view('families.edit', [
+            'family' => $family,
+        ]);
     }
 
     /**
      * 家族設定を更新する
      */
-    public function update(Request $request)
+    public function update(FamilyRequest $request)
     {
-        // $user = User::find($request->id);
-        // $user->name = $request->name;
-        // $user->nickname = $request->nickname;
-        // $user->relation = $request->relation;
-        // if ($user->email !== $request->email) {
-        //     $user->email_verified_at = null;
-        //     $user->email = $request->email;
-        // }
+        $family = Family::find($request->id);
+        $family->fill($request->all());
+        $family->save();
 
-        // // 画像ファイルのアップロード
-        // if ($request->image != null) {
-        //     $image = $request->file('image');
-        //     if (app()->isLocal() || app()->runningUnitTests()) {
-        //         // 開発環境
-        //         $path = $image->storeAs('public/user_images', $user->id . '.jpg');
-        //         $user->icon_path = Storage::url($path);
-        //     } else {
-        //         // 本番環境
-        //         $path = Storage::disk('s3')->put('/', $image, 'public');
-        //         $user->icon_path = Storage::disk('s3')->url($path);
-        //     }
-        // }
-
-        // $user->save();
-
-        // return redirect()->route('users.show_setting_profile', [
-        //     'name' => $user->name,
-        // ]);
+        return redirect()->route('families.show_setting', [
+            'id' => Auth::user()->family_id,
+        ]);
     }
 }

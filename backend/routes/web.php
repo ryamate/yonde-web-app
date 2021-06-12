@@ -45,7 +45,7 @@ Route::prefix('picture_books')->name('picture_books.')->group(function () {
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/edit', 'UserController@edit')->name('edit');
     Route::post('/update', 'UserController@update')->name('update');
-    Route::get('/{name}/setting_profile', 'UserController@showSettingProfile')->name('show_setting_profile')->middleware('auth');
+    Route::get('/{name}/setting_profile', 'UserController@showSetting')->name('show_setting')->middleware('auth');
     Route::get('/{name}', 'UserController@show')->name('show');
     Route::get('/{name}/likes', 'UserController@likes')->name('likes');
     Route::get('/{name}/followings', 'UserController@followings')->name('followings');
@@ -58,6 +58,9 @@ Route::prefix('users')->name('users.')->group(function () {
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
 
 Route::prefix('families')->name('families.')->group(function () {
+    Route::get('/edit', 'FamilyController@edit')->name('edit');
+    Route::post('/update', 'FamilyController@update')->name('update');
+    Route::get('/{id}/setting_family', 'FamilyController@showSetting')->name('show_setting')->middleware('auth');
     Route::get('/{id}', 'FamilyController@index')->name('index');
     Route::get('/{id}/bookshelf', 'FamilyController@bookshelf')->name('bookshelf');
 });

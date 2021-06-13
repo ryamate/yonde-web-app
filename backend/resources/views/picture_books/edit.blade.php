@@ -77,7 +77,7 @@
                                 action="{{ route('picture_books.update',['picture_book' => $pictureBook ]) }}">
                                 @method('PATCH')
                                 @include('picture_books.form')
-                                <button type="submit" class="btn btn btn-teal1 shadow-sm btn-block">更新する</button>
+                                <button type="submit" class="btn btn-teal1 shadow-sm btn-block">更新する</button>
                             </form>
                         </div>
                     </div>

@@ -74,7 +74,7 @@
                         <div class="card-text">
                             <form method="POST" action="{{ route('picture_books.store') }}">
                                 @include('picture_books.form')
-                                <button type="submit" class="btn btn btn-teal1 shadow-sm btn-block">登録する</button>
+                                <button type="submit" class="btn btn-teal1 shadow-sm btn-block">登録する</button>
                                 <input type="hidden" name="google_books_id"
                                     value="{{ $pictureBook->google_books_id }}" />
                                 <input type="hidden" name="isbn_13" value="{{ $pictureBook->isbn_13 }}" />

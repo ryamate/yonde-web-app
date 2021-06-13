@@ -26,7 +26,7 @@
         </div>
         <img src="{{ asset('image/setting_family.png') }}" class="img-fluid mx-auto d-block" alt="" width="80%">
         <div class="card mt-2 p-4 shadow-sm">
-            <div class="card-body">
+            <div class="card-body pt-0">
                 <p class="card-title text-secondary">ファミリーネーム</p>
                 <h5 class="card-text">{{ $family->name }}</h5>
             </div>
@@ -54,11 +54,15 @@
                         </a>
                     </div>
                     <div class="col-6">
-                        <a href="{{ route("users.show", ["name" => Auth::user()->name]) }}" class="">
-                            <h5 class="card-text text-teal1"><b>{{ $user->nickname }}</b></h5>
+                        <a href="{{ route("users.show", ["name" => Auth::user()->name]) }}"
+                            class="card-text text-teal1 text-decoration-none h5">
+                            <b>{{ $user->nickname }}</b>
                         </a>
-                        <p class="card-text small text-secondary">{{ $user->relation }}</p>
+                        <p class="card-text small text-secondary">
+                            {{ $user->relation }}
+                        </p>
                     </div>
+
                     <div class="d-none d-sm-block col-3 mt-2">
                         <a class="btn btn-block bg-white btn-outline-teal1 text-teal1"
                             href="{{ route('users.show_setting', ['name' => Auth::user()->name]) }}">
@@ -89,32 +93,51 @@
                         </a>
                     </div>
                     <div class="col-6 mt-3">
-                        <a href="{{ route("users.show", ["name" => $familyUser->name]) }}">
-                            <h5 class="card-text text-teal1">{{ $familyUser->nickname }}</h5>
+                        <a href="{{ route("users.show", ["name" => $familyUser->name]) }}"
+                            class="card-text text-teal1 text-decoration-none h5">
+                            {{ $familyUser->nickname }}
                         </a>
-                        <p class="card-text small text-secondary">{{ $familyUser->relation }}</p>
+                        <p class="card-text small text-secondary">
+                            {{ $familyUser->relation }}
+                        </p>
                     </div>
                 </div>
                 @endforeach
 
-                <a class="btn btn-block bg-white text-decoration-none text-teal1 text-left mt-4"
-                    href="{{ route('invite') }}">
+                <a class="btn bg-white text-decoration-none text-teal1 mt-4" href="{{ route('invite') }}">
                     ＋ 家族を招待する
                 </a>
             </div>
 
             <div class="card-body border-top">
                 <p class="card-title text-secondary">お子さま一覧</p>
-                <a href="" class="text-teal1">
-                    <h5 class="card-text">コドモ</h5>
-                </a>
-                <p class="card-text small text-secondary">男の子 / 2021年6月7日</p>
-                @if( Auth::id() === $user->id )
-                <a class="btn btn-block bg-white text-decoration-none text-teal1 text-left"
-                    href="{{ route('users.edit') }}">
+                @foreach ($children as $child)
+                <div class="row">
+                    <div class="col-12 mt-3">
+                        <a href="{{ route('children.edit', ['id' => $child->id]) }}"
+                            class="card-text text-teal1 text-decoration-none h5">
+                            {{ $child->name }}
+                        </a>
+
+                        <p class="card-text small text-secondary">
+                            @if ($child->gender_code === 1)
+                            男の子
+                            @elseif($child->gender_code === 2)
+                            女の子
+                            @endif
+                            @if ($child->birthday !== null)
+                            /
+                            {{ Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y歳%mヶ月') }}
+                            / {{ Carbon\Carbon::parse($child->birthday)->format("Y年m月d日") }}
+                            @endif
+                        </p>
+
+                    </div>
+                </div>
+                @endforeach
+                <a class="btn bg-white text-decoration-none text-teal1 mt-4" href="{{ route('children.create') }}">
                     ＋ お子さまを追加する
                 </a>
-                @endif
             </div>
 
         </div>

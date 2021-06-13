@@ -65,7 +65,7 @@
                     <div class="card-body">
                         <form action="" method="GET">
                             @csrf
-                            <button type="submit" class="btn btn btn-teal1 shadow-sm btn-block" title="絵本の読み聞かせ記録をする"><i
+                            <button type="submit" class="btn btn-teal1 shadow-sm btn-block" title="絵本の読み聞かせ記録をする"><i
                                     class="fas fa-book-reader"></i>
                                 よんだよ</button>
                         </form>

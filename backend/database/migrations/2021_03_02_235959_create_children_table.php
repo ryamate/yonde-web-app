@@ -17,7 +17,7 @@ class CreateChildrenTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('family_id');
             $table->string('name', 100)->nullable();
-            $table->string('gender_code', 2)->nullable();
+            $table->integer('gender_code')->nullable();
             $table->date('birthday')->nullable();
             $table->timestamps();
 

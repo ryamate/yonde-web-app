@@ -70,14 +70,16 @@ class FamilyController extends Controller
      */
     public function showSetting(string $family_id)
     {
-        $family = Family::with('users')->where('id', $family_id)->first();
+        $family = Family::with('users', 'children')->where('id', $family_id)->first();
         $user = User::where('id', Auth::id())->firstOrFail();
         $familyUsers = $family->users->whereNotIn('id', $user->id)->sortBy('created_at');
+        $children = $family->children->sortBy('birthday');
 
         return view('families.show_setting', [
             'user' => $user,
             'family' => $family,
             'familyUsers' => $familyUsers,
+            'children' => $children,
         ]);
     }
 

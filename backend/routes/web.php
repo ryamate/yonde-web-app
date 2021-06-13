@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/', 'HomeController@home')->name('home');
+Route::get('/about', 'HomeController@about')->name('about');
+
 Auth::routes(['verify' => true]);
 Route::prefix('login')->name('login.')->group(function () {
     Route::get('/{provider}', 'Auth\LoginController@redirectToProvider')->name('{provider}');
@@ -26,9 +29,6 @@ Route::prefix('register')->name('register.')->group(function () {
 
 Route::get('/email/verified', 'Auth\VerificationController@verified');
 
-Route::get('/', 'HomeController@home')->name('home');
-Route::get('/about', 'HomeController@about')->name('about');
-
 Route::resource('/picture_books', 'PictureBookController')->except(['index', 'edit', 'destroy', 'update', 'show'])->middleware('auth');
 Route::prefix('picture_books')->name('picture_books.')->group(function () {
     Route::get('/search', 'PictureBookController@search')->name('search');
@@ -43,26 +43,39 @@ Route::prefix('picture_books')->name('picture_books.')->group(function () {
 });
 
 Route::prefix('users')->name('users.')->group(function () {
-    Route::get('/edit', 'UserController@edit')->name('edit');
-    Route::post('/update', 'UserController@update')->name('update');
-    Route::get('/{name}/setting_profile', 'UserController@showSetting')->name('show_setting')->middleware('auth');
-    Route::get('/{name}', 'UserController@show')->name('show');
-    Route::get('/{name}/likes', 'UserController@likes')->name('likes');
-    Route::get('/{name}/followings', 'UserController@followings')->name('followings');
-    Route::get('/{name}/followers', 'UserController@followers')->name('followers');
     Route::middleware('auth')->group(function () {
+        Route::get('/edit', 'UserController@edit')->name('edit');
+        Route::post('/update', 'UserController@update')->name('update');
+        Route::get('/{name}/setting_profile', 'UserController@showSetting')->name('show_setting');
+        Route::get('/{name}', 'UserController@show')->name('show');
+        Route::get('/{name}/likes', 'UserController@likes')->name('likes');
+        Route::get('/{name}/followings', 'UserController@followings')->name('followings');
+        Route::get('/{name}/followers', 'UserController@followers')->name('followers');
         Route::put('/{name}/follow', 'UserController@follow')->name('follow');
         Route::delete('/{name}/follow', 'UserController@unfollow')->name('unfollow');
     });
 });
+
 Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
 
 Route::prefix('families')->name('families.')->group(function () {
-    Route::get('/edit', 'FamilyController@edit')->name('edit');
-    Route::post('/update', 'FamilyController@update')->name('update');
-    Route::get('/{id}/setting_family', 'FamilyController@showSetting')->name('show_setting')->middleware('auth');
-    Route::get('/{id}', 'FamilyController@index')->name('index');
-    Route::get('/{id}/bookshelf', 'FamilyController@bookshelf')->name('bookshelf');
+    Route::middleware('auth')->group(function () {
+        Route::get('/edit', 'FamilyController@edit')->name('edit');
+        Route::post('/update', 'FamilyController@update')->name('update');
+        Route::get('/{id}/setting_family', 'FamilyController@showSetting')->name('show_setting');
+        Route::get('/{id}', 'FamilyController@index')->name('index');
+        Route::get('/{id}/bookshelf', 'FamilyController@bookshelf')->name('bookshelf');
+    });
+});
+
+Route::prefix('children')->name('children.')->group(function () {
+    Route::middleware('auth')->group(function () {
+        Route::get('/create', 'ChildController@create')->name('create');
+        Route::post('/store', 'ChildController@store')->name('store');
+        Route::delete('/{id}', 'ChildController@destroy')->name('destroy');
+        Route::get('/{id}/edit', 'ChildController@edit')->name('edit');
+        Route::post('/{id}/update', 'ChildController@update')->name('update');
+    });
 });
 
 Route::get('invite', 'InviteController@showLinkRequestForm')->name('invite')->middleware('auth');

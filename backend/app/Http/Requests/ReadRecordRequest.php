@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChildRequest extends FormRequest
+class ReadRecordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class ChildRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
-            'gender_code' => 'integer',
-            'birthday' => 'date|before_or_equal:today',
+            'read_date' => 'date|before_or_equal:today',
+            'memo' => 'max:1000',
+
         ];
     }
 
@@ -36,16 +36,15 @@ class ChildRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'お名前',
-            'gender_code' => '性別',
-            'birthday' => 'お誕生日',
+            'read_date' => 'よんだ日',
+            'memo' => 'メモ',
         ];
     }
 
     public function messages()
     {
         return [
-            'birthday.before_or_equal' => ':attributeには、今日以前の日付をご利用ください。',
+            'read_date.before_or_equal' => ':attributeには、今日以前の日付をご利用ください。',
         ];
     }
 }

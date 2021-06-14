@@ -26,8 +26,9 @@ class FamilyController extends Controller
     {
         $family = Family::where('id', $family_id)->first();
 
-        $pictureBooks = PictureBook::where('family_id', $family_id)->orderBy('updated_at', 'DESC')->paginate(5);
-
+        $pictureBooks = PictureBook::with(['readRecords' => function ($query) {
+            $query->orderBy('read_date', 'DESC');
+        }])->where('family_id', $family_id)->orderBy('updated_at', 'DESC')->paginate(5);
 
         return view('families.index', [
             'family' => $family,

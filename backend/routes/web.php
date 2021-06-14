@@ -42,6 +42,8 @@ Route::prefix('picture_books')->name('picture_books.')->group(function () {
     });
 });
 
+Route::resource('/read_records', 'ReadRecordController')->middleware('auth');
+
 Route::prefix('users')->name('users.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/edit', 'UserController@edit')->name('edit');

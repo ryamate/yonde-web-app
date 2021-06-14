@@ -63,11 +63,12 @@
                     <!-- 絵本の読み聞かせ記録ボタン -->
                     @if( Auth::user()->family_id === $pictureBook->family_id )
                     <div class="card-body">
-                        <form action="" method="GET">
+                        <form action="{{ route('read_records.create') }}" method="GET">
                             @csrf
-                            <button type="submit" class="btn btn-teal1 shadow-sm btn-block" title="絵本の読み聞かせ記録をする"><i
-                                    class="fas fa-book-reader"></i>
-                                よんだよ</button>
+                            <button type="submit" class="btn btn-teal1 shadow-sm btn-block" title="絵本の読み聞かせ記録をする">
+                                <i class="fas fa-book-reader"></i><b>よんだよ</b>
+                            </button>
+                            <input type="hidden" name="picture_book_id" value="{{ $pictureBook->id }}" />
                         </form>
                     </div>
                     @endif
@@ -210,11 +211,27 @@
             <div class="card-body pt-2 pb-0">
                 <div class="card-title">
                     <span class="small">
-                        <i class="fas fa-book-reader"></i><b>よんだよ記録</b>
+                        <i class="fas fa-book-reader"></i><b>よんだよ記録</b>({{ count($pictureBook->readRecords )}}回)
                     </span>
                 </div>
-                {{-- ダミー値 --}}
-                <p class="small">2021.3.20</p>
+                @if (count($pictureBook->readRecords) !== 0 )
+                @foreach ($pictureBook->readRecords as $readRecord)
+                <div class="pb-1">
+                    <form action="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}" method="GET">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-teal1 shadow-sm" title="絵本の読み聞かせ記録をする">
+                            {{Carbon\Carbon::parse($readRecord->read_date)->format("Y年m月d日") }}
+                        </button>
+                        <input type="hidden" name="picture_book_id" value="{{ $pictureBook->id }}" />
+                    </form>
+                </div>
+                @endforeach
+                @else
+                <p class="small">
+                    記録なし
+                </p>
+                @endif
+
             </div>
         </div>
     </div>

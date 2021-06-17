@@ -1,14 +1,14 @@
 import './bootstrap'
 import Vue from 'vue'
 import ReviewLike from './components/ReviewLike'
-import ReviewTagsInput from './components/ReviewTagsInput'
+import ReadRecordTagsInput from './components/ReadRecordTagsInput'
 import FollowButton from './components/FollowButton'
 
 const app = new Vue({
     el: '#app',
     components: {
         ReviewLike,
-        ReviewTagsInput,
+        ReadRecordTagsInput,
         FollowButton,
     }
 })

@@ -9,16 +9,19 @@
             value="{{ $readRecord->read_date ?? old('read_date') }}" name="read_date" required />
     </div>
 
-    {{-- 感想タグ --}}
-    {{-- <div class="form-group">
-        <review-tags-input :initial-tags='@json($tagNames ?? [])' :autocomplete-items='@json($allTagNames ?? [])'>
-        </review-tags-input>
-    </div> --}}
+    <div class="form-group">
+        <label>＃タグ</label>
+        <read-record-tags-input :initial-tags='@json($tagNames ?? [])' :autocomplete-items='@json($allTagNames ?? [])'>
+        </read-record-tags-input>
+    </div>
 
     <div class="form-group">
         <label for="memo">メモ</label>
         <textarea type="text" name="memo" id="memo" rows="5"
             class="form-control">{{ $readRecord->memo ?? old('memo') }}</textarea>
+        <ul class="text-dark small">
+            <li>140文字以内</li>
+        </ul>
     </div>
 
 </section>

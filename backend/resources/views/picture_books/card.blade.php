@@ -177,64 +177,65 @@
                         <p class="card-text small">{!! nl2br(e($pictureBook->review, false)) !!}</p>
                     </div>
 
-                    {{-- タグ --}}
-                    {{-- @foreach($pictureBook->tags as $tag)
-                    @if($loop->first)
-                    <div class="card-body pt-0 pb-4 pl-3">
-                        <div class="card-text line-height">
+                    {{-- レビューいいね機能 --}}
+                    <div class="card-body pt-0">
+                        <div class="card-text small">
+                            <review-like :initial-is-liked-by='@json($pictureBook->isLikedBy(Auth::user()))'
+                                :initial-count-likes='@json($pictureBook->count_likes)'
+                                :authorized='@json(Auth::check())'
+                                endpoint="{{ route('picture_books.like', ['picture_book' => $pictureBook]) }}">
+                            </review-like>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="card border-0">
+                    <div class="card-body py-2">
+                        <div class="card-title">
+                            <span class="small">
+                                <i class="fas fa-book-reader"></i><b>よんだよ記録</b>({{ count($pictureBook->readRecords )}}回)
+                            </span>
+                        </div>
+                        @if (count($pictureBook->readRecords) !== 0 )
+                        @foreach ($pictureBook->readRecords as $readRecord)
+                        <div class="pb-1">
+                            <form action="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}"
+                                method="GET">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-teal1 shadow-sm" title="絵本の読み聞かせ記録をする">
+                                    {{Carbon\Carbon::parse($readRecord->read_date)->format("Y年m月d日") }}
+                                </button>
+                                <input type="hidden" name="picture_book_id" value="{{ $pictureBook->id }}" />
+                            </form>
+                            {{-- タグ --}}
+                            @foreach($readRecord->tags as $tag)
+                            @if($loop->first)
+                            {{-- <div class="card-body pt-0 pb-4 pl-3"> --}}
+                            <div class="card-text line-height">
+                                @endif
+                                <a href="{{ route('tags.show', ['name' => $tag->name]) }}"
+                                    class="p-1 mr-1 mt-1 text-teal1 small">
+                                    {{ $tag->hashtag }}
+                                </a>
+                                @if($loop->last)
+                                {{-- </div> --}}
+                            </div>
                             @endif
-                            <a href="{{ route('tags.show', ['name' => $tag->name]) }}"
-                    class="p-1 mr-1 mt-1 text-teal1 small">
-                    {{ $tag->hashtag }}
-                    </a>
-                    @if($loop->last)
-                </div>
-            </div>
-            @endif
-            @endforeach --}}
+                            @endforeach
+                        </div>
+                        @endforeach
+                        @else
+                        <p class="small">
+                            記録なし
+                        </p>
+                        @endif
 
-            {{-- レビューいいね機能 --}}
-            <div class="card-body pt-0">
-                <div class="card-text small">
-                    <review-like :initial-is-liked-by='@json($pictureBook->isLikedBy(Auth::user()))'
-                        :initial-count-likes='@json($pictureBook->count_likes)' :authorized='@json(Auth::check())'
-                        endpoint="{{ route('picture_books.like', ['picture_book' => $pictureBook]) }}">
-                    </review-like>
+                    </div>
                 </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="col-sm-6">
-        <div class="card border-0">
-            <div class="card-body pt-2 pb-0">
-                <div class="card-title">
-                    <span class="small">
-                        <i class="fas fa-book-reader"></i><b>よんだよ記録</b>({{ count($pictureBook->readRecords )}}回)
-                    </span>
-                </div>
-                @if (count($pictureBook->readRecords) !== 0 )
-                @foreach ($pictureBook->readRecords as $readRecord)
-                <div class="pb-1">
-                    <form action="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}" method="GET">
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-teal1 shadow-sm" title="絵本の読み聞かせ記録をする">
-                            {{Carbon\Carbon::parse($readRecord->read_date)->format("Y年m月d日") }}
-                        </button>
-                        <input type="hidden" name="picture_book_id" value="{{ $pictureBook->id }}" />
-                    </form>
-                </div>
-                @endforeach
-                @else
-                <p class="small">
-                    記録なし
-                </p>
-                @endif
-
             </div>
         </div>
-    </div>
-    </div>
     </div>
 </section>

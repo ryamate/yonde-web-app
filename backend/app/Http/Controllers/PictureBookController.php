@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\PictureBook;
-use App\Tag;
 use Auth;
 use App\Http\Requests\PictureBookRequest;
 use Illuminate\Http\Request;
@@ -27,13 +26,8 @@ class PictureBookController extends Controller
     {
         $pictureBook->fill($request->all());
 
-        // $allTagNames = Tag::all()->map(function ($tag) {
-        //     return ['text' => $tag->name];
-        // });
-
         return view('picture_books.create', [
             'pictureBook' => $pictureBook,
-            // 'allTagNames' => $allTagNames,
         ]);
     }
 
@@ -47,11 +41,6 @@ class PictureBookController extends Controller
         $pictureBook->family_id = $request->user()->family_id;
         $pictureBook->save();
 
-        // $request->tags->each(function ($tagName) use ($pictureBook) {
-        //     $tag = Tag::firstOrCreate(['name' => $tagName]);
-        //     $pictureBook->tags()->attach($tag);
-        // });
-
         return redirect()->route('families.index', ['id' => Auth::user()->family_id]);
     }
 
@@ -62,18 +51,8 @@ class PictureBookController extends Controller
     {
         $pictureBook = $pictureBook->find($pictureBook->id);
 
-        // $tagNames = $pictureBook->tags->map(function ($tag) {
-        //     return ['text' => $tag->name];
-        // });
-
-        // $allTagNames = Tag::all()->map(function ($tag) {
-        //     return ['text' => $tag->name];
-        // });
-
         return view('picture_books.edit', [
             'pictureBook' => $pictureBook,
-            // 'tagNames' => $tagNames,
-            // 'allTagNames' => $allTagNames,
         ]);
     }
 
@@ -85,12 +64,6 @@ class PictureBookController extends Controller
         $pictureBook->fill($request->all());
         $pictureBook->user_id = $request->user()->id;
         $pictureBook->save();
-
-        // $pictureBook->tags()->detach();
-        // $request->tags->each(function ($tagName) use ($pictureBook) {
-        //     $tag = Tag::firstOrCreate(['name' => $tagName]);
-        //     $pictureBook->tags()->attach($tag);
-        // });
 
         return redirect()->route('families.index', ['id' => Auth::user()->family_id]);
     }

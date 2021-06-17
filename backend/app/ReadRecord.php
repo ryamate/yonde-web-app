@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class ReadRecord extends Model
 {
@@ -22,5 +23,10 @@ class ReadRecord extends Model
     public function pictureBook(): BelongsTo
     {
         return $this->belongsTo('App\PictureBook');
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Tag')->withTimestamps();
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="small">
     <input
       type="hidden"
       name="tags"
@@ -9,16 +9,17 @@
       v-model="tag"
       :tags="tags"
       placeholder="タグを5個まで入力できます"
-      :autocomplete-items="basicItems"
+      :autocomplete-items="defaultItems"
       :add-on-key="[13, 32]"
+      :autocomplete-min-length="0"
       @tags-changed="newTags => tags = newTags"
     >
-  <template slot="autocomplete-header">
-    <strong>タグを作成するか、以下から選択してください ↓</strong>
-  </template>
-  <template slot="autocomplete-footer">
-  </template>
-</vue-tags-input>
+      <template slot="autocomplete-header">
+        <strong>　↓ タグを作成するか、以下から選択してください</strong>
+      </template>
+      <template slot="autocomplete-footer">
+      </template>
+    </vue-tags-input>
   </div>
 </template>
 
@@ -34,16 +35,12 @@ export default {
       type: Array,
       default: [],
     },
-    autocompleteItems: {
-      type: Array,
-      default: [],
-    },
   },
   data() {
     return {
       tag: '',
       tags: this.initialTags,
-      basicItems: [{
+      defaultItems: [{
         text: 'なんども',
       }, {
         text: 'どハマり',
@@ -60,13 +57,11 @@ export default {
       }, {
         text: '感動！',
       }, {
-        text: '怖かった',
+        text: 'コワい…',
       }, {
         text: 'ねむZzz',
       }, {
         text: 'なみだ',
-      }, {
-        text: 'マネした',
       }, {
         text: 'まなび',
       }, {
@@ -76,30 +71,26 @@ export default {
       }, {
         text: '男の子',
       }, {
-        text: '１さい',
+        text: '０〜１さい',
       }, {
-        text: '２さい',
-      }, {
-        text: '３さい',
+        text: '２〜３さい',
       }, {
         text: '４さい',
       }, {
         text: '５さい',
+      }, {
+        text: '６さい〜',
       }],
     };
   },
   computed: {
-    filteredItems() {
-      return this.autocompleteItems.filter(i => {
-        return i.text.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1;
-      });
-    },
     tagsJson() {
       return JSON.stringify(this.tags)
     },
   },
 };
 </script>
+
 <style lang="css" scoped>
   .vue-tags-input {
     max-width: inherit;

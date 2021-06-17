@@ -25,8 +25,6 @@ class PictureBookRequest extends FormRequest
     {
         return [
             'review' => 'max:1000',
-            // 'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
-
         ];
     }
 
@@ -39,19 +37,6 @@ class PictureBookRequest extends FormRequest
     {
         return [
             'review' => 'レビュー・感想',
-            'tags' => 'タグ',
         ];
-    }
-
-    /**
-     * tagsの整形を行う。
-     */
-    public function passedValidation()
-    {
-        $this->tags = collect(json_decode($this->tags))
-            ->slice(0, 5)
-            ->map(function ($requestTag) {
-                return $requestTag->text;
-            });
     }
 }

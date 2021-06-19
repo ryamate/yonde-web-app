@@ -3,12 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Child;
+use App\PictureBook;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\ChildRequest;
 
 class ChildController extends Controller
 {
+
+    /**
+     * お子さまタグを付けた絵本表示
+     */
+    public function show(string $id)
+    {
+        $child = Child::where('id', $id)->first();
+
+        $pictureBooks = $child->readRecords
+            ->map(function ($readRecord) {
+                return PictureBook::where('family_id', Auth::user()->family_id)
+                    ->where('id', $readRecord->picture_book_id)->first();
+            })->unique('google_books_id');
+
+        return view('children.show', [
+            'child' => $child,
+            'pictureBooks' => $pictureBooks
+        ]);
+    }
 
     /**
      * お子さま追加フォーム画面表示
@@ -47,7 +67,7 @@ class ChildController extends Controller
     /**
      * お子さま情報を更新する
      */
-    public function update(Request $request, string $child_id)
+    public function update(ChildRequest $request, string $child_id)
     {
         $child = Child::find($child_id);
         $child->fill($request->all());

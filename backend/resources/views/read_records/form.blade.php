@@ -1,17 +1,22 @@
 @csrf
 <section>
 
-    {{-- 子どもタグ --}}
-
     <div class="form-group">
-        <label for="read_date">よんだ日</label>
-        <input autofocus class="form-control" type="date" id="read_date"
-            value="{{ $readRecord->read_date ?? old('read_date') }}" name="read_date" required />
+        <label>お子さま</label>
+        <child-tags-input :initial-tags='@json($childNames ?? [])' :autocomplete-items='@json($allChildNames ?? [])'>
+        </child-tags-input>
     </div>
 
     <div class="form-group">
-        <label>＃タグ</label>
-        <read-record-tags-input :initial-tags='@json($tagNames ?? [])' :autocomplete-items='@json($allTagNames ?? [])'>
+        <label for="read_date">日付</label>
+        <input autofocus class="form-control" type="date" id="read_date"
+            value="{{ $readRecord->read_date ?? old('read_date') ?? Carbon\Carbon::today()->format("Y-m-d") }}"
+            name="read_date" required />
+    </div>
+
+    <div class="form-group">
+        <label>タグ</label>
+        <read-record-tags-input :initial-tags='@json($tagNames ?? [])'>
         </read-record-tags-input>
     </div>
 

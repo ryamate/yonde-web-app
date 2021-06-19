@@ -26,7 +26,7 @@ class ReadRecordRequest extends FormRequest
         return [
             'read_date' => 'date|before_or_equal:today',
             'memo' => 'max:140',
-            'children' => 'json|required',
+            'children' => 'json|min:3',
             'tags' => 'json|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u',
         ];
     }
@@ -48,6 +48,7 @@ class ReadRecordRequest extends FormRequest
     {
         return [
             'read_date.before_or_equal' => ':attributeには、今日以前の日付をご利用ください。',
+            'children.min' => 'お子さまは必ず指定してください。',
         ];
     }
 

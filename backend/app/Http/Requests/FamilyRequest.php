@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Auth;
 
 class FamilyRequest extends FormRequest
 {
@@ -23,10 +24,12 @@ class FamilyRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|max:100',
-            'introduction' => 'max:1000',
-        ];
+        if (Auth::id() !== config('const.GUEST_USER_ID')) {
+            return [
+                'name' => 'required|max:100',
+                'introduction' => 'max:1000',
+            ];
+        }
     }
 
     /**

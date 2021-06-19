@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -73,5 +74,17 @@ class LoginController extends Controller
             'email' => $providerUser->getEmail(),
             'token' => $providerUser->token,
         ]);
+    }
+
+    /**
+     * ゲストログイン処理
+     */
+    public function guestLogin()
+    {
+        if (Auth::loginUsingId(config('const.GUEST_USER_ID'))) {
+            return redirect()->route('families.bookshelf', ["id" => Auth::user()->family_id]);
+        }
+
+        return redirect()->route('home');
     }
 }

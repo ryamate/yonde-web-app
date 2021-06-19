@@ -12,6 +12,10 @@
             <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 mt-4" style="margin-bottom: 90px">
                 <h2 class="text-center"><a class="text-dark text-decoration-none">プロフィール編集</a></h2>
 
+                @if (Auth::id() === config('const.GUEST_USER_ID'))
+                <p class="text-danger">※ゲストユーザーは、プロフィール編集できません。</p>
+                @endif
+
                 <div class="card mt-4 p-4 shadow-sm">
 
                     @include('error_card_list')
@@ -36,7 +40,8 @@
                         <div class="form-group">
                             <label for="name">よんでID</label>
                             <input autofocus class="form-control" type="text" id="name"
-                                value="{{ old('name',$user->name) }}" name="name" required />
+                                value="{{ old('name',$user->name) }}" name="name" required
+                                {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />
                             <ul class="text-dark small">
                                 <li>半角英数小文字：3～16文字</li>
                             </ul>
@@ -45,23 +50,30 @@
                         <div class="form-group">
                             <label for="nickname">ニックネーム</label>
                             <input class="form-control" type="text" id="nickname"
-                                value="{{ old('nickname',$user->nickname) }}" name="nickname" required />
+                                value="{{ old('nickname',$user->nickname) }}" name="nickname" required
+                                {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />
                         </div>
 
                         <div class="form-group">
                             <label for="relation">子どもとの関係</label>
                             <input class="form-control" type="text" id="relation"
-                                value="{{old('relation',$user->relation) }}" name="relation" />
+                                value="{{old('relation',$user->relation) }}" name="relation"
+                                {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />
                         </div>
 
                         <div class="form-group">
                             <label for="email">メールアドレス</label>
                             <input class="form-control" type="text" id="email" value="{{ old('email',$user->email) }}"
-                                name="email" required />
+                                name="email" required
+                                {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />
                         </div>
-
+                        @if (Auth::id() !== config('const.GUEST_USER_ID'))
                         <button type="submit"
                             class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-4"><b>変更する</b></button>
+                        @else
+                        <a href="{{ route('users.show_setting', ['name' => Auth::user()->name]) }}"
+                            class="btn btn-block bg-white btn-outline-danger text-decoration-none text-danger mt-4">戻る</a>
+                        @endif
 
                     </form>
                 </div>

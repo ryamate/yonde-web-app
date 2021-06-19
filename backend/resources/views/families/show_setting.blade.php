@@ -49,7 +49,7 @@
                             <img src="{{ asset($user->icon_path) }}" alt="プロフィール画像"
                                 style="width: 60px; background-position: center center;object-fit:cover;">
                             @else
-                            <p><i class="far fa-user-circle fa-2x text-secondary"></i></p>
+                            <p><i class="far fa-user-circle fa-3x text-secondary"></i></p>
                             @endif
                         </a>
                     </div>

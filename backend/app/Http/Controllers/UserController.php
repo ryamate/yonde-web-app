@@ -32,21 +32,6 @@ class UserController extends Controller
         ]);
     }
 
-    // /**
-    //  * 本棚画面表示
-    //  */
-    // public function bookshelf(string $name)
-    // {
-    //     $user = User::where('name', $name)->first();
-
-    //     $pictureBooks = $user->pictureBooks->sortByDesc('created_at');
-
-    //     return view('users.bookshelf', [
-    //         'user' => $user,
-    //         'pictureBooks' => $pictureBooks,
-    //     ]);
-    // }
-
     /**
      * いいね画面を表示
      */
@@ -181,7 +166,7 @@ class UserController extends Controller
             }
         }
 
-        $user->save();
+        $user->fill($request->validated())->save();
 
         return redirect()->route('users.show_setting', [
             'name' => $user->name,

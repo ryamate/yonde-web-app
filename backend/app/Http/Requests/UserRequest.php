@@ -26,24 +26,26 @@ class UserRequest extends FormRequest
     public function rules()
     {
         $user = Auth::user();
-        return [
-            'name' => [
-                'required',
-                'string',
-                'alpha_num',
-                'min:3',
-                'max:16',
-                Rule::unique('users', 'name')->whereNot('name', $user->name),
-            ],
-            'nickname' => ['required', 'string', 'max:255'],
-            'relation' => ['nullable', 'string', 'max:100'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique('users', 'email')->whereNot('email', $user->email),
-            ],
-        ];
+        if (Auth::id() !== config('const.GUEST_USER_ID')) {
+            return [
+                'name' => [
+                    'required',
+                    'string',
+                    'alpha_num',
+                    'min:3',
+                    'max:16',
+                    Rule::unique('users', 'name')->whereNot('name', $user->name),
+                ],
+                'nickname' => ['required', 'string', 'max:255'],
+                'relation' => ['nullable', 'string', 'max:100'],
+                'email' => [
+                    'required',
+                    'string',
+                    'email',
+                    'max:255',
+                    Rule::unique('users', 'email')->whereNot('email', $user->email),
+                ],
+            ];
+        }
     }
 }

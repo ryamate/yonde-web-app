@@ -105,8 +105,7 @@ class FamilyController extends Controller
     public function update(FamilyRequest $request)
     {
         $family = Family::find($request->id);
-        $family->fill($request->all());
-        $family->save();
+        $family->fill($request->all())->save();
 
         return redirect()->route('families.show_setting', [
             'id' => Auth::user()->family_id,

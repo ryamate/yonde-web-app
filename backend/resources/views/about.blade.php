@@ -227,14 +227,16 @@
 
             {{-- pc --}}
             <div class="text-center d-none d-md-block border-bottom pb-4 mx-5">
-                <a href="" class="btn btn-outline-info mt-2 mb-2" role="button" style="border-radius: 24px">
+                <a href="{{ route('login.guest') }}" class="btn btn-outline-info mt-2 mb-2" role="button"
+                    style="border-radius: 24px">
                     　　　サンプル絵本棚をみてみる　　<i class="fas fa-chevron-right"></i>
                 </a>
             </div>
             {{-- smart phone --}}
             <div class="container">
                 <div class="text-center d-block d-md-none border-bottom py-4">
-                    <a href="" class="btn btn-block btn-outline-info mt-2 mb-2 rounded-pill" role="button">
+                    <a href="{{ route('login.guest') }}" class="btn btn-block btn-outline-info mt-2 mb-2 rounded-pill"
+                        role="button">
                         　　サンプル絵本棚をみてみる　<i class="fas fa-chevron-right"></i>
                     </a>
                 </div>

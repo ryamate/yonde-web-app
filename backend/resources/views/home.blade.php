@@ -460,10 +460,10 @@
                     <i class="fab fa-google mr-4"></i><b>Googleで登録</b>
                 </a>
 
-                <form action="" method="POST">
-                    <button type="submit"
-                        class="btn btn-block btn-sm bg-white btn-outline-secondary text-secondary my-2"><b>ゲストユーザーログイン</b></button>
-                </form>
+                <a href="{{ route('login.guest') }}"
+                    class="btn btn-block btn-sm bg-white btn-outline-secondary text-secondary my-2">
+                    <b>ゲストユーザーログイン</b>
+                </a>
             </div>
         </div>
         @endguest

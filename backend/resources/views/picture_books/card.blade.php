@@ -225,6 +225,23 @@
                             </div>
                             @endif
                             @endforeach
+
+                            {{-- お子さまタグ --}}
+                            @foreach($readRecord->children as $child)
+                            @if($loop->first)
+                            {{-- <div class="card-body pt-0 pb-4 pl-3"> --}}
+                            <div class="card-text line-height">
+                                @endif
+                                <a href="{{ route('children.show', ['id' => $child->id]) }}"
+                                    class="p-1 mr-1 mt-1 text-teal1 small">
+                                    {{ $child->name }}
+                                </a>
+                                @if($loop->last)
+                                {{-- </div> --}}
+                            </div>
+                            @endif
+                            @endforeach
+
                         </div>
                         @endforeach
                         @else

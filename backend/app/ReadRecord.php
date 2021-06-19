@@ -25,6 +25,11 @@ class ReadRecord extends Model
         return $this->belongsTo('App\PictureBook');
     }
 
+    public function children(): BelongsToMany
+    {
+        return $this->belongsToMany('App\Child')->withTimestamps();
+    }
+
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany('App\Tag')->withTimestamps();

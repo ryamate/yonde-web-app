@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReadRecordChildTable extends Migration
+class CreateChildReadRecordTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateReadRecordChildTable extends Migration
      */
     public function up()
     {
-        Schema::create('read_record_child', function (Blueprint $table) {
+        Schema::create('child_read_record', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('read_record_id');
             $table->unsignedBigInteger('child_id');

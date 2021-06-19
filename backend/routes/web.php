@@ -74,6 +74,7 @@ Route::prefix('children')->name('children.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/create', 'ChildController@create')->name('create');
         Route::post('/store', 'ChildController@store')->name('store');
+        Route::get('/{id}', 'ChildController@show')->name('show');
         Route::delete('/{id}', 'ChildController@destroy')->name('destroy');
         Route::get('/{id}/edit', 'ChildController@edit')->name('edit');
         Route::post('/{id}/update', 'ChildController@update')->name('update');

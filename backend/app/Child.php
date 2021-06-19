@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Child extends Model
 {
@@ -17,5 +18,10 @@ class Child extends Model
     public function family(): BelongsTo
     {
         return $this->belongsTo('App\Family');
+    }
+
+    public function readRecords(): BelongsToMany
+    {
+        return $this->belongsToMany('App\ReadRecord')->withTimestamps();
     }
 }

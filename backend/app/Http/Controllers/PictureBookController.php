@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\PictureBook;
+use App\Family;
 use Auth;
 use App\Http\Requests\PictureBookRequest;
 use Illuminate\Http\Request;
@@ -113,11 +114,16 @@ class PictureBookController extends Controller
             );
         }
 
-        $user = Auth::user();
+        // ログイン or 未ログイン
+        if (Auth::user()) {
+            $family = Family::where('id', Auth::user()->family_id)->first();
+        } else {
+            $family = '';
+        }
 
         $data = [
             'searchedBooks' => $paginatedSearchedBooks,
-            'user' => $user,
+            'family' => $family,
             'keyword' => $request->keyword,
         ];
 

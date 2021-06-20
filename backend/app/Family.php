@@ -26,4 +26,11 @@ class Family extends Model
     {
         return $this->hasMany('App\PictureBook');
     }
+
+    public function isStoredBy($searchedBook): bool
+    {
+        return $searchedBook
+            ? (bool)$this->pictureBooks->where('google_books_id', $searchedBook->id)->count()
+            : false;
+    }
 }

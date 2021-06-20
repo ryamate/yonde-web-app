@@ -24,7 +24,9 @@ class FamilyController extends Controller
      */
     public function index(string $family_id)
     {
-        $family = Family::where('id', $family_id)->first();
+        $family = Family::with('users', 'children')->where('id', $family_id)->first();
+        $familyUsers = $family->users->sortBy('created_at');
+        $children = $family->children->sortBy('birthday');
 
         $pictureBooks = PictureBook::with(['readRecords' => function ($query) {
             $query->orderBy('read_date', 'DESC');
@@ -35,6 +37,8 @@ class FamilyController extends Controller
 
         return view('families.index', [
             'family' => $family,
+            'familyUsers' => $familyUsers,
+            'children' => $children,
             'pictureBooks' => $pictureBooks,
         ]);
     }
@@ -54,20 +58,6 @@ class FamilyController extends Controller
         ]);
     }
 
-    // /**
-    //  * フォロワー画面表示
-    //  */
-    // public function followers(string $name)
-    // {
-    //     $user = User::where('name', $name)->first();
-
-    //     $followers = $user->followers->sortByDesc('created_at');
-
-    //     return view('users.followers', [
-    //         'user' => $user,
-    //         'followers' => $followers,
-    //     ]);
-    // }
 
     /**
      * 家族設定画面表示
@@ -111,4 +101,21 @@ class FamilyController extends Controller
             'id' => Auth::user()->family_id,
         ]);
     }
+
+    // /**
+    //  * フォロワー画面表示
+    //  */
+    // public function followers(string $name)
+    // {
+    //     $user = User::where('name', $name)->first();
+
+    //     $followers = $user->followers->sortByDesc('created_at');
+
+    //     return view('users.followers', [
+    //         'user' => $user,
+    //         'followers' => $followers,
+    //     ]);
+    // }
+
+
 }

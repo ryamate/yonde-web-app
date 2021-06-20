@@ -29,8 +29,8 @@
     <div class="container">
         <div class="row">
             <div class="container" style="max-width: 900px;">
-                {{-- @include('users.user')
-                @include('users.tabs', [
+                @include('families.family_card')
+                {{-- @include('users.tabs', [
                 'hasBookshelf' => false,
                 'hasPictureBooks' => true,
                 'hasLikes' => false

@@ -26,7 +26,7 @@ class ChildController extends Controller
 
         return view('children.show', [
             'child' => $child,
-            'pictureBooks' => $pictureBooks
+            'pictureBooks' => $pictureBooks,
         ]);
     }
 

@@ -27,6 +27,11 @@ class Family extends Model
         return $this->hasMany('App\PictureBook');
     }
 
+    public function readRecords(): HasMany
+    {
+        return $this->hasMany('App\ReadRecord');
+    }
+
     public function isStoredBy($searchedBook): bool
     {
         return $searchedBook

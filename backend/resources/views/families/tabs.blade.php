@@ -13,12 +13,6 @@
                 <i class="far fa-clock"></i>タイムライン
             </a>
         </li>
-        {{-- <li class="nav-item">
-        <a class="nav-link {{ $hasLikes ? 'active text-dark' : 'text-muted' }}"
-        href="{{ route('users.likes', ['name' => $user->name]) }}">
-        いいね
-        </a>
-        </li> --}}
     </ul>
 </div>
 @elseif ($hasStored || $hasCurious || $hasRead)
@@ -32,17 +26,17 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link px-1 mx-1 pt-1 pb-0 shadow-sm {{ $hasCurious ? 'active text-dark' : 'text-muted bg-white' }}"
-            href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}" style="border-radius: 12px">
-            <small>きになる</small><br>
-            <b>10</b>
+        <a class="nav-link px-1 mx-1 pt-1 pb-0 shadow-sm {{ $hasCurious ? 'active text-white bg-teal1' : 'text-muted bg-white' }}"
+            href="{{ route('families.curious', ["id" => Auth::user()->family_id]) }}" style="border-radius: 12px">
+            <small>きになる本</small><br>
+            <b>{{ $curiousCount }}</b>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link px-1 mx-1 pt-1 pb-0 shadow-sm {{ $hasRead ? 'active text-dark' : 'text-muted bg-white' }}"
-            href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}" style="border-radius: 12px">
-            <small>よんだ</small><br>
-            <b>10</b>
+        <a class="nav-link px-1 mx-1 pt-1 pb-0 shadow-sm {{ $hasRead ? 'active text-white bg-teal1' : 'text-muted bg-white' }}"
+            href="{{ route('families.read', ["id" => Auth::user()->family_id]) }}" style="border-radius: 12px">
+            <small>よんだ絵本</small><br>
+            <b>{{ $readCount }}</b>
         </a>
     </li>
 </ul>

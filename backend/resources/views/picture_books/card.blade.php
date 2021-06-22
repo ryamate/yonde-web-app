@@ -8,7 +8,7 @@
                         <img src="{{ asset($pictureBook->user->icon_path) }}" alt="プロフィール画像" style="width:30px; height:30px;background-position: center
                             center;border-radius: 50%;object-fit:cover;">
                         @else
-                        <i class="fas fa-user-circle fa-1x"></i>
+                        <i class="far fa-user-circle fa-1x"></i>
                         @endif
                         <span class="text-teal1">
                             {{ ' ' . $pictureBook->user->nickname}}

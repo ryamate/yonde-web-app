@@ -29,12 +29,25 @@
     <div class="container">
         <div class="row">
             <div class="container" style="max-width: 900px;">
-                {{-- @include('users.user')
-                @include('users.tabs', [
-                'hasBookshelf' => true,
+                <div class="card shadow-sm">
+                    @include('families.family_card')
+                    @include('families.tabs', [
+                    'hasBookshelf' => true,
+                    'hasPictureBooks' => false,
+                    // 'hasLikes' => false
+                    'hasStored' => false,
+                    'hasCurious' => false,
+                    'hasRead' => false,
+                    ])
+                </div>
+                @include('families.tabs', [
+                'hasBookshelf' => false,
                 'hasPictureBooks' => false,
-                'hasLikes' => false
-                ]) --}}
+                // 'hasLikes' => false
+                'hasStored' => true,
+                'hasCurious' => false,
+                'hasRead' => false,
+                ])
                 <section class="card shadow-sm my-4">
                     <div class="card-body p-0" style="background-color: #E6D7D2">
                         <div class="row no-gutters">

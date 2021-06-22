@@ -40,6 +40,7 @@ class ReadRecordController extends Controller
     public function store(ReadRecordRequest $request, ReadRecord $readRecord)
     {
         $readRecord->fill($request->all());
+        $readRecord->family_id = Auth::user()->family_id;
         $readRecord->user_id = Auth::id();
         $readRecord->picture_book_id = $request->picture_book_id;
         $readRecord->save();
@@ -100,6 +101,7 @@ class ReadRecordController extends Controller
     public function update(ReadRecordRequest $request, ReadRecord $readRecord)
     {
         $readRecord->fill($request->all());
+        $readRecord->family_id = Auth::user()->family_id;
         $readRecord->user_id = Auth::id();
         $readRecord->picture_book_id = $request->picture_book_id;
         $readRecord->save();

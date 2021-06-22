@@ -68,6 +68,8 @@ Route::prefix('families')->name('families.')->group(function () {
         Route::get('/{id}/setting_family', 'FamilyController@showSetting')->name('show_setting');
         Route::get('/{id}', 'FamilyController@index')->name('index');
         Route::get('/{id}/bookshelf', 'FamilyController@bookshelf')->name('bookshelf');
+        Route::get('/{id}/curious', 'FamilyController@booksCurious')->name('curious');
+        Route::get('/{id}/read', 'FamilyController@booksRead')->name('read');
     });
 });
 

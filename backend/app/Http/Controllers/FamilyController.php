@@ -63,8 +63,10 @@ class FamilyController extends Controller
         $pictureBooks = PictureBook::where('family_id', $family_id)->orderBy('updated_at', 'DESC')->get();
 
         $storedCount = $family->pictureBooks->count();
-        $readRecordCount = ReadRecord::where('family_id', $family_id)->count();
-        $reviewCount = PictureBook::where('family_id', $family_id)->count('review', '!=', null);
+        $readRecordCount = $family->readRecords->count();
+        $reviewCount = $family->pictureBooks->where('review', '!=', null)->count();
+        $curiousCount = $family->pictureBooks->where('read_status', '=', 0)->count();
+        $readCount = $family->pictureBooks->where('read_status', '=', 1)->count();
 
         return view('families.bookshelf', [
             'family' => $family,
@@ -74,6 +76,68 @@ class FamilyController extends Controller
             'storedCount' => $storedCount,
             'readRecordCount' => $readRecordCount,
             'reviewCount' => $reviewCount,
+            'curiousCount' => $curiousCount,
+            'readCount' => $readCount,
+        ]);
+    }
+
+    /**
+     * 家族の本棚（きになる絵本）画面表示
+     */
+    public function booksCurious(string $family_id)
+    {
+        $family = Family::where('id', $family_id)->first();
+        $familyUsers = $family->users->sortBy('created_at');
+        $children = $family->children->sortBy('birthday');
+
+        $pictureBooks = PictureBook::where('family_id', $family_id)->where('read_status', '=', 0)->orderBy('updated_at', 'DESC')->get();
+
+        $storedCount = $family->pictureBooks->count();
+        $readRecordCount = $family->readRecords->count();
+        $reviewCount = $family->pictureBooks->where('review', '!=', null)->count();
+        $curiousCount = $family->pictureBooks->where('read_status', '=', 0)->count();
+        $readCount = $family->pictureBooks->where('read_status', '=', 1)->count();
+
+        return view('families.curious', [
+            'family' => $family,
+            'familyUsers' => $familyUsers,
+            'children' => $children,
+            'pictureBooks' => $pictureBooks,
+            'storedCount' => $storedCount,
+            'readRecordCount' => $readRecordCount,
+            'reviewCount' => $reviewCount,
+            'curiousCount' => $curiousCount,
+            'readCount' => $readCount,
+        ]);
+    }
+
+    /**
+     * 家族の本棚（読んだ絵本）画面表示
+     */
+    public function booksRead(string $family_id)
+    {
+        $family = Family::where('id', $family_id)->first();
+        $familyUsers = $family->users->sortBy('created_at');
+        $children = $family->children->sortBy('birthday');
+
+        $pictureBooks = PictureBook::where('family_id', $family_id)->where('read_status', '!=', 0)->orderBy('updated_at', 'DESC')->get();
+
+        $storedCount = $family->pictureBooks->count();
+        $readRecordCount = $family->readRecords->count();
+        $reviewCount = $family->pictureBooks->where('review', '!=', null)->count();
+        $curiousCount = $family->pictureBooks->where('read_status', '=', 0)->count();
+        $readCount = $family->pictureBooks->where('read_status', '=', 1)->count();
+
+        return view('families.read', [
+            'family' => $family,
+            'familyUsers' => $familyUsers,
+            'children' => $children,
+            'pictureBooks' => $pictureBooks,
+            'storedCount' => $storedCount,
+            'readRecordCount' => $readRecordCount,
+            'reviewCount' => $reviewCount,
+            'curiousCount' => $curiousCount,
+            'readCount' => $readCount,
         ]);
     }
 

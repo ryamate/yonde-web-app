@@ -16,6 +16,7 @@ class CreateReadRecordsTable extends Migration
         Schema::create('read_records', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('picture_book_id');
+            $table->unsignedBigInteger('family_id');
             $table->unsignedBigInteger('user_id');
             $table->string('memo', 1000)->nullable();
             $table->date('read_date');
@@ -24,6 +25,10 @@ class CreateReadRecordsTable extends Migration
             $table->foreign('picture_book_id')
                 ->references('id')
                 ->on('picture_books')
+                ->onDelete('cascade');
+            $table->foreign('family_id')
+                ->references('id')
+                ->on('families')
                 ->onDelete('cascade');
             $table->foreign('user_id')
                 ->references('id')

@@ -10,6 +10,7 @@ class ReadRecord extends Model
 {
     protected $fillable = [
         'picture_book_id',
+        'family_id',
         'user_id',
         'read_date',
         'memo',

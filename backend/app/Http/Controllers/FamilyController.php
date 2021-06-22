@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Family;
 use App\User;
 use App\PictureBook;
+use App\ReadRecord;
 use Storage;
 use Auth;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class FamilyController extends Controller
      */
     public function index(string $family_id)
     {
-        $family = Family::with('users', 'children')->where('id', $family_id)->first();
+        $family = Family::where('id', $family_id)->first();
         $familyUsers = $family->users->sortBy('created_at');
         $children = $family->children->sortBy('birthday');
 
@@ -35,11 +36,18 @@ class FamilyController extends Controller
             ->orderBy('updated_at', 'DESC')
             ->paginate(5);
 
+        $storedCount = $family->pictureBooks->count();
+        $readRecordCount = ReadRecord::where('family_id', $family_id)->count();
+        $reviewCount = PictureBook::where('family_id', $family_id)->count('review', '!=', null);
+
         return view('families.index', [
             'family' => $family,
             'familyUsers' => $familyUsers,
             'children' => $children,
             'pictureBooks' => $pictureBooks,
+            'storedCount' => $storedCount,
+            'readRecordCount' => $readRecordCount,
+            'reviewCount' => $reviewCount,
         ]);
     }
 
@@ -49,15 +57,25 @@ class FamilyController extends Controller
     public function bookshelf(string $family_id)
     {
         $family = Family::where('id', $family_id)->first();
+        $familyUsers = $family->users->sortBy('created_at');
+        $children = $family->children->sortBy('birthday');
 
         $pictureBooks = PictureBook::where('family_id', $family_id)->orderBy('updated_at', 'DESC')->get();
 
+        $storedCount = $family->pictureBooks->count();
+        $readRecordCount = ReadRecord::where('family_id', $family_id)->count();
+        $reviewCount = PictureBook::where('family_id', $family_id)->count('review', '!=', null);
+
         return view('families.bookshelf', [
             'family' => $family,
+            'familyUsers' => $familyUsers,
+            'children' => $children,
             'pictureBooks' => $pictureBooks,
+            'storedCount' => $storedCount,
+            'readRecordCount' => $readRecordCount,
+            'reviewCount' => $reviewCount,
         ]);
     }
-
 
     /**
      * 家族設定画面表示

@@ -56,29 +56,11 @@ class FamilyController extends Controller
      */
     public function bookshelf(string $family_id)
     {
-        $family = Family::where('id', $family_id)->first();
-        $familyUsers = $family->users->sortBy('created_at');
-        $children = $family->children->sortBy('birthday');
-
         $pictureBooks = PictureBook::where('family_id', $family_id)->orderBy('updated_at', 'DESC')->get();
+        $data = $this->booksChangingTab($family_id);
+        $data['pictureBooks'] = $pictureBooks;
 
-        $storedCount = $family->pictureBooks->count();
-        $readRecordCount = $family->readRecords->count();
-        $reviewCount = $family->pictureBooks->where('review', '!=', null)->count();
-        $curiousCount = $family->pictureBooks->where('read_status', '=', 0)->count();
-        $readCount = $family->pictureBooks->where('read_status', '=', 1)->count();
-
-        return view('families.bookshelf', [
-            'family' => $family,
-            'familyUsers' => $familyUsers,
-            'children' => $children,
-            'pictureBooks' => $pictureBooks,
-            'storedCount' => $storedCount,
-            'readRecordCount' => $readRecordCount,
-            'reviewCount' => $reviewCount,
-            'curiousCount' => $curiousCount,
-            'readCount' => $readCount,
-        ]);
+        return view('families.bookshelf', $data);
     }
 
     /**
@@ -86,29 +68,11 @@ class FamilyController extends Controller
      */
     public function booksCurious(string $family_id)
     {
-        $family = Family::where('id', $family_id)->first();
-        $familyUsers = $family->users->sortBy('created_at');
-        $children = $family->children->sortBy('birthday');
-
         $pictureBooks = PictureBook::where('family_id', $family_id)->where('read_status', '=', 0)->orderBy('updated_at', 'DESC')->get();
+        $data = $this->booksChangingTab($family_id);
+        $data['pictureBooks'] = $pictureBooks;
 
-        $storedCount = $family->pictureBooks->count();
-        $readRecordCount = $family->readRecords->count();
-        $reviewCount = $family->pictureBooks->where('review', '!=', null)->count();
-        $curiousCount = $family->pictureBooks->where('read_status', '=', 0)->count();
-        $readCount = $family->pictureBooks->where('read_status', '=', 1)->count();
-
-        return view('families.curious', [
-            'family' => $family,
-            'familyUsers' => $familyUsers,
-            'children' => $children,
-            'pictureBooks' => $pictureBooks,
-            'storedCount' => $storedCount,
-            'readRecordCount' => $readRecordCount,
-            'reviewCount' => $reviewCount,
-            'curiousCount' => $curiousCount,
-            'readCount' => $readCount,
-        ]);
+        return view('families.books_curious', $data);
     }
 
     /**
@@ -116,11 +80,21 @@ class FamilyController extends Controller
      */
     public function booksRead(string $family_id)
     {
+        $pictureBooks = PictureBook::where('family_id', $family_id)->where('read_status', '!=', 0)->orderBy('updated_at', 'DESC')->get();
+        $data = $this->booksChangingTab($family_id);
+        $data['pictureBooks'] = $pictureBooks;
+
+        return view('families.books_read', $data);
+    }
+
+    /**
+     * 家族の各本棚表示についてのbladeにわたすデータまとめ
+     */
+    private function booksChangingTab(string $family_id): array
+    {
         $family = Family::where('id', $family_id)->first();
         $familyUsers = $family->users->sortBy('created_at');
         $children = $family->children->sortBy('birthday');
-
-        $pictureBooks = PictureBook::where('family_id', $family_id)->where('read_status', '!=', 0)->orderBy('updated_at', 'DESC')->get();
 
         $storedCount = $family->pictureBooks->count();
         $readRecordCount = $family->readRecords->count();
@@ -128,17 +102,18 @@ class FamilyController extends Controller
         $curiousCount = $family->pictureBooks->where('read_status', '=', 0)->count();
         $readCount = $family->pictureBooks->where('read_status', '=', 1)->count();
 
-        return view('families.read', [
+        $data = [
             'family' => $family,
             'familyUsers' => $familyUsers,
             'children' => $children,
-            'pictureBooks' => $pictureBooks,
             'storedCount' => $storedCount,
             'readRecordCount' => $readRecordCount,
             'reviewCount' => $reviewCount,
             'curiousCount' => $curiousCount,
             'readCount' => $readCount,
-        ]);
+        ];
+
+        return $data;
     }
 
     /**

@@ -34,14 +34,9 @@
                     @include('families.tabs', [
                     'hasBookshelf' => true,
                     'hasPictureBooks' => false,
-                    'hasStored' => false,
-                    'hasCurious' => false,
-                    'hasRead' => false,
                     ])
                 </div>
-                @include('families.tabs', [
-                'hasBookshelf' => false,
-                'hasPictureBooks' => false,
+                @include('families.bookshelf_tabs', [
                 'hasStored' => false,
                 'hasCurious' => true,
                 'hasRead' => false,

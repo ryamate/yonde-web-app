@@ -70,6 +70,7 @@ Route::prefix('families')->name('families.')->group(function () {
         Route::get('/{id}/bookshelf', 'FamilyController@bookshelf')->name('bookshelf');
         Route::get('/{id}/curious', 'FamilyController@booksCurious')->name('curious');
         Route::get('/{id}/read', 'FamilyController@booksRead')->name('read');
+        Route::get('/{id}/read_record', 'FamilyController@readRecord')->name('read_record');
     });
 });
 

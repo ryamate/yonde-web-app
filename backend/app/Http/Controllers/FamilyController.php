@@ -25,10 +25,6 @@ class FamilyController extends Controller
      */
     public function index(string $family_id)
     {
-        $family = Family::where('id', $family_id)->first();
-        $familyUsers = $family->users->sortBy('created_at');
-        $children = $family->children->sortBy('birthday');
-
         $pictureBooks = PictureBook::with(['readRecords' => function ($query) {
             $query->orderBy('read_date', 'DESC');
         }])
@@ -36,19 +32,28 @@ class FamilyController extends Controller
             ->orderBy('updated_at', 'DESC')
             ->paginate(5);
 
-        $storedCount = $family->pictureBooks->count();
-        $readRecordCount = ReadRecord::where('family_id', $family_id)->count();
-        $reviewCount = PictureBook::where('family_id', $family_id)->count('review', '!=', null);
+        $data = $this->booksChangingTab($family_id);
+        $data['pictureBooks'] = $pictureBooks;
 
-        return view('families.index', [
-            'family' => $family,
-            'familyUsers' => $familyUsers,
-            'children' => $children,
-            'pictureBooks' => $pictureBooks,
-            'storedCount' => $storedCount,
-            'readRecordCount' => $readRecordCount,
-            'reviewCount' => $reviewCount,
-        ]);
+        return view('families.index', $data);
+    }
+
+    /**
+     * 家族の本棚画面表示
+     */
+    public function readRecord(string $family_id)
+    {
+        $pictureBooks = PictureBook::with(['readRecords' => function ($query) {
+            $query->orderBy('read_date', 'DESC');
+        }])
+            ->where('family_id', $family_id)
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(5);
+
+        $data = $this->booksChangingTab($family_id);
+        $data['pictureBooks'] = $pictureBooks;
+
+        return view('families.read_record', $data);
     }
 
     /**

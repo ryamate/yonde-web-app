@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $family->name . 'ファミリーの本棚-よんで-')
+@section('title', $family->name . 'ファミリーのページ-よんで-')
 
 @section('content')
 
@@ -17,7 +17,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $family->name }}ファミリーの本棚
+                        {{ $family->name }}ファミリーのタイムライン
                     </li>
                 </ol>
             </nav>
@@ -32,16 +32,18 @@
                 <div class="card shadow-sm">
                     @include('families.family_card')
                     @include('families.tabs', [
-                    'hasBookshelf' => true,
-                    'hasPictureBooks' => false,
+                    'hasBookshelf' => false,
+                    'hasPictureBooks' => true,
                     ])
                 </div>
-                @include('families.bookshelf_tabs', [
+                @include('families.index_tabs', [
                 'hasStored' => false,
-                'hasCurious' => false,
-                'hasRead' => true,
+                'hasReadRecord' => true,
                 ])
-                @include('families.bookshelf_card')
+                @foreach($pictureBooks as $pictureBook)
+                @include('read_records.card')
+                @endforeach
+                {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
             </div>
         </div>
     </div>

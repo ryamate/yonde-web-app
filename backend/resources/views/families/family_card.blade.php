@@ -6,7 +6,7 @@
             </p>
             <div class="d-flex justify-content-start align-items-center flex-wrap p-2">
                 @foreach ($familyUsers as $familyUser)
-                <a href="{{ route("users.show", ["name" => $familyUser->name]) }}" class="text-decoration-none px-1"
+                <a href="{{ route("users.show", ["name" => $familyUser->name]) }}" class="text-decoration-none p-1"
                     title="{{ $familyUser->nickname }}/{{ $familyUser->relation }}">
                     @if ($familyUser->icon_path)
                     <img src="{{ asset($familyUser->icon_path) }}" class="bg-white border" alt="プロフィール画像"
@@ -38,7 +38,7 @@
                 {{ $family->introduction }}
             </p>
             <div class="row no-gutters">
-                <div class="col-3 text-center">
+                <div class="col-4 text-center">
                     <p class="small text-secondary mb-0">
                         登録絵本
                     </p>
@@ -48,7 +48,7 @@
                         </a>
                     </p>
                 </div>
-                <div class="col-3 text-center">
+                <div class="col-4 text-center">
                     <p class="small text-secondary mb-0">
                         よんだよ
                     </p>
@@ -58,7 +58,7 @@
                         </a>
                     </p>
                 </div>
-                <div class="col-3 text-center">
+                <div class="col-4 text-center">
                     <p class="small text-secondary mb-0">
                         レビュー
                     </p>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button type="button" class="btn m-0 p-1 shadow-none">
+    <button type="button" class="btn m-0 p-0 shadow-none">
       <i class="fa-heart mr-1"
         :class="{'fas text-danger':this.isLikedBy,
             'far text-dark':!this.isLikedBy,

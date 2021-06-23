@@ -25,7 +25,7 @@
     </div>
 </header>
 
-<div class="bg-light">
+<div class="bg-light pb-4">
     <div class="container">
         <div class="row">
             <div class="container" style="max-width: 900px;">
@@ -34,9 +34,12 @@
                     @include('families.tabs', [
                     'hasBookshelf' => false,
                     'hasPictureBooks' => true,
-                    // 'hasLikes' => false
                     ])
                 </div>
+                @include('families.index_tabs', [
+                'hasStored' => true,
+                'hasReadRecord' => false,
+                ])
                 @foreach($pictureBooks as $pictureBook)
                 @include('picture_books.card')
                 @endforeach

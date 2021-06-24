@@ -84,11 +84,13 @@
                                 @endif
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                <a href="{{ route('home') }}" class="dropdown-item small"><i class="fas fa-home"></i>
-                                    ホーム</a>
+                            <div class="dropdown-menu dropdown-menu-right mt-0" aria-labelledby="dropdownMenuLink">
+                                <a href="{{ route('home') }}" class="dropdown-item small text-center">
+                                    <i class="fas fa-home"></i>
+                                    ホーム
+                                </a>
                                 {{-- logout button 1/2 --}}
-                                <button form="logout-button" class="dropdown-item small"><i
+                                <button form="logout-button" class="dropdown-item small text-center"><i
                                         class="fas fa-sign-out-alt"></i> ログアウト</button>
                             </div>
                         </div>

@@ -59,7 +59,7 @@ export default {
       }, {
         text: 'コワい…',
       }, {
-        text: 'ねむZzz',
+        text: 'おやすみZzz',
       }, {
         text: 'なみだ',
       }, {

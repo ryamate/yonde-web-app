@@ -40,10 +40,10 @@
                 'hasStored' => false,
                 'hasReadRecord' => true,
                 ])
-                @foreach($pictureBooks as $pictureBook)
+                @foreach($readRecords as $readRecord)
                 @include('read_records.card')
                 @endforeach
-                {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
+                {{ $readRecords->links( 'vendor.pagination.bootstrap-4_teal' ) }}
             </div>
         </div>
     </div>

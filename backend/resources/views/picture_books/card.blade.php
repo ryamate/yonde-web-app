@@ -1,5 +1,5 @@
-<section class="pb-4 border-bottom">
-    <div class="pt-2 pb-1">
+<section class="pb-4 border-top">
+    <div class="py-1">
         <a href="{{ route('users.show', ['name' => $pictureBook->user->name]) }}" class="text-dark">
             @if ($pictureBook->user->icon_path)
             <img src="{{ asset($pictureBook->user->icon_path) }}" class="border" alt="プロフィール画像" style="width:25px; height:25px;background-position: center
@@ -26,56 +26,62 @@
             』を更新しました。
         </span>
         @endif
+
+        <span class="text-muted small">
+            @if (Carbon\Carbon::parse($pictureBook->updated_at)->diffInDays(now()) == 0)
+            (今日)
+            @else
+            ({{ Carbon\Carbon::parse($pictureBook->updated_at)->diffInDays(now()) }}日前)
+            @endif
+        </span>
     </div>
     <div class="card shadow-sm">
         <div class="row no-gutters">
-            {{-- サムネイル --}}
+            {{-- thumbnail --}}
             <div class="col-sm-3">
-                <div class="card border-0" style="background-color: transparent">
-                    <div class="card-body px-2 pb-2 pt-3 m-0 dropdown drop-hover">
-                        <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"
-                            onclick="location.href='{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}'">
+                <div class="card-body mx-2 my-3 p-0 dropdown drop-hover">
+                    <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"
+                        onclick="location.href='{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}'">
 
-                            <div class="book-cover my-0">
-                                @if ($pictureBook->thumbnail_url !== null)
-                                <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover"
-                                    class="book-cover-image my-0">
-                                @else
-                                <img src="{{ asset('image/no_image.png') }}" alt="No Image"
-                                    class="book-cover-image my-0">
-                                @endif
-                            </div>
+                        <div class="book-cover my-0">
+                            @if ($pictureBook->thumbnail_url !== null)
+                            <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image my-0">
+                            @else
+                            <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image my-0">
+                            @endif
+                        </div>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-center mt-0 p-0 m-0 shadow small text-center border-0"
+                        aria-labelledby="dropdownMenuLink">
+                        <a href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}"
+                            class="dropdown-item text-white bg-teal1 btn p-0">
+                            <span class="small">
+                                <i class="fas fa-plus"></i>
+                                <i class="fas fa-book-reader"></i>
+                                よんだよ
+                            </span>
                         </a>
-
-                        <div class="dropdown-menu dropdown-menu-right mt-0 mx-2 p-0 shadow small"
-                            aria-labelledby="dropdownMenuLink">
-                            <a href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}"
-                                class="dropdown-item btn btn-sm text-white bg-teal1 py-2"><i
-                                    class="fas fa-book-reader"></i>
-                                読み聞かせを記録</a>
-                        </div>
-                    </div>
-
-                    {{-- レビューいいね機能 --}}
-                    <div class="card-body pt-0 pb-1">
-                        <div class="card-text small">
-                            <review-like :initial-is-liked-by='@json($pictureBook->isLikedBy(Auth::user()))'
-                                :initial-count-likes='@json($pictureBook->count_likes)'
-                                :authorized='@json(Auth::check())'
-                                endpoint="{{ route('picture_books.like', ['picture_book' => $pictureBook]) }}">
-                            </review-like>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-sm-9 d-flex align-items-top">
                 <div class="card-body pt-3 pb-2">
-                    <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
-                        class="card-title text-teal1">
-                        <b>{{ $pictureBook->title }}</b>
-                    </a>
+                    <div class="card-title mb-0">
+                        <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
+                            class="text-teal1">
+                            <b>{{ $pictureBook->title }}</b>
+                        </a>
+                        <span class="small">
+                            <review-like :initial-is-liked-by='@json($pictureBook->isLikedBy(Auth::user()))'
+                                :initial-count-likes='@json($pictureBook->count_likes)'
+                                :authorized='@json(Auth::check())'
+                                endpoint="{{ route('picture_books.like', ['picture_book' => $pictureBook]) }}">
+                            </review-like>
+                        </span>
+                    </div>
                     <div class="card-text text-secondary small">
                         <p class="mb-1">
                             @if ($pictureBook->authors !== null)
@@ -83,39 +89,42 @@
                             @endif
                         </p>
                     </div>
-                    <div class="card-title mb-0">
-                        <span class="small">
-                            <i class="far fa-edit"></i><b>レビュー・感想</b>
-                        </span>
 
+                    <div class="card-title mb-0">
+                        <span>
+                            <b>絵本のレビュー</b>
+                        </span>
                         @if( Auth::user()->family_id === $pictureBook->family_id )
                         <!-- dropdown -->
-                        <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <button type="button" class="btn btn-link text-muted m-0 px-2 py-0">
-                                <i class="fas fa-ellipsis-v"></i>
+                        <div class="btn-group dropright">
+                            <button type="button" class="btn btn-sm btn-white dropdown-toggle pl-0 text-secondary"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span>
+                                    <i class="fas fa-edit mx-1"></i>
+                                </span>
                             </button>
-                        </a>
 
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item small"
-                                href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}">
-                                <i class="fas fa-book-reader"></i>読み聞かせを記録する
-                                ({{ count($pictureBook->readRecords )}}回)
-                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item small"
+                                    href="{{ route("picture_books.edit", ['picture_book' => $pictureBook->id]) }}">
+                                    <i class="fas fa-pen mr-1"></i>レビューを編集する
+                                </a>
 
-                            <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item small"
-                                href="{{ route("picture_books.edit", ['picture_book' => $pictureBook->id]) }}">
-                                <i class="fas fa-pen mr-1"></i>レビューを編集する
-                            </a>
+                                <a class="dropdown-item small"
+                                    href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}">
+                                    <i class="fas fa-book-reader"></i>読み聞かせを記録する
+                                    ({{ count($pictureBook->readRecords )}}回)
+                                </a>
 
-                            <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item text-danger small" data-toggle="modal"
-                                data-target="#modal-delete-{{ $pictureBook->id }}">
-                                <i class="fas fa-trash-alt mr-1"></i>本棚から削除する
-                            </a>
+                                <a class="dropdown-item text-danger small" data-toggle="modal"
+                                    data-target="#modal-delete-{{ $pictureBook->id }}">
+                                    <i class="fas fa-trash-alt mr-1"></i>本棚から削除する
+                                </a>
+                            </div>
                         </div>
                         <!-- dropdown -->
 
@@ -148,21 +157,16 @@
                     </div>
 
                     {{-- よみきかせ状況 --}}
-                    <div class="card-body pt-0 pb-2 pl-0">
-                        <p class="mb-0">
-                            <small class="text-muted">
-                                @if ($pictureBook->read_status === 0)
-                                よみきかせ状況：<span class="badge badge-secondary">きになる</span>
-                                @elseif($pictureBook->read_status === 1)
-                                よみきかせ状況：<span class="badge badge-teal1">よんだ</span>
-                                @endif
-                            </small>
-                        </p>
-                    </div>
-
-                    <div class="card-body pt-0 pb-2 pl-0">
+                    <div class="card-body pt-0 pl-0 pb-2 d-flex align-items-end flex-wrap">
+                        <span class="small text-secondary mb-0 mr-4">
+                            @if ($pictureBook->read_status === 0)
+                            よみきかせ状況：<span class="badge badge-secondary">きになる</span>
+                            @elseif($pictureBook->read_status === 1)
+                            よみきかせ状況：<span class="badge badge-teal1">よんだ</span>
+                            @endif
+                        </span>
                         @if ($pictureBook->five_star_rating !== 0)
-                        <p class="small text-warning mb-0">
+                        <span class="small text-warning">
                             @for ($i = 0; $i < (int)$pictureBook->five_star_rating; $i++)
                                 <i class="fas fa-star"></i>
                                 @endfor
@@ -170,9 +174,11 @@
                                     $i++)
                                     <i class="far fa-star"></i>
                                     @endfor
-                        </p>
+                        </span>
                         @else
-                        <p class="text-secondary small">未評価</p>
+                        <span class="text-secondary small">
+                            未評価
+                        </span>
                         @endif
                     </div>
 

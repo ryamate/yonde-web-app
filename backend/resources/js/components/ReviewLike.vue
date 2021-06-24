@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <span>
     <button type="button" class="btn m-0 p-0 shadow-none">
       <i class="fa-heart mr-1"
         :class="{'fas text-danger':this.isLikedBy,
@@ -9,7 +9,7 @@
       />
     </button>
     {{ countLikes }}
-  </div>
+  </span>
 </template>
 
 <script>

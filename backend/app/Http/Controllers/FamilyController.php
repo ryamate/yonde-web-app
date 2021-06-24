@@ -25,9 +25,7 @@ class FamilyController extends Controller
      */
     public function index(string $family_id)
     {
-        $pictureBooks = PictureBook::with(['readRecords' => function ($query) {
-            $query->orderBy('read_date', 'DESC');
-        }])
+        $pictureBooks = PictureBook::with('readRecords', 'user')
             ->where('family_id', $family_id)
             ->orderBy('updated_at', 'DESC')
             ->paginate(5);
@@ -39,19 +37,17 @@ class FamilyController extends Controller
     }
 
     /**
-     * 家族の本棚画面表示
+     * 家族の読み聞かせタイムライン画面表示
      */
     public function readRecord(string $family_id)
     {
-        $pictureBooks = PictureBook::with(['readRecords' => function ($query) {
-            $query->orderBy('read_date', 'DESC');
-        }])
+        $readRecords = ReadRecord::with('pictureBook', 'user', 'children')
             ->where('family_id', $family_id)
             ->orderBy('updated_at', 'DESC')
-            ->paginate(5);
+            ->paginate(10);
 
         $data = $this->booksChangingTab($family_id);
-        $data['pictureBooks'] = $pictureBooks;
+        $data['readRecords'] = $readRecords;
 
         return view('families.read_record', $data);
     }

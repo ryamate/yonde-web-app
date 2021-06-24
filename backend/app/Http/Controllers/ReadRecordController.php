@@ -55,19 +55,19 @@ class ReadRecordController extends Controller
             $readRecord->tags()->attach($tag);
         });
 
-        return redirect()->route('families.index', ['id' => Auth::user()->family_id]);
+        return redirect()->route('families.read_record', ['id' => Auth::user()->family_id]);
     }
 
     /**
      * 読み聞かせ記録の編集画面表示
      */
-    public function edit(Request $request, ReadRecord $readRecord)
+    public function edit(ReadRecord $readRecord)
     {
-        $pictureBook = PictureBook::where('id', $request->picture_book_id)->first();
-        $children = Child::where('family_id', Auth::user()->family_id)->get();
-        $readRecord = $readRecord->find($readRecord->id);
+        $readRecord = ReadRecord::with('pictureBook', 'children', 'tags')->where('id', $readRecord->id)->first();
+        $pictureBook = $readRecord->pictureBook;
+        $children = $readRecord->children;
 
-        $childNames = $readRecord->children->map(function ($child) {
+        $childNames = $children->map(function ($child) {
             return [
                 'text' => $child->name,
                 'child_id' => $child->id,
@@ -86,12 +86,12 @@ class ReadRecordController extends Controller
         });
 
         return view('read_records.edit', [
+            'readRecord' => $readRecord,
             'pictureBook' => $pictureBook,
             'children' => $children,
-            'readRecord' => $readRecord,
-            'tagNames' => $tagNames,
             'childNames' => $childNames,
             'allChildNames' => $allChildNames,
+            'tagNames' => $tagNames,
         ]);
     }
 
@@ -119,15 +119,15 @@ class ReadRecordController extends Controller
         });
 
 
-        return redirect()->route('families.index', ['id' => Auth::user()->family_id]);
+        return redirect()->route('families.read_record', ['id' => Auth::user()->family_id]);
     }
 
     /**
-     * 登録絵本を削除する
+     * 読み聞かせ記録を削除する
      */
     public function destroy(ReadRecord $readRecord)
     {
         $readRecord->delete();
-        return redirect()->route('families.index', ['id' => Auth::user()->family_id]);
+        return redirect()->route('families.read_record', ['id' => Auth::user()->family_id]);
     }
 }

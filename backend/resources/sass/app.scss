@@ -64,11 +64,14 @@ body {
     text-align: justify;
 }
 
+.x-small {
+    font-size: x-small;
+}
+
 .book-cover {
     position: relative;
     // 周囲の影
-    box-shadow: 10px 15px 22px -5px rgba(0, 0, 0, 0.2),
-        0 0 2px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.2), 0 0 2px rgba(0, 0, 0, 0.15);
     border-radius: 2px;
     // 光沢と影を表現する
     &:after {
@@ -86,6 +89,9 @@ body {
             rgba(255, 255, 255, 0.5) 97%,
             rgba(255, 255, 255, 0) 100%
         );
+    }
+    &:hover {
+        box-shadow: 0px 1px 7px 0px #333;
     }
 }
 
@@ -123,13 +129,33 @@ body {
         &-next,
         &-prev {
             width: 5%;
-            background-color: white;
             &-teal {
                 width: 5%;
                 background-color: #9acac5;
             }
         }
     }
+}
+
+$carousel-indicator-length: 10px;
+
+.carousel-indicators {
+    & li {
+        border-radius: 50%;
+        margin: 1px 3px;
+        height: $carousel-indicator-length;
+        max-width: $carousel-indicator-length;
+    }
+}
+
+.card-img-overlay-ranking {
+    position: absolute;
+    top: -0.5rem;
+    right: 0;
+    bottom: 0;
+    left: -1rem;
+    padding: 0;
+    z-index: 1070;
 }
 
 // nav.blade.phpで使用

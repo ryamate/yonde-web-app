@@ -23,7 +23,7 @@
                         <input type="hidden" name="family_id" value="{{ $family_id }}">
                         <input type="hidden" name="email" value="{{ $email }}">
 
-                        <p style="font-size: 1px;">(<span class="text-danger">*</span>は必須項目です)</p>
+                        <p class="x-small">(<span class="text-danger">*</span>は必須項目です)</p>
 
                         <div class="form-group">
                             <label for="email">メールアドレス</label>

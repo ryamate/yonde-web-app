@@ -19,7 +19,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <p style="font-size: 1px;">(<span class="text-danger">*</span>は必須項目です)</p>
+                        <p class="x-small">(<span class="text-danger">*</span>は必須項目です)</p>
 
                         <div class="form-group">
                             <label for="email">メールアドレス</label><span class="text-danger">*</span>

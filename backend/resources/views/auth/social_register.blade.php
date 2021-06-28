@@ -19,7 +19,7 @@
                     <form method="POST" action="{{ route('register.{provider}', ['provider' => $provider]) }}">
                         @csrf
 
-                        <p style="font-size: 1px;">(<span class="text-danger">*</span>は必須項目です)</p>
+                        <p class="x-small">(<span class="text-danger">*</span>は必須項目です)</p>
 
                         <input type="hidden" name="token" value="{{ $token }}">
 

@@ -191,7 +191,8 @@
                                     <b>{{ $pictureBook->title }}</b>
                                 </p>
                             </a>
-                            <a href="" class=" card-text text-decoration-none">
+                            <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
+                                class=" card-text text-decoration-none">
                                 @if ($pictureBook->authors !== null)
                                 <p class="text-teal1 mb-0">
                                     {{ $pictureBook->authors }}
@@ -215,7 +216,8 @@
                                     <b>{{ $pictureBook->title }}</b>
                                 </p>
                             </a>
-                            <a href="" class=" card-text text-decoration-none">
+                            <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
+                                class=" card-text text-decoration-none">
                                 @if ($pictureBook->authors !== null)
                                 <p class="text-teal1 x-small font-weight-bold mb-0" style="line-height:14px;">
                                     {{ $pictureBook->authors }}
@@ -262,7 +264,8 @@
                                     <b>{{ $pictureBook->title }}</b>
                                 </p>
                             </a>
-                            <a href="" class=" card-text text-decoration-none">
+                            <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
+                                class=" card-text text-decoration-none">
                                 @if ($pictureBook->authors !== null)
                                 <p class="text-teal1 mb-0">
                                     {{ $pictureBook->authors }}
@@ -286,7 +289,8 @@
                                     <b>{{ $pictureBook->title }}</b>
                                 </p>
                             </a>
-                            <a href="" class=" card-text text-decoration-none">
+                            <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
+                                class=" card-text text-decoration-none">
                                 @if ($pictureBook->authors !== null)
                                 <p class="text-teal1 x-small font-weight-bold mb-0" style="line-height:14px;">
                                     {{ $pictureBook->authors }}

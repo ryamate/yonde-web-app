@@ -18,7 +18,8 @@
                     <b>{{ $pictureBook->title }}</b>
                 </p>
             </a>
-            <a href="" class="dropdown-item card-text text-decoration-none px-2 py-0 m-0">
+            <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
+                class="dropdown-item card-text text-decoration-none px-2 py-0 m-0">
                 @if ($pictureBook->authors !== null)
                 <p class="text-truncate text-teal1 x-small mb-0" style="line-height:14px; max-width:150px;">
                     {{ $pictureBook->authors }}

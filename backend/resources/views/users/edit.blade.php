@@ -71,7 +71,7 @@
                         <button type="submit"
                             class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-4"><b>変更する</b></button>
                         @else
-                        <a href="{{ route('users.show_setting', ['name' => Auth::user()->name]) }}"
+                        <a href="{{ route('users.show_setting') }}"
                             class="btn btn-block bg-white btn-outline-danger text-decoration-none text-danger mt-4">戻る</a>
                         @endif
 

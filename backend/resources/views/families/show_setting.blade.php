@@ -65,13 +65,13 @@
 
                     <div class="d-none d-sm-block col-3 mt-2">
                         <a class="btn btn-block bg-white btn-outline-teal1 text-teal1"
-                            href="{{ route('users.show_setting', ['name' => Auth::user()->name]) }}">
+                            href="{{ route('users.show_setting') }}">
                             <b>設定</b>
                         </a>
                     </div>
                     <div class="col-12 d-block d-sm-none pt-2 mb-4">
                         <a class="btn btn-block bg-white btn-outline-teal1 text-teal1"
-                            href="{{ route('users.show_setting', ['name' => Auth::user()->name]) }}">
+                            href="{{ route('users.show_setting') }}">
                             <b>プロフィール設定</b>
                         </a>
                     </div>

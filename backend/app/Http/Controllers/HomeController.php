@@ -31,9 +31,9 @@ class HomeController extends Controller
         // よみきかせ回数ランキング
         $readRecordRanking = $pictureBooks
             ->map(function ($item, $key) use ($pictureBooks) {
-                $sameBooks = $pictureBooks
+                $sameTitleBooks = $pictureBooks
                     ->where('google_books_id', $item->google_books_id);
-                $item->read_records_count = $sameBooks
+                $item->read_records_count = $sameTitleBooks
                     ->sum('read_records_count');
                 return $item;
             })

@@ -113,9 +113,9 @@ class UserController extends Controller
     /**
      * プロフィール設定画面表示
      */
-    public function showSetting(string $name)
+    public function showSetting()
     {
-        $user = User::where('name', $name)->firstOrFail();
+        $user = User::where('name', Auth::user()->name)->firstOrFail();
         $family = Family::with('users')->where('id', $user->family_id)->first();
         $familyUsers = $family->users->whereNotIn('id', $user->id)->sortBy('created_at');
 
@@ -168,8 +168,6 @@ class UserController extends Controller
 
         $user->fill($request->validated())->save();
 
-        return redirect()->route('users.show_setting', [
-            'name' => $user->name,
-        ]);
+        return redirect()->route('users.show_setting');
     }
 }

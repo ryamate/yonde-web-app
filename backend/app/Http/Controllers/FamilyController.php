@@ -120,9 +120,9 @@ class FamilyController extends Controller
     /**
      * 家族設定画面表示
      */
-    public function showSetting(string $family_id)
+    public function showSetting()
     {
-        $family = Family::with('users', 'children')->where('id', $family_id)->first();
+        $family = Family::with('users', 'children')->where('id', Auth::user()->family_id)->first();
         $user = User::where('id', Auth::id())->firstOrFail();
         $familyUsers = $family->users->whereNotIn('id', $user->id)->sortBy('created_at');
         $children = $family->children->sortBy('birthday');
@@ -155,9 +155,7 @@ class FamilyController extends Controller
         $family = Family::find($request->id);
         $family->fill($request->all())->save();
 
-        return redirect()->route('families.show_setting', [
-            'id' => Auth::user()->family_id,
-        ]);
+        return redirect()->route('families.show_setting');
     }
 
     // /**

@@ -38,34 +38,17 @@
     <div class="card shadow-sm">
         <div class="row no-gutters">
             {{-- thumbnail --}}
-            <div class="col-sm-2">
-                <div class="card-body mx-2 my-3 p-0 dropdown drop-hover">
-                    <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"
-                        onclick="location.href='{{ route('picture_books.show', ['picture_book' => $readRecord->pictureBook]) }}'">
-
-                        <div class="book-cover my-0">
-                            @if ($readRecord->pictureBook->thumbnail_url !== null)
-                            <img src="{{ $readRecord->pictureBook->thumbnail_url }}" alt="book-cover"
-                                class="book-cover-image my-0">
-                            @else
-                            <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image my-0">
-                            @endif
-                        </div>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-center mt-0 p-0 m-0 shadow small text-center border-0"
-                        aria-labelledby="dropdownMenuLink">
-                        <a href="{{ route('read_records.create', ['picture_book_id' => $readRecord->pictureBook->id]) }}"
-                            class="dropdown-item text-white bg-teal1 btn p-0">
-                            <span class="small">
-                                <i class="fas fa-plus"></i>
-                                <i class="fas fa-book-reader"></i>
-                                よんだよ
-                            </span>
-                        </a>
+            <div class="col-sm-2 d-flex justify-content-center align-items-top">
+                <a href="{{ route('picture_books.show', ['picture_book' => $readRecord->pictureBook]) }}" class="m-4">
+                    <div class="card-img-top book-cover m-auto">
+                        @if ($readRecord->pictureBook->thumbnail_url !== null)
+                        <img src="{{ $readRecord->pictureBook->thumbnail_url }}" alt="book-cover"
+                            class="book-cover-image">
+                        @else
+                        <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
+                        @endif
                     </div>
-                </div>
+                </a>
             </div>
 
             {{-- read record --}}
@@ -74,7 +57,7 @@
                     <div class="card-title mb-0 d-flex align-items-center flex-wrap small">
                         <a href="{{ route('picture_books.show', ['picture_book' => $readRecord->pictureBook]) }}"
                             class="text-teal1 mr-4"
-                            title="著者：{{ $readRecord->pictureBook->authors !== null ? $readRecord->pictureBook->authors : '' }}">
+                            title="作者：{{ $readRecord->pictureBook->authors !== null ? $readRecord->pictureBook->authors : '' }}">
                             <b>{{ $readRecord->pictureBook->title }}</b>
                         </a>
                         @if (Auth::user()->family_id === $readRecord->pictureBook->family_id)
@@ -88,15 +71,15 @@
                             </button>
 
                             <div class="dropdown-menu mr-0">
-                                <a class="dropdown-item small text-center"
+                                <a class="dropdown-item small text-center text-teal1"
                                     href="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}">
                                     <i class="fas fa-pen mr-1"></i>よんだよ記録を編集する
                                 </a>
 
                                 <div class="dropdown-divider"></div>
 
-                                <a class="dropdown-item text-danger small text-center" data-toggle="modal"
-                                    data-target="#modal-delete-{{ $readRecord->id }}">
+                                <a class="dropdown-item small text-center text-danger" data-toggle="modal"
+                                    data-target="#modal-delete-{{ $readRecord->id }}" style="cursor: pointer;">
                                     <i class="fas fa-eraser mr-1"></i>よんだよ記録を削除する
                                 </a>
                             </div>

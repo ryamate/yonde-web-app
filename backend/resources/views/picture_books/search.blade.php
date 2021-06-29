@@ -30,8 +30,13 @@
                 <p>書籍名を入力してください。</p>
             </div>
             @endif
-            <p>まずは絵本のタイトル、作家名、出版社名などを入力して検索してください。</p>
-            <p>例えば… パンやのろくちゃん や はらぺこあおむし など。</p>
+            <p>まずは絵本のタイトル、作家名などを入力して検索してください。</p>
+            <p>例えば…
+                <a href="{{ route('picture_books.search' , ['keyword' => 'はらぺこあおむし']) }}"
+                    class="text-teal1">はらぺこあおむし</a> や <a
+                    href="{{ route('picture_books.search' , ['keyword'=> 'エリック・カール']) }}"
+                    class="text-teal1">エリック・カール</a>
+                など。</p>
             <form action="{{ route('picture_books.search') }}" method="GET" class="form-inline">
                 @csrf
                 <div class="input-group">
@@ -102,7 +107,7 @@
                                 <div class="card-body">
                                     @auth
                                     @if ($family->isStoredBy($searchedBook))
-                                    <a class="btn btn-block btn-outline-teal1 text-teal1 shadow-sm"
+                                    <a class="btn btn-block btn-outline-teal1 text-teal1 bg-white shadow-sm"
                                         href="{{ route("picture_books.edit", ['picture_book' => $family->pictureBooks->firstWhere('google_books_id', $searchedBook->id)]) }}">
                                         <i class="fas fa-edit mr-1"></i>編集する
                                     </a>

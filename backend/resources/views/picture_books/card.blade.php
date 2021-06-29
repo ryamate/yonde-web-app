@@ -38,40 +38,23 @@
     <div class="card shadow-sm">
         <div class="row no-gutters">
             {{-- thumbnail --}}
-            <div class="col-sm-3">
-                <div class="card-body mx-2 my-3 p-0 dropdown drop-hover">
-                    <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false"
-                        onclick="location.href='{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}'">
-
-                        <div class="book-cover my-0">
-                            @if ($pictureBook->thumbnail_url !== null)
-                            <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image my-0">
-                            @else
-                            <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image my-0">
-                            @endif
-                        </div>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-center mt-0 p-0 m-0 shadow small text-center border-0"
-                        aria-labelledby="dropdownMenuLink">
-                        <a href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}"
-                            class="dropdown-item text-white bg-teal1 btn p-0">
-                            <span class="small">
-                                <i class="fas fa-plus"></i>
-                                <i class="fas fa-book-reader"></i>
-                                よんだよ
-                            </span>
-                        </a>
+            <div class="col-sm-3 d-flex justify-content-center align-items-top">
+                <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}" class="m-4">
+                    <div class="card-img-top book-cover m-auto">
+                        @if ($pictureBook->thumbnail_url !== null)
+                        <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
+                        @else
+                        <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
+                        @endif
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="col-sm-9 d-flex align-items-top">
-                <div class="card-body pt-3 pb-2">
-                    <div class="card-title mb-0">
+                <div class="card-body">
+                    <div class="card-title mb-0 d-flex align-items-center flex-wrap">
                         <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
-                            class="text-teal1">
+                            class="text-teal1 mr-2">
                             <b>{{ $pictureBook->title }}</b>
                         </a>
                         <span class="small">
@@ -81,47 +64,34 @@
                                 endpoint="{{ route('picture_books.like', ['picture_book' => $pictureBook]) }}">
                             </review-like>
                         </span>
-                    </div>
-                    <div class="card-text text-secondary small">
-                        <p class="mb-1">
-                            @if ($pictureBook->authors !== null)
-                            {{ $pictureBook->authors }}
-                            @endif
-                        </p>
-                    </div>
-
-                    <div class="card-title mb-0">
-                        <span>
-                            <b>絵本のレビュー</b>
-                        </span>
                         @if( Auth::user()->family_id === $pictureBook->family_id )
-                        <!-- dropdown -->
-                        <div class="btn-group dropright">
+                        <!-- dropdown (edit & delete) -->
+                        <div class="btn-group dropleft drop-hover d-flex ml-auto">
                             <button type="button" class="btn btn-sm btn-white dropdown-toggle pl-0 text-secondary"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span>
-                                    <i class="fas fa-edit mx-1"></i>
+                                <span class="mx-1">
+                                    <i class="fas fa-edit"></i>
                                 </span>
                             </button>
 
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item small"
+                            <div class="dropdown-menu mr-0">
+                                <a class="dropdown-item btn btn-sm text-center text-teal1"
+                                    href="{{ route("picture_books.edit", ['picture_book' => $pictureBook->id]) }}">
+                                    <i class="fas fa-book-reader mr-1"></i>よんだよ記録をする
+                                </a>
+
+                                <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item btn btn-white btn-sm text-center"
                                     href="{{ route("picture_books.edit", ['picture_book' => $pictureBook->id]) }}">
                                     <i class="fas fa-pen mr-1"></i>レビューを編集する
                                 </a>
 
                                 <div class="dropdown-divider"></div>
 
-                                <a class="dropdown-item small"
-                                    href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}">
-                                    <i class="fas fa-book-reader"></i>読み聞かせを記録する
-                                    ({{ count($pictureBook->readRecords )}}回)
-                                </a>
-
-                                <div class="dropdown-divider"></div>
-
-                                <a class="dropdown-item text-danger small" data-toggle="modal"
-                                    data-target="#modal-delete-{{ $pictureBook->id }}">
+                                <a class="dropdown-item btn btn-white btn-sm text-danger text-center"
+                                    data-toggle="modal" data-target="#modal-delete-{{ $pictureBook->id }}"
+                                    style="cursor: pointer;">
                                     <i class="fas fa-trash-alt mr-1"></i>本棚から削除する
                                 </a>
                             </div>
@@ -154,6 +124,19 @@
                         </div>
                         <!-- modal -->
                         @endif
+                    </div>
+                    <div class="card-text text-secondary small">
+                        <p class="mb-1">
+                            @if ($pictureBook->authors !== null)
+                            {{ $pictureBook->authors }}
+                            @endif
+                        </p>
+                    </div>
+
+                    <div class="card-title mb-0">
+                        <span>
+                            <b>絵本のレビュー</b>
+                        </span>
                     </div>
 
                     {{-- よみきかせ状況 --}}

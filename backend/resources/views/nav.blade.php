@@ -62,7 +62,7 @@
             {{-- setting family button --}}
             <div class="d-none d-md-block">
                 <li class="nav-item d-flex align-items-center justify-content-center">
-                    <a href="{{ route('families.show_setting', ['id' => Auth::user()->family_id]) }}" title="家族設定"
+                    <a href="{{ route('families.show_setting') }}" title="家族設定"
                         class="nav-link btn-light text-teal1 d-flex align-items-center justify-content-center mx-1"
                         style="width: 35px; height:35px; border-radius: 4px;"><i class="fas fa-cog fa-lg"></i></a>
                 </li>
@@ -150,7 +150,7 @@
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
                             <a href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}" title="家族の本棚"
-                                class="nav-link"><i class="fas fa-book"></i> <small>家族の本棚</small></a>
+                                class="nav-link"><i class="fas fa-book"></i><small>家族の本棚</small></a>
                         </li>
                     </div>
                     {{-- timeline button (toggle) --}}
@@ -172,8 +172,8 @@
                     {{-- setting profile button (toggle) --}}
                     <div class="col-6">
                         <li class="nav-item d-flex align-items-center">
-                            <a href="{{ route('families.show_setting', ['id' => Auth::user()->family_id]) }}"
-                                title="家族設定" class="nav-link"><i class="fas fa-cog"></i> <small>家族設定</small></a>
+                            <a href="{{ route('families.show_setting') }}" title="家族設定" class="nav-link"><i
+                                    class="fas fa-cog"></i> <small>家族設定</small></a>
                         </li>
                     </div>
                     {{-- home button (toggle) --}}
@@ -222,7 +222,7 @@
     style="background: linear-gradient(-135deg, #F1C565, #F2BF6C) fixed;">
     <small>
         <i class="fas fa-exclamation-triangle"></i>ご利用中のよんでIDは、メールアドレス認証がされていません。 <a
-            href="{{ route('users.show_setting', ['name' => Auth::user()->name]) }}">メールアドレス認証はこちら</a>
+            href="{{ route('users.show_setting') }}">メールアドレス認証はこちら</a>
     </small>
 </nav>
 @endif

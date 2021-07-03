@@ -40,6 +40,7 @@
                 'hasStored' => false,
                 'hasReadRecord' => true,
                 ])
+                @include('families.bookshelf_search_bar')
                 @foreach($readRecords as $readRecord)
                 @include('read_records.card')
                 @endforeach

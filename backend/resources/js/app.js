@@ -3,6 +3,7 @@ import Vue from 'vue'
 import ReviewLike from './components/ReviewLike'
 import ReadRecordTagsInput from './components/ReadRecordTagsInput'
 import ChildTagsInput from './components/ChildTagsInput'
+import BookshelfTagsInput from './components/BookshelfTagsInput'
 import FollowButton from './components/FollowButton'
 
 const app = new Vue({
@@ -11,6 +12,7 @@ const app = new Vue({
         ReviewLike,
         ReadRecordTagsInput,
         ChildTagsInput,
+        BookshelfTagsInput,
         FollowButton,
     }
 })

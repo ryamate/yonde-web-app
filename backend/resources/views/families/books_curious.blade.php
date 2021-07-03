@@ -38,9 +38,10 @@
                 </div>
                 @include('families.bookshelf_tabs', [
                 'hasStored' => false,
-                'hasCurious' => true,
                 'hasRead' => false,
+                'hasCurious' => true,
                 ])
+                @include('families.bookshelf_search_bar')
                 @include('families.bookshelf_card')
             </div>
         </div>

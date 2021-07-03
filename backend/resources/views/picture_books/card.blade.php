@@ -76,7 +76,7 @@
 
                             <div class="dropdown-menu mr-0">
                                 <a class="dropdown-item btn btn-sm text-center text-teal1"
-                                    href="{{ route("picture_books.edit", ['picture_book' => $pictureBook->id]) }}">
+                                    href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}">
                                     <i class="fas fa-book-reader mr-1"></i>よんだよ記録をする
                                 </a>
 

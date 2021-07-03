@@ -38,10 +38,12 @@
                 </div>
                 @include('families.bookshelf_tabs', [
                 'hasStored' => true,
-                'hasCurious' => false,
                 'hasRead' => false,
+                'hasCurious' => false,
                 ])
+                @include('families.bookshelf_search_bar')
                 @include('families.bookshelf_card')
+                {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
             </div>
         </div>
     </div>

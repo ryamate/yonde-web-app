@@ -8,17 +8,17 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link px-1 mx-1 pt-1 pb-0 shadow-sm btn btn-sm {{ $hasCurious ? 'active text-white btn-teal1' : 'btn-outline-teal1' }}"
-            href="{{ route('families.curious', ["id" => $family->id]) }}" style="border-radius: 12px">
-            <small>きになる絵本</small><br>
-            <b>{{ $curiousCount }}</b>
-        </a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link px-1 mx-1 pt-1 pb-0 shadow-sm btn btn-sm {{ $hasRead ? 'active text-white btn-teal1' : 'btn-outline-teal1' }}"
             href="{{ route('families.read', ["id" => $family->id]) }}" style="border-radius: 12px">
             <small>よんだ絵本</small><br>
             <b>{{ $readCount }}</b>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link px-1 mx-1 pt-1 pb-0 shadow-sm btn btn-sm {{ $hasCurious ? 'active text-white btn-teal1' : 'btn-outline-teal1' }}"
+            href="{{ route('families.curious', ["id" => $family->id]) }}" style="border-radius: 12px">
+            <small>きになる絵本</small><br>
+            <b>{{ $curiousCount }}</b>
         </a>
     </li>
 </ul>

@@ -32,6 +32,7 @@ Route::get('/email/verified', 'Auth\VerificationController@verified');
 
 Route::resource('/picture_books', 'PictureBookController')->except(['index', 'edit', 'destroy', 'update', 'show'])->middleware('auth');
 Route::prefix('picture_books')->name('picture_books.')->group(function () {
+    Route::get('/search_bookshelf', 'PictureBookController@searchBookshelf')->name('search_bookshelf');
     Route::get('/search', 'PictureBookController@search')->name('search');
     Route::get('/{picture_book}', 'PictureBookController@show')->name('show');
     Route::middleware('auth')->group(function () {

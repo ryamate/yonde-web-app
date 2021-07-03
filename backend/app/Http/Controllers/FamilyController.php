@@ -27,10 +27,9 @@ class FamilyController extends Controller
     {
         $data = $this->booksChangingTab($family_id);
         $pictureBooks = PictureBook::with('readRecords', 'user')
-            ->where('family_id', $family_id)
-            ->orderBy('updated_at', 'DESC');
+            ->where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
-        $data['pictureBooks'] = $pictureBooks->paginate(5);
+        $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(5);
 
         return view('families.index', $data);
     }
@@ -41,8 +40,7 @@ class FamilyController extends Controller
     public function readRecord(string $family_id)
     {
         $data = $this->booksChangingTab($family_id);
-        $pictureBooks = PictureBook::where('family_id', $family_id)
-            ->orderBy('updated_at', 'DESC');
+        $pictureBooks = PictureBook::where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['readRecords'] = ReadRecord::with('pictureBook', 'user', 'children')
             ->where('family_id', $family_id)
@@ -58,10 +56,9 @@ class FamilyController extends Controller
     public function bookshelf(string $family_id)
     {
         $data = $this->booksChangingTab($family_id);
-        $pictureBooks = PictureBook::where('family_id', $family_id)
-            ->orderBy('updated_at', 'DESC');
+        $pictureBooks = PictureBook::where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
-        $data['pictureBooks'] = $pictureBooks->paginate(30);
+        $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(30);
 
         return view('families.bookshelf', $data);
     }
@@ -72,10 +69,10 @@ class FamilyController extends Controller
     public function booksRead(string $family_id)
     {
         $data = $this->booksChangingTab($family_id);
-        $pictureBooks = PictureBook::where('family_id', $family_id)
-            ->orderBy('updated_at', 'DESC');
+        $pictureBooks = PictureBook::where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
-        $data['pictureBooks'] = $pictureBooks->where('read_status', '!=', 0)->paginate(30);
+        $data['pictureBooks'] = $pictureBooks->where('read_status', '!=', 0)
+            ->orderBy('updated_at', 'DESC')->paginate(30);
 
         return view('families.books_read', $data);
     }
@@ -86,11 +83,31 @@ class FamilyController extends Controller
     public function booksCurious(string $family_id)
     {
         $data = $this->booksChangingTab($family_id);
-        $pictureBooks = PictureBook::where('family_id', $family_id)->orderBy('updated_at', 'DESC');
+        $pictureBooks = PictureBook::where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
-        $data['pictureBooks'] = $pictureBooks->where('read_status', '=', 0)->paginate(30);
+        $data['pictureBooks'] = $pictureBooks->where('read_status', '=', 0)
+            ->orderBy('updated_at', 'DESC')->paginate(30);
 
         return view('families.books_curious', $data);
+    }
+
+    /**
+     * 登録絵本の詳細画面表示（家族の登録情報、読み聞かせ記録一覧）
+     */
+    public function show(string $family_id, PictureBook $pictureBook)
+    {
+        $data = $this->booksChangingTab($family_id);
+        $pictureBooks = PictureBook::with('readRecords', 'user')
+            ->where('family_id', $family_id);
+        $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
+
+        $data['pictureBook'] = $pictureBooks->where('id', $pictureBook->id)->first();
+        $data['readRecords'] = ReadRecord::with('pictureBook', 'user', 'children')
+            ->where('picture_book_id', $pictureBook->id)
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(10);
+
+        return view('families.show', $data);
     }
 
     /**

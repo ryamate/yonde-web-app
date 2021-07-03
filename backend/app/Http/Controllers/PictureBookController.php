@@ -79,7 +79,7 @@ class PictureBookController extends Controller
     }
 
     /**
-     * 登録絵本の詳細画面表示
+     * 登録絵本の詳細画面表示（全家族の登録情報集計、レビュー掲載）
      */
     public function show(PictureBook $pictureBook)
     {

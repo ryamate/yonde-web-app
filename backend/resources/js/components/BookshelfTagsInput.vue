@@ -1,26 +1,20 @@
 <template>
   <div>
-    <input
+      <input
       type="hidden"
-      name="children"
-      :value="tagsJson"
+      name="picture_book_id"
+      :value="tagsValue"
     >
     <vue-tags-input
       v-model="tag"
       :tags="tags"
-      placeholder="お子さまの追加"
+      placeholder="登録絵本のタイトル入力"
       :autocomplete-items="filteredItems"
       :add-only-from-autocomplete="true"
+      :max-tags="1"
       :add-on-key="[13, 32]"
-      :autocomplete-min-length="0"
       @tags-changed="newTags => tags = newTags"
-    >
-      <template slot="autocomplete-header">
-        <strong>　↓ お子さまを選んでください</strong>
-      </template>
-      <template slot="autocomplete-footer">
-      </template>
-    </vue-tags-input>
+    />
   </div>
 </template>
 
@@ -44,22 +38,26 @@ export default {
   data() {
     return {
       tag: '',
-      tags: this.initialTags,
+      tags: [],
     };
   },
   computed: {
-      filteredItems() {
+    filteredItems() {
       return this.autocompleteItems.filter(i => {
         return i.text.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1;
       });
     },
-    tagsJson() {
-      return JSON.stringify(this.tags)
+    tagsValue() {
+      return this.tags.map(function ( tag , index ) {
+        if ( index === 0 ) {
+            return tag['picture_book_id'];
+            };
+      });
+
     },
   },
 };
 </script>
-
 <style lang="css" scoped>
   .vue-tags-input {
     max-width: inherit;
@@ -67,12 +65,18 @@ export default {
 </style>
 <style lang="css">
   .vue-tags-input .ti-tag {
-    background: transparent;
+    background: #26a69a;
     border: 1px solid #26a69a;
-    color: #26a69a;
+    color: #fff;
     margin-right: 4px;
     padding: 6px;
-    border-radius: 5px;
+    border-radius: 3px;
     font-size: 13px;
+  }
+  .vue-tags-input .ti-autocomplete {
+    font-size: 12px;
+  }
+  .vue-tags-input .ti-item.ti-selected-item {
+    background: #26a69a;
   }
 </style>

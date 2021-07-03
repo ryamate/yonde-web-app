@@ -90,6 +90,18 @@ class PictureBookController extends Controller
         return view('picture_books.show', ['pictureBook' => $pictureBook]);
     }
 
+    /**
+     * 登録絵本から検索して、登録絵本情報を表示
+     */
+    public function searchBookshelf(Request $request)
+    {
+        if ($request->picture_book_id) {
+            return redirect()->route('picture_books.show', ['picture_book' => $request->picture_book_id]);
+        } else {
+            return redirect()->back();
+        }
+    }
+
 
     /**
      * 検索結果の一覧画面表示（Google Books APIから書籍情報取得）

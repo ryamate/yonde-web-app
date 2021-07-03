@@ -1,4 +1,4 @@
-<section class="pb-4 border-top">
+<section class="py-4">
     <div class="py-1">
         <a href="{{ route('users.show', ['name' => $readRecord->user->name]) }}" class="text-dark">
             @if ($readRecord->user->icon_path)
@@ -39,7 +39,10 @@
         <div class="row no-gutters">
             {{-- thumbnail --}}
             <div class="col-sm-2 d-flex justify-content-center align-items-top">
-                <a href="{{ route('picture_books.show', ['picture_book' => $readRecord->pictureBook]) }}" class="m-4">
+                <a href="{{ route('families.show', [
+                                        'id' => Auth::user()->family_id,
+                                        'picture_book' => $readRecord->pictureBook,
+                                        ]) }}" class="m-4">
                     <div class="card-img-top book-cover m-auto">
                         @if ($readRecord->pictureBook->thumbnail_url !== null)
                         <img src="{{ $readRecord->pictureBook->thumbnail_url }}" alt="book-cover"
@@ -70,17 +73,24 @@
                                 </span>
                             </button>
 
-                            <div class="dropdown-menu mr-0">
+                            <div class="dropdown-menu mr-0 pt-0">
+                                <a class="dropdown-item bg-teal1 text-white small text-center py-2"
+                                    href="{{ route('read_records.create', ['picture_book_id' => $readRecord->picture_book_id]) }}">
+                                    <i class="fas fa-book-reader mr-1"></i><b>よんだよ</b>
+                                </a>
+
+                                <div class="dropdown-divider mt-0"></div>
+
                                 <a class="dropdown-item small text-center text-teal1"
                                     href="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}">
-                                    <i class="fas fa-pen mr-1"></i>よんだよ記録を編集する
+                                    <i class="fas fa-pen mr-1"></i>よんだよ編集
                                 </a>
 
                                 <div class="dropdown-divider"></div>
 
                                 <a class="dropdown-item small text-center text-danger" data-toggle="modal"
                                     data-target="#modal-delete-{{ $readRecord->id }}" style="cursor: pointer;">
-                                    <i class="fas fa-eraser mr-1"></i>よんだよ記録を削除する
+                                    <i class="fas fa-eraser mr-1"></i>よんだよ削除
                                 </a>
                             </div>
                         </div>

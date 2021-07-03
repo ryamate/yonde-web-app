@@ -1,4 +1,4 @@
-<section class="pb-4 border-top">
+<section class="py-4">
     <div class="py-1">
         <a href="{{ route('users.show', ['name' => $pictureBook->user->name]) }}" class="text-dark">
             @if ($pictureBook->user->icon_path)
@@ -39,7 +39,10 @@
         <div class="row no-gutters">
             {{-- thumbnail --}}
             <div class="col-sm-3 d-flex justify-content-center align-items-top">
-                <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}" class="m-4">
+                <a href="{{ route('families.show', [
+                                        'id' => Auth::user()->family_id,
+                                        'picture_book' => $pictureBook,
+                                        ]) }}" class="m-4">
                     <div class="card-img-top book-cover m-auto">
                         @if ($pictureBook->thumbnail_url !== null)
                         <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">

@@ -1,5 +1,5 @@
 <div class="pb-4">
-    <div class="dropdown drop-hover mx-2 mb-4 pt-2 pb-1">
+    <div class="dropdown drop-hover mx-2 mt-2 mb-4">
         <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
             onclick="location.href='{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}'">
             <div class="card-img-top book-cover my-auto">
@@ -11,7 +11,7 @@
             </div>
         </a>
 
-        <div class="dropdown-menu dropdown-menu-center p-0 m-0 shadow text-center" aria-labelledby="dropdownMenuLink">
+        <div class="dropdown-menu p-0 m-0 shadow" aria-labelledby="dropdownMenuLink">
             <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
                 class="dropdown-item card-title text-decoration-none px-2 py-0 m-0">
                 <p class="text-truncate text-dark x-small mb-0" style="line-height:14px; max-width:150px;">

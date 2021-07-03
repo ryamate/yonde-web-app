@@ -42,6 +42,9 @@
                 ])
                 @include('families.bookshelf_search_bar')
                 @foreach($readRecords as $readRecord)
+                @if (!$loop->first)
+                <div class="border-top"></div>
+                @endif
                 @include('read_records.card')
                 @endforeach
                 {{ $readRecords->links( 'vendor.pagination.bootstrap-4_teal' ) }}

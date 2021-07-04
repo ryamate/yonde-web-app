@@ -6,6 +6,25 @@
 
 @include('nav')
 
+<header>
+    <div class="bg-light">
+        <div class="container" style="max-width: 900px;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-light small pl-0 mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('home') }}" class="text-teal1">
+                            よんで
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {{ $family->name }}ファミリーの家族設定
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
 <div class="bg-light pb-4">
     <div class="container" style="padding-top: 75px; max-width: 540px;">
         <h2>家族設定</h2>
@@ -21,10 +40,12 @@
                     <b>＋招待する</b>
                 </a>
             </div>
-
-
         </div>
         <img src="{{ asset('image/setting_family.png') }}" class="img-fluid mx-auto d-block" alt="" width="80%">
+        @include('families.setting_tabs', [
+        'hasUser' => false,
+        'hasFamily' => true,
+        ])
         <div class="card mt-2 p-4 shadow-sm">
             <div class="card-body pt-0">
                 <p class="card-title text-secondary">ファミリーネーム</p>
@@ -53,7 +74,7 @@
                             @endif
                         </a>
                     </div>
-                    <div class="col-6">
+                    <div class="col-9">
                         <a href="{{ route("users.show", ["name" => Auth::user()->name]) }}"
                             class="card-text text-teal1 text-decoration-none h5">
                             <b>{{ $user->nickname }}</b>
@@ -61,19 +82,6 @@
                         <p class="card-text small text-secondary">
                             {{ $user->relation }}
                         </p>
-                    </div>
-
-                    <div class="d-none d-sm-block col-3 mt-2">
-                        <a class="btn btn-block bg-white btn-outline-teal1 text-teal1"
-                            href="{{ route('users.show_setting') }}">
-                            <b>設定</b>
-                        </a>
-                    </div>
-                    <div class="col-12 d-block d-sm-none pt-2 mb-4">
-                        <a class="btn btn-block bg-white btn-outline-teal1 text-teal1"
-                            href="{{ route('users.show_setting') }}">
-                            <b>プロフィール設定</b>
-                        </a>
                     </div>
                 </div>
 
@@ -92,7 +100,7 @@
                             @endif
                         </a>
                     </div>
-                    <div class="col-6 mt-3">
+                    <div class="col-9 mt-3">
                         <a href="{{ route("users.show", ["name" => $familyUser->name]) }}"
                             class="card-text text-teal1 text-decoration-none h5">
                             {{ $familyUser->nickname }}

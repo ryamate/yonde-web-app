@@ -47,7 +47,7 @@ class ChildController extends Controller
         $child->family_id = Auth::user()->family_id;
         $child->save();
 
-        return redirect()->route('families.show_setting');
+        return redirect()->route('families.setting');
     }
 
     /**
@@ -71,7 +71,7 @@ class ChildController extends Controller
         $child->fill($request->all());
         $child->save();
 
-        return redirect()->route('families.show_setting');
+        return redirect()->route('families.setting');
     }
 
     /**
@@ -82,6 +82,6 @@ class ChildController extends Controller
         $child = Child::find($child_id);
         $child->delete();
 
-        return redirect()->route('families.show_setting');
+        return redirect()->route('families.setting');
     }
 }

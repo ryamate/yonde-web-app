@@ -6,8 +6,27 @@
 
 @include('nav')
 
-<div class="bg-light pb-4">
-    <div class="container" style="padding-top: 75px; max-width: 540px;">
+<header>
+    <div class="bg-light">
+        <div class="container" style="max-width: 900px;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-light small pl-0 mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="{{ route('home') }}" class="text-teal1">
+                            よんで
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        {{ $user->name }}さんのプロフィール設定
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="bg-light py-4">
+    <div class="container" style="max-width: 540px;">
         @if (Auth::user()->email_verified_at === null)
         <div class="mb-4">
             <h2>認証用メールの送信</h2>
@@ -36,6 +55,10 @@
         @endif
 
         <h2>プロフィール設定</h2>
+        @include('families.setting_tabs', [
+        'hasUser' => true,
+        'hasFamily' => false,
+        ])
         <div class="card p-4 shadow-sm">
             <div class="card-body">
                 <p class="card-title text-secondary">よんでID</p>

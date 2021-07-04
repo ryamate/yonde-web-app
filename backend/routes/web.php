@@ -50,7 +50,7 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/edit', 'UserController@edit')->name('edit');
         Route::post('/update', 'UserController@update')->name('update');
-        Route::get('/setting_profile', 'UserController@showSetting')->name('show_setting');
+        Route::get('/setting_profile', 'UserController@settingProfile')->name('setting_profile');
         Route::get('/{name}', 'UserController@show')->name('show');
         Route::get('/{name}/likes', 'UserController@likes')->name('likes');
         Route::get('/{name}/followings', 'UserController@followings')->name('followings');
@@ -66,7 +66,7 @@ Route::prefix('families')->name('families.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/edit', 'FamilyController@edit')->name('edit');
         Route::post('/update', 'FamilyController@update')->name('update');
-        Route::get('/setting_family', 'FamilyController@showSetting')->name('show_setting');
+        Route::get('/setting', 'FamilyController@setting')->name('setting');
         Route::get('/{id}', 'FamilyController@index')->name('index');
         Route::get('/{id}/bookshelf', 'FamilyController@bookshelf')->name('bookshelf');
         Route::get('/{id}/curious', 'FamilyController@booksCurious')->name('curious');

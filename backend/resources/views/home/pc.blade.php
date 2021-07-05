@@ -1,28 +1,32 @@
-<div class="py-4" style="background:url(image/home_register.jpg) center no-repeat; background-size: cover;">
+<div class="py-4" style="background:url(image/home_top_pc.jpg) center no-repeat; background-size: cover;">
     <div class="container py-4">
         <div class="row">
             <div class="col-5"></div>
-            <div class="col-7 rounded" style="background:rgba(255,255,255,0.7);">
-                <h3 class="d-none d-lg-block px-2 pt-4 pb-2 mt-2">
-                    <b>こどもの「よんで」に<br>
-                        いつでもこたえてあげる気持ちになる</b>
+            <div class="col-7 rounded" style="background:rgba(255,255,255,0.6);">
+                <h2 class="d-none d-xl-block pl-3 pr-1 pt-4 pb-2 mt-4 text-shadow">
+                    <p class="pt-4 mb-1">こどもの「よんで」に</p>
+                    <p> いつでもこたえてあげる気持ちになる</p>
+                </h2>
+                <h3 class="d-none d-lg-block d-xl-none px-2 pt-4 pb-2 mt-4 text-shadow">
+                    こどもの「よんで」に<br>
+                    いつでもこたえてあげる気持ちになる
                 </h3>
-                <h5 class="d-block d-lg-none pt-4">
-                    <b>こどもの「よんで」に<br>
-                        いつでもこたえてあげる気持ちになる</b>
+                <h5 class="d-none d-md-block d-lg-none pt-4 text-shadow">
+                    こどもの「よんで」に<br>
+                    いつでもこたえてあげる気持ちになる
                 </h5>
                 @guest
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('register') }}"
-                        class="btn btn-lg btn-warning text-white mb-4 shadow-sm rounded-pill">
-                        <span class="px-4"><b>本棚をつくる</b></span>
+                        class="btn btn-lg btn-warning text-white mb-4 shadow-sm rounded-pill text-shadow">
+                        <span class="px-4">本棚をつくる</span>
                     </a>
                 </div>
                 @endguest
                 @auth
                 <div class="d-flex justify-content-center px-auto">
                     <a href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}"
-                        class="btn btn-teal1 btn-lg mb-4 shadow rounded-pill">
+                        class="btn btn-teal1 btn-lg mb-4 shadow rounded-pill text-shadow">
                         <span class="px-4 mx-4">本棚をみる</span>
                     </a>
                 </div>
@@ -171,7 +175,15 @@
                                 @if ($pictureBook->thumbnail_url !== null)
                                 <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
                                 @else
-                                <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
+                                <div class="no-image-background book-cover-image">
+                                    <div class="no-image-title">
+                                        <div class="ml-3 mr-2">
+                                            <p class="text-dark text-shadow x-small mb-0" style="line-height:14px;">
+                                                {{ $pictureBook->title }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                                 @endif
                                 @include('home.ranking_mark')
 
@@ -214,7 +226,15 @@
                             @if ($pictureBook->thumbnail_url !== null)
                             <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image my-0">
                             @else
-                            <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image my-0">
+                            <div class="no-image-background book-cover-image">
+                                <div class="no-image-title">
+                                    <div class="ml-3 mr-2">
+                                        <p class="text-shadow x-small mb-0" style="line-height:14px;">
+                                            {{ $pictureBook->title }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                             @endif
                             @include('home.ranking_mark')
                         </div>

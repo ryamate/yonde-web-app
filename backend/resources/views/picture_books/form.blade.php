@@ -46,9 +46,8 @@
 
     <div class="form-group">
         <label for="review">レビュー・感想</label>
-        <textarea type="text" name="review" id="review" rows="5" class="form-control">
-            {{ $pictureBook->review ?? old('review') }}
-        </textarea>
+        <textarea type="text" name="review" id="review" rows="5"
+            class="form-control">{{ $pictureBook->review ?? old('review') }}</textarea>
         <ul class="text-dark small">
             <li>1000文字以内</li>
         </ul>

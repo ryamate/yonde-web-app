@@ -48,13 +48,21 @@
                 <a href="{{ route('families.show', [
                                         'id' => Auth::user()->family_id,
                                         'picture_book' => $readRecord->pictureBook,
-                                        ]) }}" class="m-4">
+                                        ]) }}" class="m-4 text-decoration-none">
                     <div class="card-img-top book-cover m-auto">
                         @if ($readRecord->pictureBook->thumbnail_url !== null)
                         <img src="{{ $readRecord->pictureBook->thumbnail_url }}" alt="book-cover"
                             class="book-cover-image">
                         @else
-                        <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
+                        <div class="no-image-background book-cover-image">
+                            <div class="no-image-title">
+                                <div class="ml-3 mr-2">
+                                    <p class="text-white text-shadow x-small mb-0" style="line-height:14px;">
+                                        no-image
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                         @endif
                     </div>
                 </a>

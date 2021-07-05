@@ -68,6 +68,10 @@ body {
     font-size: x-small;
 }
 
+.text-shadow {
+    text-shadow: 1px 2px 3px #808080;
+}
+
 .book-cover {
     position: relative;
     // 周囲の影
@@ -106,6 +110,28 @@ body {
         max-width: 180px;
         border-radius: 2px;
     }
+}
+
+// サムネイルがない場合に配置する
+.no-image-background {
+  background-color: #A6EBE4;
+  width: 100%;
+  max-width: 180px;
+  margin: 0 auto;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ position: relative;
+}
+.no-image-background:before {
+   display: block;
+   content: '';
+   padding-top: 100%;
+}
+.no-image-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 // home.blade.phpで使用

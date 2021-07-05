@@ -96,7 +96,10 @@ class PictureBookController extends Controller
     public function searchBookshelf(Request $request)
     {
         if ($request->picture_book_id) {
-            return redirect()->route('families.show', ['picture_book' => $request->picture_book_id]);
+            return redirect()->route('families.show', [
+                'id' => Auth::user()->family_id,
+                'picture_book' => $request->picture_book_id
+            ]);
         } else {
             return redirect()->back();
         }
@@ -112,10 +115,8 @@ class PictureBookController extends Controller
         $paginatedSearchedBooks = null;
 
         if (!empty($request->keyword)) {
-
             $books = new GoogleBooks(['maxResults' => 30]);
             $searchedBooks = collect($books->volumes->search($request->keyword));
-
             //独自ページネータ
             $paginatedSearchedBooks = new LengthAwarePaginator(
                 $searchedBooks->forPage($request->page, 10),
@@ -132,6 +133,48 @@ class PictureBookController extends Controller
         } else {
             $family = '';
         }
+
+        $pictureBooks = PictureBook::with('readRecords')
+            ->withCount('readRecords')->get();
+
+        // 本棚登録数付加
+        $searchedBooks = $searchedBooks
+            ->map(function ($searchedBook) use ($pictureBooks) {
+                $searchedBook->stored_count = $pictureBooks
+                    ->where('google_books_id', $searchedBook->id)->count();
+                return $searchedBook;
+            });
+
+        // よみきかせ回数付加
+        $searchedBooks = $searchedBooks
+            ->map(function ($searchedBook) use ($pictureBooks) {
+                $sameTitleBooks = $pictureBooks
+                    ->where('google_books_id', $searchedBook->id);
+                $searchedBook->read_records_count = $sameTitleBooks
+                    ->sum('read_records_count');
+                return $searchedBook;
+            });
+
+        // 評価平均付加
+        $searchedBooks = $searchedBooks
+            ->map(function ($searchedBook) use ($pictureBooks) {
+                $searchedBook->five_star_avg = round($pictureBooks
+                    ->where('google_books_id', $searchedBook->id)
+                    ->Where('five_star_rating', '!=', 0)
+                    ->avg('five_star_rating'), 2, PHP_ROUND_HALF_UP);
+                return $searchedBook;
+            });
+
+        // レビュー数付加
+        $searchedBooks = $searchedBooks
+            ->map(function ($searchedBook) use ($pictureBooks) {
+                $searchedBook->review_count = $pictureBooks
+                    ->where('google_books_id', $searchedBook->id)
+                    ->whereNotNull('review')
+                    ->count();
+                return $searchedBook;
+            });
+
 
         $data = [
             'searchedBooks' => $paginatedSearchedBooks,

@@ -1,30 +1,30 @@
-<div class="py-2" style="background:url(image/home_register02.jpg) center no-repeat; background-size: cover;">
+<div class="py-2" style="background:url(image/home_top_phone.jpg) center no-repeat; background-size: cover;">
     <div class="container py-2">
         <div class="row">
             <div class="col-4"></div>
             <div class="col-8 rounded" style="background:rgba(255,255,255,0.7);">
-                <h5 class="d-none d-sm-block pt-2 mb-1 text-center">
-                    <b>こどもの「よんで」に<br>
-                        いつでもこたえてあげる<br>
-                        気持ちになる</b>
+                <h5 class="d-none d-sm-block pt-2 mb-1 text-center text-shadow">
+                    こどもの「よんで」に<br>
+                    いつでもこたえてあげる<br>
+                    気持ちになる
                 </h5>
-                <p class="d-block d-sm-none pt-1 mb-1 text-center" style="font-size: 14px">
-                    <b>こどもの「よんで」に<br>
-                        いつでもこたえてあげる<br>
-                        気持ちになる</b>
+                <p class="d-block d-sm-none pt-1 mb-1 text-center text-shadow" style="font-size: 14px">
+                    こどもの「よんで」に<br>
+                    いつでもこたえてあげる<br>
+                    気持ちになる
                 </p>
                 @guest
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('register') }}"
-                        class="btn btn-block btn-warning text-white mb-2 shadow-sm rounded-pill">
-                        <span><b>本棚をつくる</b></span>
+                        class="btn btn-block btn-warning text-white mb-2 shadow-sm rounded-pill text-shadow">
+                        <span>本棚をつくる</span>
                     </a>
                 </div>
                 @endguest
                 @auth
                 <div class="d-flex justify-content-center px-auto">
                     <a href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}"
-                        class="btn btn-block btn-teal1 mb-2 shadow rounded-pill">
+                        class="btn btn-block btn-teal1 mb-2 shadow rounded-pill text-shadow">
                         <span>本棚をみる</span>
                     </a>
                 </div>
@@ -200,14 +200,21 @@
         <div class="container">
             <div class="row">
                 @foreach($storedCountRanking as $pictureBook)
-
                 <div class="col-3 mb-1 pl-0">
                     <div class="card border-0 py-2">
                         <div class="card-img-top book-cover my-auto">
                             @if ($pictureBook->thumbnail_url !== null)
                             <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
                             @else
-                            <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
+                            <div class="no-image-background book-cover-image">
+                                <div class="no-image-title">
+                                    <div class="ml-3 mr-2">
+                                        <p class="text-white text-shadow x-small mb-0" style="line-height:14px;">
+                                            no-image
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                             @endif
                             @include('home.ranking_mark')
                         </div>
@@ -219,14 +226,14 @@
                         <div class="card-body p-0 mt-1">
                             <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
                                 class="card-title text-decoration-none">
-                                <p class="text-dark mb-0">
+                                <p class="text-teal1 mb-0">
                                     <b>{{ $pictureBook->title }}</b>
                                 </p>
                             </a>
                             <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
                                 class=" card-text text-decoration-none">
                                 @if ($pictureBook->authors !== null)
-                                <p class="text-teal1 mb-0">
+                                <p class="text-dark mb-0">
                                     {{ $pictureBook->authors }}
                                 </p>
                                 @endif
@@ -244,14 +251,14 @@
                         <div class="card-body p-0 mt-1">
                             <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
                                 class="card-title text-decoration-none">
-                                <p class="text-dark small mb-0" style="line-height:18px;">
+                                <p class="text-teal1 small mb-0" style="line-height:18px;">
                                     <b>{{ $pictureBook->title }}</b>
                                 </p>
                             </a>
                             <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
                                 class=" card-text text-decoration-none">
                                 @if ($pictureBook->authors !== null)
-                                <p class="text-teal1 x-small font-weight-bold mb-0" style="line-height:14px;">
+                                <p class="text-dark x-small font-weight-bold mb-0" style="line-height:14px;">
                                     {{ $pictureBook->authors }}
                                 </p>
                                 @endif
@@ -273,14 +280,21 @@
         <div class="container">
             <div class="row">
                 @foreach($readRecordRanking as $pictureBook)
-
                 <div class="col-3 mb-1 pl-0">
                     <div class="card border-0 py-2">
                         <div class="card-img-top book-cover my-auto">
                             @if ($pictureBook->thumbnail_url !== null)
                             <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
                             @else
-                            <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
+                            <div class="no-image-background book-cover-image">
+                                <div class="no-image-title">
+                                    <div class="ml-3 mr-2">
+                                        <p class="text-white text-shadow x-small mb-0" style="line-height:14px;">
+                                            no-image
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                             @endif
                             @include('home.ranking_mark')
                         </div>
@@ -292,14 +306,14 @@
                         <div class="card-body p-0 mt-1">
                             <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
                                 class="card-title text-decoration-none">
-                                <p class="text-dark mb-0">
+                                <p class="text-teal1 mb-0">
                                     <b>{{ $pictureBook->title }}</b>
                                 </p>
                             </a>
                             <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
                                 class=" card-text text-decoration-none">
                                 @if ($pictureBook->authors !== null)
-                                <p class="text-teal1 mb-0">
+                                <p class="text-dark mb-0">
                                     {{ $pictureBook->authors }}
                                 </p>
                                 @endif
@@ -317,14 +331,14 @@
                         <div class="card-body p-0 mt-1">
                             <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
                                 class="card-title text-decoration-none">
-                                <p class="text-dark small mb-0" style="line-height:18px;">
+                                <p class="text-teal1 small mb-0" style="line-height:18px;">
                                     <b>{{ $pictureBook->title }}</b>
                                 </p>
                             </a>
                             <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
                                 class=" card-text text-decoration-none">
                                 @if ($pictureBook->authors !== null)
-                                <p class="text-teal1 x-small font-weight-bold mb-0" style="line-height:14px;">
+                                <p class="text-dark x-small font-weight-bold mb-0" style="line-height:14px;">
                                     {{ $pictureBook->authors }}
                                 </p>
                                 @endif

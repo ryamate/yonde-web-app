@@ -49,12 +49,6 @@
                         <input type="hidden" name="thumbnail_url" value="{{ $pictureBook->thumbnail_url }}" />
                     </form>
                 </div>
-                <div class="card-text">
-                    <a href="{{ route('picture_books.search') }}"
-                        class="btn btn-block btn-outline-secondary bg-white text-decoration-none text-secondary mt-4">
-                        <i class="fas fa-chevron-circle-left mr-1"></i>戻る
-                    </a>
-                </div>
             </div>
         </section>
     </div>

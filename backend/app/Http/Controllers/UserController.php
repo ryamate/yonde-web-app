@@ -111,7 +111,7 @@ class UserController extends Controller
     }
 
     /**
-     * プロフィール設定画面表示
+     * ユーザープロフィール設定画面表示
      */
     public function settingProfile()
     {
@@ -127,7 +127,7 @@ class UserController extends Controller
     }
 
     /**
-     * プロフィール編集画面表示
+     * ユーザープロフィール編集画面表示
      */
     public function edit()
     {
@@ -139,7 +139,7 @@ class UserController extends Controller
     }
 
     /**
-     * プロフィール設定更新する
+     * ユーザープロフィール設定更新する
      */
     public function update(UserRequest $request)
     {

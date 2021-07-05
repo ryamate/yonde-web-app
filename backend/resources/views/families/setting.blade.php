@@ -113,7 +113,7 @@
                 @endforeach
 
                 <a class="btn bg-white text-decoration-none text-teal1 mt-4" href="{{ route('invite') }}">
-                    ＋ 家族を招待する
+                    <i class="fas fa-plus mr-1"></i>家族を招待する
                 </a>
             </div>
 
@@ -143,8 +143,8 @@
                     </div>
                 </div>
                 @endforeach
-                <a class="btn bg-white text-decoration-none text-teal1 mt-4" href="{{ route('children.create') }}">
-                    ＋ お子さまを追加する
+                <a class="btn bg-white text-decoration-none text-teal1 px-0 mt-4" href="{{ route('children.create') }}">
+                    <i class="fas fa-plus mr-1"></i>お子さまを追加する
                 </a>
             </div>
 

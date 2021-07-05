@@ -96,7 +96,7 @@ class PictureBookController extends Controller
     public function searchBookshelf(Request $request)
     {
         if ($request->picture_book_id) {
-            return redirect()->route('picture_books.show', ['picture_book' => $request->picture_book_id]);
+            return redirect()->route('families.show', ['picture_book' => $request->picture_book_id]);
         } else {
             return redirect()->back();
         }

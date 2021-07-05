@@ -24,7 +24,7 @@
                 <div class="col-sm-6">
                     <div class="card border-0" style="background-color: transparent">
                         <div class="card-body py-0">
-                            <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}">
+                            <a href="{{ route('families.show', ['picture_book' => $pictureBook]) }}">
                                 <div class="book-cover">
                                     @if ($pictureBook->thumbnail_url !== null)
                                     <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover"
@@ -41,7 +41,7 @@
 
                 <div class="col-sm-6 d-flex align-items-center">
                     <div class="card-body text-center">
-                        <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
+                        <a href="{{ route('families.show', ['picture_book' => $pictureBook]) }}"
                             class="card-title text-teal1 h5"><b>{{ $pictureBook->title }}</b></a>
                         <div class="card-text text-secondary small">
                             <p>

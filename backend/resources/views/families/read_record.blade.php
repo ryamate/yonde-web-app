@@ -29,7 +29,7 @@
     <div class="container">
         <div class="row">
             <div class="container" style="max-width: 900px;">
-                <div class="card shadow-sm">
+                <div class="card">
                     @include('families.family_card')
                     @include('families.tabs', [
                     'hasBookshelf' => false,

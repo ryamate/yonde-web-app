@@ -17,7 +17,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $user->name }}さんのプロフィール設定
+                        {{ $user->nickname }}さんのプロフィール設定
                     </li>
                 </ol>
             </nav>

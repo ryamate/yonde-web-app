@@ -14,14 +14,20 @@
         @if ($readRecord->pictureBook->created_at == $readRecord->pictureBook->updated_at)
         <span class="text-muted small">
             さんが『
-            <a href="{{ route('picture_books.show', ['picture_book' => $readRecord->pictureBook]) }}"
+            <a href="{{ route('families.show', [
+                                        'id' => Auth::user()->family_id,
+                                        'picture_book' => $readRecord->pictureBook,
+                                        ]) }}"
                 class="card-title text-teal1"><b>{{ $readRecord->pictureBook->title }}</b></a>
             』の読み聞かせ記録をしました。
         </span>
         @else
         <span class="text-muted small">
             さんが『
-            <a href="{{ route('picture_books.show', ['picture_book' => $readRecord->pictureBook]) }}"
+            <a href="{{ route('families.show', [
+                                        'id' => Auth::user()->family_id,
+                                        'picture_book' => $readRecord->pictureBook,
+                                        ]) }}"
                 class="card-title text-teal1"><b>{{ $readRecord->pictureBook->title }}</b></a>
             』の読み聞かせ記録を更新しました。
         </span>
@@ -58,8 +64,10 @@
             <div class="col-sm-10 d-flex align-items-top">
                 <div class="card-body pt-3 pb-2">
                     <div class="card-title mb-0 d-flex align-items-center flex-wrap small">
-                        <a href="{{ route('picture_books.show', ['picture_book' => $readRecord->pictureBook]) }}"
-                            class="text-teal1 mr-4"
+                        <a href="{{ route('families.show', [
+                                        'id' => Auth::user()->family_id,
+                                        'picture_book' => $readRecord->pictureBook,
+                                        ]) }}" class="text-teal1 mr-4"
                             title="作者：{{ $readRecord->pictureBook->authors !== null ? $readRecord->pictureBook->authors : '' }}">
                             <b>{{ $readRecord->pictureBook->title }}</b>
                         </a>

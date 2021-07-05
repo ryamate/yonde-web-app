@@ -50,7 +50,7 @@
                             </h4>
                         </div>
                         <div class="container p-2">
-                            <p>Web上の絵本棚にいれた本の、読み聞かせ記録・管理をして、家族と共有できるサービスです。</p>
+                            <p>Web上の本棚にいれた絵本の、読み聞かせ記録・管理をして、家族と共有できるサービスです。</p>
                             <div class="text-center">
                                 <a href="{{ route('register') }}"
                                     class="btn btn-block btn-warning mt-2 mb-2 rounded-pill text-white"
@@ -228,16 +228,16 @@
             {{-- pc --}}
             <div class="text-center d-none d-md-block border-bottom pb-4 mx-5">
                 <a href="{{ route('login.guest') }}" class="btn btn-outline-info mt-2 mb-2" role="button"
-                    style="border-radius: 24px">
-                    　　　サンプル絵本棚をみてみる　　<i class="fas fa-chevron-right"></i>
+                    style="border-radius: 24px" title="ゲストユーザーとしてログイン">
+                    　　　サンプル本棚をみてみる　　<i class="fas fa-chevron-right"></i>
                 </a>
             </div>
             {{-- smart phone --}}
             <div class="container">
                 <div class="text-center d-block d-md-none border-bottom py-4">
                     <a href="{{ route('login.guest') }}" class="btn btn-block btn-outline-info mt-2 mb-2 rounded-pill"
-                        role="button">
-                        　　サンプル絵本棚をみてみる　<i class="fas fa-chevron-right"></i>
+                        role="button" title="ゲストユーザーとしてログイン">
+                        　　サンプルの本棚をみてみる　<i class="fas fa-chevron-right"></i>
                     </a>
                 </div>
             </div>

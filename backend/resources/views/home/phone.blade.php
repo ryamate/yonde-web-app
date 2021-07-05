@@ -1,6 +1,38 @@
-<a href="{{ route('register') }}">
-    <img src="{{ asset('image/carousel-register02.jpg') }}" class="d-block img-fluid" alt="">
-</a>
+<div class="py-2" style="background:url(image/home_register02.jpg) center no-repeat; background-size: cover;">
+    <div class="container py-2">
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-8 rounded" style="background:rgba(255,255,255,0.7);">
+                <h5 class="d-none d-sm-block pt-2 mb-1 text-center">
+                    <b>こどもの「よんで」に<br>
+                        いつでもこたえてあげる<br>
+                        気持ちになる</b>
+                </h5>
+                <p class="d-block d-sm-none pt-1 mb-1 text-center" style="font-size: 14px">
+                    <b>こどもの「よんで」に<br>
+                        いつでもこたえてあげる<br>
+                        気持ちになる</b>
+                </p>
+                @guest
+                <div class="d-flex justify-content-center">
+                    <a href="{{ route('register') }}"
+                        class="btn btn-block btn-warning text-white mb-2 shadow-sm rounded-pill">
+                        <span><b>本棚をつくる</b></span>
+                    </a>
+                </div>
+                @endguest
+                @auth
+                <div class="d-flex justify-content-center px-auto">
+                    <a href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}"
+                        class="btn btn-block btn-teal1 mb-2 shadow rounded-pill">
+                        <span>本棚をみる</span>
+                    </a>
+                </div>
+                @endauth
+            </div>
+        </div>
+    </div>
+</div>
 
 @guest
 <div class="container-lg">
@@ -70,7 +102,7 @@
                     <div class="col-6 d-flex align-items-center border-left">
                         <div class="card-body pr-0">
                             <p class="card-text x-small">
-                                絵本棚・読み聞かせ記録を家族と共有することができます。
+                                本棚・読み聞かせ記録を家族と共有することができます。
                             </p>
                         </div>
                     </div>

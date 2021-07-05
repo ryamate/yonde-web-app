@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs nav-justified my-2">
     <li class="nav-item">
         <a href="{{ route('users.setting_profile') }}" class="nav-link text-muted {{ $hasUser ? 'active' : '' }}">
-            <i class="fas fa-cog mr-1"></i>プロフ設定
+            <i class="fas fa-cog mr-1"></i>ユーザ設定
         </a>
     </li>
     <li class="nav-item">

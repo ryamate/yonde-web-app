@@ -1,6 +1,36 @@
-<a href="{{ route('register') }}">
-    <img src="{{ asset('image/carousel-register.jpg') }}" class="d-block img-fluid" alt="">
-</a>
+<div class="py-4" style="background:url(image/home_register.jpg) center no-repeat; background-size: cover;">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-5"></div>
+            <div class="col-7 rounded" style="background:rgba(255,255,255,0.7);">
+                <h3 class="d-none d-lg-block px-2 pt-4 pb-2 mt-2">
+                    <b>こどもの「よんで」に<br>
+                        いつでもこたえてあげる気持ちになる</b>
+                </h3>
+                <h5 class="d-block d-lg-none pt-4">
+                    <b>こどもの「よんで」に<br>
+                        いつでもこたえてあげる気持ちになる</b>
+                </h5>
+                @guest
+                <div class="d-flex justify-content-center">
+                    <a href="{{ route('register') }}"
+                        class="btn btn-lg btn-warning text-white mb-4 shadow-sm rounded-pill">
+                        <span class="px-4"><b>本棚をつくる</b></span>
+                    </a>
+                </div>
+                @endguest
+                @auth
+                <div class="d-flex justify-content-center px-auto">
+                    <a href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}"
+                        class="btn btn-teal1 btn-lg mb-4 shadow rounded-pill">
+                        <span class="px-4 mx-4">本棚をみる</span>
+                    </a>
+                </div>
+                @endauth
+            </div>
+        </div>
+    </div>
+</div>
 
 @guest
 <div class="container-lg">
@@ -45,7 +75,7 @@
                     <img src="{{ asset('image/index_3-3-2.png') }}" width="100%" alt="">
                     <div class="card-body p-0 text-secondary">
                         <p class="card-title"><b>家族と共有</b></p>
-                        <small class="card-text">絵本棚・読み聞かせ記録を家族と共有することができます。</small>
+                        <small class="card-text">本棚・読み聞かせ記録を家族と共有することができます。</small>
                     </div>
                 </div>
             </div>

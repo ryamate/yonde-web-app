@@ -6,22 +6,30 @@
                 @if ($pictureBook->thumbnail_url !== null)
                 <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
                 @else
-                <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
+                <div class="no-image-background book-cover-image" style="width: 128px">
+                    <div class="no-image-title">
+                        <div class="ml-3 mr-2">
+                            <p class="text-shadow x-small mb-0" style="line-height:14px;">
+                                {{ $pictureBook->title }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 @endif
             </div>
         </a>
 
-        <div class="dropdown-menu p-0 m-0 shadow" aria-labelledby="dropdownMenuLink">
+        <div class=" dropdown-menu p-0 m-0 shadow" aria-labelledby="dropdownMenuLink">
             <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
                 class="dropdown-item card-title text-decoration-none px-2 py-0 m-0">
-                <p class="text-truncate text-dark x-small mb-0" style="line-height:14px; max-width:150px;">
+                <p class="text-truncate text-teal1 x-small mb-0" style="line-height:14px; max-width:150px;">
                     <b>{{ $pictureBook->title }}</b>
                 </p>
             </a>
             <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
                 class="dropdown-item card-text text-decoration-none px-2 py-0 m-0">
                 @if ($pictureBook->authors !== null)
-                <p class="text-truncate text-teal1 x-small mb-0" style="line-height:14px; max-width:150px;">
+                <p class="text-truncate text-dark x-small mb-0" style="line-height:14px; max-width:150px;">
                     {{ $pictureBook->authors }}
                 </p>
                 @endif

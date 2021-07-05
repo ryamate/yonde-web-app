@@ -5,7 +5,15 @@
                 @if ($pictureBook->thumbnail_url !== null)
                 <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
                 @else
-                <img src="{{ asset('image/no_image.png') }}" alt="No Image" class="book-cover-image">
+                <div class="no-image-background book-cover-image">
+                    <div class="no-image-title">
+                        <div class="ml-3 mr-2">
+                            <span class="text-shadow x-small">
+                                {{ $pictureBook->title }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
                 @endif
             </div>
         </div>

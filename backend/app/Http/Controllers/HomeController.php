@@ -11,12 +11,11 @@ class HomeController extends Controller
      */
     public function home()
     {
-        // 新しく登録された絵本
         $pictureBooks = PictureBook::with('readRecords')
-            ->withCount('readRecords')
-            ->get()->sortByDesc('created_at');
+            ->withCount('readRecords')->get();
 
-        $pictureBooksNew = $pictureBooks->take(18);
+        // 新しく登録された絵本
+        $pictureBooksNew = $pictureBooks->sortByDesc('created_at')->take(18);
 
         // 本棚登録数ランキング
         $storedCountRanking = $pictureBooks

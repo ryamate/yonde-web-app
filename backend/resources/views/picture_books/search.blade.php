@@ -70,8 +70,16 @@
                                         <img src="{{ $searchedBook->imageLinks->thumbnail }}" alt="book-cover"
                                             class="book-cover-image">
                                         @else
-                                        <img src="{{ asset('image/no_image.png') }}" alt="No Image"
-                                            class="book-cover-image">
+                                        <div class="no-image-background book-cover-image">
+                                            <div class="no-image-title">
+                                                <div class="ml-3 mr-2">
+                                                    <p class="text-dark text-shadow x-small mb-0"
+                                                        style="line-height:14px;">
+                                                        {{ $searchedBook->title }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                         @endif
                                     </div>
                                 </div>
@@ -81,22 +89,54 @@
                             <div class="col-sm-6 d-flex align-items-center">
                                 <div class="card-body">
                                     <a href="" class="card-title text-teal1 h5"><b>{{ @$searchedBook->title }}</b></a>
-                                    {{-- ダミー値 --}}
-                                    <div class="card-text small mt-2">
-                                        <p>
-                                            <i class="fas fa-user"></i>123人 <i class="fas fa-star"></i>4.56 <i
-                                                class="fas fa-pen"></i>78件
-                                        </p>
+                                    <div class="card-text small mt-2 mb-2">
+                                        @if ($searchedBook->stored_count !== 0)
+                                        <span class="d-flex justify-content-start flex-wrap">
+                                            <span class="text-info mx-2" title="登録数">
+                                                <i class="fas fa-book"></i>
+                                                <b>{{ $searchedBook->stored_count }}</b>
+                                            </span>
+                                            <span class="text-teal1 mx-2" title="読み聞かせ回数">
+                                                <i class="fas fa-book-reader"></i>
+                                                <b>{{ $searchedBook->read_records_count }}</b><span
+                                                    class="text-dark">回</span>
+                                            </span>
+                                            <span class="text-warning mx-2">
+                                                <i class="fas fa-star"></i>
+                                                <b>{{ $searchedBook->five_star_avg }}</b>
+                                            </span>
+                                            <a href="" class="text-info mx-2" title="レビュー件数">
+                                                <i class="fas fa-pen"></i>
+                                                <b>{{ $searchedBook->review_count }}</b><span class="text-dark">件</span>
+                                            </a>
+                                        </span>
+                                        @else
+                                        <span class="d-flex justify-content-start flex-wrap text-muted">
+                                            <span class="mx-2" title="登録数">
+                                                <i class="fas fa-book mr-1"></i>
+                                                {{ $searchedBook->stored_count }}
+                                            </span>
+                                            <span class="mx-2" title="読み聞かせ回数">
+                                                <i class="fas fa-book-reader mr-1"></i> -回
+                                            </span>
+                                            <span class="mx-2">
+                                                <i class="fas fa-star mr-1"></i> -
+                                            </span>
+                                            <span class="mx-2" title="レビュー件数">
+                                                <i class="fas fa-pen mr-1"></i> -件
+                                            </span>
+                                        </span>
+                                        @endif
                                     </div>
-                                    <div class="card-text small">
+                                    <div class="card-text font-weight-light">
                                         <p>
                                             @if (@$searchedBook->authors !== null)
-                                            {{ $searchedBook->authors = implode(",", @$searchedBook->authors) }}/
+                                            {{ $searchedBook->authors = implode(",", @$searchedBook->authors) }} /
                                             @else
                                             {{ $searchedBook->authors = null }}
                                             @endif
                                             @if (@$searchedBook->publishedDate !== null)
-                                            {{ $searchedBook->publishedDate }}発売
+                                            {{ $searchedBook->publishedDate }}
                                             @endif
                                         </p>
                                     </div>
@@ -108,8 +148,10 @@
                                     @auth
                                     @if ($family->isStoredBy($searchedBook))
                                     <a class="btn btn-block btn-outline-teal1 text-teal1 bg-white shadow-sm"
-                                        href="{{ route("picture_books.edit", ['picture_book' => $family->pictureBooks->firstWhere('google_books_id', $searchedBook->id)]) }}">
-                                        <i class="fas fa-edit mr-1"></i>編集する
+                                        href="{{ route("families.show", [
+                                            'id' => Auth::user()->family_id,
+                                            'picture_book' => $family->pictureBooks->firstWhere('google_books_id', $searchedBook->id)]) }}">
+                                        <i class="fas fa-book mr-1"></i>登録済み
                                     </a>
                                     @else
                                     <form action="{{ route('picture_books.create') }}" method="GET">

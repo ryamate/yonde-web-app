@@ -114,7 +114,7 @@
                     @break
                     @endif
 
-                    @include('home.thumbnail')
+                    @include('home.new_stored_thumbnail')
 
                     @endforeach
                 </div>
@@ -127,7 +127,7 @@
                     @break
                     @elseif ($loop->iteration >= 7)
 
-                    @include('home.thumbnail')
+                    @include('home.new_stored_thumbnail')
 
                     @endif
                     @endforeach
@@ -141,7 +141,7 @@
                     @break
                     @elseif ($loop->iteration >= 13)
 
-                    @include('home.thumbnail')
+                    @include('home.new_stored_thumbnail')
 
                     @endif
                     @endforeach
@@ -166,52 +166,18 @@
                 <h4><b>よんでランキング</b></h4>
                 <h5 class="text-secondary">本棚への登録数ランキング</h5>
             </div>
-            <div class="container">
-                <div class="row">
-                    @foreach($storedCountRanking as $pictureBook)
-                    <div class="col-3 mb-1 pl-0">
-                        <div class="card border-0 py-2">
-                            <div class="card-img-top book-cover my-auto">
-                                @if ($pictureBook->thumbnail_url !== null)
-                                <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
-                                @else
-                                <div class="no-image-background book-cover-image">
-                                    <div class="no-image-title">
-                                        <div class="ml-3 mr-2">
-                                            <p class="text-dark text-shadow x-small mb-0" style="line-height:14px;">
-                                                {{ $pictureBook->title }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endif
-                                @include('home.ranking_mark')
+            <div class="row">
+                @foreach($storedCountRanking as $pictureBook)
+                <div class="col-3">
 
-                            </div>
-                            <div class="card-body p-0 mt-1">
-                                <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
-                                    class="card-title text-decoration-none">
-                                    <p class="text-dark small mb-0" style="line-height:18px;">
-                                        <b>{{ $pictureBook->title }}</b>
-                                    </p>
-                                </a>
-                                <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
-                                    class=" card-text text-decoration-none">
-                                    @if ($pictureBook->authors !== null)
-                                    <p class="text-teal1 x-small font-weight-bold mb-0" style="line-height:14px;">
-                                        {{ $pictureBook->authors }}
-                                    </p>
-                                    @endif
-                                </a>
-                                <p class="badge badge-light font-weight-light shadow-sm mb-0">
-                                    登録数
-                                    {{ $pictureBook->stored_count }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
+                    @include('home.pc_ranking_thumbnail')
+
+                    <p class="badge badge-light font-weight-light shadow-sm">
+                        登録数
+                        {{ $pictureBook->stored_count }}
+                    </p>
                 </div>
+                @endforeach
             </div>
 
 
@@ -221,44 +187,13 @@
             <div class="row">
                 @foreach($readRecordRanking as $pictureBook)
                 <div class="col-3">
-                    <div class="card border-0 py-2">
-                        <div class="book-cover my-0">
-                            @if ($pictureBook->thumbnail_url !== null)
-                            <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image my-0">
-                            @else
-                            <div class="no-image-background book-cover-image">
-                                <div class="no-image-title">
-                                    <div class="ml-3 mr-2">
-                                        <p class="text-shadow x-small mb-0" style="line-height:14px;">
-                                            {{ $pictureBook->title }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-                            @include('home.ranking_mark')
-                        </div>
-                        <div class="card-body p-0 mt-1">
-                            <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
-                                class="card-title text-decoration-none">
-                                <p class="text-dark small mb-0" style="line-height:18px;">
-                                    <b>{{ $pictureBook->title }}</b>
-                                </p>
-                            </a>
-                            <a href="{{ route('picture_books.search', ['keyword' => $pictureBook->authors]) }}"
-                                class=" card-text text-decoration-none">
-                                @if ($pictureBook->authors !== null)
-                                <p class="text-teal1 x-small font-weight-bold mb-0" style="line-height:14px;">
-                                    {{ $pictureBook->authors }}
-                                </p>
-                                @endif
-                            </a>
-                            <p class="badge badge-light font-weight-light shadow-sm mb-0">
-                                記録数
-                                {{ $pictureBook->read_records_count }}
-                            </p>
-                        </div>
-                    </div>
+
+                    @include('home.pc_ranking_thumbnail')
+
+                    <p class="badge badge-light font-weight-light shadow-sm">
+                        記録数
+                        {{ $pictureBook->read_records_count }}
+                    </p>
                 </div>
                 @endforeach
             </div>
@@ -274,7 +209,7 @@
 
                     <p class="card-title text-center my-2"><b>または</b></p>
                     <a href="{{ route('login.{provider}', ['provider' => 'google']) }}"
-                        class="btn btn-block btn-sm btn-danger my-2">
+                        class="btn btn-block btn-sm btn-outline-danger my-2">
                         <b>Googleで登録</b>
                     </a>
 

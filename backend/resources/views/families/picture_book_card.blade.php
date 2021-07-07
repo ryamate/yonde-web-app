@@ -3,9 +3,9 @@
         {{-- thumbnail --}}
         <div class="col-sm-3 d-flex justify-content-center align-items-top">
             <a href="{{ route('families.show', [
-                                        'id' => Auth::user()->family_id,
-                                        'picture_book' => $pictureBook,
-                                        ]) }}" class="m-4 text-decoration-none">
+                        'id' => $family->id,
+                        'picture_book' => $pictureBook,
+                        ]) }}" class="m-4 text-decoration-none">
                 <div class="card-img-top book-cover m-auto">
                     @if ($pictureBook->thumbnail_url !== null)
                     <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
@@ -28,9 +28,9 @@
             <div class="card-body">
                 <div class="card-title mb-0 d-flex align-items-center flex-wrap">
                     <a href="{{ route('families.show', [
-                                        'id' => Auth::user()->family_id,
-                                        'picture_book' => $pictureBook,
-                                        ]) }}" class="text-teal1 mr-2">
+                        'id' => $family->id,
+                        'picture_book' => $pictureBook,
+                        ]) }}" class="text-teal1 mr-2">
                         <b>{{ $pictureBook->title }}</b>
                     </a>
                 </div>

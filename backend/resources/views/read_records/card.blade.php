@@ -15,20 +15,18 @@
         <span class="text-muted small">
             さんが『
             <a href="{{ route('families.show', [
-                                        'id' => Auth::user()->family_id,
-                                        'picture_book' => $readRecord->pictureBook,
-                                        ]) }}"
-                class="card-title text-teal1"><b>{{ $readRecord->pictureBook->title }}</b></a>
+                        'id' => $family->id,
+                        'picture_book' => $readRecord->pictureBook,
+                        ]) }}" class="card-title text-teal1"><b>{{ $readRecord->pictureBook->title }}</b></a>
             』の読み聞かせ記録をしました。
         </span>
         @else
         <span class="text-muted small">
             さんが『
             <a href="{{ route('families.show', [
-                                        'id' => Auth::user()->family_id,
-                                        'picture_book' => $readRecord->pictureBook,
-                                        ]) }}"
-                class="card-title text-teal1"><b>{{ $readRecord->pictureBook->title }}</b></a>
+                        'id' => $family->id,
+                        'picture_book' => $readRecord->pictureBook,
+                        ]) }}" class="card-title text-teal1"><b>{{ $readRecord->pictureBook->title }}</b></a>
             』の読み聞かせ記録を更新しました。
         </span>
         @endif
@@ -46,9 +44,9 @@
             {{-- thumbnail --}}
             <div class="col-sm-2 d-flex justify-content-center align-items-top">
                 <a href="{{ route('families.show', [
-                                        'id' => Auth::user()->family_id,
-                                        'picture_book' => $readRecord->pictureBook,
-                                        ]) }}" class="m-4 text-decoration-none">
+                        'id' => $family->id,
+                        'picture_book' => $readRecord->pictureBook,
+                        ]) }}" class="m-4 text-decoration-none">
                     <div class="card-img-top book-cover m-auto">
                         @if ($readRecord->pictureBook->thumbnail_url !== null)
                         <img src="{{ $readRecord->pictureBook->thumbnail_url }}" alt="book-cover"
@@ -73,9 +71,9 @@
                 <div class="card-body pt-3 pb-2">
                     <div class="card-title mb-0 d-flex align-items-center flex-wrap small">
                         <a href="{{ route('families.show', [
-                                        'id' => Auth::user()->family_id,
-                                        'picture_book' => $readRecord->pictureBook,
-                                        ]) }}" class="text-teal1 mr-4"
+                        'id' => $family->id,
+                        'picture_book' => $readRecord->pictureBook,
+                        ]) }}" class="text-teal1 mr-4"
                             title="作者：{{ $readRecord->pictureBook->authors !== null ? $readRecord->pictureBook->authors : '' }}">
                             <b>{{ $readRecord->pictureBook->title }}</b>
                         </a>
@@ -163,9 +161,11 @@
                             お子さま：
                         </span>
                         @endif
+
+                        @if ($child->family_id === Auth::user()->family_id)
                         <a href="{{ route('children.show', ['id' => $child->id]) }}"
-                            class="mr-1  d-flex align-items-center text-decoration-none"
-                            title="{{ ($child->birthday !== null) ? Carbon\Carbon::parse($child->birthday)->diff($readRecord->read_date)->format('%y歳') : '' }}">
+                            class="mr-1 d-flex align-items-center text-decoration-none"
+                            title="{{ ($child->birthday !== null) ? Carbon\Carbon::parse($child->birthday)->diff($readRecord->read_date)->format('%y才(よんだとき)') : '' }}">
                             <span class="badge badge-teal1 mb-1">
                                 @if (Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
                                 <i class="fas fa-child"></i>
@@ -175,6 +175,24 @@
                                 {{ $child->name }}
                             </span>
                         </a>
+                        @else
+                        <span class="mr-1 d-flex align-items-center">
+                            <span class="badge badge-teal1 mb-1">
+                                @if (Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
+                                <i class="fas fa-child"></i>
+                                @else
+                                <i class="fas fa-baby"></i>
+                                @endif
+                                @if ($child->gender_code === 1)
+                                男の子
+                                @elseif ($child->gender_code === 2)
+                                女の子
+                                @else
+                                未設定
+                                @endif
+                            </span>
+                        </span>
+                        @endif
                         @endforeach
                     </div>
 

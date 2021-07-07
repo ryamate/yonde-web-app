@@ -79,7 +79,7 @@ class PictureBookController extends Controller
     }
 
     /**
-     * 登録絵本の詳細画面表示（全家族の登録情報集計、レビュー掲載）
+     * 絵本の情報・レビュー一覧画面表示
      */
     public function show(PictureBook $pictureBook)
     {
@@ -87,7 +87,37 @@ class PictureBookController extends Controller
 
         // 全ユーザーの絵本についてのレビューを並べる。
 
-        return view('picture_books.show', ['pictureBook' => $pictureBook]);
+
+        $pictureBooks = PictureBook::with('readRecords', 'family')
+            ->withCount('readRecords')->get();
+        // 本棚登録数付加
+        $pictureBook->stored_count = $pictureBooks
+            ->where('google_books_id', $pictureBook->google_books_id)->count();
+
+        // よみきかせ回数付加
+        $sameTitleBooks = $pictureBooks
+            ->where('google_books_id', $pictureBook->google_books_id);
+        $pictureBook->read_records_count = $sameTitleBooks
+            ->sum('read_records_count');
+
+        // 評価平均付加
+        $pictureBook->five_star_avg = round($pictureBooks
+            ->where('google_books_id', $pictureBook->google_books_id)
+            ->Where('five_star_rating', '!=', 0)
+            ->avg('five_star_rating'), 2, PHP_ROUND_HALF_UP);
+
+        $reviewedPictureBooks = $pictureBooks
+            ->where('google_books_id', $pictureBook->google_books_id)
+            ->whereNotNull('review');
+        // レビュー数付加
+        $pictureBook->review_count = $reviewedPictureBooks->count();
+
+        $data = [
+            'pictureBook' => $pictureBook,
+            'reviewedPictureBooks' => $reviewedPictureBooks,
+        ];
+
+        return view('picture_books.show', $data);
     }
 
     /**

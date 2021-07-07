@@ -45,6 +45,7 @@ class UserRequest extends FormRequest
                     'max:255',
                     Rule::unique('users', 'email')->whereNot('email', $user->email),
                 ],
+                'file_name' => ['file', 'mimes:jpeg,png,jpg,bmb', 'max:2048'],
             ];
         }
     }

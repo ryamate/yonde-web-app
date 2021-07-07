@@ -142,7 +142,7 @@
                     @break
                     @endif
 
-                    @include('home.thumbnail')
+                    @include('home.new_stored_thumbnail')
 
                     @endforeach
                 </div>
@@ -155,7 +155,7 @@
                     @break
                     @elseif ($loop->iteration >= 7)
 
-                    @include('home.thumbnail')
+                    @include('home.new_stored_thumbnail')
 
                     @endif
                     @endforeach
@@ -169,7 +169,7 @@
                     @break
                     @elseif ($loop->iteration >= 13)
 
-                    @include('home.thumbnail')
+                    @include('home.new_stored_thumbnail')
 
                     @endif
                     @endforeach
@@ -201,24 +201,7 @@
             <div class="row">
                 @foreach($storedCountRanking as $pictureBook)
                 <div class="col-3 mb-1 pl-0">
-                    <div class="card border-0 py-2">
-                        <div class="card-img-top book-cover my-auto">
-                            @if ($pictureBook->thumbnail_url !== null)
-                            <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
-                            @else
-                            <div class="no-image-background book-cover-image">
-                                <div class="no-image-title">
-                                    <div class="ml-3 mr-2">
-                                        <p class="text-white text-shadow x-small mb-0" style="line-height:14px;">
-                                            no-image
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-                            @include('home.ranking_mark')
-                        </div>
-                    </div>
+                    @include('home.phone_ranking_thumbnail')
                 </div>
                 {{-- tablet --}}
                 <div class="d-sm-block d-none col-9 mb-1 pl-0">
@@ -281,24 +264,7 @@
             <div class="row">
                 @foreach($readRecordRanking as $pictureBook)
                 <div class="col-3 mb-1 pl-0">
-                    <div class="card border-0 py-2">
-                        <div class="card-img-top book-cover my-auto">
-                            @if ($pictureBook->thumbnail_url !== null)
-                            <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
-                            @else
-                            <div class="no-image-background book-cover-image">
-                                <div class="no-image-title">
-                                    <div class="ml-3 mr-2">
-                                        <p class="text-white text-shadow x-small mb-0" style="line-height:14px;">
-                                            no-image
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-                            @include('home.ranking_mark')
-                        </div>
-                    </div>
+                    @include('home.phone_ranking_thumbnail')
                 </div>
                 {{-- tablet --}}
                 <div class="d-sm-block d-none col-9 mb-1 pl-0">
@@ -365,7 +331,7 @@
 
             <p class="card-title text-center my-2"><b>または</b></p>
             <a href="{{ route('login.{provider}', ['provider' => 'google']) }}"
-                class="btn btn-block btn-sm btn-danger my-2">
+                class="btn btn-block btn-sm btn-outline-danger my-2">
                 <i class="fab fa-google mr-4"></i><b>Googleで登録</b>
             </a>
 

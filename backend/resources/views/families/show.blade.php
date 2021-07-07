@@ -43,7 +43,9 @@
                 'hasStored' => false,
                 'hasReadRecord' => false,
                 ])
+                @if (Auth::user()->family_id === $family->id)
                 @include('families.bookshelf_search_bar')
+                @endif
                 <section class="py-4">
                     @include('families.picture_book_card')
                 </section>
@@ -61,12 +63,9 @@
                                             <span class="small text-secondary mb-1">
                                                 よんだ日：
                                             </span>
-                                            <a href="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}"
-                                                class="text-decoration-none mb-1">
-                                                <span class="small text-dark text-decoration-none ">
-                                                    <b>{{Carbon\Carbon::parse($readRecord->read_date)->format("Y年m月d日") }}</b>
-                                                </span>
-                                            </a>
+                                            <span class="small text-dark text-decoration-none mb-1">
+                                                <b>{{Carbon\Carbon::parse($readRecord->read_date)->format("Y年m月d日") }}</b>
+                                            </span>
                                             @if (Auth::user()->family_id === $readRecord->pictureBook->family_id)
                                             <!-- dropdown (edit & delete) -->
                                             <div class="btn-group dropleft drop-hover d-flex ml-auto">
@@ -139,9 +138,10 @@
                                                 お子さま：
                                             </span>
                                             @endif
+                                            @if ($child->family_id === Auth::user()->family_id)
                                             <a href="{{ route('children.show', ['id' => $child->id]) }}"
-                                                class="mr-1  d-flex align-items-center text-decoration-none"
-                                                title="{{ ($child->birthday !== null) ? Carbon\Carbon::parse($child->birthday)->diff($readRecord->read_date)->format('%y歳') : '' }}">
+                                                class="mr-1 d-flex align-items-center text-decoration-none"
+                                                title="{{ ($child->birthday !== null) ? Carbon\Carbon::parse($child->birthday)->diff($readRecord->read_date)->format('%y才(よんだとき)') : '' }}">
                                                 <span class="badge badge-teal1 mb-1">
                                                     @if(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
                                                     <i class="fas fa-child"></i>
@@ -151,6 +151,24 @@
                                                     {{ $child->name }}
                                                 </span>
                                             </a>
+                                            @else
+                                            <span class="mr-1 d-flex align-items-center">
+                                                <span class="badge badge-teal1 mb-1">
+                                                    @if(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
+                                                    <i class="fas fa-child"></i>
+                                                    @else
+                                                    <i class="fas fa-baby"></i>
+                                                    @endif
+                                                    @if ($child->gender_code === 1)
+                                                    男の子
+                                                    @elseif ($child->gender_code === 2)
+                                                    女の子
+                                                    @else
+                                                    未設定
+                                                    @endif
+                                                </span>
+                                            </span>
+                                            @endif
                                             @endforeach
                                         </div>
 

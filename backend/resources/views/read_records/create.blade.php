@@ -29,7 +29,7 @@
     </div>
 </header>
 
-<div class="bg-light">
+<div class="bg-light pb-4">
     <div class="container" style="max-width: 540px;">
         <h4>よんだよ記録</h4>
         <section class="card shadow-sm mb-4">
@@ -57,4 +57,7 @@
         </section>
     </div>
 </div>
+
+@include('footer')
+
 @endsection

@@ -17,6 +17,7 @@ class PictureBook extends Model
         'title',
         'authors',
         'published_date',
+        'description',
         'thumbnail_url',
         'five_star_rating',
         'read_status',

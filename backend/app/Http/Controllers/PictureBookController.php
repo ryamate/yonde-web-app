@@ -202,6 +202,9 @@ class PictureBookController extends Controller
                     ->where('google_books_id', $searchedBook->id)
                     ->whereNotNull('review')
                     ->count();
+                $searchedBook->picture_book = $pictureBooks
+                    ->where('google_books_id', $searchedBook->id)
+                    ->first();
                 return $searchedBook;
             });
 

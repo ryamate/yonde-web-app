@@ -63,7 +63,7 @@
                     <div class="card-body border-bottom p-0">
                         <div class="row no-gutters">
                             {{-- サムネイル --}}
-                            <div class="col-sm-3">
+                            <div class="col-md-3 col-sm-4">
                                 <div class="card-body py-0">
                                     <div class="book-cover">
                                         @if (@$searchedBook->imageLinks->thumbnail !== null)
@@ -86,9 +86,9 @@
                             </div>
 
                             {{-- タイトル, 登録者数/評価/レビュー, 作者/出版年月 --}}
-                            <div class="col-sm-6 d-flex align-items-center">
+                            <div class="col-md-6 col-sm-8 d-flex align-items-center">
                                 <div class="card-body">
-                                    <a href="" class="card-title text-teal1 h5"><b>{{ @$searchedBook->title }}</b></a>
+                                    <a href="" class="card-title text-teal1 h6"><b>{{ @$searchedBook->title }}</b></a>
                                     <div class="card-text small mt-2 mb-2">
                                         @if ($searchedBook->stored_count !== 0)
                                         <span class="d-flex justify-content-start flex-wrap">
@@ -105,7 +105,8 @@
                                                 <i class="fas fa-star"></i>
                                                 <b>{{ $searchedBook->five_star_avg }}</b>
                                             </span>
-                                            <a href="" class="text-info mx-2" title="レビュー件数">
+                                            <a href="{{ route('picture_books.show', ['picture_book' => $searchedBook->picture_book]) }}"
+                                                class="text-info mx-2" title="レビュー件数">
                                                 <i class="fas fa-pen"></i>
                                                 <b>{{ $searchedBook->review_count }}</b><span class="text-dark">件</span>
                                             </a>
@@ -129,25 +130,31 @@
                                         @endif
                                     </div>
                                     <div class="card-text font-weight-light">
-                                        <p>
+                                        <p class="mb-1 small">
                                             @if (@$searchedBook->authors !== null)
                                             {{ $searchedBook->authors = implode(",", @$searchedBook->authors) }} /
                                             @else
                                             {{ $searchedBook->authors = null }}
                                             @endif
+
                                             @if (@$searchedBook->publishedDate !== null)
                                             {{ $searchedBook->publishedDate }}
                                             @endif
                                         </p>
+                                        @if (@$searchedBook->description !== null)
+                                        <p class="mb-0 small">
+                                            {{ $searchedBook->description }}
+                                        </p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <!-- 登録ボタン -->
-                            <div class="col-sm-3 d-flex align-items-center">
+                            <div class="col-md-3 d-flex align-items-center">
                                 <div class="card-body">
                                     @auth
                                     @if ($family->isStoredBy($searchedBook))
-                                    <a class="btn btn-block btn-outline-teal1 text-teal1 bg-white shadow-sm"
+                                    <a class="btn btn-sm btn-block btn-outline-teal1 text-teal1 bg-white shadow-sm"
                                         href="{{ route("families.show", [
                                             'id' => Auth::user()->family_id,
                                             'picture_book' => $family->pictureBooks->firstWhere('google_books_id', $searchedBook->id)]) }}">
@@ -156,26 +163,28 @@
                                     @else
                                     <form action="{{ route('picture_books.create') }}" method="GET">
                                         @csrf
-                                        <button type="submit" class="btn btn-teal1 shadow-sm btn-block"><i
+                                        <button type="submit" class="btn btn-sm btn-teal1 shadow-sm btn-block"><i
                                                 class="fas fa-plus-circle mr-1"></i>登録する</button>
                                         <input type="hidden" name="google_books_id" value="{{ $searchedBook->id }}" />
                                         <input type="hidden" name="isbn_13"
-                                            value="{{ @$searchedBook->industryIdentifiers->identifier }}" />
+                                            value="{{ @$searchedBook->industryIdentifiers[1]->identifier }}" />
                                         <input type="hidden" name="title" value="{{ @$searchedBook->title }}" />
                                         <input type="hidden" name="authors" value="{{ $searchedBook->authors }}" />
                                         <input type="hidden" name="published_date"
                                             value="{{ @$searchedBook->publishedDate }}" />
                                         <input type="hidden" name="thumbnail_url"
                                             value="{{ @$searchedBook->imageLinks->thumbnail }}" />
+                                        <input type="hidden" name="description"
+                                            value="{{ @$searchedBook->description }}" />
                                     </form>
                                     @endif
                                     @endauth
-                                    @guest
-                                    <form action="" method="">
-                                        <button type="submit"
-                                            class="btn btn-outline-teal1 bg-white text-teal1 shadow-sm btn-block">レビューを読む</button>
-                                    </form>
-                                    @endguest
+                                    @if ($searchedBook->stored_count !== 0)
+                                    <a href="{{ route('picture_books.show', ['picture_book' => $searchedBook->picture_book]) }}"
+                                        class="btn btn-sm btn-outline-teal1 bg-white text-teal1 shadow-sm btn-block mt-2">
+                                        レビューを読む
+                                    </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

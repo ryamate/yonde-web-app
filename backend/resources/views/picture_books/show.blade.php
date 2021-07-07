@@ -29,6 +29,9 @@
         <div class="row">
             <div class="container" style="max-width: 900px;">
                 <section class="py-4">
+                    <div>
+                        <h4>絵本情報</h4>
+                    </div>
                     <div class="card shadow">
                         <div class="row no-gutters">
                             {{-- thumbnail --}}
@@ -89,6 +92,11 @@
                                             </a>
                                         </span>
                                     </div>
+                                    @if ($pictureBook->description !== null)
+                                    <p class="mb-0 small">
+                                        {{ $pictureBook->description }}
+                                    </p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -96,14 +104,20 @@
                 </section>
 
                 <section class="py-4">
+                    <div>
+                        <h5>みんなのレビュー</h5>
+                    </div>
+                    @if ($pictureBook->review_count !== 0)
                     @foreach ($reviewedPictureBooks as $reviewedPictureBook)
                     <div class="card shadow-sm my-1">
                         <div class="row">
                             <div class="col-sm-3" style="height: 75px">
                                 <div class="d-flex justify-content-start mt-4 ml-4">
                                     <div class="" style="position: relative;">
+                                        @auth
                                         <a
                                             href="{{ route('families.bookshelf', ["id" => $reviewedPictureBook->family->id]) }}">
+                                            @endauth
                                             @foreach ($reviewedPictureBook->family->users as $user)
                                             @if ($user->icon_path)
                                             <img src="{{ asset($user->icon_path) }}" alt="プロフィール画像"
@@ -111,9 +125,8 @@
                                             border-radius: 50%;object-fit:cover; position: absolute;
                                             left:{{ ($loop->iteration - 1) * 25 }}px;" />
                                             @else
-                                            <img src="{{ asset('image/user.png') }}" alt="プロフィール画像"
-                                                class="bg-light border"
-                                                style="width: 30px; height:30px;border-radius: 50%;object-fit:cover; position: absolute; left:{{ ($loop->iteration - 1) * 25 }}px;" />
+                                            <i class="far fa-user-circle fa-2x text-secondary bg-light"
+                                                style="border-radius: 50%;object-fit:cover; position: absolute; left:{{ ($loop->iteration - 1) * 25 }}px;"></i>
                                             @endif
                                             @endforeach
 
@@ -137,11 +150,10 @@
                                                 title="{{ ($child->birthday !== null) ? Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y歳') : '' }}" />
                                             @endif
                                             @endforeach
+                                            @auth
                                         </a>
+                                        @endauth
                                     </div>
-                                </div>
-                                <div class="d-flex align-items-bottom mb-4 ml-4">
-                                    <a href="" class="btn btn-sm">ボタン</a>
                                 </div>
                             </div>
 
@@ -204,6 +216,9 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <p class="text-muted">この絵本のレビューはまだありません。</p>
+                    @endif
                 </section>
 
             </div>

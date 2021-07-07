@@ -41,7 +41,11 @@
                 'hasRead' => false,
                 'hasCurious' => false,
                 ])
+
+                @if (Auth::user()->family_id === $family->id)
                 @include('families.bookshelf_search_bar')
+                @endif
+
                 @include('families.bookshelf_card')
                 {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
             </div>

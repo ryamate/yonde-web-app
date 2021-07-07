@@ -40,7 +40,11 @@
                 'hasStored' => true,
                 'hasReadRecord' => false,
                 ])
+
+                @if (Auth::user()->family_id === $family->id)
                 @include('families.bookshelf_search_bar')
+                @endif
+
                 @foreach($pictureBooks as $pictureBook)
                 @if (!$loop->first)
                 <div class="border-top"></div>

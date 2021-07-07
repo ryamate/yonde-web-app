@@ -46,6 +46,7 @@
                         <input type="hidden" name="title" value="{{ $pictureBook->title }}" />
                         <input type="hidden" name="authors" value="{{ $pictureBook->authors }}" />
                         <input type="hidden" name="published_date" value="{{ $pictureBook->published_date }}" />
+                        <input type="hidden" name="description" value="{{ $pictureBook->description }}" />
                         <input type="hidden" name="thumbnail_url" value="{{ $pictureBook->thumbnail_url }}" />
                     </form>
                 </div>

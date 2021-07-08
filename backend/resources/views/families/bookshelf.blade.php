@@ -25,31 +25,27 @@
     </div>
 </header>
 
-<div class="bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="container" style="max-width: 900px;">
-                <div class="card">
-                    @include('families.family_card')
-                    @include('families.tabs', [
-                    'hasBookshelf' => true,
-                    'hasPictureBooks' => false,
-                    ])
-                </div>
-                @include('families.bookshelf_tabs', [
-                'hasStored' => true,
-                'hasRead' => false,
-                'hasCurious' => false,
-                ])
-
-                @if (Auth::user()->family_id === $family->id)
-                @include('families.bookshelf_search_bar')
-                @endif
-
-                @include('families.bookshelf_card')
-                {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
-            </div>
+<div class="bg-light pb-4">
+    <div class="container" style="max-width: 900px;">
+        <div class="card">
+            @include('families.family_card')
+            @include('families.tabs', [
+            'hasBookshelf' => true,
+            'hasPictureBooks' => false,
+            ])
         </div>
+        @include('families.bookshelf_tabs', [
+        'hasStored' => true,
+        'hasRead' => false,
+        'hasCurious' => false,
+        ])
+
+        @if (Auth::user()->family_id === $family->id)
+        @include('families.bookshelf_search_bar')
+        @endif
+
+        @include('families.bookshelf_card')
+        {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
     </div>
 </div>
 

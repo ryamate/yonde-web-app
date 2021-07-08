@@ -7,7 +7,7 @@
 @include('nav')
 
 <header>
-    <div class="bg-light">
+    <div>
         <div class="container" style="max-width: 900px;">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-light small pl-0 mb-0">
@@ -15,7 +15,7 @@
                         <a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        よんでとは
+                        プライバシーポリシー
                     </li>
                 </ol>
             </nav>
@@ -61,8 +61,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>
 </header>
 

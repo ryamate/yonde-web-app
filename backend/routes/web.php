@@ -13,6 +13,7 @@
 
 Route::get('/', 'HomeController@home')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 
 Auth::routes(['verify' => true]);
 Route::prefix('login')->name('login.')->group(function () {

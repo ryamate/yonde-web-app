@@ -53,4 +53,13 @@ class HomeController extends Controller
     {
         return view('about');
     }
+
+
+    /**
+     * サービス概要紹介画面表示
+     */
+    public function privacy()
+    {
+        return view('privacy');
+    }
 }

@@ -16,6 +16,14 @@ Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
+Route::prefix('contact')->name('contact.')->group(function () {
+    Route::get('/', 'ContactController@show')->name('show');
+    Route::post('/', 'ContactController@post')->name('post');
+    Route::get('/confirm', 'ContactController@confirm')->name('confirm');
+    Route::post('/confirm', 'ContactController@send')->name('send');
+    Route::get('/thanks', 'ContactController@complete')->name('complete');
+});
+
 Auth::routes(['verify' => true]);
 Route::prefix('login')->name('login.')->group(function () {
     Route::get('/guest', 'Auth\LoginController@guestLogin')->name('guest');

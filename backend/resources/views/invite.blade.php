@@ -10,10 +10,13 @@
     <div class="container">
         <div class="row">
             <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 mt-4" style="margin-bottom: 90px">
-                <h2 class="text-center"><a class="text-dark text-decoration-none">家族招待メール送信</a></h2>
+                <h3 class="text-center">
+                    家族招待メール送信
+                </h3>
                 <p class="pt-4" style="font-size: 14px;">
                     　本棚の共有のために招待したい家族のメールアドレスを入力してください。<br>
-                    　入力したメールアドレス宛てに、招待用のユーザー登録ページの案内をお送りします。</p>
+                    　入力したメールアドレス宛てに、招待用のユーザー登録ページの案内をお送りします。
+                </p>
                 <div class="card mt-4 p-4 shadow-sm">
 
                     @include('error_card_list')

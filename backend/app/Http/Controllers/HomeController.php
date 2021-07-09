@@ -56,10 +56,18 @@ class HomeController extends Controller
 
 
     /**
-     * サービス概要紹介画面表示
+     * プライバシーポリシー画面表示
      */
     public function privacy()
     {
         return view('privacy');
+    }
+
+    /**
+     * 利用規約画面表示
+     */
+    public function terms()
+    {
+        return view('terms');
     }
 }

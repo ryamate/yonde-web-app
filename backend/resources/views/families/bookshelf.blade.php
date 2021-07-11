@@ -30,22 +30,29 @@
         <div class="card">
             @include('families.family_card')
             @include('families.tabs', [
-            'hasBookshelf' => true,
-            'hasPictureBooks' => false,
+            'hasBookshelf' => $hasBookshelf,
+            'hasPictureBooks' => $hasPictureBooks,
             ])
         </div>
-        @include('families.bookshelf_tabs', [
-        'hasStored' => true,
-        'hasRead' => false,
-        'hasCurious' => false,
+        @include('families.bookshelf.tabs', [
+        'hasStored' => $hasStored,
+        'hasRead' => $hasRead,
+        'hasCurious' => $hasCurious,
         ])
 
-        @if (Auth::user()->family_id === $family->id)
-        @include('families.bookshelf_search_bar')
+        @if (Auth::user()->family_id === $family->id && $storedCount !== 0)
+        @include('families.search_bar')
         @endif
 
-        @include('families.bookshelf_card')
+        @if (count($pictureBooks))
+        @include('families.bookshelf.card')
         {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
+
+        @else
+        <p class="alert border text-muted my-4" style="background-color: #E6D7D2">
+            絵本はまだありません。
+        </p>
+        @endif
     </div>
 </div>
 

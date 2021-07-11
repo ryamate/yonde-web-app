@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-md navbar-light shadow-sm bd-navbar py-1"
-    style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #22968a, #45d9c8) fixed;">
+    style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #26A69A, #94E7DE) fixed;">
 
     {{-- left: application logo --}}
     <a class="navbar-brand mr-2 p-0" href="{{ route('home') }}">
-        <img src="{{ asset('image/logo.png') }}" height="30"
-            class="d-inline-block align-top text-white text-decoration-none" alt="yonde">
+        <img src="{{ asset('image/logo.png') }}" height="30" class="d-inline-block align-top text-decoration-none"
+            alt="yonde">
     </a>
 
     {{-- toggle button --}}
@@ -18,7 +18,8 @@
         {{-- left: application name --}}
         <ul class="navbar-nav mr-auto d-none d-md-block">
             <li class="nav-item">
-                <a class="nav-link text-white text-decoration-none mb-0 h4" href="{{ route('home') }}">よんで</a>
+                <a class="nav-link text-white text-shadow text-decoration-none mb-0 h4"
+                    href="{{ route('home') }}">よんで</a>
             </li>
         </ul>
 

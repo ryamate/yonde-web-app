@@ -18,18 +18,26 @@ class UserController extends Controller
     }
 
     /**
-     * タイムライン画面表示
+     * ユーザーのページ画面表示
      */
     public function show(string $name)
     {
-        $user = User::where('name', $name)->first();
+        $user = User::with('pictureBooks')->where('name', $name)->first();
 
+        $family = Family::with('users', 'children')->where('id', $user->family_id)->first();
+        $familyUsers = $family->users->whereNotIn('id', $user->id)->sortBy('created_at');
+        $children = $family->children->sortBy('birthday');
         $pictureBooks = $user->pictureBooks->sortByDesc('updated_at');
 
-        return view('users.show', [
+        $data = [
             'user' => $user,
+            'family' => $family,
+            'familyUsers' => $familyUsers,
+            'children' => $children,
             'pictureBooks' => $pictureBooks,
-        ]);
+        ];
+
+        return view('users.show', $data);
     }
 
     /**

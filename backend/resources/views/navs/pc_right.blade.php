@@ -91,14 +91,17 @@
         <div class="mx-2">
             <div class="dropdown drop-hover">
                 <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                    title="{{ Auth::user()->nickname }}さんのタイムライン"
+                    title="{{ Auth::user()->nickname }}さんのページ"
                     onclick="location.href='{{ route("users.show", ["name" => Auth::user()->name]) }}'">
                     @if (Auth::user()->icon_path)
                     <img src="{{ asset(Auth::user()->icon_path) }}" alt="プロフィール画像"
                         class="rounded-circle bg-white border" width="35" height="35" style="background-position: center center;
                                 object-fit:cover;" />
                     @else
-                    <i class="far fa-user-circle fa-2x text-white rounded-circle"></i>
+                    <span class="fa-stack">
+                        <i class="fas fa-circle fa-stack-2x text-white"></i>
+                        <i class="far fa-user-circle fa-stack-2x fa-inverse text-secondary"></i>
+                    </span>
                     @endif
                 </a>
 

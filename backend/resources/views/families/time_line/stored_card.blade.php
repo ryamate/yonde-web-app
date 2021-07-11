@@ -1,4 +1,4 @@
-<div class="card shadow">
+<div class="card shadow mb-4">
     <div class="row no-gutters">
         {{-- thumbnail --}}
         <div class="col-sm-3 d-flex justify-content-center align-items-top">

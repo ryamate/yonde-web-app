@@ -80,8 +80,8 @@
             </div>
         </div>
     </div>
-
-    @include('footer')
-
 </div>
+
+@include('footer')
+
 @endsection

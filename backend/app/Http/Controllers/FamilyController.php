@@ -31,6 +31,12 @@ class FamilyController extends Controller
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(5);
 
+        $data['hasBookshelf'] = false;
+        $data['hasPictureBooks'] = true;
+
+        $data['hasStored'] = true;
+        $data['hasReadRecord'] = false;
+
         return view('families.index', $data);
     }
 
@@ -47,7 +53,13 @@ class FamilyController extends Controller
             ->orderBy('updated_at', 'DESC')
             ->paginate(10);
 
-        return view('families.read_record', $data);
+        $data['hasBookshelf'] = false;
+        $data['hasPictureBooks'] = true;
+
+        $data['hasStored'] = false;
+        $data['hasReadRecord'] = true;
+
+        return view('families.index', $data);
     }
 
     /**
@@ -59,6 +71,13 @@ class FamilyController extends Controller
         $pictureBooks = PictureBook::where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(30);
+
+        $data['hasBookshelf'] = true;
+        $data['hasPictureBooks'] = false;
+
+        $data['hasStored'] = true;
+        $data['hasRead'] = false;
+        $data['hasCurious'] = false;
 
         return view('families.bookshelf', $data);
     }
@@ -74,7 +93,14 @@ class FamilyController extends Controller
         $data['pictureBooks'] = $pictureBooks->where('read_status', '!=', 0)
             ->orderBy('updated_at', 'DESC')->paginate(30);
 
-        return view('families.books_read', $data);
+        $data['hasBookshelf'] = true;
+        $data['hasPictureBooks'] = false;
+
+        $data['hasStored'] = false;
+        $data['hasRead'] = true;
+        $data['hasCurious'] = false;
+
+        return view('families.bookshelf', $data);
     }
 
     /**
@@ -88,7 +114,14 @@ class FamilyController extends Controller
         $data['pictureBooks'] = $pictureBooks->where('read_status', '=', 0)
             ->orderBy('updated_at', 'DESC')->paginate(30);
 
-        return view('families.books_curious', $data);
+        $data['hasBookshelf'] = true;
+        $data['hasPictureBooks'] = false;
+
+        $data['hasStored'] = false;
+        $data['hasRead'] = false;
+        $data['hasCurious'] = true;
+
+        return view('families.bookshelf', $data);
     }
 
     /**
@@ -106,6 +139,12 @@ class FamilyController extends Controller
             ->where('picture_book_id', $pictureBook->id)
             ->orderBy('updated_at', 'DESC')
             ->paginate(10);
+
+        $data['hasBookshelf'] = false;
+        $data['hasPictureBooks'] = false;
+
+        $data['hasStored'] = false;
+        $data['hasReadRecord'] = false;
 
         return view('families.show', $data);
     }

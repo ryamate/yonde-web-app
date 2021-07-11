@@ -30,72 +30,60 @@
         <div class="card">
             @include('families.family_card')
             @include('families.tabs', [
-            'hasBookshelf' => false,
-            'hasPictureBooks' => true,
+            'hasBookshelf' => $hasBookshelf,
+            'hasPictureBooks' => $hasPictureBooks,
             ])
         </div>
-        @include('families.index_tabs', [
-        'hasStored' => true,
-        'hasReadRecord' => false,
+        @include('families.time_line.tabs', [
+        'hasStored' => $hasStored,
+        'hasReadRecord' => $hasReadRecord,
         ])
 
-        @if (Auth::user()->family_id === $family->id)
-        @include('families.bookshelf_search_bar')
+        @if (Auth::user()->family_id === $family->id && $storedCount !== 0)
+        @include('families.search_bar')
         @endif
+
+
+        @if ($hasStored) {{-- 登録絵本 --}}
+
+        @if (count($pictureBooks))
 
         @foreach($pictureBooks as $pictureBook)
         @if (!$loop->first)
         <div class="border-top"></div>
         @endif
-        <section class="py-4">
-            <div class="py-1">
-                <a href="{{ route('users.show', ['name' => $pictureBook->user->name]) }}" class="text-dark">
-                    @if ($pictureBook->user->icon_path)
-                    <img src="{{ asset($pictureBook->user->icon_path) }}" class="border" alt="プロフィール画像" style="width:25px; height:25px;background-position: center
-                                            center;border-radius: 50%;object-fit:cover;">
-                    @else
-                    <i class="far fa-user-circle fa-1x"></i>
-                    @endif
-                    <span class="text-teal1 small">
-                        {{ ' ' . $pictureBook->user->nickname}}
-                    </span>
-                </a>
-                @if ($pictureBook->created_at == $pictureBook->updated_at)
-                <span class="text-muted small">
-                    さんが『
-                    <a href="{{ route('families.show', [
-                                                        'id' => Auth::user()->family_id,
-                                                        'picture_book' => $pictureBook,
-                                                        ]) }}" class="card-title text-teal1">
-                        <b>{{ $pictureBook->title }}</b>
-                    </a>
-                    』を本棚に登録しました。
-                </span>
-                @else
-                <span class="text-muted small">
-                    さんが本棚の『
-                    <a href="{{ route('families.show', [
-                                                        'id' => Auth::user()->family_id,
-                                                        'picture_book' => $pictureBook,
-                                                        ]) }}" class="card-title text-teal1">
-                        <b>{{ $pictureBook->title }}</b>
-                    </a>
-                    』を更新しました。
-                </span>
-                @endif
-
-                <span class="text-muted small">
-                    @if (Carbon\Carbon::parse($pictureBook->updated_at)->diffInDays(now()) == 0)
-                    (今日)
-                    @else
-                    ({{ Carbon\Carbon::parse($pictureBook->updated_at)->diffInDays(now()) }}日前)
-                    @endif
-                </span>
-            </div>
-            @include('families.picture_book_card')
-        </section>
+        @include('families.time_line.stored_message')
+        @include('families.time_line.stored_card')
         @endforeach
         {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
+
+        @else
+        <p class="alert alert-teal1 border text-muted my-4">
+            登録はまだありません。
+        </p>
+        @endif
+
+
+        @elseif ($hasReadRecord) {{-- よんだよ記録 --}}
+
+        @if (count($readRecords))
+
+        @foreach($readRecords as $readRecord)
+        @if (!$loop->first)
+        <div class="border-top"></div>
+        @endif
+        @include('families.time_line.read_message')
+        @include('families.time_line.read_card')
+        @endforeach
+        {{ $readRecords->links( 'vendor.pagination.bootstrap-4_teal' ) }}
+
+        @else
+        <p class="alert alert-teal1 border text-muted my-4">
+            記録はまだありません。
+        </p>
+        @endif
+
+        @endif
     </div>
 </div>
 

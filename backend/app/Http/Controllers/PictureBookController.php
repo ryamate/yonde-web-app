@@ -112,9 +112,17 @@ class PictureBookController extends Controller
         // レビュー数付加
         $pictureBook->review_count = $reviewedPictureBooks->count();
 
+        // ログイン or 未ログイン
+        if (Auth::user()) {
+            $family = Family::where('id', Auth::user()->family_id)->first();
+        } else {
+            $family = '';
+        }
+
         $data = [
             'pictureBook' => $pictureBook,
             'reviewedPictureBooks' => $reviewedPictureBooks,
+            'family' => $family,
         ];
 
         return view('picture_books.show', $data);

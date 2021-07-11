@@ -18,7 +18,7 @@
                     </li>
                     @auth
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $user->nickname }}さんのタイムライン
+                        {{ $user->nickname }}さんのページ
                     </li>
                     @endauth
                 </ol>

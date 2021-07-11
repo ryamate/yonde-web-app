@@ -6,29 +6,29 @@
 
 @include('nav')
 
-<div class="bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 mt-4" style="margin-bottom: 90px">
-                <h2 class="text-center"><a class="text-dark text-decoration-none">お子さま追加</a></h2>
+<div class="bg-light py-4">
+    <div class="container" style="max-width: 540px">
+        <h3 class="text-center">
+            お子さま追加
+        </h3>
 
-                <div class="card mt-4 p-4 shadow-sm">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
 
-                    @include('error_card_list')
+                @include('error_card_list')
 
-                    <form action="{{ route('children.store') }}" method="post">
-                        @include('children.form')
-                        <button type="submit"
-                            class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-4">
-                            <b>追加完了する</b>
-                        </button>
-                    </form>
-                </div>
+                <form action="{{ route('children.store') }}" method="post">
+                    @include('children.form')
+                    <button type="submit"
+                        class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-4">
+                        <b>追加完了する</b>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
-
-    @include('footer')
-
 </div>
+
+@include('footer')
+
 @endsection

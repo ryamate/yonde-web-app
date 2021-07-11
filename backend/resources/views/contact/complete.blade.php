@@ -6,8 +6,8 @@
 
 @include('auth.nav')
 
-<div class="bg-light pb-4">
-    <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6 pt-4">
+<div class="bg-light py-4">
+    <div class="container" style="max-width: 540px">
         <h4 class="text-center">お問い合わせ：送信完了</h4>
         <div class="alert alert-info" role="alert">
             <h5>

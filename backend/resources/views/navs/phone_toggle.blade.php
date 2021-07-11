@@ -33,7 +33,7 @@
         {{-- my page button (toggle) --}}
         <a href="{{ route("users.show", ["name" => Auth::user()->name]) }}"
             class="btn btn-sm btn-outline-light shadow-sm small mr-3 mb-2">
-            <i class="fas fa-user-circle mr-1"></i>ユーザーのタイムライン
+            <i class="far fa-user-circle mr-1"></i>{{ Auth::user()->nickname }}さんのページ
         </a>
         {{-- setting profile button (toggle) --}}
         <a href="{{ route('families.setting') }}" class="btn btn-sm btn-outline-light shadow-sm small mr-3 mb-2">

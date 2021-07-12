@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $family->name . 'ファミリーのタイムライン-よんで-')
+@section('title', $user->nickname . 'さんのページ-よんで-')
 
 @section('content')
 
@@ -16,9 +16,11 @@
                             よんで
                         </a>
                     </li>
+                    @auth
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $family->name }}ファミリーのタイムライン
+                        {{ $user->nickname }}さんのページ
                     </li>
+                    @endauth
                 </ol>
             </nav>
         </div>
@@ -28,21 +30,17 @@
 <div class="bg-light pb-4">
     <div class="container" style="max-width: 900px;">
         <div class="card">
-            @include('families.card')
-            @include('families.tabs', [
-            'hasBookshelf' => $hasBookshelf,
-            'hasPictureBooks' => $hasPictureBooks,
+            @include('users.card')
+            @include('users.tabs', [
+            'hasFriendship' => $hasFriendship,
+            'hasTimeLine' => $hasTimeLine,
             ])
         </div>
-        @include('families.time_line.tabs', [
+        @include('users.time_line.tabs', [
         'hasStored' => $hasStored,
         'hasReadRecord' => $hasReadRecord,
+        'hasLikes' => $hasLikes,
         ])
-
-        @if (Auth::user()->family_id === $family->id && $storedCount !== 0)
-        @include('families.search_bar')
-        @endif
-
 
         @if ($hasStored) {{-- 登録絵本 --}}
 
@@ -80,6 +78,25 @@
         @else
         <p class="alert alert-teal1 border text-muted my-4">
             記録はまだありません。
+        </p>
+        @endif
+
+        @elseif ($hasLikes) {{-- いいねしたレビュー --}}
+
+        @if (count($pictureBooks))
+
+        @foreach($pictureBooks as $pictureBook)
+        @if (!$loop->first)
+        <div class="border-top"></div>
+        @endif
+        @include('users.time_line.likes.message')
+        @include('users.time_line.likes.card')
+        @endforeach
+        {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
+
+        @else
+        <p class="alert alert-teal1 border text-muted my-4">
+            いいねしたレビューはまだありません。
         </p>
         @endif
 

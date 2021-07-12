@@ -26,6 +26,12 @@
 
         <div class="col-sm-9 d-flex align-items-top">
             <div class="card-body">
+                <div class="card-title mb-0">
+                    <span>
+                        <b>{{ $pictureBook->family->name }}ファミリーのレビュー</b>
+                    </span>
+                </div>
+
                 <div class="card-title mb-0 d-flex align-items-center flex-wrap">
                     <a href="{{ route('families.show', [
                         'id' => $family->id,
@@ -94,11 +100,6 @@
                     @endif
                 </div>
 
-                <div class="card-title mb-0">
-                    <span>
-                        <b>絵本のレビュー</b>
-                    </span>
-                </div>
                 {{-- よみきかせ状況 --}}
                 <div class="card-body pt-0 pl-0 pb-2 d-flex align-items-end flex-wrap">
                     <span class="small text-secondary mb-0 mr-4">
@@ -144,7 +145,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

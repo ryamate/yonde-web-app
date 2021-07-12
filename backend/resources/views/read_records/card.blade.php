@@ -1,6 +1,6 @@
 <section class="py-4">
     <div class="py-1">
-        <a href="{{ route('users.show', ['name' => $readRecord->user->name]) }}" class="text-dark">
+        <a href="{{ route('users.index', ['name' => $readRecord->user->name]) }}" class="text-dark">
             @if ($readRecord->user->icon_path)
             <img src="{{ asset($readRecord->user->icon_path) }}" class="border" alt="プロフィール画像" style="width:25px; height:25px;background-position: center
                             center;border-radius: 50%;object-fit:cover;">

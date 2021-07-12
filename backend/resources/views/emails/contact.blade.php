@@ -31,7 +31,9 @@
 
 ---------------------------------------------------------------------------------
 
-よんで ({{ url(config('app.url')) }})
+よんで
+
+{{ url(config('app.url')) }}
 
 Copyright 2021 Ryuzo Yamate All Rights Reserved.
 

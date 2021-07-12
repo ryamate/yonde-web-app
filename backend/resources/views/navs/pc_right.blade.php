@@ -24,7 +24,7 @@
             class="nav-link btn btn-light text-teal1 d-flex align-items-center justify-content-center ml-3 mr-1"
             style="width: 35px; height:35px; border-radius: 4px;" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            <i class="fas fa-book fa-lg"></i>
+            <i class="fas fa-book fa-lg fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right mt-0">
             <a class="dropdown-item small text-center"
@@ -52,7 +52,7 @@
             class="nav-link btn btn-light text-teal1 d-flex align-items-center justify-content-center mx-1"
             style="width: 35px; height:35px; border-radius: 4px;" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            <i class="far fa-clock fa-lg"></i>
+            <i class="far fa-clock fa-lg fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right mt-0">
             <a class="dropdown-item small text-center"
@@ -73,7 +73,7 @@
             class="nav-link btn btn-light text-teal1 d-flex align-items-center justify-content-center mx-1"
             style="width: 35px; height:35px; border-radius: 4px;" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            <i class="fas fa-cog fa-lg"></i>
+            <i class="fas fa-cog fa-lg fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right mt-0">
             <a class="dropdown-item small text-center" href="{{ route('users.setting_profile') }}">
@@ -92,7 +92,7 @@
             <div class="dropdown drop-hover">
                 <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     title="{{ Auth::user()->nickname }}さんのページ"
-                    onclick="location.href='{{ route("users.show", ["name" => Auth::user()->name]) }}'">
+                    onclick="location.href='{{ route("users.index", ["name" => Auth::user()->name]) }}'">
                     @if (Auth::user()->icon_path)
                     <img src="{{ asset(Auth::user()->icon_path) }}" alt="プロフィール画像"
                         class="rounded-circle bg-white border" width="35" height="35" style="background-position: center center;

@@ -18,7 +18,7 @@
                     </li>
                     @auth
                     <li class="breadcrumb-item">
-                        <a href="{{ route("users.show", ["name" => $user->name]) }}" class="text-teal1">
+                        <a href="{{ route("users.index", ["name" => $user->name]) }}" class="text-teal1">
                             {{ $user->nickname }}さんのページ
                         </a>
                     </li>

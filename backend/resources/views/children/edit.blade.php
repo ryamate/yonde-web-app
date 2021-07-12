@@ -8,8 +8,9 @@
 
 <div class="bg-light py-4">
     <div class="container" style="max-width: 540px">
-        <h3 class="text-center"><a class="text-dark text-decoration-none">お子さま情報</a></h3>
-
+        <h3 class="text-center">
+            お子さま情報
+        </h3>
         <div class="card shadow-sm">
             <div class="card-body">
 

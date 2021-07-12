@@ -28,7 +28,7 @@
 <div class="bg-light pb-4">
     <div class="container" style="max-width: 900px;">
         <div class="card">
-            @include('families.family_card')
+            @include('families.card')
             @include('families.tabs', [
             'hasBookshelf' => $hasBookshelf,
             'hasPictureBooks' => $hasPictureBooks,

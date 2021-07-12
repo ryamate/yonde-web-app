@@ -31,7 +31,7 @@
             <i class="far fa-clock mr-1"></i>家族のタイムライン
         </a>
         {{-- my page button (toggle) --}}
-        <a href="{{ route("users.show", ["name" => Auth::user()->name]) }}"
+        <a href="{{ route("users.index", ["name" => Auth::user()->name]) }}"
             class="btn btn-sm btn-outline-light shadow-sm small mr-3 mb-2">
             <i class="far fa-user-circle mr-1"></i>{{ Auth::user()->nickname }}さんのページ
         </a>

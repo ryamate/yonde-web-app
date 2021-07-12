@@ -1,12 +1,17 @@
 <template>
-  <span>
+  <span class="d-flex align-items-center">
     <button type="button" class="btn m-0 p-0 shadow-none">
-      <i class="fa-heart mr-1"
-        :class="{'fas text-danger':this.isLikedBy,
-            'far text-dark':!this.isLikedBy,
-            'heart particleLayer explosion LikesIcon-fa-heart':this.gotToLike}"
-        @click="clickLike"
-      />
+      <span class="fa-stack">
+        <i class="fa-circle fa-stack-2x"
+          :class="{'fas text-teal1 text-shadow':this.isLikedBy,
+          'far text-secondary':!this.isLikedBy}"
+          @click="clickLike"></i>
+        <i class="fa-thumbs-up fa-stack-1x"
+          :class="{'far text-white text-shadow':this.isLikedBy,
+          'far text-secondary':!this.isLikedBy,
+          'heart particleLayer explosion LikesIcon-fa-heart':this.gotToLike}"
+          @click="clickLike"></i>
+      </span>
     </button>
     {{ countLikes }}
   </span>

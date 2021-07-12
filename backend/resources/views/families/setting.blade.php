@@ -75,7 +75,7 @@
                         </a>
                     </div>
                     <div class="col-9">
-                        <a href="{{ route("users.show", ["name" => Auth::user()->name]) }}"
+                        <a href="{{ route("users.index", ["name" => Auth::user()->name]) }}"
                             class="card-text text-teal1 text-decoration-none h5">
                             <b>{{ $user->nickname }}</b>
                         </a>
@@ -89,7 +89,7 @@
                 @foreach ($familyUsers as $familyUser)
                 <div class="row">
                     <div class="col-3 d-flex justify-content-end mt-3">
-                        <a href="{{ route("users.show", ["name" => $familyUser->name]) }}">
+                        <a href="{{ route("users.index", ["name" => $familyUser->name]) }}">
                             @if ($familyUser->icon_path)
                             <img src="{{ asset($familyUser->icon_path) }}" alt="プロフィール画像"
                                 style="width: 60px; background-position: center center;object-fit:cover;">
@@ -101,7 +101,7 @@
                         </a>
                     </div>
                     <div class="col-9 mt-3">
-                        <a href="{{ route("users.show", ["name" => $familyUser->name]) }}"
+                        <a href="{{ route("users.index", ["name" => $familyUser->name]) }}"
                             class="card-text text-teal1 text-decoration-none h5">
                             {{ $familyUser->nickname }}
                         </a>

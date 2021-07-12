@@ -71,6 +71,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\PictureBook');
     }
 
+    public function readRecords(): HasMany
+    {
+        return $this->hasMany('App\ReadRecord');
+    }
+
     public function followers(): BelongsToMany
     {
         return $this->belongsToMany('App\User', 'follows', 'followee_id', 'follower_id')->withTimestamps();

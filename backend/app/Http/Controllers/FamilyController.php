@@ -150,7 +150,7 @@ class FamilyController extends Controller
     }
 
     /**
-     * 各家族の基本データまとめ（family_card.blade.php で主に使用）
+     * 各家族の基本データまとめ
      */
     private function booksChangingTab(string $family_id): array
     {

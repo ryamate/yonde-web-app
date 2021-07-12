@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Family;
+use App\PictureBook;
+use App\ReadRecord;
 use Storage;
 use Auth;
 use Illuminate\Http\Request;
@@ -20,40 +22,100 @@ class UserController extends Controller
     /**
      * ユーザーのページ画面表示
      */
-    public function show(string $name)
+    public function index(string $name)
     {
-        $user = User::with('pictureBooks')->where('name', $name)->first();
+        $data = $this->booksChangingTab($name);
+        $pictureBooks = PictureBook::with('readRecords', 'user')
+            ->where('user_id', $data['user']->id);
+        $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(10);
 
-        $family = Family::with('users', 'children')->where('id', $user->family_id)->first();
+        $data['hasFriendship'] = false;
+        $data['hasTimeLine'] = true;
+
+        $data['hasStored'] = true;
+        $data['hasReadRecord'] = false;
+        $data['hasLikes'] = false;
+
+        return view('users.index', $data);
+    }
+
+    /**
+     * ユーザーの読み聞かせ記録のタイムライン画面表示
+     */
+    public function readRecord(string $name)
+    {
+        $data = $this->booksChangingTab($name);
+        $data['readRecords'] = ReadRecord::with('pictureBook', 'user', 'children')
+            ->where('user_id', $data['user']->id)
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(30);
+
+        $data['hasFriendship'] = false;
+        $data['hasTimeLine'] = true;
+
+        $data['hasStored'] = false;
+        $data['hasReadRecord'] = true;
+        $data['hasLikes'] = false;
+
+        return view('users.index', $data);
+    }
+
+    /**
+     * いいねしたレビュー一覧画面を表示
+     */
+    public function likes(string $name)
+    {
+
+        $data = $this->booksChangingTab($name);
+        $data['pictureBooks'] = $data['user']->likes
+            ->map(function ($item, $key) {
+                $item->liked_at  = $item->pivot->updated_at;
+                return $item;
+            })
+            ->sortByDesc('liked_at')
+            ->paginate(10);
+
+
+        $data['hasFriendship'] = false;
+        $data['hasTimeLine'] = true;
+
+        $data['hasStored'] = false;
+        $data['hasReadRecord'] = false;
+        $data['hasLikes'] = true;
+
+        return view('users.index', $data);
+    }
+
+
+
+
+    /**
+     * ユーザー基本データまとめ
+     */
+    private function booksChangingTab(string $user_name): array
+    {
+        $user = User::where('name', $user_name)->first();
+        $family = Family::where('id', $user->family_id)->first();
         $familyUsers = $family->users->whereNotIn('id', $user->id)->sortBy('created_at');
         $children = $family->children->sortBy('birthday');
-        $pictureBooks = $user->pictureBooks->sortByDesc('updated_at');
+
+        $storedCount = $user->pictureBooks->count();
+        $readRecordCount = $user->readRecords->count();
+        $reviewCount = $user->pictureBooks->where('review', '!=', null)->count();
 
         $data = [
             'user' => $user,
             'family' => $family,
             'familyUsers' => $familyUsers,
             'children' => $children,
-            'pictureBooks' => $pictureBooks,
+            'storedCount' => $storedCount,
+            'readRecordCount' => $readRecordCount,
+            'reviewCount' => $reviewCount,
         ];
 
-        return view('users.show', $data);
+        return $data;
     }
 
-    /**
-     * いいね画面を表示
-     */
-    public function likes(string $name)
-    {
-        $user = User::where('name', $name)->first();
-
-        $pictureBooks = $user->likes->sortByDesc('created_at');
-
-        return view('users.likes', [
-            'user' => $user,
-            'pictureBooks' => $pictureBooks,
-        ]);
-    }
 
     /**
      * フォロー中画面表示

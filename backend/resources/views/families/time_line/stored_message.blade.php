@@ -1,10 +1,10 @@
 <div class="pt-4 pb-1">
-    <a href="{{ route('users.show', ['name' => $pictureBook->user->name]) }}" class="text-dark">
+    <a href="{{ route('users.index', ['name' => $pictureBook->user->name]) }}">
         @if ($pictureBook->user->icon_path)
         <img src="{{ asset($pictureBook->user->icon_path) }}" class="border" alt="プロフィール画像" style="width:25px; height:25px;background-position: center
                                             center;border-radius: 50%;object-fit:cover;">
         @else
-        <i class="far fa-user-circle fa-1x"></i>
+        <i class="far fa-user-circle text-secondary"></i>
         @endif
         <span class="text-teal1 small">
             {{ ' ' . $pictureBook->user->nickname}}

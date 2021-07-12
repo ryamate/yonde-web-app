@@ -61,7 +61,8 @@ Route::prefix('users')->name('users.')->group(function () {
         Route::get('/edit', 'UserController@edit')->name('edit');
         Route::post('/update', 'UserController@update')->name('update');
         Route::get('/setting_profile', 'UserController@settingProfile')->name('setting_profile');
-        Route::get('/{name}', 'UserController@show')->name('show');
+        Route::get('/{name}', 'UserController@index')->name('index');
+        Route::get('/{name}/read_record', 'UserController@readRecord')->name('read_record');
         Route::get('/{name}/likes', 'UserController@likes')->name('likes');
         Route::get('/{name}/followings', 'UserController@followings')->name('followings');
         Route::get('/{name}/followers', 'UserController@followers')->name('followers');

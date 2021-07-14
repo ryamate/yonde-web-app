@@ -31,7 +31,7 @@
             <p class="small text-muted mb-1">
                 家族一覧
             </p>
-            <div class="d-flex justify-content-start align-items-center flex-wrap">
+            <div class="d-flex justify-content-start align-items-center flex-wrap mb-3">
                 @foreach ($familyUsers as $familyUser)
                 <span class="btn-group drop-hover">
                     <a href="{{ route("users.index", ["name" => $familyUser->name]) }}" class="text-decoration-none">
@@ -103,24 +103,24 @@
                 @endforeach
             </div>
 
-            <div class="card-body">
-                <div class="card-text">
-                    {{-- <a href="{{ route('users.followings', ['name' => $user->name]) }}" class="text-muted">
-                    <span class="text-dark"><b>{{ $user->count_followings }}</b></span> フォロー中
+            <div class="d-flex align-items-center frex-wrap">
+                <span class="mr-3">
+                    <a href="{{ route('users.followings', ['name' => $user->name]) }}" class="text-muted">
+                        <span class="text-dark">
+                            <b>{{ $user->count_follows }}</b>
+                        </span>
+                        フォロー中
                     </a>
+                </span>
+                <span>
                     <a href="{{ route('users.followers', ['name' => $user->name]) }}" class="text-muted">
-                        <span class="text-dark"><b>{{ $user->count_followers }}</b></span> フォロワー
-                    </a> --}}
-                </div>
+                        <span class="text-dark">
+                            <b>{{ $family->count_follows }}</b>
+                        </span>
+                        フォロワー
+                    </a>
+                </span>
             </div>
-            <div class="d-flex align-items-center">
-                {{-- @if( Auth::id() !== $user->id )
-                    <follow-button class="ml-auto" :initial-is-followed-by='@json($user->isFollowedBy(Auth::user()))'
-                        :authorized='@json(Auth::check())' endpoint="{{ route('users.follow', ['name' => $user->name]) }}">
-                </follow-button>
-                @endif --}}
-            </div>
-
         </div>
     </div>
 </div>

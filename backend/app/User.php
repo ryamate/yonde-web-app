@@ -76,14 +76,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\ReadRecord');
     }
 
-    public function followers(): BelongsToMany
+    public function follows(): BelongsToMany
     {
-        return $this->belongsToMany('App\User', 'follows', 'followee_id', 'follower_id')->withTimestamps();
-    }
-
-    public function followings(): BelongsToMany
-    {
-        return $this->belongsToMany('App\User', 'follows', 'follower_id', 'followee_id')->withTimestamps();
+        return $this->belongsToMany('App\Family', 'follows')->withTimestamps();
     }
 
     public function likes(): BelongsToMany
@@ -91,20 +86,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany('App\PictureBook', 'likes')->withTimestamps();
     }
 
-    public function isFollowedBy(?User $user): bool
+    public function getCountFollowsAttribute(): int
     {
-        return $user
-            ? (bool)$this->followers->where('id', $user->id)->count()
-            : false;
-    }
-
-    public function getCountFollowersAttribute(): int
-    {
-        return $this->followers->count();
-    }
-
-    public function getCountFollowingsAttribute(): int
-    {
-        return $this->followings->count();
+        return $this->follows->count();
     }
 }

@@ -64,10 +64,9 @@ Route::prefix('users')->name('users.')->group(function () {
         Route::get('/{name}', 'UserController@index')->name('index');
         Route::get('/{name}/read_record', 'UserController@readRecord')->name('read_record');
         Route::get('/{name}/likes', 'UserController@likes')->name('likes');
+        Route::get('/{name}/liked', 'UserController@liked')->name('liked');
         Route::get('/{name}/followings', 'UserController@followings')->name('followings');
         Route::get('/{name}/followers', 'UserController@followers')->name('followers');
-        Route::put('/{name}/follow', 'UserController@follow')->name('follow');
-        Route::delete('/{name}/follow', 'UserController@unfollow')->name('unfollow');
     });
 });
 
@@ -84,6 +83,8 @@ Route::prefix('families')->name('families.')->group(function () {
         Route::get('/{id}/read', 'FamilyController@booksRead')->name('read');
         Route::get('/{id}/read_record', 'FamilyController@readRecord')->name('read_record');
         Route::get('/{id}/{picture_book}', 'FamilyController@show')->name('show');
+        Route::put('/{id}/follow', 'FamilyController@follow')->name('follow');
+        Route::delete('/{id}/follow', 'FamilyController@unfollow')->name('unfollow');
     });
 });
 

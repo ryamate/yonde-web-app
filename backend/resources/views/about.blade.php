@@ -53,11 +53,20 @@
                             <p class="text-shadow">
                                 Web上の本棚にいれた絵本の、読み聞かせ記録・管理をして、家族と共有できるサービスです。
                             </p>
+                            @guest
                             <div class="text-center">
                                 <a href="{{ route('register') }}"
                                     class="btn btn-block btn-warning mt-2 mb-2 rounded-pill text-white shadow"
                                     role="button">いますぐはじめる！</a>
                             </div>
+                            @endguest
+                            @auth
+                            <div class="text-center">
+                                <a href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}"
+                                    class="btn btn-block btn-teal1 mt-2 mb-2 rounded-pill text-white shadow"
+                                    role="button">本棚ページをみる</a>
+                            </div>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -120,11 +129,11 @@
                         <img src="{{ asset('image/index_3-1.png') }}" width="100%" alt="" style="max-width: 250px">
                         <div class="card-body p-0 text-secondary">
                             <p class="card-title">
-                                <b>絵本の本棚</b>
+                                <b>絵本のWeb本棚</b>
                             </p>
                             <p class="card-text small">
                                 気になる絵本、これまで読んだ絵本をいれることができます。<br>
-                                Web画面を見てもらえばどの絵本がよみたいか、こどもが教えてくれるかもしれません。<br>
+                                Web本棚を見れば、どの絵本が読みたいか、こどもが教えてくれるかもしれません。
                             </p>
                         </div>
                     </div>
@@ -140,7 +149,7 @@
                             </p>
                             <p class="card-text small">
                                 絵本の読み聞かせをした記録を付けることができます。<br>
-                                いつ読んだか、どの子に読んだか、何回目かなど、読んだ内容がより具体的にわかるようになります。
+                                いつ読んだか、何回目かなど、具体的な記録が簡単にできます。
                             </p>
                         </div>
                     </div>
@@ -163,6 +172,7 @@
                 </div>
             </div>
 
+            @guest
             {{-- pc --}}
             <div class="text-center d-none d-md-block border-bottom pb-4 mx-5">
                 <a href="{{ route('login.guest') }}" class="btn btn-outline-info mt-2 mb-2" role="button"
@@ -179,6 +189,7 @@
                     </a>
                 </div>
             </div>
+            @endguest
 
             <!-- pc -->
             <div style="margin-top: 74px;">
@@ -236,6 +247,7 @@
                             いつでもこたえてあげる気持ちになる
                         </h4>
                     </div>
+                    @guest
                     <div class="text-center d-none d-md-block">
                         <a class="btn btn-teal1 btn-lg shadow mt-2 mb-2" href="{{ route('register') }}"
                             role="button">新規登録する</a>
@@ -244,6 +256,7 @@
                         <a class="btn btn-teal1 btn-block shadow mt-2 mb-2" href="{{ route('register') }}"
                             role="button">新規登録する</a>
                     </div>
+                    @endguest
                 </div>
             </div>
         </div>

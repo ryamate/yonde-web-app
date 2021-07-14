@@ -25,14 +25,14 @@ class FamilyController extends Controller
      */
     public function index(string $family_id)
     {
-        $data = $this->booksChangingTab($family_id);
+        $data = $this->collectFamilyInfo($family_id);
         $pictureBooks = PictureBook::with('readRecords', 'user')
             ->where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(5);
 
         $data['hasBookshelf'] = false;
-        $data['hasPictureBooks'] = true;
+        $data['hasTimeLine'] = true;
 
         $data['hasStored'] = true;
         $data['hasReadRecord'] = false;
@@ -45,7 +45,7 @@ class FamilyController extends Controller
      */
     public function readRecord(string $family_id)
     {
-        $data = $this->booksChangingTab($family_id);
+        $data = $this->collectFamilyInfo($family_id);
         $pictureBooks = PictureBook::where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['readRecords'] = ReadRecord::with('pictureBook', 'user', 'children')
@@ -54,7 +54,7 @@ class FamilyController extends Controller
             ->paginate(10);
 
         $data['hasBookshelf'] = false;
-        $data['hasPictureBooks'] = true;
+        $data['hasTimeLine'] = true;
 
         $data['hasStored'] = false;
         $data['hasReadRecord'] = true;
@@ -67,13 +67,13 @@ class FamilyController extends Controller
      */
     public function bookshelf(string $family_id)
     {
-        $data = $this->booksChangingTab($family_id);
+        $data = $this->collectFamilyInfo($family_id);
         $pictureBooks = PictureBook::where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(30);
 
         $data['hasBookshelf'] = true;
-        $data['hasPictureBooks'] = false;
+        $data['hasTimeLine'] = false;
 
         $data['hasStored'] = true;
         $data['hasRead'] = false;
@@ -87,14 +87,14 @@ class FamilyController extends Controller
      */
     public function booksRead(string $family_id)
     {
-        $data = $this->booksChangingTab($family_id);
+        $data = $this->collectFamilyInfo($family_id);
         $pictureBooks = PictureBook::where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->where('read_status', '!=', 0)
             ->orderBy('updated_at', 'DESC')->paginate(30);
 
         $data['hasBookshelf'] = true;
-        $data['hasPictureBooks'] = false;
+        $data['hasTimeLine'] = false;
 
         $data['hasStored'] = false;
         $data['hasRead'] = true;
@@ -108,14 +108,14 @@ class FamilyController extends Controller
      */
     public function booksCurious(string $family_id)
     {
-        $data = $this->booksChangingTab($family_id);
+        $data = $this->collectFamilyInfo($family_id);
         $pictureBooks = PictureBook::where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->where('read_status', '=', 0)
             ->orderBy('updated_at', 'DESC')->paginate(30);
 
         $data['hasBookshelf'] = true;
-        $data['hasPictureBooks'] = false;
+        $data['hasTimeLine'] = false;
 
         $data['hasStored'] = false;
         $data['hasRead'] = false;
@@ -129,7 +129,7 @@ class FamilyController extends Controller
      */
     public function show(string $family_id, PictureBook $pictureBook)
     {
-        $data = $this->booksChangingTab($family_id);
+        $data = $this->collectFamilyInfo($family_id);
         $pictureBooks = PictureBook::with('readRecords', 'user')
             ->where('family_id', $family_id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
@@ -141,7 +141,7 @@ class FamilyController extends Controller
             ->paginate(10);
 
         $data['hasBookshelf'] = false;
-        $data['hasPictureBooks'] = false;
+        $data['hasTimeLine'] = false;
 
         $data['hasStored'] = false;
         $data['hasReadRecord'] = false;
@@ -152,7 +152,7 @@ class FamilyController extends Controller
     /**
      * 各家族の基本データまとめ
      */
-    private function booksChangingTab(string $family_id): array
+    private function collectFamilyInfo(string $family_id): array
     {
         $family = Family::where('id', $family_id)->first();
         $familyUsers = $family->users->sortBy('created_at');
@@ -230,20 +230,36 @@ class FamilyController extends Controller
         return redirect()->route('families.setting');
     }
 
-    // /**
-    //  * フォロワー画面表示
-    //  */
-    // public function followers(string $name)
-    // {
-    //     $user = User::where('name', $name)->first();
+    /**
+     * フォローする
+     */
+    public function follow(Request $request, string $family_id)
+    {
+        $family = Family::where('id', $family_id)->first();
 
-    //     $followers = $user->followers->sortByDesc('created_at');
+        if ($family->id === $request->user()->family_id) {
+            return abort('404', 'Cannot follow yourself.');
+        }
 
-    //     return view('users.followers', [
-    //         'user' => $user,
-    //         'followers' => $followers,
-    //     ]);
-    // }
+        $family->follows()->detach($request->user()->id);
+        $family->follows()->attach($request->user()->id);
 
+        return ['id' => $family->id];
+    }
 
+    /**
+     * フォロー解除する
+     */
+    public function unfollow(Request $request, string $family_id)
+    {
+        $family = Family::where('id', $family_id)->first();
+
+        if ($family->id === $request->user()->family_id) {
+            return abort('404', 'Cannot follow yourself.');
+        }
+
+        $family->follows()->detach($request->user()->id);
+
+        return ['id' => $family->id];
+    }
 }

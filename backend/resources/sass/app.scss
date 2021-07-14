@@ -5,7 +5,9 @@ $line-height-base: 1.65;
 // Colors
 $gray-dark: #546e7a;
 $theme-colors: (
-    "teal1": #26a69a
+    "teal1": #26a69a,
+    "pink": #e83e8c,
+    "light-pink": #fad6e7
 );
 
 // Font-family
@@ -114,24 +116,24 @@ body {
 
 // サムネイルがない場合に配置する
 .no-image-background {
-  background-color: #A6EBE4;
-  width: 100%;
-  max-width: 180px;
-  margin: 0 auto;
- display: flex;
- justify-content: center;
- align-items: center;
- position: relative;
+    background-color: #a6ebe4;
+    width: 100%;
+    max-width: 180px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 .no-image-background:before {
-   display: block;
-   content: '';
-   padding-top: 100%;
+    display: block;
+    content: "";
+    padding-top: 100%;
 }
 .no-image-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 // home.blade.phpで使用

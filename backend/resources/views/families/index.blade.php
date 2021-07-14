@@ -31,7 +31,7 @@
             @include('families.card')
             @include('families.tabs', [
             'hasBookshelf' => $hasBookshelf,
-            'hasPictureBooks' => $hasPictureBooks,
+            'hasTimeLine' => $hasTimeLine,
             ])
         </div>
         @include('families.time_line.tabs', [
@@ -52,8 +52,8 @@
         @if (!$loop->first)
         <div class="border-top"></div>
         @endif
-        @include('families.time_line.stored_message')
-        @include('families.time_line.stored_card')
+        @include('families.time_line.stored_picture_books.message')
+        @include('families.time_line.stored_picture_books.card')
         @endforeach
         {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
 
@@ -72,8 +72,8 @@
         @if (!$loop->first)
         <div class="border-top"></div>
         @endif
-        @include('families.time_line.read_message')
-        @include('families.time_line.read_card')
+        @include('families.time_line.read_records.message')
+        @include('families.time_line.read_records.card')
         @endforeach
         {{ $readRecords->links( 'vendor.pagination.bootstrap-4_teal' ) }}
 

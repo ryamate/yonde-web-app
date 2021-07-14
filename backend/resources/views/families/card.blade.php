@@ -1,8 +1,16 @@
 <div class="card-body pb-0">
     <div class="row no-gutters">
         <div class="col-sm-6 p-2">
-            <p class="card-title">
+            <p class="card-title d-flex align-items-center flex-wrap">
                 {{ $family->name }}ファミリー
+                <span class="d-flex ml-3" title="お気に入り本棚">
+                    @if( Auth::user()->family_id !== $family->id )
+                    <follow-button class="ml-auto" :initial-is-followed-by='@json($family->isFollowedBy(Auth::user()))'
+                        :authorized='@json(Auth::check())'
+                        endpoint="{{ route('families.follow', ['id' => $family->id]) }}">
+                    </follow-button>
+                    @endif
+                </span>
             </p>
             <p class="small text-muted mb-1">
                 家族一覧

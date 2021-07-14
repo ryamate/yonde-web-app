@@ -20,7 +20,7 @@
             class="nav-link px-1 pt-1 pb-0 btn btn-sm {{ $hasLikes ? 'active text-white btn-teal1' : 'btn-outline-teal1' }}"
             style="border-radius: 12px">
             <small>いいねした</small><br>
-            レビュー<i class="fas fa-thumbs-up ml-1"></i>
+            レビュー
         </a>
     </li>
 </ul>

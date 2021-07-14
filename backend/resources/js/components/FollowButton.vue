@@ -1,17 +1,19 @@
 <template>
-  <div>
-    <button
-      class="btn-sm shadow-none border border-teal1 p-2"
-      :class="buttonColor"
-      @click="clickFollow"
-    >
-      <i
-        class="mr-1"
-        :class="buttonIcon"
-      ></i>
-      {{ buttonText }}
+  <span class="d-flex align-items-center">
+    <button type="button" class="btn m-0 p-0 shadow-none">
+      <span class="fa-stack fa-lg">
+        <i class="fas fa-circle fa-stack-2x"
+          :class="{'text-light-pink text-shadow':this.isFollowedBy,
+          'text-light':!this.isFollowedBy}"
+          @click="clickFollow"></i>
+        <i class="fa-heart fa-stack-1x"
+          :class="{'fas text-pink':this.isFollowedBy,
+          'far text-secondary':!this.isFollowedBy,
+          'heart particleLayer explosion LikesIcon-fa-heart':this.gotToFollow}"
+          @click="clickFollow"></i>
+      </span>
     </button>
-  </div>
+  </span>
 </template>
 
 <script>
@@ -32,24 +34,8 @@
     data() {
       return {
         isFollowedBy: this.initialIsFollowedBy,
+        gotToFollow: false,
       }
-    },
-    computed: {
-      buttonColor() {
-        return this.isFollowedBy
-          ? 'bg-teal1 text-white'
-          : 'bg-white text-teal1'
-      },
-      buttonIcon() {
-        return this.isFollowedBy
-          ? 'fas fa-user-check'
-          : 'fas fa-user-plus'
-      },
-      buttonText() {
-        return this.isFollowedBy
-          ? 'フォロー中'
-          : 'フォロー'
-      },
     },
     methods: {
       clickFollow() {
@@ -66,11 +52,13 @@
         const response = await axios.put(this.endpoint)
 
         this.isFollowedBy = true
+        this.gotToFollow = true
       },
       async unfollow() {
         const response = await axios.delete(this.endpoint)
 
         this.isFollowedBy = false
+        this.gotToFollow = false
       },
     },
   }

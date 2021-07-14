@@ -24,12 +24,12 @@ class UserController extends Controller
      */
     public function index(string $name)
     {
-        $data = $this->booksChangingTab($name);
+        $data = $this->collectUserInfo($name);
         $pictureBooks = PictureBook::with('readRecords', 'user')
             ->where('user_id', $data['user']->id);
         $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(10);
 
-        $data['hasFriendship'] = false;
+        $data['hasFollows'] = false;
         $data['hasTimeLine'] = true;
 
         $data['hasStored'] = true;
@@ -44,13 +44,13 @@ class UserController extends Controller
      */
     public function readRecord(string $name)
     {
-        $data = $this->booksChangingTab($name);
+        $data = $this->collectUserInfo($name);
         $data['readRecords'] = ReadRecord::with('pictureBook', 'user', 'children')
             ->where('user_id', $data['user']->id)
             ->orderBy('updated_at', 'DESC')
             ->paginate(30);
 
-        $data['hasFriendship'] = false;
+        $data['hasFollows'] = false;
         $data['hasTimeLine'] = true;
 
         $data['hasStored'] = false;
@@ -66,7 +66,7 @@ class UserController extends Controller
     public function likes(string $name)
     {
 
-        $data = $this->booksChangingTab($name);
+        $data = $this->collectUserInfo($name);
         $data['pictureBooks'] = $data['user']->likes
             ->map(function ($item, $key) {
                 $item->liked_at  = $item->pivot->updated_at;
@@ -75,8 +75,7 @@ class UserController extends Controller
             ->sortByDesc('liked_at')
             ->paginate(10);
 
-
-        $data['hasFriendship'] = false;
+        $data['hasFollows'] = false;
         $data['hasTimeLine'] = true;
 
         $data['hasStored'] = false;
@@ -86,13 +85,10 @@ class UserController extends Controller
         return view('users.index', $data);
     }
 
-
-
-
     /**
      * ユーザー基本データまとめ
      */
-    private function booksChangingTab(string $user_name): array
+    private function collectUserInfo(string $user_name): array
     {
         $user = User::where('name', $user_name)->first();
         $family = Family::where('id', $user->family_id)->first();
@@ -116,20 +112,30 @@ class UserController extends Controller
         return $data;
     }
 
-
     /**
      * フォロー中画面表示
      */
     public function followings(string $name)
     {
-        $user = User::where('name', $name)->first();
+        $data = $this->collectUserInfo($name);
+        $data['followings'] = $data['user']->follows
+            ->map(function ($item, $key) {
+                $item->storedCount = $item->pictureBooks->count();
+                $item->readRecordCount = $item->readRecords->count();
+                $item->reviewCount = $item->pictureBooks->where('review', '!=', null)->count();
+                $item->followed_at = $item->pivot->updated_at;
+                return $item;
+            })
+            ->sortByDesc('created_at')
+            ->paginate(30);
 
-        $followings = $user->followings->sortByDesc('created_at');
+        $data['hasFollows'] = true;
+        $data['hasTimeLine'] = false;
 
-        return view('users.followings', [
-            'user' => $user,
-            'followings' => $followings,
-        ]);
+        $data['hasFollowers'] = false;
+        $data['hasFollowings'] = true;
+
+        return view('users.index', $data);
     }
 
     /**
@@ -137,14 +143,27 @@ class UserController extends Controller
      */
     public function followers(string $name)
     {
-        $user = User::where('name', $name)->first();
+        $data = $this->collectUserInfo($name);
+        $data['followers'] = $data['family']->follows
+            ->map(function ($follower, $key) {
+                $follower_family =
+                    Family::where('id', $follower->family_id)->first();
+                $follower_family->storedCount = $follower_family->pictureBooks->count();
+                $follower_family->readRecordCount = $follower_family->readRecords->count();
+                $follower_family->reviewCount = $follower_family->pictureBooks->where('review', '!=', null)->count();
+                $follower_family->followed_at = $follower->pivot->updated_at;
+                return $follower_family;
+            })
+            ->sortByDesc('created_at')
+            ->paginate(30);
 
-        $followers = $user->followers->sortByDesc('created_at');
+        $data['hasFollows'] = true;
+        $data['hasTimeLine'] = false;
 
-        return view('users.followers', [
-            'user' => $user,
-            'followers' => $followers,
-        ]);
+        $data['hasFollowers'] = true;
+        $data['hasFollowings'] = false;
+
+        return view('users.index', $data);
     }
 
     /**
@@ -158,42 +177,10 @@ class UserController extends Controller
             return abort('404', 'Cannot follow yourself.');
         }
 
-        $request->user()->followings()->detach($user);
-        $request->user()->followings()->attach($user);
+        $request->user()->follows()->detach($user);
+        $request->user()->follows()->attach($user);
 
         return ['name' => $name];
-    }
-
-    /**
-     * フォロー解除する
-     */
-    public function unfollow(Request $request, string $name)
-    {
-        $user = User::where('name', $name)->first();
-
-        if ($user->id === $request->user()->id) {
-            return abort('404', 'Cannot follow yourself.');
-        }
-
-        $request->user()->followings()->detach($user);
-
-        return ['name' => $name];
-    }
-
-    /**
-     * ユーザープロフィール設定画面表示
-     */
-    public function settingProfile()
-    {
-        $user = User::where('name', Auth::user()->name)->firstOrFail();
-        $family = Family::with('users')->where('id', $user->family_id)->first();
-        $familyUsers = $family->users->whereNotIn('id', $user->id)->sortBy('created_at');
-
-        return view('users.setting_profile', [
-            'user' => $user,
-            'family' => $family,
-            'familyUsers' => $familyUsers,
-        ]);
     }
 
     /**

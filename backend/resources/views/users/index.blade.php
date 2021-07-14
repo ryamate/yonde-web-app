@@ -32,75 +32,17 @@
         <div class="card">
             @include('users.card')
             @include('users.tabs', [
-            'hasFriendship' => $hasFriendship,
+            'hasFollows' => $hasFollows,
             'hasTimeLine' => $hasTimeLine,
             ])
         </div>
-        @include('users.time_line.tabs', [
-        'hasStored' => $hasStored,
-        'hasReadRecord' => $hasReadRecord,
-        'hasLikes' => $hasLikes,
-        ])
 
-        @if ($hasStored) {{-- 登録絵本 --}}
-
-        @if (count($pictureBooks))
-
-        @foreach($pictureBooks as $pictureBook)
-        @if (!$loop->first)
-        <div class="border-top"></div>
-        @endif
-        @include('families.time_line.stored_message')
-        @include('families.time_line.stored_card')
-        @endforeach
-        {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
-
-        @else
-        <p class="alert alert-teal1 border text-muted my-4">
-            登録はまだありません。
-        </p>
+        @if ($hasFollows) {{-- 本棚フォロー --}}
+        @include('users.follows.main')
+        @elseif ($hasTimeLine) {{-- タイムライン --}}
+        @include('users.time_line.main')
         @endif
 
-
-        @elseif ($hasReadRecord) {{-- よんだよ記録 --}}
-
-        @if (count($readRecords))
-
-        @foreach($readRecords as $readRecord)
-        @if (!$loop->first)
-        <div class="border-top"></div>
-        @endif
-        @include('families.time_line.read_message')
-        @include('families.time_line.read_card')
-        @endforeach
-        {{ $readRecords->links( 'vendor.pagination.bootstrap-4_teal' ) }}
-
-        @else
-        <p class="alert alert-teal1 border text-muted my-4">
-            記録はまだありません。
-        </p>
-        @endif
-
-        @elseif ($hasLikes) {{-- いいねしたレビュー --}}
-
-        @if (count($pictureBooks))
-
-        @foreach($pictureBooks as $pictureBook)
-        @if (!$loop->first)
-        <div class="border-top"></div>
-        @endif
-        @include('users.time_line.likes.message')
-        @include('users.time_line.likes.card')
-        @endforeach
-        {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
-
-        @else
-        <p class="alert alert-teal1 border text-muted my-4">
-            いいねしたレビューはまだありません。
-        </p>
-        @endif
-
-        @endif
     </div>
 </div>
 

@@ -31,7 +31,7 @@
             @include('families.card')
             @include('families.tabs', [
             'hasBookshelf' => $hasBookshelf,
-            'hasPictureBooks' => $hasPictureBooks,
+            'hasTimeLine' => $hasTimeLine,
             ])
         </div>
         @include('families.bookshelf.tabs', [

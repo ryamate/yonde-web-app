@@ -34,7 +34,7 @@
             @include('families.card')
             @include('families.tabs', [
             'hasBookshelf' => $hasBookshelf,
-            'hasPictureBooks' => $hasPictureBooks,
+            'hasTimeLine' => $hasTimeLine,
             ])
         </div>
         @include('families.time_line.tabs', [
@@ -46,14 +46,14 @@
         @endif
 
         <section class="py-4">
-            @include('families.time_line.stored_card')
+            @include('families.time_line.stored_picture_books.card')
         </section>
 
         <div class="container">
             @foreach($readRecords as $readRecord)
             <div class="border-top"></div>
             <section class="py-4">
-                @include('families.time_line.read_card')
+                @include('families.time_line.read_records.card')
             </section>
             @endforeach
             {{ $readRecords->links( 'vendor.pagination.bootstrap-4_teal' ) }}

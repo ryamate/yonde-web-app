@@ -1,9 +1,11 @@
-<div class="card pb-4 my-2">
-    <div class="card-body pb-0">
+<div class="card pb-3 my-2">
+    <div class="card-body pt-2 pb-0">
         <div class="row no-gutters">
             <div class="col-sm-6 p-2">
-                <p class="card-title d-flex align-items-center flex-wrap">
-                    {{ $family->name }}ファミリー
+                <p class="card-title d-flex align-items-center flex-wrap mb-0">
+                    <a href="{{ route('families.bookshelf', ["id" => $family->id]) }}" class="text-dark">
+                        <b>{{ $family->name }}ファミリー</b>
+                    </a>
                     <span class="d-flex ml-3" title="お気に入り本棚">
                         @if( Auth::user()->family_id !== $family->id )
                         <follow-button class="ml-auto"
@@ -18,24 +20,24 @@
                     家族一覧
                 </p>
                 <div class="d-flex justify-content-start align-items-center flex-wrap">
-                    @foreach ($family->users->sortBy('created_at') as $familyMember)
+                    @foreach ($family->users->sortBy('created_at') as $familyUser)
                     <span class="btn-group drop-hover">
-                        <a href="{{ route("users.index", ["name" => $familyMember->name]) }}"
+                        <a href="{{ route("users.index", ["name" => $familyUser->name]) }}"
                             class="text-decoration-none">
-                            @if ($familyMember->icon_path)
-                            <img src="{{ asset($familyMember->icon_path) }}" class="bg-white border" alt="プロフィール画像"
+                            @if ($familyUser->icon_path)
+                            <img src="{{ asset($familyUser->icon_path) }}" class="bg-white border" alt="プロフィール画像"
                                 style="width: 45px; height:45px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
                             @else
                             <i class="far fa-user-circle fa-3x text-secondary"></i>
                             @endif
                         </a>
-                        <div class="dropdown-menu p-1 text-center" style="max-width: 180px; border-color:#26a69a;">
+                        <div class="dropdown-menu p-1 text-center border-linen" style="max-width: 180px">
                             <p class="mb-0">
-                                <b>{{ $familyMember->nickname }}</b>
+                                <b>{{ $familyUser->nickname }}</b>
                             </p>
-                            @if ($familyMember->relation !== null)
+                            @if ($familyUser->relation !== null)
                             <p class="mb-0">
-                                {{ $familyMember->relation }}
+                                <span class="badge badge-paper">{{ $familyUser->relation }}</span>
                             </p>
                             @endif
                         </div>
@@ -47,18 +49,18 @@
                         <a href="{{ route('children.show', ['id' => $child->id]) }}">
                             @if(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear())
                             && $child->gender_code === 2)
-                            <img src="{{ asset('image/girl.png') }}" alt="プロフィール画像" class="bg-light border"
+                            <img src="{{ asset('image/girl.png') }}" alt="プロフィール画像" class="bg-paper border"
                                 style="width: 45px; height:45px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
                             @elseif(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
-                            <img src="{{ asset('image/boy.png') }}" alt="プロフィール画像" class="bg-light border"
+                            <img src="{{ asset('image/boy.png') }}" alt="プロフィール画像" class="bg-paper border"
                                 style="width: 45px; height:45px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
                             @else
-                            <img src="{{ asset('image/baby.png') }}" alt="プロフィール画像" class="bg-light border"
+                            <img src="{{ asset('image/baby.png') }}" alt="プロフィール画像" class="bg-paper border"
                                 style="width: 45px; height:45px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
                             @endif
                         </a>
-                        <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center"
-                            style="max-width: 180px; border-color:#26a69a;">
+                        <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center border-linen"
+                            style="max-width: 180px">
                             @if ($child->family_id === Auth::user()->family_id)
                             <p class="mb-0">
                                 <b>{{ $child->name }}</b>
@@ -69,11 +71,20 @@
                             <p class="mb-0">
                                 {{ Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y才') }}
                             </p>
-                            @if ($child->gender_code === 1)
-                            <p class="mb-0">男の子</p>
-                            @elseif ($child->gender_code === 2)
-                            <p class="mb-0">女の子</p>
                             @endif
+
+                            @if ($child->gender_code === 1)
+                            <p class="mb-0">
+                                <span class="badge badge-dark">
+                                    男の子
+                                </span>
+                            </p>
+                            @elseif ($child->gender_code === 2)
+                            <p class="mb-0">
+                                <span class="badge badge-mocha">
+                                    女の子
+                                </span>
+                            </p>
                             @endif
                         </div>
                     </span>

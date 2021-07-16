@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="card-title mb-0">
-                    <span>
+                    <span class="text-dark">
                         <b>絵本のレビュー</b>
                     </span>
                 </div>

@@ -7,10 +7,10 @@
 @include('nav')
 
 <header>
-    <div class="bg-light">
+    <div class="bg-paper">
         <div class="container" style="max-width: 900px;">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-light small pl-0 mb-0">
+                <ol class="breadcrumb bg-paper small pl-0 mb-0">
                     <li class="breadcrumb-item">
                         <a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
@@ -28,7 +28,7 @@
     </div>
 </header>
 
-<div class="bg-light pb-4">
+<div class="bg-paper pb-4">
     <div class="container" style="max-width: 900px;">
         <div class="card shadow-sm">
             @include('families.card')
@@ -45,14 +45,14 @@
         @include('families.search_bar')
         @endif
 
-        <section class="py-4">
+        <section class="my-4">
             @include('families.time_line.stored_picture_books.card')
         </section>
 
         <div class="container">
             @foreach($readRecords as $readRecord)
             <div class="border-top"></div>
-            <section class="py-4">
+            <section class="my-4">
                 @include('families.time_line.read_records.card')
             </section>
             @endforeach

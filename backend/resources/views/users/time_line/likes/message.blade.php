@@ -1,8 +1,8 @@
 <div class="d-flex align-items-center flex-wrap pt-4 pb-1">
     <span class="small text-muted">
         <i class="far fa-thumbs-up mr-1"></i>
-        <a href="">
-            <span class="text-teal1">
+        <a href="" class="text-teal1">
+            <span>
                 <b>{{ $pictureBook->family->name}}ファミリー</b>
             </span>
         </a>

@@ -49,8 +49,8 @@
                             よんだ日：
                         </span>
                         <a href="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}"
-                            class="text-decoration-none mb-1">
-                            <span class="text-dark text-decoration-none ">
+                            class="text-dark mb-1" title="編集する">
+                            <span>
                                 <b>{{Carbon\Carbon::parse($readRecord->read_date)->format("Y年m月d日") }}</b>
                             </span>
                         </a>
@@ -127,13 +127,13 @@
                     </div>
 
                     @if ($hasReadRecord)
-                    <div class="card-text mb-0 d-flex align-items-center flex-wrap">
-                        <span class="small text-secondary mb-1">
+                    <div class="card-text mb-1 d-flex align-items-center flex-wrap">
+                        <span class="small text-secondary">
                             よんだ日：
                         </span>
-                        <a href="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}"
-                            class="text-decoration-none mb-1">
-                            <span class="small text-dark text-decoration-none ">
+                        <a href="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}" class="text-dark"
+                            title="編集する">
+                            <span class="small">
                                 <b>{{Carbon\Carbon::parse($readRecord->read_date)->format("Y年m月d日") }}</b>
                             </span>
                         </a>
@@ -141,49 +141,56 @@
                     @endif
 
                     {{-- children --}}
-                    <div class="card-text mb-0 d-flex align-items-center flex-wrap">
+                    <div class="card-text mb-1 d-flex align-items-center flex-wrap">
                         @foreach ($readRecord->children as $child)
                         @if ($loop->first)
-                        <span class="small text-secondary mb-1">
+                        <span class="small text-secondary">
                             お子さま：
                         </span>
                         @endif
 
-                        @if ($child->family_id === Auth::user()->family_id)
-                        <a href="{{ route('children.show', ['id' => $child->id]) }}"
-                            class="mr-1 d-flex align-items-center text-decoration-none"
-                            title="{{ ($child->birthday !== null) ? Carbon\Carbon::parse($child->birthday)->diff($readRecord->read_date)->format('%y才(よんだとき)') : '' }}">
-                            <span class="badge badge-teal1 mb-1">
-                                @if (Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
-                                <i class="fas fa-child"></i>
+                        <span class="btn-group drop-hover">
+                            <a href="{{ route('children.show', ['id' => $child->id]) }}" class="text-dark small mr-1">
+                                @if(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear())
+                                && $child->gender_code === 2)
+                                <img src="{{ asset('image/girl.png') }}" alt="プロフィール画像" class="bg-paper border"
+                                    style="width: 30px; height:30px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
+                                @elseif(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
+                                <img src="{{ asset('image/boy.png') }}" alt="プロフィール画像" class="bg-paper border"
+                                    style="width: 30px; height:30px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
                                 @else
-                                <i class="fas fa-baby"></i>
+                                <img src="{{ asset('image/baby.png') }}" alt="プロフィール画像" class="bg-paper border"
+                                    style="width: 30px; height:30px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
                                 @endif
-                                {{ $child->name }}
-                            </span>
-                        </a>
-                        @else
-                        <span class="mr-1 d-flex align-items-center">
-                            <span class="badge badge-teal1 mb-1">
-                                @if (Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
-                                <i class="fas fa-child"></i>
-                                @else
-                                <i class="fas fa-baby"></i>
+                                @if ($child->family_id === Auth::user()->family_id)
+                                <b>{{ $child->name }}</b>
                                 @endif
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center"
+                                style="max-width: 180px; border-color:#26a69a;">
+
+                                @if ($child->birthday !== null)
+                                <p class="mb-0">
+                                    {{ Carbon\Carbon::parse($child->birthday)->diff($readRecord->read_date)->format('%y才') }}
+                                    <span class="x-small">(よんだ時)</span>
+                                </p>
+                                @endif
+
                                 @if ($child->gender_code === 1)
-                                男の子
+                                <p class="mb-0">
+                                    <span class="badge badge-dark">男の子</span>
+                                </p>
                                 @elseif ($child->gender_code === 2)
-                                女の子
-                                @else
-                                未設定
+                                <p class="mb-0">
+                                    <span class="badge badge-mocha">女の子</span>
+                                </p>
                                 @endif
-                            </span>
+                            </div>
                         </span>
-                        @endif
                         @endforeach
                     </div>
 
-                    <div class="card-text mb-0">
+                    <div class="card-text mb-1">
                         <span class="small">
                             {!! nl2br(e($readRecord->memo, false)) !!}
                         </span>

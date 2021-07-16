@@ -19,22 +19,22 @@ class HomeController extends Controller
 
         // 本棚登録数ランキング
         $storedCountRanking = $pictureBooks
-            ->map(function ($item, $key) use ($pictureBooks) {
-                $item->stored_count = $pictureBooks
-                    ->where('google_books_id', $item->google_books_id)->count();
-                return $item;
+            ->map(function ($pictureBook) use ($pictureBooks) {
+                $pictureBook->stored_count = $pictureBooks
+                    ->where('google_books_id', $pictureBook->google_books_id)->count();
+                return $pictureBook;
             })
             ->unique('google_books_id')
             ->sortByDesc('stored_count')->take(8);
 
         // よみきかせ回数ランキング
         $readRecordRanking = $pictureBooks
-            ->map(function ($item, $key) use ($pictureBooks) {
+            ->map(function ($pictureBook) use ($pictureBooks) {
                 $sameTitleBooks = $pictureBooks
-                    ->where('google_books_id', $item->google_books_id);
-                $item->read_records_count = $sameTitleBooks
+                    ->where('google_books_id', $pictureBook->google_books_id);
+                $pictureBook->read_records_count = $sameTitleBooks
                     ->sum('read_records_count');
-                return $item;
+                return $pictureBook;
             })
             ->unique('google_books_id')
             ->sortByDesc('read_records_count')->take(8);

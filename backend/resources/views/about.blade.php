@@ -7,10 +7,10 @@
 @include('nav')
 
 <header>
-    <div class="bg-light">
+    <div class="bg-paper">
         <div class="container" style="max-width: 900px;">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-light small pl-0 mb-0">
+                <ol class="breadcrumb bg-paper small pl-0 mb-0">
                     <li class="breadcrumb-item">
                         <a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
@@ -193,7 +193,7 @@
 
             <!-- pc -->
             <div style="margin-top: 74px;">
-                <div class="bg-light pt-5 pb-4 rounded">
+                <div class="bg-paper pt-5 pb-4 rounded">
                     <div class="container mb-4 text-center d-none d-md-block">
                         <h3 class="mb-4">
                             <b>サービス名に込めた想い</b>

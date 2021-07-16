@@ -2,7 +2,7 @@
     <div class="container py-2">
         <div class="row">
             <div class="col-4"></div>
-            <div class="col-8 rounded" style="background:rgba(255,255,255,0.7);">
+            <div class="col-8 rounded py-2" style="background:rgba(255,255,255,0.7);">
                 <h5 class="d-none d-sm-block pt-2 mb-1 text-center text-shadow">
                     こどもの「よんで」に<br>
                     いつでもこたえてあげる<br>
@@ -16,7 +16,7 @@
                 @guest
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('register') }}"
-                        class="btn btn-block btn-warning text-white mb-2 shadow-sm rounded-pill text-shadow">
+                        class="btn btn-block btn-warning btn-sm text-white mb-2 shadow-sm rounded-pill text-shadow">
                         <span>本棚をつくる</span>
                     </a>
                 </div>
@@ -37,12 +37,12 @@
 @guest
 <div class="container-lg">
     {{-- smart phone --}}
-    <div class="text-left my-4 text-dark">
-        <h5>
+    <div class="my-4 text-dark">
+        <h3 class="text-center">
             <b>よんで</b>とは
-        </h5>
+        </h3>
         <small>
-            <b>　「よんで」は、Webで本棚をかんたんに作成したり、絵本読み聞かせをしたときに記録・管理し、こどもが成長したとき、アルバムのように、みかえすことができます。</b>
+            <b>　「よんで」は、Web上の本棚をかんたんに作成したり、絵本読み聞かせをしたときに記録して、いつでも記録を見返すことができるサービスです。</b>
         </small>
     </div>
 
@@ -59,7 +59,7 @@
                     <div class="col-6 d-flex align-items-center border-left">
                         <div class="card-body pr-0">
                             <p class="card-text x-small">
-                                これからよみたい絵本、これまでよんだ絵本をいれることができます。
+                                これから読みたい絵本、これまで読んだ絵本をいれておくことができます。
                             </p>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                     <div class="col-6 d-flex align-items-center pr-3">
                         <div class="card-body pl-0">
                             <p class="card-text x-small">
-                                絵本の読み聞かせをした記録を付けることができます。
+                                絵本の読み聞かせをした記録をかんたんにつけることができます。
                             </p>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                     <div class="col-6 d-flex align-items-center border-left">
                         <div class="card-body pr-0">
                             <p class="card-text x-small">
-                                本棚・読み聞かせ記録を家族と共有することができます。
+                                登録した絵本・読み聞かせ記録を家族と共有することができます。
                             </p>
                         </div>
                     </div>
@@ -116,7 +116,8 @@
     <div class="text-center py-4">
         <a href="{{ route('about') }}" class="btn btn-block btn-outline-teal1 mt-2 mb-2 rounded-pill shadow"
             role="button">
-            　　　よんでについて　　<i class="fas fa-chevron-right"></i>
+            <span class="mx-4">よんでについて</span>
+            <i class="fas fa-chevron-right"></i>
         </a>
     </div>
 </div>

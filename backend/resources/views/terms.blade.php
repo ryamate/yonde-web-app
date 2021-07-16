@@ -25,7 +25,7 @@
 
 <main>
     <div class="container" style="max-width: 900px;">
-        <div class="card bg-light p-2 my-4 small">
+        <div class="card bg-paper p-2 my-4 small">
             <div class="card-body">
                 <h3>
                     利用規約

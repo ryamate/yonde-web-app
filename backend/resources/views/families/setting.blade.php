@@ -7,10 +7,10 @@
 @include('nav')
 
 <header>
-    <div class="bg-light">
+    <div class="bg-paper">
         <div class="container" style="max-width: 900px;">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-light small pl-0 mb-0">
+                <ol class="breadcrumb bg-paper small pl-0 mb-0">
                     <li class="breadcrumb-item">
                         <a href="{{ route('home') }}" class="text-teal1">
                             よんで
@@ -25,7 +25,7 @@
     </div>
 </header>
 
-<div class="bg-light pb-4">
+<div class="bg-paper pb-4">
     <div class="container" style="padding-top: 75px; max-width: 540px;">
         <h2>家族設定</h2>
         <div class="row">
@@ -47,12 +47,12 @@
         'hasFamily' => true,
         ])
         <div class="card mt-2 p-4 shadow-sm">
-            <div class="card-body pt-0">
-                <p class="card-title text-secondary">ファミリーネーム</p>
+            <div class="card-body py-2">
+                <p class="card-title text-secondary mb-1">ファミリーネーム</p>
                 <h5 class="card-text">{{ $family->name }}</h5>
             </div>
-            <div class="card-body">
-                <p class="card-title text-secondary">家族の本棚紹介</p>
+            <div class="card-body pt-2">
+                <p class="card-title text-secondary mb-1">家族の本棚紹介</p>
                 <p class="card-text">{!! nl2br(e($family->introduction, false)) !!}</p>
             </div>
             <a class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mb-4"
@@ -67,8 +67,8 @@
                     <div class="col-3 d-flex justify-content-end">
                         <a href="" class="">
                             @if ($user->icon_path)
-                            <img src="{{ asset($user->icon_path) }}" alt="プロフィール画像"
-                                style="width: 60px; background-position: center center;object-fit:cover;">
+                            <img src="{{ asset($user->icon_path) }}" alt="プロフィール画像" class="bg-white border"
+                                style="width: 50px; height: 50px; background-position: center center; border-radius: 50%; object-fit:cover;">
                             @else
                             <p><i class="far fa-user-circle fa-3x text-secondary"></i></p>
                             @endif
@@ -91,8 +91,8 @@
                     <div class="col-3 d-flex justify-content-end mt-3">
                         <a href="{{ route("users.index", ["name" => $familyUser->name]) }}">
                             @if ($familyUser->icon_path)
-                            <img src="{{ asset($familyUser->icon_path) }}" alt="プロフィール画像"
-                                style="width: 60px; background-position: center center;object-fit:cover;">
+                            <img src="{{ asset($familyUser->icon_path) }}" alt="プロフィール画像" class="bg-white border"
+                                style="width: 50px; height: 50px; background-position: center center; border-radius: 50%;object-fit:cover;">
                             @else
                             <p class="mb-0">
                                 <i class="far fa-user-circle fa-3x text-secondary"></i>
@@ -121,7 +121,22 @@
                 <p class="card-title text-secondary">お子さま一覧</p>
                 @foreach ($children as $child)
                 <div class="row">
-                    <div class="col-12 mt-3">
+                    <div class="col-3 d-flex justify-content-end mt-3">
+                        <a href="{{ route('children.show', ['id' => $child->id]) }}">
+                            @if(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear())
+                            && $child->gender_code === 2)
+                            <img src="{{ asset('image/girl.png') }}" alt="プロフィール画像" class="bg-paper border"
+                                style="width: 50px; height:50px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
+                            @elseif(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
+                            <img src="{{ asset('image/boy.png') }}" alt="プロフィール画像" class="bg-paper border"
+                                style="width: 50px; height:50px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
+                            @else
+                            <img src="{{ asset('image/baby.png') }}" alt="プロフィール画像" class="bg-paper border"
+                                style="width: 50px; height:50px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
+                            @endif
+                        </a>
+                    </div>
+                    <div class="col-9 mt-3">
                         <a href="{{ route('children.edit', ['id' => $child->id]) }}"
                             class="card-text text-teal1 text-decoration-none h5">
                             {{ $child->name }}
@@ -129,10 +144,15 @@
 
                         <p class="card-text small text-secondary">
                             @if ($child->gender_code === 1)
-                            男の子
+                            <span class="badge badge-dark">
+                                男の子
+                            </span>
                             @elseif($child->gender_code === 2)
-                            女の子
+                            <span class="badge badge-mocha">
+                                女の子
+                            </span>
                             @endif
+
                             @if ($child->birthday !== null)
                             /
                             {{ Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y歳%mヶ月') }}

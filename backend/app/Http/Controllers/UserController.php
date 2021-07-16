@@ -68,9 +68,9 @@ class UserController extends Controller
 
         $data = $this->collectUserInfo($name);
         $data['pictureBooks'] = $data['user']->likes
-            ->map(function ($item, $key) {
-                $item->liked_at  = $item->pivot->updated_at;
-                return $item;
+            ->map(function ($pictureBook) {
+                $pictureBook->liked_at  = $pictureBook->pivot->updated_at;
+                return $pictureBook;
             })
             ->sortByDesc('liked_at')
             ->paginate(10);
@@ -119,12 +119,12 @@ class UserController extends Controller
     {
         $data = $this->collectUserInfo($name);
         $data['followings'] = $data['user']->follows
-            ->map(function ($item, $key) {
-                $item->storedCount = $item->pictureBooks->count();
-                $item->readRecordCount = $item->readRecords->count();
-                $item->reviewCount = $item->pictureBooks->where('review', '!=', null)->count();
-                $item->followed_at = $item->pivot->updated_at;
-                return $item;
+            ->map(function ($followingFamily) {
+                $followingFamily->storedCount = $followingFamily->pictureBooks->count();
+                $followingFamily->readRecordCount = $followingFamily->readRecords->count();
+                $followingFamily->reviewCount = $followingFamily->pictureBooks->where('review', '!=', null)->count();
+                $followingFamily->followed_at = $followingFamily->pivot->updated_at;
+                return $followingFamily;
             })
             ->sortByDesc('created_at')
             ->paginate(30);
@@ -145,14 +145,14 @@ class UserController extends Controller
     {
         $data = $this->collectUserInfo($name);
         $data['followers'] = $data['family']->follows
-            ->map(function ($follower, $key) {
-                $follower_family =
-                    Family::where('id', $follower->family_id)->first();
-                $follower_family->storedCount = $follower_family->pictureBooks->count();
-                $follower_family->readRecordCount = $follower_family->readRecords->count();
-                $follower_family->reviewCount = $follower_family->pictureBooks->where('review', '!=', null)->count();
-                $follower_family->followed_at = $follower->pivot->updated_at;
-                return $follower_family;
+            ->map(function ($followerUser) {
+                $followerFamily =
+                    Family::where('id', $followerUser->family_id)->first();
+                $followerFamily->storedCount = $followerFamily->pictureBooks->count();
+                $followerFamily->readRecordCount = $followerFamily->readRecords->count();
+                $followerFamily->reviewCount = $followerFamily->pictureBooks->where('review', '!=', null)->count();
+                $followerFamily->followed_at = $followerUser->pivot->updated_at;
+                return $followerFamily;
             })
             ->sortByDesc('created_at')
             ->paginate(30);
@@ -181,6 +181,22 @@ class UserController extends Controller
         $request->user()->follows()->attach($user);
 
         return ['name' => $name];
+    }
+
+    /**
+     * ユーザープロフィール設定画面表示
+     */
+    public function settingProfile()
+    {
+        $user = User::where('name', Auth::user()->name)->firstOrFail();
+        $family = Family::with('users')->where('id', $user->family_id)->first();
+        $familyUsers = $family->users->whereNotIn('id', $user->id)->sortBy('created_at');
+
+        return view('users.setting_profile', [
+            'user' => $user,
+            'family' => $family,
+            'familyUsers' => $familyUsers,
+        ]);
     }
 
     /**

@@ -3,12 +3,12 @@
     <button type="button" class="btn m-0 p-0 shadow-none">
       <span class="fa-stack">
         <i class="fas fa-circle fa-stack-2x"
-          :class="{'text-teal1 text-shadow':this.isLikedBy,
+          :class="{'text-light-pink text-shadow':this.isLikedBy,
           'text-light':!this.isLikedBy}"
           @click="clickLike"></i>
-        <i class="far fa-thumbs-up fa-stack-1x"
-          :class="{'text-white':this.isLikedBy,
-          'text-secondary':!this.isLikedBy,
+        <i class="fa-heart fa-stack-1x"
+          :class="{'fas text-pink':this.isLikedBy,
+          'far text-secondary':!this.isLikedBy,
           'heart particleLayer explosion LikesIcon-fa-heart':this.gotToLike}"
           @click="clickLike"></i>
       </span>

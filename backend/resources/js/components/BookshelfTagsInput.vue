@@ -69,8 +69,7 @@ export default {
     border: 1px solid #26a69a;
     color: #fff;
     margin-right: 4px;
-    padding: 6px;
-    border-radius: 3px;
+    border-radius: 1px;
     font-size: 13px;
   }
   .vue-tags-input .ti-autocomplete {

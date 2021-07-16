@@ -96,14 +96,3 @@ export default {
     max-width: inherit;
   }
 </style>
-<style lang="css">
-  .vue-tags-input .ti-tag {
-    background: transparent;
-    border: 1px solid #747373;
-    color: #747373;
-    margin-right: 4px;
-    padding: 6px;
-    border-radius: 1px;
-    font-size: 13px;
-  }
-</style>

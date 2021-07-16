@@ -1,13 +1,13 @@
 <div class="d-flex align-items-center flex-wrap pt-4 pb-1">
     <span>
-        <a href="{{ route('users.index', ['name' => $pictureBook->user->name]) }}">
+        <a href="{{ route('users.index', ['name' => $pictureBook->user->name]) }}" class="text-teal1">
             @if ($pictureBook->user->icon_path)
             <img src="{{ asset($pictureBook->user->icon_path) }}" class="border" alt="プロフィール画像" style="width:25px; height:25px;background-position: center
                                             center;border-radius: 50%;object-fit:cover;">
             @else
             <i class="far fa-user-circle text-muted"></i>
             @endif
-            <span class="text-teal1 small">
+            <span class="small">
                 {{ ' ' . $pictureBook->user->nickname}}
             </span>
         </a>

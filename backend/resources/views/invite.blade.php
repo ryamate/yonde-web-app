@@ -6,7 +6,7 @@
 
 @include('nav')
 
-<div class="bg-light py-4">
+<div class="bg-paper py-4">
     <div class="container" style="max-width: 540px">
         <h3 class="text-center">
             家族招待メール送信

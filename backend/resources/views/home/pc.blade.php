@@ -2,7 +2,7 @@
     <div class="container py-4">
         <div class="row">
             <div class="col-5"></div>
-            <div class="col-7 rounded" style="background:rgba(255,255,255,0.6);">
+            <div class="col-7 rounded p-2" style="background:rgba(255,255,255,0.6);">
                 <h2 class="d-none d-xl-block pl-3 pr-1 pt-4 pb-2 mt-4 text-shadow">
                     <p class="pt-4 mb-1">こどもの「よんで」に</p>
                     <p> いつでもこたえてあげる気持ちになる</p>
@@ -40,10 +40,10 @@
 <div class="container-lg">
     <div style="margin-top: 60px; margin-bottom: 60px;">
         <div class="text-center my-5 text-dark">
-            <h2><b>よんで</b>とは</h2>
+            <h1><b>よんで</b>とは</h1>
             <p class="mt-3">
-                <b>「よんで」は、Webで本棚をかんたんに作成したり、絵本読み聞かせをしたときに記録・管理し、<br>
-                    こどもが成長したとき、アルバムのように、みかえすことができます。</b>
+                <b>「よんで」は、Webで本棚をかんたんに作成したり、絵本読み聞かせをしたときに記録して、<br>
+                    いつでも記録を見返すことができるサービスです。</b>
             </p>
         </div>
     </div>
@@ -58,7 +58,7 @@
                             <b>絵本のWeb本棚</b>
                         </p>
                         <small class="card-text">
-                            これからよみたい絵本、これまでよんだ絵本をいれることができます。
+                            これから読みたい絵本、これまで読んだ絵本をいれておくことができます。
                         </small>
                     </div>
                 </div>
@@ -67,8 +67,12 @@
                 <div class="card border-0 p-4">
                     <img src="{{ asset('image/index_3-2.png') }}" width="100%" alt="">
                     <div class="card-body p-0 text-secondary">
-                        <p class="card-title"><b>読み聞かせ記録・管理</b></p>
-                        <small class="card-text">絵本の読み聞かせをした記録を付けることができます。</small>
+                        <p class="card-title">
+                            <b>読み聞かせ記録・管理</b>
+                        </p>
+                        <small class="card-text">
+                            絵本の読み聞かせをした記録をかんたんにつけることができます。
+                        </small>
                     </div>
                 </div>
             </div>
@@ -78,17 +82,21 @@
                     <img src="{{ asset('image/index_3-3.png') }}" width="100%" alt="">
                     <img src="{{ asset('image/index_3-3-2.png') }}" width="100%" alt="">
                     <div class="card-body p-0 text-secondary">
-                        <p class="card-title"><b>家族と共有</b></p>
-                        <small class="card-text">本棚・読み聞かせ記録を家族と共有することができます。</small>
+                        <p class="card-title">
+                            <b>家族と共有</b>
+                        </p>
+                        <small class="card-text">
+                            登録した絵本・読み聞かせ記録を家族と共有することができます。
+                        </small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="d-flex justify-content-center pb-2">
-        <a href="{{ route('about') }}" class="btn btn-outline-teal1 mt-2 mb-2" role="button"
-            style="border-radius: 24px">
-            　　よんでについて　　<i class="fas fa-chevron-right"></i>
+        <a href="{{ route('about') }}" class="btn btn-outline-teal1 my-2" role="button" style="border-radius: 24px">
+            <span class="mx-4">よんでについて</span>
+            <i class="fas fa-chevron-right"></i>
         </a>
     </div>
 </div>

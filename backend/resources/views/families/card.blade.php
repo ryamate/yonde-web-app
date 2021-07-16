@@ -12,7 +12,7 @@
                     @endif
                 </span>
             </p>
-            <p class="small text-muted mb-1">
+            <p class="small text-secondary mb-1">
                 家族一覧
             </p>
             <div class="d-flex justify-content-start align-items-center flex-wrap">
@@ -26,13 +26,13 @@
                         <i class="far fa-user-circle fa-3x text-secondary"></i>
                         @endif
                     </a>
-                    <div class="dropdown-menu p-1 text-center" style="max-width: 180px; border-color:#26a69a;">
-                        <p class="mb-0">
+                    <div class="dropdown-menu p-1 text-center border-linen" style="max-width: 180px">
+                        <p class=" mb-0">
                             <b>{{ $familyUser->nickname }}</b>
                         </p>
                         @if ($familyUser->relation !== null)
                         <p class="mb-0">
-                            {{ $familyUser->relation }}
+                            <span class="badge badge-paper">{{ $familyUser->relation }}</span>
                         </p>
                         @endif
                     </div>
@@ -44,18 +44,18 @@
                     <a href="{{ route('children.show', ['id' => $child->id]) }}">
                         @if(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear())
                         && $child->gender_code === 2)
-                        <img src="{{ asset('image/girl.png') }}" alt="プロフィール画像" class="bg-light border"
+                        <img src="{{ asset('image/girl.png') }}" alt="プロフィール画像" class="bg-paper border"
                             style="width: 45px; height:45px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
                         @elseif(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
-                        <img src="{{ asset('image/boy.png') }}" alt="プロフィール画像" class="bg-light border"
+                        <img src="{{ asset('image/boy.png') }}" alt="プロフィール画像" class="bg-paper border"
                             style="width: 45px; height:45px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
                         @else
-                        <img src="{{ asset('image/baby.png') }}" alt="プロフィール画像" class="bg-light border"
+                        <img src="{{ asset('image/baby.png') }}" alt="プロフィール画像" class="bg-paper border"
                             style="width: 45px; height:45px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
                         @endif
                     </a>
-                    <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center"
-                        style="max-width: 180px; border-color:#26a69a;">
+                    <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center border-linen"
+                        style="max-width: 180px">
                         @if ($child->family_id === Auth::user()->family_id)
                         <p class="mb-0">
                             <b>{{ $child->name }}</b>
@@ -66,43 +66,52 @@
                         <p class="mb-0">
                             {{ Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y才') }}
                         </p>
+                        @endif
+
                         @if ($child->gender_code === 1)
-                        <p class="mb-0">男の子</p>
+                        <p class="mb-0">
+                            <span class="badge badge-dark-mocha">男の子</span>
+                        </p>
                         @elseif ($child->gender_code === 2)
-                        <p class="mb-0">女の子</p>
+                        <p class="mb-0">
+                            <span class="badge badge-mocha">女の子</span>
+                        </p>
                         @endif
                     </div>
-                    @endif
                 </span>
                 @endforeach
             </div>
         </div>
 
         <div class="col-sm-6 p-2">
-            <p class="small text-dark">
+            <p class="small">
                 {{ $family->introduction }}
             </p>
             <div class="row no-gutters">
                 <div class="col-4 text-center">
-                    <p class="small text-secondary mb-0">
+                    <p class="small mb-0">
                         登録絵本
                     </p>
-                    <p class="mb-0">
-                        {{ $storedCount }}
-                        <span class="x-small">冊</span>
-                    </p>
+                    <a href="{{ route('families.index', ["id" =>  $family->id]) }}" class="text-dark">
+                        <p class="mb-0">
+                            {{ $storedCount }}
+                            <span class="x-small">冊</span>
+                        </p>
+                    </a>
                 </div>
                 <div class="col-4 text-center">
-                    <p class="small text-secondary mb-0">
+                    <p class="small mb-0">
                         よんだよ
                     </p>
-                    <p class="mb-0">
-                        {{ $readRecordCount }}
-                        <span class="x-small">回</span>
-                    </p>
+                    <a href="{{ route('families.read_record', ["id" =>  $family->id]) }}" class="text-dark">
+                        <p class="mb-0">
+                            {{ $readRecordCount }}
+                            <span class="x-small">回</span>
+                        </p>
+                    </a>
                 </div>
                 <div class="col-4 text-center">
-                    <p class="small text-secondary mb-0">
+                    <p class="small mb-0">
                         レビュー
                     </p>
                     <p class="mb-0">

@@ -2,34 +2,71 @@
     <div class="row no-gutters">
         <div class="col-sm-6 p-2">
             <p class="card-title text-secondary">
-                {{ $user->nickname }}さんのページ
+                @if ($child->family_id === Auth::user()->family_id)
+                {{ $child->name }}（お子さま）のページ
+                @else
+                お子さまのページ
+                @endif
             </p>
 
             <div class="d-flex align-items-center flex-wrap ml-2">
                 <span class="p-2">
-                    @if ($user->icon_path)
-                    <img src="{{ asset($user->icon_path) }}" class="bg-white border" alt="プロフィール画像"
+                    @if(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear())
+                    && $child->gender_code === 2)
+                    <img src="{{ asset('image/girl.png') }}" alt="プロフィール画像" class="bg-paper border"
+                        style="width: 90px; height:90px;background-position: center;border-radius: 50%;object-fit:cover;" />
+                    @elseif(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
+                    <img src="{{ asset('image/boy.png') }}" alt="プロフィール画像" class="bg-paper border"
                         style="width: 90px; height:90px;background-position: center;border-radius: 50%;object-fit:cover;" />
                     @else
-                    <i class="far fa-user-circle fa-5x text-secondary"></i>
+                    <img src="{{ asset('image/baby.png') }}" alt="プロフィール画像" class="bg-paper border"
+                        style="width: 90px; height:90px;background-position: center;border-radius: 50%;object-fit:cover;" />
                     @endif
                 </span>
                 <span class="p-2">
+                    @if ($child->family_id === Auth::user()->family_id)
                     <p class="card-text mb-0">
-                        <b>{{ $user->nickname }}</b>
-                        <span class="badge badge-paper ml-1">
-                            {{ $user->relation }}
+                        <b>{{ $child->name }}</b>
+                        @if ($child->gender_code === 1)
+                        <span class="badge badge-dark ml-1">
+                            男の子
                         </span>
+                        @elseif ($child->gender_code === 2)
+                        <span class="badge badge-mocha ml-1">
+                            女の子
+                        </span>
+                        @endif
                     </p>
-                    <p class="small text-muted mb-0">
-                        {{ '@' . $user->name }}
+                    @if ($child->birthday !== null)
+                    <p class="text-muted mb-0">
+                        {{ Carbon\Carbon::parse($child->birthday)->format("Y年m月d日生まれ") }}
                     </p>
+                    @endif
+                    @else
+                    @if ($child->birthday !== null)
+                    <p class="mb-0">
+                        {{ Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y歳%mヶ月') }}
+                    </p>
+                    @endif
+                    <p class="card-text mb-0">
+                        @if ($child->gender_code === 1)
+                        <span class="badge badge-dark ml-1">
+                            男の子
+                        </span>
+                        @elseif ($child->gender_code === 2)
+                        <span class="badge badge-mocha ml-1">
+                            女の子
+                        </span>
+                        @endif
+                    </p>
+                    @endif
+
                 </span>
             </div>
 
         </div>
 
-        <div class="col-sm-6 p-2">
+        <div class="col-sm-6 py-2 px-4">
             <p class="mb-1">
                 <a href="{{ route('families.index', ["id" => $family->id]) }}" class="text-dark">
                     {{ $family->name }}ファミリー
@@ -49,7 +86,7 @@
                         <i class="far fa-user-circle fa-3x text-secondary"></i>
                         @endif
                     </a>
-                    <div class="dropdown-menu p-1 text-center border-linen" style="max-width: 180px">
+                    <div class="dropdown-menu p-1 text-center" style="max-width: 180px; border-color:#26a69a;">
                         <p class="mb-0">
                             <b>{{ $familyUser->nickname }}</b>
                         </p>
@@ -64,14 +101,14 @@
                 </span>
                 @endforeach
 
-                @foreach ($children as $child)
+                @foreach ($children as $anotherChild)
                 <span class="btn-group drop-hover">
-                    <a href="{{ route('children.show', ['id' => $child->id]) }}">
-                        @if(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear())
-                        && $child->gender_code === 2)
+                    <a href="{{ route('children.show', ['id' => $anotherChild->id]) }}">
+                        @if(Carbon\Carbon::parse($anotherChild->birthday)->lte(Carbon\Carbon::now()->subYear())
+                        && $anotherChild->gender_code === 2)
                         <img src="{{ asset('image/girl.png') }}" alt="プロフィール画像" class="bg-paper border"
                             style="width: 45px; height:45px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
-                        @elseif(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
+                        @elseif(Carbon\Carbon::parse($anotherChild->birthday)->lte(Carbon\Carbon::now()->subYear()))
                         <img src="{{ asset('image/boy.png') }}" alt="プロフィール画像" class="bg-paper border"
                             style="width: 45px; height:45px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
                         @else
@@ -79,27 +116,27 @@
                             style="width: 45px; height:45px;background-position: center;border-radius: 50%;object-fit:cover; margin-right:1px" />
                         @endif
                     </a>
-                    <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center border-linen"
-                        style="max-width: 180px">
-                        @if ($child->family_id === Auth::user()->family_id)
+                    <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center"
+                        style="max-width: 180px; border-color:#26a69a;">
+                        @if ($anotherChild->family_id === Auth::user()->family_id)
                         <p class="mb-0">
-                            <b>{{ $child->name }}</b>
+                            <b>{{ $anotherChild->name }}</b>
                         </p>
                         @endif
 
-                        @if ($child->birthday !== null)
+                        @if ($anotherChild->birthday !== null)
                         <p class="mb-0">
-                            {{ Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y才') }}
+                            {{ Carbon\Carbon::parse($anotherChild->birthday)->diff(Carbon\Carbon::now())->format('%y才') }}
                         </p>
                         @endif
 
-                        @if ($child->gender_code === 1)
+                        @if ($anotherChild->gender_code === 1)
                         <p class="mb-0">
                             <span class="badge badge-dark">
                                 男の子
                             </span>
                         </p>
-                        @elseif ($child->gender_code === 2)
+                        @elseif ($anotherChild->gender_code === 2)
                         <p class="mb-0">
                             <span class="badge badge-mocha">
                                 女の子
@@ -111,24 +148,6 @@
                 @endforeach
             </div>
 
-            <div class="d-flex align-items-center frex-wrap">
-                <span class="mr-3">
-                    <a href="{{ route('users.followings', ['name' => $user->name]) }}" class="text-muted">
-                        <span class="text-dark">
-                            <b>{{ $user->count_follows }}</b>
-                        </span>
-                        フォロー中
-                    </a>
-                </span>
-                <span>
-                    <a href="{{ route('users.followers', ['name' => $user->name]) }}" class="text-muted">
-                        <span class="text-dark">
-                            <b>{{ $family->count_follows }}</b>
-                        </span>
-                        フォロワー
-                    </a>
-                </span>
-            </div>
         </div>
     </div>
 </div>

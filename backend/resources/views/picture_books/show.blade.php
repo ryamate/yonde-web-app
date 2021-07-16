@@ -7,10 +7,10 @@
 @include('nav')
 
 <header>
-    <div class="bg-light">
+    <div class="bg-paper">
         <div class="container" style="max-width: 900px;">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-light small pl-0 mb-0">
+                <ol class="breadcrumb bg-paper small pl-0 mb-0">
                     <li class="breadcrumb-item">
                         <a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
@@ -24,7 +24,7 @@
     </div>
 </header>
 
-<div class="bg-light">
+<div class="bg-paper">
     <div class="container" style="max-width: 900px;">
         <section class="py-4">
             <div>
@@ -136,108 +136,9 @@
             </div>
             @if ($pictureBook->review_count !== 0)
             @foreach ($reviewedPictureBooks as $reviewedPictureBook)
-            <div class="card shadow-sm my-1">
-                <div class="row">
-                    <div class="col-sm-3" style="height: 75px">
-                        <div class="d-flex justify-content-start mt-4 ml-4">
-                            <div class="" style="position: relative;">
-                                @auth
-                                <a href="{{ route('families.bookshelf', ["id" => $reviewedPictureBook->family->id]) }}">
-                                    @endauth
-                                    @foreach ($reviewedPictureBook->family->users as $user)
-                                    @if ($user->icon_path)
-                                    <img src="{{ asset($user->icon_path) }}" alt="プロフィール画像" class="bg-white border"
-                                        style="width: 30px; height:30px;
-                                            border-radius: 50%;object-fit:cover; position: absolute;
-                                            left:{{ ($loop->iteration - 1) * 25 }}px;" />
-                                    @else
-                                    <i class="far fa-user-circle fa-2x text-secondary bg-light"
-                                        style="border-radius: 50%;object-fit:cover; position: absolute; left:{{ ($loop->iteration - 1) * 25 }}px;"></i>
-                                    @endif
-                                    @endforeach
 
-                                    @foreach ($reviewedPictureBook->family->children->sortBy('birthday') as
-                                    $child)
-                                    @if(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear())
-                                    && $child->gender_code === 2)
-                                    <img src="{{ asset('image/girl.png') }}" alt="プロフィール画像" class="bg-light border"
-                                        style="width: 30px; height:30px; border-radius: 50%;object-fit:cover; position: absolute; top:25px; left:{{ ($loop->iteration - 1) * 25 + 15 }}px;"
-                                        title="{{ ($child->birthday !== null) ? Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y歳') : '' }}" />
-                                    @elseif(Carbon\Carbon::parse($child->birthday)->lte(Carbon\Carbon::now()->subYear()))
-                                    <img src="{{ asset('image/boy.png') }}" alt="プロフィール画像" class="bg-light border"
-                                        style="width: 30px; height:30px; border-radius: 50%;object-fit:cover; position: absolute; top:25px; left:{{ ($loop->iteration - 1) * 25 + 15 }}px;"
-                                        title="{{ ($child->birthday !== null) ? Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y歳') : '' }}" />
-                                    @else
-                                    <img src="{{ asset('image/baby.png') }}" alt="プロフィール画像" class="bg-light border"
-                                        style="width: 30px; height:30px; border-radius: 50%;object-fit:cover; position: absolute; top:25px; left:{{ ($loop->iteration - 1) * 25 + 15 }}px;"
-                                        title="{{ ($child->birthday !== null) ? Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y歳') : '' }}" />
-                                    @endif
-                                    @endforeach
-                                    @auth
-                                </a>
-                                @endauth
-                            </div>
-                        </div>
-                    </div>
+            @include('picture_books.reviews.card')
 
-                    <div class="col-sm-9 d-flex align-items-top">
-                        <div class="card-body">
-                            <div class="card-title">
-                                <span class="d-flex justify-content-start flex-wrap my-2">
-                                    <span class="small">
-                                        {{ $reviewedPictureBook->family->name }}ファミリーのレビュー
-                                    </span>
-                                    <span
-                                        class="d-flex flex-wrap ml-auto mr-2 text-muted small">{{ $reviewedPictureBook->updated_at->format('Y年m月d日') }}</span>
-                                </span>
-                            </div>
-                            {{-- よみきかせ状況 --}}
-                            <div class="card-text pt-0 pl-0 pb-2 d-flex align-items-end flex-wrap">
-                                <span class="small text-secondary mb-0 mr-4">
-                                    @if ($reviewedPictureBook->read_status === 0)
-                                    よみきかせ状況：<span class="badge badge-secondary">きになる</span>
-                                    @elseif($reviewedPictureBook->read_status === 1)
-                                    よみきかせ状況：<span class="badge badge-teal1">よんだ</span>
-                                    @endif
-                                </span>
-                                @if ($reviewedPictureBook->five_star_rating !== 0)
-                                <span class="small text-warning">
-                                    @for ($i = 0; $i < (int)$reviewedPictureBook->five_star_rating; $i++)
-                                        <i class="fas fa-star"></i>
-                                        @endfor
-                                        @for ($i = 0; $i < 5 - (int)$reviewedPictureBook->five_star_rating;
-                                            $i++)
-                                            <i class="far fa-star"></i>
-                                            @endfor
-                                </span>
-                                @else
-                                <span class="text-secondary small">
-                                    未評価
-                                </span>
-                                @endif
-
-                                @auth
-                                <span class="small ml-auto mr-2">
-                                    <review-like
-                                        :initial-is-liked-by='@json($reviewedPictureBook->isLikedBy(Auth::user()))'
-                                        :initial-count-likes='@json($reviewedPictureBook->count_likes)'
-                                        :authorized='@json(Auth::check())'
-                                        endpoint="{{ route('picture_books.like', ['picture_book' => $reviewedPictureBook]) }}">
-                                    </review-like>
-                                </span>
-                                @endauth
-                            </div>
-
-                            {{-- レビュー・感想 --}}
-                            <div class="card-body pt-0 pb-2 pl-0">
-                                <p class="card-text" style="font-size: 14px; ">
-                                    {!! nl2br(e($reviewedPictureBook->review, false)) !!}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             @endforeach
             @else
             <p class="text-muted">この絵本のレビューはまだありません。</p>

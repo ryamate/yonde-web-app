@@ -3,11 +3,11 @@
     <button type="button" class="btn m-0 p-0 shadow-none">
       <span class="fa-stack fa-lg">
         <i class="fas fa-circle fa-stack-2x"
-          :class="{'text-light-pink text-shadow':this.isFollowedBy,
+          :class="{'text-paper text-shadow':this.isFollowedBy,
           'text-light':!this.isFollowedBy}"
           @click="clickFollow"></i>
-        <i class="fa-heart fa-stack-1x"
-          :class="{'fas text-pink':this.isFollowedBy,
+        <i class="fa-star fa-stack-1x"
+          :class="{'fas text-lemon-tea':this.isFollowedBy,
           'far text-secondary':!this.isFollowedBy,
           'heart particleLayer explosion LikesIcon-fa-heart':this.gotToFollow}"
           @click="clickFollow"></i>

@@ -7,10 +7,10 @@
 @include('nav')
 
 <header>
-    <div class="bg-light">
+    <div class="bg-paper">
         <div class="container" style="max-width: 900px;">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-light small pl-0 mb-0">
+                <ol class="breadcrumb bg-paper small pl-0 mb-0">
                     <li class="breadcrumb-item">
                         <a href="{{ route('home') }}" class="text-teal1">
                             よんで
@@ -25,11 +25,11 @@
     </div>
 </header>
 
-<div class="bg-light py-4">
+<div class="bg-paper py-4">
     <div class="container" style="max-width: 540px;">
         @if (Auth::user()->email_verified_at === null)
         <div class="mb-4">
-            <h2>認証用メールの送信</h2>
+            <h3>認証用メールの送信</h3>
             <small>
                 新規登録時のメールアドレスの認証用メールを送信します。
             </small>
@@ -54,34 +54,37 @@
         </div>
         @endif
 
-        <h2>プロフィール設定</h2>
+        <h3>プロフィール設定</h3>
         @include('families.setting_tabs', [
         'hasUser' => true,
         'hasFamily' => false,
         ])
         <div class="card p-4 shadow-sm">
-            <div class="card-body">
-                <p class="card-title text-secondary">よんでID</p>
-                <h5 class="card-text">{{ $user->name }}</h5>
-            </div>
-
-            <div class="card-body">
-                <p class="card-title text-secondary">ニックネーム</p>
-                <h5 class="card-text">{{ $user->nickname }}</h5>
-            </div>
-
-            <div class="card-body">
-                <p class="card-title text-secondary">プロフィール画像</p>
+            <div class="card-body py-2">
+                <p class="card-title text-secondary mb-1">プロフィール画像</p>
                 @if ($user->icon_path)
-                <img src="{{ asset($user->icon_path) }}" alt="プロフィール画像"
-                    style="width: 100px; height:100px;background-position: center center;object-fit:cover;">
+                <img src="{{ asset($user->icon_path) }}" alt="プロフィール画像" class="bg-white border"
+                    style="width: 100px; height:100px;background-position: center center; border-radius: 50%; object-fit:cover;">
                 @else
-                <p><i class="far fa-user-circle fa-5x text-secondary"></i></p>
+                <p class="d-flex align-items-center mb-0">
+                    <i class="far fa-user-circle fa-5x text-secondary"></i>
+                    <span class="badge">未設定</span>
+                </p>
                 @endif
             </div>
 
-            <div class="card-body">
-                <p class="card-title text-secondary">子どもとの関係</p>
+            <div class="card-body py-2">
+                <p class="card-title text-secondary mb-1">よんでID</p>
+                <h5 class="card-text">{{ $user->name }}</h5>
+            </div>
+
+            <div class="card-body py-2">
+                <p class="card-title text-secondary mb-1">ニックネーム</p>
+                <h5 class="card-text">{{ $user->nickname }}</h5>
+            </div>
+
+            <div class="card-body py-2">
+                <p class="card-title text-secondary mb-1">子どもとの関係</p>
                 <h5 class="card-text">{{ $user->relation }}</h5>
             </div>
 

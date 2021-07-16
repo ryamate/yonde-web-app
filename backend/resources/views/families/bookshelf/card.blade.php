@@ -1,4 +1,4 @@
-<section class="card shadow-sm my-4">
+<section class="card border-linen shadow-sm my-4">
     <div class="card-body p-0" style="background-color: #E6D7D2">
         <div class="d-flex justify-content-center align-items-end flex-wrap">
             @foreach($pictureBooks as $pictureBook)

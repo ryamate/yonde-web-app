@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Child;
+use App\Family;
 use App\PictureBook;
 use Auth;
 use Illuminate\Http\Request;
@@ -16,18 +17,44 @@ class ChildController extends Controller
      */
     public function show(string $id)
     {
-        $child = Child::where('id', $id)->first();
+        $data = $this->collectChildInfo($id);
 
-        $pictureBooks = $child->readRecords
+        $data['readRecords'] = $data['child']->readRecords
             ->map(function ($readRecord) {
-                return PictureBook::where('family_id', Auth::user()->family_id)
-                    ->where('id', $readRecord->picture_book_id)->first();
-            })->unique('google_books_id');
+                $readRecord->read_at  = $readRecord->pivot->updated_at;
+                return $readRecord;
+            })
+            ->sortByDesc('read_at')
+            ->paginate(10);
 
-        return view('children.show', [
+        $data['hasTimeLine'] = true;
+
+        $data['hasReadRecord'] = true;
+
+        return view('children.show', $data);
+    }
+
+    /**
+     * お子さま基本データまとめ
+     */
+    private function collectChildInfo(string $id): array
+    {
+        $child = Child::where('id', $id)->first();
+        $family = Family::where('id', $child->family_id)->first();
+        $familyUsers = $family->users->sortBy('created_at');
+        $children = $family->children->whereNotIn('id', $child->id)->sortBy('birthday');
+
+        $readRecordCount = $child->readRecords->count();
+
+        $data = [
             'child' => $child,
-            'pictureBooks' => $pictureBooks,
-        ]);
+            'family' => $family,
+            'familyUsers' => $familyUsers,
+            'children' => $children,
+            'readRecordCount' => $readRecordCount,
+        ];
+
+        return $data;
     }
 
     /**

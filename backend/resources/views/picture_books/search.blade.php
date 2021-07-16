@@ -7,10 +7,10 @@
 @include('nav')
 
 <header>
-    <div class="bg-light">
+    <div class="bg-paper">
         <div class="container" style="padding-bottom:60px; max-width: 900px;">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-light small pl-0 mb-0">
+                <ol class="breadcrumb bg-paper small pl-0 mb-0">
                     @if ($searchedBooks === null)
                     <li class="breadcrumb-item"><a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
@@ -52,7 +52,7 @@
     </div>
 </header>
 
-<div class="bg-light">
+<div class="bg-paper">
     <div class="container" style="max-width: 900px;">
         @if ($searchedBooks !== null)
         <h3>検索結果</h3>
@@ -127,7 +127,7 @@
                                 </span>
                                 @endif
                             </div>
-                            <div class="card-text font-weight-light">
+                            <div class="card-text font-weight-paper">
                                 <p class="mb-1 small">
                                     @if (@$searchedBook->authors !== null)
                                     {{ $searchedBook->authors = implode(",", @$searchedBook->authors) }} /

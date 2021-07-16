@@ -7,10 +7,10 @@
 @include('nav')
 
 <header>
-    <div class="bg-light">
+    <div class="bg-paper">
         <div class="container" style="max-width: 900px;">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb bg-light small pl-0 mb-0">
+                <ol class="breadcrumb bg-paper small pl-0 mb-0">
                     <li class="breadcrumb-item">
                         <a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
@@ -28,7 +28,7 @@
     </div>
 </header>
 
-<div class="bg-light pb-4">
+<div class="bg-paper pb-4">
     <div class="container" style="max-width: 540px;">
         <h4>よんだよ記録の編集</h4>
         <section class="card shadow-sm mb-4">

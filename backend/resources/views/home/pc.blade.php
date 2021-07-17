@@ -228,13 +228,16 @@
                 </div>
             </div>
             @endguest
-            {{-- dummy twitter account --}}
-            <div class="card mt-4 mx-2 mb-2">
+            {{-- twitter account --}}
+            <div class="mt-4 mx-2">
+                <p class="mb-0">管理者のTwitter</p>
+            </div>
+            <div class="card mx-2 mb-2">
                 <a class="twitter-timeline" data-lang="ja" data-height="400" data-theme="light"
                     href="https://twitter.com/r_yamate?ref_src=twsrc%5Etfw">Tweets by r_yamate</a>
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
-            {{-- ad dummy --}}
+            {{-- ad --}}
             <div class="card mt-4 mx-2 mb-2">
                 <a href="https://pc.moppy.jp/entry/invite.php?invite=xRJKe1c5&type=service"><img
                         src="https://img.moppy.jp/pub/pc/friend/300x250-11.jpg" width="100%"

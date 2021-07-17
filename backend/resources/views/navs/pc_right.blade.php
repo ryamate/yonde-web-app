@@ -106,10 +106,13 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right mt-0" aria-labelledby="dropdownMenuLink">
+                    <a href="{{ route('users.index', ['name' => Auth::user()->name]) }}"
+                        class="dropdown-item small text-center">
+                        <i class="fas fa-user-circle mr-1"></i>マイページ
+                    </a>
                     <a href="{{ route('home') }}" class="dropdown-item small text-center">
                         <i class="fas fa-home mr-1"></i>ホーム
                     </a>
-                    {{-- logout button 1/2 --}}
                     <button form="logout-button" class="dropdown-item small text-center"><i
                             class="fas fa-sign-out-alt mr-1"></i>ログアウト</button>
                 </div>

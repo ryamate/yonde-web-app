@@ -18,7 +18,7 @@
                     </li>
                     @auth
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $child->name }}（お子さま）のページ-よんで-
+                        {{ $child->name }}（お子さま）のページ
                     </li>
                     @endauth
                 </ol>

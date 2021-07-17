@@ -3,7 +3,7 @@
     <button type="button" class="btn m-0 p-0 shadow-none">
       <span class="fa-stack">
         <i class="fas fa-circle fa-stack-2x"
-          :class="{'text-light-pink text-shadow':this.isLikedBy,
+          :class="{'text-paper text-shadow':this.isLikedBy,
           'text-light':!this.isLikedBy}"
           @click="clickLike"></i>
         <i class="fa-heart fa-stack-1x"

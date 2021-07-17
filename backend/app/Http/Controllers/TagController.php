@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Tag;
+use App\Family;
 use App\PictureBook;
+use App\ReadRecord;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -15,16 +17,17 @@ class TagController extends Controller
     public function show(string $name)
     {
         $tag = Tag::where('name', $name)->first();
+        $readRecords = $tag->readRecords
+            ->sortByDesc('updated_at')
+            ->paginate(10);
 
-        $pictureBooks = $tag->readRecords
-            ->map(function ($readRecord) {
-                return PictureBook::where('family_id', Auth::user()->family_id)
-                    ->where('id', $readRecord->picture_book_id)->first();
-            })->unique('google_books_id');
-
-        return view('tags.show', [
+        $data = [
             'tag' => $tag,
-            'pictureBooks' => $pictureBooks
-        ]);
+            'readRecords' => $readRecords,
+            'hasTimeLine' => true,
+            'hasTag' => true,
+        ];
+
+        return view('tags.show', $data);
     }
 }

@@ -70,7 +70,11 @@ Route::prefix('users')->name('users.')->group(function () {
     });
 });
 
-Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
+Route::prefix('tags')->name('tags.')->group(
+    function () {
+        Route::get('/{name}', 'TagController@show')->name('show');
+    }
+);
 
 Route::prefix('families')->name('families.')->group(function () {
     Route::middleware('auth')->group(function () {

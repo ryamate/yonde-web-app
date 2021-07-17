@@ -344,7 +344,10 @@
     </div>
     @endguest
     {{-- twitter account --}}
-    <div class="card m-4">
+    <div class="mt-4 mx-4">
+        <p class="mb-0">管理者のTwitter</p>
+    </div>
+    <div class="card mb-4 mx-4">
         <a class="twitter-timeline" data-lang="ja" data-height="400" data-theme="light"
             href="https://twitter.com/r_yamate?ref_src=twsrc%5Etfw">Tweets by r_yamate</a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

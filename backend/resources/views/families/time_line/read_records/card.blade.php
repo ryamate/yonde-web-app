@@ -199,7 +199,9 @@
                     {{-- tags --}}
                     <div class="card-text mb-0 d-flex align-items-center flex-wrap">
                         @foreach($readRecord->tags as $tag)
-                        <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="badge text-teal1">
+                        <a href="{{ route('tags.show', [
+                            'name' => $tag->name,
+                            ]) }}" class="badge text-teal1">
                             <b>{{ $tag->hashtag }}</b>
                         </a>
                         @endforeach

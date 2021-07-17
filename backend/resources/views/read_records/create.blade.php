@@ -15,9 +15,9 @@
                         <a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{ route('families.read_record', ["id" =>  Auth::user()->family->id]) }}"
+                        <a href="{{ route('families.read_record', ["name" =>  Auth::user()->family->name]) }}"
                             class="text-teal1">
-                            {{ Auth::user()->family->name }}ファミリーのタイムライン
+                            {{ Auth::user()->family->nickname }}ファミリーのタイムライン
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
@@ -48,7 +48,7 @@
                     </form>
                 </div>
                 <div class="card-text">
-                    <a href="{{ route('families.read_record', ["id" =>  Auth::user()->family->id]) }}"
+                    <a href="{{ route('families.read_record', ["name" =>  Auth::user()->family->name]) }}"
                         class="btn btn-block btn-outline-secondary bg-white text-decoration-none text-secondary mt-4">
                         <i class="fas fa-chevron-circle-left mr-1"></i>戻る
                     </a>

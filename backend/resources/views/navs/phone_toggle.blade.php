@@ -21,12 +21,12 @@
             <i class="fas fa-home mr-1"></i>ホーム
         </a>
         {{-- picture bookshelf button (toggle) --}}
-        <a href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}"
+        <a href="{{ route('families.bookshelf', ["name" => Auth::user()->family->name]) }}"
             class="btn btn-sm btn-outline-light shadow-sm small mr-3 mb-2">
             <i class="fas fa-book mr-1"></i>家族の本棚
         </a>
         {{-- timeline button (toggle) --}}
-        <a href="{{ route('families.index', ['id' => Auth::user()->family_id]) }}"
+        <a href="{{ route('families.index', ['name' => Auth::user()->family->name]) }}"
             class="btn btn-sm btn-outline-light shadow-sm small mr-3 mb-2">
             <i class="far fa-clock mr-1"></i>家族のタイムライン
         </a>

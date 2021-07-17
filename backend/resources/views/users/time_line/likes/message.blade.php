@@ -3,7 +3,7 @@
         <i class="far fa-heart mr-1"></i>
         <a href="" class="text-teal1">
             <span>
-                <b>{{ $pictureBook->family->name}}ファミリー</b>
+                <b>{{ $pictureBook->family->nickname}}ファミリー</b>
             </span>
         </a>
         の

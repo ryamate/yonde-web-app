@@ -17,7 +17,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $family->name }}ファミリーの家族設定
+                        {{ $family->nickname }}ファミリーの家族設定
                     </li>
                 </ol>
             </nav>
@@ -48,11 +48,15 @@
         ])
         <div class="card mt-2 p-4 shadow-sm">
             <div class="card-body py-2">
-                <p class="card-title text-secondary mb-1">ファミリーネーム</p>
+                <p class="card-title text-secondary mb-1">ファミリーID</p>
                 <h5 class="card-text">{{ $family->name }}</h5>
             </div>
+            <div class="card-body py-2">
+                <p class="card-title text-secondary mb-1">ファミリーネーム</p>
+                <h5 class="card-text">{{ $family->nickname }}</h5>
+            </div>
             <div class="card-body pt-2">
-                <p class="card-title text-secondary mb-1">家族の本棚紹介</p>
+                <p class="card-title text-secondary mb-1">家族紹介</p>
                 <p class="card-text">{!! nl2br(e($family->introduction, false)) !!}</p>
             </div>
             <a class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mb-4"

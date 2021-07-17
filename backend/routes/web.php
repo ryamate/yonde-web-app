@@ -81,14 +81,14 @@ Route::prefix('families')->name('families.')->group(function () {
         Route::get('/edit', 'FamilyController@edit')->name('edit');
         Route::post('/update', 'FamilyController@update')->name('update');
         Route::get('/setting', 'FamilyController@setting')->name('setting');
-        Route::get('/{id}', 'FamilyController@index')->name('index');
-        Route::get('/{id}/bookshelf', 'FamilyController@bookshelf')->name('bookshelf');
-        Route::get('/{id}/curious', 'FamilyController@booksCurious')->name('curious');
-        Route::get('/{id}/read', 'FamilyController@booksRead')->name('read');
-        Route::get('/{id}/read_record', 'FamilyController@readRecord')->name('read_record');
-        Route::get('/{id}/{picture_book}', 'FamilyController@show')->name('show');
-        Route::put('/{id}/follow', 'FamilyController@follow')->name('follow');
-        Route::delete('/{id}/follow', 'FamilyController@unfollow')->name('unfollow');
+        Route::get('/{name}', 'FamilyController@index')->name('index');
+        Route::get('/{name}/bookshelf', 'FamilyController@bookshelf')->name('bookshelf');
+        Route::get('/{name}/curious', 'FamilyController@booksCurious')->name('curious');
+        Route::get('/{name}/read', 'FamilyController@booksRead')->name('read');
+        Route::get('/{name}/read_record', 'FamilyController@readRecord')->name('read_record');
+        Route::get('/{name}/{picture_book}', 'FamilyController@show')->name('show');
+        Route::put('/{name}/follow', 'FamilyController@follow')->name('follow');
+        Route::delete('/{name}/follow', 'FamilyController@unfollow')->name('unfollow');
     });
 });
 

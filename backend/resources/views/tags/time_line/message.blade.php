@@ -19,7 +19,7 @@
     <span class="text-muted small">
         『
         <a href="{{ route('families.show', [
-                        'id' => $readRecord->family_id,
+                        'name' => $readRecord->family->name,
                         'picture_book' => $readRecord->pictureBook,
                         ]) }}" class="card-title text-teal1"><b>{{ $readRecord->pictureBook->title }}</b></a>
         』
@@ -31,7 +31,7 @@
     <span class="text-muted small">
         『
         <a href="{{ route('families.show', [
-                        'id' => $readRecord->family_id,
+                        'name' => $readRecord->family->name,
                         'picture_book' => $readRecord->pictureBook,
                         ]) }}" class="card-title text-teal1"><b>{{ $readRecord->pictureBook->title }}</b></a>
         』

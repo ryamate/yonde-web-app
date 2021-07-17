@@ -19,7 +19,7 @@
 
                 @include('error_card_list')
 
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('register') }}" data-ajax="false" onSubmit="is_note_msg=false;">
                     @csrf
 
                     <p class="x-small">
@@ -33,11 +33,11 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="name">よんでID</label><span class="text-danger">*</span>
-                        <input class="form-control" type="text" id="name" name="name" placeholder="よんでIDを作成" required
-                            value="{{ old('name') }}">
+                        <label for="nickname">ユーザーネーム</label><span class="text-danger">*</span>
+                        <input class="form-control" type="text" id="nickname" name="nickname" placeholder="ユーザーネームを入力"
+                            required value="{{ old('nickname') }}">
                         <ul class="text-dark small">
-                            <li>半角英数小文字：3～16文字</li>
+                            <li>50文字以内</li>
                         </ul>
                     </div>
 
@@ -56,13 +56,21 @@
                             name="password_confirmation" required>
                     </div>
 
-                    <button type="submit"
-                        class="btn btn-block bg-warning text-decoration-none text-white mt-4"><b>登録</b></button>
+                    <input type="checkbox" id="agree" required>
+                    <label for="agree" class="small">
+                        <a href="{{ route('privacy') }}" class="text-teal1" target="_blank">
+                            プライバシーポリシー
+                        </a>
+                        を確認し、同意しました。
+                    </label><span class="text-danger">*</span>
 
+                    <button type="submit" class="btn btn-block btn-warning text-white mt-4" id="submit" value="submit">
+                        <b>登録</b>
+                    </button>
                 </form>
             </div>
 
-            <div class="card-body pt-0">
+            <div class=" card-body pt-0">
                 <p class="card-title text-center">
                     <b>または</b>
                 </p>
@@ -80,7 +88,7 @@
             <div class="card-body pt-0">
                 <p class="card-title text-center border-top pt-4">ユーザー登録せずに機能を試したい方はこちら</p>
                 <a href="{{ route('login.guest') }}"
-                    class="btn btn-block bg-white btn-outline-secondary text-decoration-none text-secondary">
+                    class="btn btn-block bg-white btn-outline-mocha text-decoration-none text-mocha">
                     <b>ゲストユーザーログイン</b>
                 </a>
             </div>

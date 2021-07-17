@@ -62,7 +62,7 @@
                             @endguest
                             @auth
                             <div class="text-center">
-                                <a href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}"
+                                <a href="{{ route('families.bookshelf', ["name" => Auth::user()->family->name]) }}"
                                     class="btn btn-block btn-teal1 mt-2 mb-2 rounded-pill text-white shadow"
                                     role="button">本棚ページをみる</a>
                             </div>

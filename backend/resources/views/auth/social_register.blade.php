@@ -28,17 +28,26 @@
                     </p>
 
                     <div class="form-group">
-                        <label for="name">よんでID</label><span class="text-danger">*</span>
-                        <input class="form-control" type="text" id="name" name="name" placeholder="よんでIDを作成" required
-                            value="{{ old('name') }}">
+                        <label for="nickname">ユーザーネーム</label><span class="text-danger">*</span>
+                        <input class="form-control" type="text" id="nickname" name="nickname" placeholder="ユーザーネームを入力"
+                            required value="{{ old('nickname') }}">
                         <ul class="text-dark small">
-                            <li>半角英数小文字：3～16文字</li>
+                            <li>～50文字</li>
                         </ul>
                     </div>
+
                     <div class="form-group">
                         <label for="email">メールアドレス</label>
                         <input class="form-control" type="email" id="email" name="email" value="{{ $email }}" disabled>
                     </div>
+
+                    <input type="checkbox" id="agree" required>
+                    <label for="agree" class="small">
+                        <a href="{{ route('privacy') }}" class="text-teal1" target="_blank">
+                            プライバシーポリシー
+                        </a>
+                        を確認し、同意しました。
+                    </label><span class="text-danger">*</span>
 
                     <button type="submit" class="btn btn-block bg-warning text-decoration-none text-white mt-4">
                         <b>登録</b>

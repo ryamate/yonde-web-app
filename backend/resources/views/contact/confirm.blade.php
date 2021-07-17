@@ -35,7 +35,7 @@
 
                     <div class="form-group">
                         <label for="name" class="text-muted">
-                            よんでID（ログインID）
+                            よんでID
                         </label>
                         <p>
                             {{ $input['name'] }}

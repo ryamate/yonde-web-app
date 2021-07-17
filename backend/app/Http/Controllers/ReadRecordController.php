@@ -55,7 +55,7 @@ class ReadRecordController extends Controller
             $readRecord->tags()->attach($tag);
         });
 
-        return redirect()->route('families.read_record', ['id' => Auth::user()->family_id]);
+        return redirect()->route('families.read_record', ['name' => Auth::user()->family->name]);
     }
 
     /**
@@ -119,7 +119,7 @@ class ReadRecordController extends Controller
         });
 
 
-        return redirect()->route('families.read_record', ['id' => Auth::user()->family_id]);
+        return redirect()->route('families.read_record', ['name' => Auth::user()->family->name]);
     }
 
     /**
@@ -128,6 +128,6 @@ class ReadRecordController extends Controller
     public function destroy(ReadRecord $readRecord)
     {
         $readRecord->delete();
-        return redirect()->route('families.read_record', ['id' => Auth::user()->family_id]);
+        return redirect()->route('families.read_record', ['name' => Auth::user()->family->name]);
     }
 }

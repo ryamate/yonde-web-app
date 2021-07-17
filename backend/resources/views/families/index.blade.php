@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $family->name . 'ファミリーのタイムライン-よんで-')
+@section('title', $family->nickname . 'ファミリーのタイムライン-よんで-')
 
 @section('content')
 
@@ -17,7 +17,7 @@
                         </a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $family->name }}ファミリーのタイムライン
+                        {{ $family->nickname }}ファミリーのタイムライン
                     </li>
                 </ol>
             </nav>

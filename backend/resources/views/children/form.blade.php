@@ -19,13 +19,13 @@
                 指定なし
             </label>
             <label
-                class="btn btn-sm btn-outline-primary {{ (($child->gender_code ?? old('gender_code')) == 1) ? 'active' : '' }}">
+                class="btn btn-sm btn-outline-mocha {{ (($child->gender_code ?? old('gender_code')) == 1) ? 'active' : '' }}">
                 <input type="radio" name="gender_code" id="gender_code1" autocomplete="off" value="1"
                     {{ (($child->gender_code ?? old('gender_code')) == 1) ? 'checked' : '' }}>
                 男の子
             </label>
             <label
-                class="btn btn-sm btn-outline-danger {{ (($child->gender_code ?? old('gender_code')) == 2) ? 'active' : '' }}">
+                class="btn btn-sm btn-outline-latte {{ (($child->gender_code ?? old('gender_code')) == 2) ? 'active' : '' }}">
                 <input type="radio" name="gender_code" id="gender_code2" autocomplete="off" value="2"
                     {{ (($child->gender_code ?? old('gender_code')) == 2) ? 'checked' : '' }}>
                 女の子

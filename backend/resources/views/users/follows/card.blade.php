@@ -3,15 +3,15 @@
         <div class="row no-gutters">
             <div class="col-sm-6 p-2">
                 <p class="card-title d-flex align-items-center flex-wrap mb-0">
-                    <a href="{{ route('families.bookshelf', ["id" => $family->id]) }}" class="text-dark">
-                        <b>{{ $family->name }}ファミリー</b>
+                    <a href="{{ route('families.bookshelf', ["name" => $family->name]) }}" class="text-dark">
+                        <b>{{ $family->nickname }}ファミリー</b>
                     </a>
                     <span class="d-flex ml-3" title="お気に入り本棚">
                         @if( Auth::user()->family_id !== $family->id )
                         <follow-button class="ml-auto"
                             :initial-is-followed-by='@json($family->isFollowedBy(Auth::user()))'
                             :authorized='@json(Auth::check())'
-                            endpoint="{{ route('families.follow', ['id' => $family->id]) }}">
+                            endpoint="{{ route('families.follow', ['name' => $family->name]) }}">
                         </follow-button>
                         @endif
                     </span>
@@ -75,7 +75,7 @@
 
                             @if ($child->gender_code === 1)
                             <p class="mb-0">
-                                <span class="badge badge-dark">
+                                <span class="badge badge-dark-mocha">
                                     男の子
                                 </span>
                             </p>

@@ -2,12 +2,12 @@
     <div class="row no-gutters">
         <div class="col-sm-6 p-2">
             <p class="card-title d-flex align-items-center flex-wrap">
-                {{ $family->name }}ファミリー
+                {{ $family->nickname }}ファミリー
                 <span class="d-flex ml-3" title="お気に入り本棚">
                     @if( Auth::user()->family_id !== $family->id )
                     <follow-button class="ml-auto" :initial-is-followed-by='@json($family->isFollowedBy(Auth::user()))'
                         :authorized='@json(Auth::check())'
-                        endpoint="{{ route('families.follow', ['id' => $family->id]) }}">
+                        endpoint="{{ route('families.follow', ['name' => $family->name]) }}">
                     </follow-button>
                     @endif
                 </span>
@@ -85,14 +85,14 @@
 
         <div class="col-sm-6 p-2">
             <p class="small">
-                {{ $family->introduction }}
+                {!! nl2br(e($family->introduction, false)) !!}
             </p>
             <div class="row no-gutters">
                 <div class="col-4 text-center">
                     <p class="small mb-0">
                         登録絵本
                     </p>
-                    <a href="{{ route('families.index', ["id" =>  $family->id]) }}" class="text-dark">
+                    <a href="{{ route('families.index', ["name" =>  $family->name]) }}" class="text-dark">
                         <p class="mb-0">
                             {{ $storedCount }}
                             <span class="x-small">冊</span>
@@ -103,7 +103,7 @@
                     <p class="small mb-0">
                         よんだよ
                     </p>
-                    <a href="{{ route('families.read_record', ["id" =>  $family->id]) }}" class="text-dark">
+                    <a href="{{ route('families.read_record', ["name" =>  $family->name]) }}" class="text-dark">
                         <p class="mb-0">
                             {{ $readRecordCount }}
                             <span class="x-small">回</span>

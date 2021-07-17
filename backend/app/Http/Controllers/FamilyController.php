@@ -23,11 +23,11 @@ class FamilyController extends Controller
     /**
      * 家族のタイムライン画面表示
      */
-    public function index(string $family_id)
+    public function index(string $name)
     {
-        $data = $this->collectFamilyInfo($family_id);
+        $data = $this->collectFamilyInfo($name);
         $pictureBooks = PictureBook::with('readRecords', 'user')
-            ->where('family_id', $family_id);
+            ->where('family_id', $data['family']->id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(5);
 
@@ -43,13 +43,13 @@ class FamilyController extends Controller
     /**
      * 家族の読み聞かせタイムライン画面表示
      */
-    public function readRecord(string $family_id)
+    public function readRecord(string $name)
     {
-        $data = $this->collectFamilyInfo($family_id);
-        $pictureBooks = PictureBook::where('family_id', $family_id);
+        $data = $this->collectFamilyInfo($name);
+        $pictureBooks = PictureBook::where('family_id', $data['family']->id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['readRecords'] = ReadRecord::with('pictureBook', 'user', 'children')
-            ->where('family_id', $family_id)
+            ->where('family_id', $data['family']->id)
             ->orderBy('updated_at', 'DESC')
             ->paginate(10);
 
@@ -65,10 +65,10 @@ class FamilyController extends Controller
     /**
      * 家族の本棚画面表示
      */
-    public function bookshelf(string $family_id)
+    public function bookshelf(string $name)
     {
-        $data = $this->collectFamilyInfo($family_id);
-        $pictureBooks = PictureBook::where('family_id', $family_id);
+        $data = $this->collectFamilyInfo($name);
+        $pictureBooks = PictureBook::where('family_id', $data['family']->id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(30);
 
@@ -85,10 +85,10 @@ class FamilyController extends Controller
     /**
      * 家族の本棚（読んだ絵本）画面表示
      */
-    public function booksRead(string $family_id)
+    public function booksRead(string $name)
     {
-        $data = $this->collectFamilyInfo($family_id);
-        $pictureBooks = PictureBook::where('family_id', $family_id);
+        $data = $this->collectFamilyInfo($name);
+        $pictureBooks = PictureBook::where('family_id', $data['family']->id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->where('read_status', '!=', 0)
             ->orderBy('updated_at', 'DESC')->paginate(30);
@@ -106,10 +106,10 @@ class FamilyController extends Controller
     /**
      * 家族の本棚（きになる絵本）画面表示
      */
-    public function booksCurious(string $family_id)
+    public function booksCurious(string $name)
     {
-        $data = $this->collectFamilyInfo($family_id);
-        $pictureBooks = PictureBook::where('family_id', $family_id);
+        $data = $this->collectFamilyInfo($name);
+        $pictureBooks = PictureBook::where('family_id', $data['family']->id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->where('read_status', '=', 0)
             ->orderBy('updated_at', 'DESC')->paginate(30);
@@ -127,11 +127,11 @@ class FamilyController extends Controller
     /**
      * 登録絵本の詳細画面表示（家族の登録情報、読み聞かせ記録一覧）
      */
-    public function show(string $family_id, PictureBook $pictureBook)
+    public function show(string $name, PictureBook $pictureBook)
     {
-        $data = $this->collectFamilyInfo($family_id);
+        $data = $this->collectFamilyInfo($name);
         $pictureBooks = PictureBook::with('readRecords', 'user')
-            ->where('family_id', $family_id);
+            ->where('family_id', $data['family']->id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
 
         $data['pictureBook'] = $pictureBooks->where('id', $pictureBook->id)->first();
@@ -152,9 +152,9 @@ class FamilyController extends Controller
     /**
      * 各家族の基本データまとめ
      */
-    private function collectFamilyInfo(string $family_id): array
+    private function collectFamilyInfo(string $name): array
     {
-        $family = Family::where('id', $family_id)->first();
+        $family = Family::where('name', $name)->first();
         $familyUsers = $family->users->sortBy('created_at');
         $children = $family->children->sortBy('birthday');
 
@@ -194,7 +194,8 @@ class FamilyController extends Controller
      */
     public function setting()
     {
-        $family = Family::with('users', 'children')->where('id', Auth::user()->family_id)->first();
+        $family = Family::with('users', 'children')
+            ->where('id', Auth::user()->family_id)->first();
         $user = User::where('id', Auth::id())->firstOrFail();
         $familyUsers = $family->users->whereNotIn('id', $user->id)->sortBy('created_at');
         $children = $family->children->sortBy('birthday');
@@ -233,9 +234,9 @@ class FamilyController extends Controller
     /**
      * フォローする
      */
-    public function follow(Request $request, string $family_id)
+    public function follow(Request $request, string $name)
     {
-        $family = Family::where('id', $family_id)->first();
+        $family = Family::where('name', $name)->first();
 
         if ($family->id === $request->user()->family_id) {
             return abort('404', 'Cannot follow yourself.');
@@ -244,15 +245,15 @@ class FamilyController extends Controller
         $family->follows()->detach($request->user()->id);
         $family->follows()->attach($request->user()->id);
 
-        return ['id' => $family->id];
+        return ['name' => $family->name];
     }
 
     /**
      * フォロー解除する
      */
-    public function unfollow(Request $request, string $family_id)
+    public function unfollow(Request $request, string $name)
     {
-        $family = Family::where('id', $family_id)->first();
+        $family = Family::where('name', $name)->first();
 
         if ($family->id === $request->user()->family_id) {
             return abort('404', 'Cannot follow yourself.');
@@ -260,6 +261,6 @@ class FamilyController extends Controller
 
         $family->follows()->detach($request->user()->id);
 
-        return ['id' => $family->id];
+        return ['name' => $family->name];
     }
 }

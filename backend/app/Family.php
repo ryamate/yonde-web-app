@@ -10,6 +10,7 @@ class Family extends Model
 {
     protected $fillable = [
         'name',
+        'nickname',
         'introduction',
     ];
 

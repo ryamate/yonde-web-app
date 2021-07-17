@@ -28,7 +28,7 @@
                     <p class="card-text mb-0">
                         <b>{{ $child->name }}</b>
                         @if ($child->gender_code === 1)
-                        <span class="badge badge-dark ml-1">
+                        <span class="badge badge-dark-mocha ml-1">
                             男の子
                         </span>
                         @elseif ($child->gender_code === 2)
@@ -50,7 +50,7 @@
                     @endif
                     <p class="card-text mb-0">
                         @if ($child->gender_code === 1)
-                        <span class="badge badge-dark ml-1">
+                        <span class="badge badge-dark-mocha ml-1">
                             男の子
                         </span>
                         @elseif ($child->gender_code === 2)
@@ -68,8 +68,8 @@
 
         <div class="col-sm-6 py-2 px-4">
             <p class="mb-1">
-                <a href="{{ route('families.index', ["id" => $family->id]) }}" class="text-dark">
-                    {{ $family->name }}ファミリー
+                <a href="{{ route('families.index', ["name" => $family->name]) }}" class="text-dark">
+                    {{ $family->nickname }}ファミリー
                 </a>
             </p>
             <p class="small text-muted mb-1">

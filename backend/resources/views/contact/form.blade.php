@@ -47,7 +47,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="name">よんでID（ログインID）</label>
+                        <label for="name">よんでID</label>
                         <input class="form-control" type="text" id="name" name="name"
                             value="{{ Auth::user()->name ?? old('name') }}">
                     </div>
@@ -65,6 +65,14 @@
                             <li>1000文字以内</li>
                         </ul>
                     </div>
+
+                    <input type="checkbox" id="agree" required>
+                    <label for="agree" class="small">
+                        <a href="{{ route('privacy') }}" class="text-teal1" target="_blank">
+                            プライバシーポリシー
+                        </a>
+                        を確認し、同意しました。
+                    </label><span class="text-danger">*</span>
 
                     <button type="submit"
                         class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-4">

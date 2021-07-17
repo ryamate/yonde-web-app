@@ -5,7 +5,7 @@
                 <div class="d-flex justify-content-start align-items-center flex-wrap">
                     @foreach ($reviewedPictureBook->family->users as $familyUser)
                     @auth
-                    <a href="{{ route('families.bookshelf', ["id" => $reviewedPictureBook->family->id]) }}"
+                    <a href="{{ route('families.bookshelf', ["name" => $reviewedPictureBook->family->name]) }}"
                         class="text-decoration-none">
                         @endauth
                         <span class="btn-group drop-hover">
@@ -32,7 +32,7 @@
                     @endforeach
                     @foreach ($reviewedPictureBook->family->children->sortBy('birthday') as $child)
                     @auth
-                    <a href="{{ route('families.bookshelf', ["id" => $reviewedPictureBook->family->id]) }}"
+                    <a href="{{ route('families.bookshelf', ["name" => $reviewedPictureBook->family->name]) }}"
                         class="text-decoration-none">
                         @endauth
                         <span class="btn-group drop-hover">
@@ -63,7 +63,7 @@
 
                                 @if ($child->gender_code === 1)
                                 <p class="mb-0">
-                                    <span class="badge badge-dark">男の子</span>
+                                    <span class="badge badge-dark-mocha">男の子</span>
                                 </p>
                                 @elseif ($child->gender_code === 2)
                                 <p class="mb-0">
@@ -87,10 +87,10 @@
                     <span class="d-flex justify-content-start flex-wrap my-2">
                         <span class="small">
                             @auth
-                            <a href="{{ route('families.bookshelf', ["id" => $reviewedPictureBook->family->id]) }}"
+                            <a href="{{ route('families.bookshelf', ["name" => $reviewedPictureBook->family->name]) }}"
                                 class="text-dark">
                                 @endauth
-                                <b>{{ $reviewedPictureBook->family->name }}ファミリー</b>
+                                <b>{{ $reviewedPictureBook->family->nickname }}ファミリー</b>
                                 @auth
                             </a>
                             @endauth

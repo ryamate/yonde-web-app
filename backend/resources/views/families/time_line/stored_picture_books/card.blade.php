@@ -3,7 +3,7 @@
         {{-- thumbnail --}}
         <div class="col-sm-3 d-flex justify-content-center align-items-top">
             <a href="{{ $hasStored
-            ? route('families.show', ['id' => $family->id,'picture_book' => $pictureBook,])
+            ? route('families.show', ['name' => $family->name,'picture_book' => $pictureBook,])
             : route('picture_books.show', ['picture_book' => $pictureBook,])
              }}" class="m-4 text-decoration-none">
                 <div class="card-img-top book-cover m-auto">
@@ -28,7 +28,7 @@
             <div class="card-body">
                 <div class="card-title mb-0 d-flex align-items-center flex-wrap">
                     <a href="{{ $hasStored
-            ? route('families.show', ['id' => $family->id,'picture_book' => $pictureBook,])
+            ? route('families.show', ['name' => $family->name,'picture_book' => $pictureBook,])
             : route('picture_books.show', ['picture_book' => $pictureBook,])
              }}" class="text-teal1 mr-2">
                         <b>{{ $pictureBook->title }}</b>

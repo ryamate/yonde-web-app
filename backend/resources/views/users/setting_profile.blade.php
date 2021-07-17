@@ -83,7 +83,7 @@
                 <h5 class="card-text">{{ $user->nickname }}</h5>
             </div>
 
-            <div class="card-body py-2">
+            <div class="card-body pt-2">
                 <p class="card-title text-secondary mb-1">子どもとの関係</p>
                 <h5 class="card-text">{{ $user->relation }}</h5>
             </div>

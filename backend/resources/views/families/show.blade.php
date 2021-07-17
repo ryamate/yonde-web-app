@@ -15,8 +15,8 @@
                         <a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        <a href="{{ route('families.index', ['id' => $family->id]) }}"
-                            class="text-teal1">{{ $family->name }}ファミリーのタイムライン</a>
+                        <a href="{{ route('families.index', ['name' => $family->name]) }}"
+                            class="text-teal1">{{ $family->nickname }}ファミリーのタイムライン</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         『{{ $pictureBook->title }}』の記録詳細

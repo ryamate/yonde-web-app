@@ -62,7 +62,7 @@
                 <div class="card-body px-0">
                     <p class="card-title text-center">ユーザー登録せずに機能を試したい方はこちら</p>
                     <a href="{{ route('login.guest') }}"
-                        class="btn btn-block bg-white btn-outline-secondary text-decoration-none text-secondary">
+                        class="btn btn-block bg-white btn-outline-mocha text-decoration-none text-mocha">
                         <b>ゲストユーザーログイン</b>
                     </a>
                 </div>

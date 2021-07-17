@@ -4,7 +4,7 @@
             @foreach($pictureBooks as $pictureBook)
             <div class="btn-group drop-hover my-3 px-1">
                 <a href="{{ route('families.show', [
-                        'id' => $family->id,
+                        'name' => $family->name,
                         'picture_book' => $pictureBook,
                         ]) }}" class="text-decoration-none">
                     <div class="card-img-top book-cover my-auto">

@@ -19,7 +19,8 @@
 {{-- picture bookshelf button --}}
 <div class="d-none d-md-block">
     <li class="nav-item d-flex align-items-center justify-content-center btn-group drop-hover">
-        <a role="button" onclick="location.href='{{ route('families.bookshelf', ['id' => Auth::user()->family_id]) }}'"
+        <a role="button"
+            onclick="location.href='{{ route('families.bookshelf', ['name' => Auth::user()->family->name]) }}'"
             title="家族の本棚"
             class="nav-link btn btn-light text-teal1 d-flex align-items-center justify-content-center ml-3 mr-1"
             style="width: 35px; height:35px; border-radius: 4px;" data-toggle="dropdown" aria-haspopup="true"
@@ -28,15 +29,15 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right mt-0">
             <a class="dropdown-item small text-center"
-                href="{{ route('families.bookshelf', ['id' => Auth::user()->family_id]) }}">
+                href="{{ route('families.bookshelf', ['name' => Auth::user()->family->name]) }}">
                 <i class="fas fa-book fa-lg mr-1"></i>本棚
             </a>
             <a class="dropdown-item small text-center"
-                href="{{ route('families.read', ['id' => Auth::user()->family_id]) }}">
+                href="{{ route('families.read', ['name' => Auth::user()->family->name]) }}">
                 よんだ絵本
             </a>
             <a class="dropdown-item small text-center"
-                href="{{ route('families.curious', ['id' => Auth::user()->family_id]) }}">
+                href="{{ route('families.curious', ['name' => Auth::user()->family->name]) }}">
                 きになる絵本
             </a>
         </div>
@@ -47,7 +48,7 @@
 {{-- timeline button --}}
 <div class="d-none d-md-block">
     <li class="nav-item d-flex align-items-center justify-content-center btn-group drop-hover">
-        <a role="button" onclick="location.href='{{ route('families.index', ['id' => Auth::user()->family_id]) }}'"
+        <a role="button" onclick="location.href='{{ route('families.index', ['name' => Auth::user()->family->name]) }}'"
             title="家族のタイムライン"
             class="nav-link btn btn-light text-teal1 d-flex align-items-center justify-content-center mx-1"
             style="width: 35px; height:35px; border-radius: 4px;" data-toggle="dropdown" aria-haspopup="true"
@@ -56,11 +57,11 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right mt-0">
             <a class="dropdown-item small text-center"
-                href="{{ route('families.index', ['id' => Auth::user()->family_id]) }}">
+                href="{{ route('families.index', ['name' => Auth::user()->family->name]) }}">
                 <i class="far fa-clock fa-lg mr-1"></i>タイムライン
             </a>
             <a class="dropdown-item small text-center"
-                href="{{ route('families.read_record', ["id" =>  Auth::user()->family->id]) }}">
+                href="{{ route('families.read_record', ['name' => Auth::user()->family->name]) }}">
                 <i class="fas fa-book-reader mr-1"></i>よんだよ記録
             </a>
         </div>

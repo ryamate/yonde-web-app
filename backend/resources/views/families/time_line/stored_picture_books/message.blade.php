@@ -18,7 +18,7 @@
     @if ($pictureBook->created_at == $pictureBook->updated_at)
     <span class="text-muted small">
         『
-        <a href="{{ route('families.show', ['id' => Auth::user()->family_id, 'picture_book' => $pictureBook]) }}"
+        <a href="{{ route('families.show', ['name' => Auth::user()->family->name, 'picture_book' => $pictureBook]) }}"
             class="card-title text-teal1">
             <b>{{ $pictureBook->title }}</b>
         </a>
@@ -30,7 +30,7 @@
     @else
     <span class="text-muted small">
         本棚の『
-        <a href="{{ route('families.show', ['id' => Auth::user()->family_id, 'picture_book' => $pictureBook]) }}"
+        <a href="{{ route('families.show', ['name' => Auth::user()->family->name, 'picture_book' => $pictureBook]) }}"
             class="card-title text-teal1">
             <b>{{ $pictureBook->title }}</b>
         </a>

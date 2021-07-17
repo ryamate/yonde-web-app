@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Auth;
 
 class FamilyRequest extends FormRequest
@@ -24,10 +25,19 @@ class FamilyRequest extends FormRequest
      */
     public function rules()
     {
+        $familyName = Auth::user()->family->name;
         if (Auth::id() !== config('const.GUEST_USER_ID')) {
             return [
-                'name' => 'required|max:100',
-                'introduction' => 'max:1000',
+                'name' => [
+                    'required',
+                    'string',
+                    'alpha_num',
+                    'min:3',
+                    'max:16',
+                    Rule::unique('families', 'name')->whereNot('name', $familyName),
+                ],
+                'nickname' => 'required|max:50',
+                'introduction' => 'max:160',
             ];
         }
     }
@@ -38,8 +48,9 @@ class FamilyRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'ファミリーネーム',
-            'introduction' => '紹介文',
+            'name' => 'ファミリーID',
+            'nickname' => 'ファミリーネーム',
+            'introduction' => '家族紹介',
         ];
     }
 }

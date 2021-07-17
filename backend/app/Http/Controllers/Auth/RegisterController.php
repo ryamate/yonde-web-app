@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -55,7 +56,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
+            'nickname' => ['required', 'string', 'alpha_num', 'max:50', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -69,19 +70,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $checkUniqueName = true;
+        while ($checkUniqueName) {
+            $familyName = Str::random(16);
+            $checkUniqueName = Family::where('name', $familyName)->exists();
+        }
+
         $family = Family::create([
-            'name' => '未設定',
-            'introduction' => '未設定',
+            'name' => $familyName,
+            'nickname' => 'よんで',
+            'introduction' => 'よろしくお願いします。',
         ]);
 
         Child::create([
-            'name' => '未設定',
+            'name' => 'お子さま',
             'family_id' => $family->id,
         ]);
 
+        $checkUniqueName = true;
+        while ($checkUniqueName) {
+            $userName = Str::random(16);
+            $checkUniqueName = User::where('name', $userName)->exists();
+        }
+
         return User::create([
-            'name' => $data['name'],
-            'nickname' => $data['name'],
+            'name' => $userName,
+            'nickname' => $data['nickname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'family_id' => $family->id,
@@ -110,7 +124,7 @@ class RegisterController extends Controller
     public function registerProviderUser(Request $request, string $provider)
     {
         $request->validate([
-            'name' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
+            'nickname' => ['required', 'string', 'alpha_num', 'max:50'],
             'token' => ['required', 'string'],
         ]);
 
@@ -118,19 +132,33 @@ class RegisterController extends Controller
 
         $providerUser = Socialite::driver($provider)->userFromToken($token);
 
+        $checkUniqueName = true;
+        while ($checkUniqueName) {
+            $familyName = Str::random(16);
+            $checkUniqueName = Family::where('name', $familyName)->exists();
+        }
+
+
         $family = Family::create([
-            'name' => '未設定',
-            'introduction' => '未設定',
+            'name' => $familyName,
+            'nickname' => 'よんで',
+            'introduction' => 'よろしくお願いします。',
         ]);
 
         Child::create([
-            'name' => '未設定',
+            'name' => 'お子さま',
             'family_id' => $family->id,
         ]);
 
+        $checkUniqueName = true;
+        while ($checkUniqueName) {
+            $userName = Str::random(16);
+            $checkUniqueName = User::where('name', $userName)->exists();
+        }
+
         $user = User::create([
-            'name' => $request->name,
-            'nickname' => $request->name,
+            'name' => $userName,
+            'nickname' => $request->nickname,
             'email' => $providerUser->getEmail(),
             'email_verified_at' => now(),
             'password' => null,
@@ -171,14 +199,20 @@ class RegisterController extends Controller
         }
 
         $request->validate([
-            'name' => ['required', 'string', 'alpha_num', 'min:3', 'max:16', 'unique:users'],
+            'nickname' => ['required', 'string', 'alpha_num', 'max:50', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
+        $checkUniqueName = true;
+        while ($checkUniqueName) {
+            $userName = Str::random(16);
+            $checkUniqueName = User::where('name', $userName)->exists();
+        }
+
         $user = User::create([
-            'name' => $request->name,
-            'nickname' => $request->name,
+            'name' => $userName,
+            'nickname' => $request->nickname,
             'email' => $request->email,
             'email_verified_at' => now(),
             'password' => Hash::make($request->password),

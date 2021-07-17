@@ -42,7 +42,7 @@ class PictureBookController extends Controller
         $pictureBook->family_id = $request->user()->family_id;
         $pictureBook->save();
 
-        return redirect()->route('families.index', ['id' => Auth::user()->family_id]);
+        return redirect()->route('families.index', ['name' => Auth::user()->family->name]);
     }
 
     /**
@@ -66,7 +66,7 @@ class PictureBookController extends Controller
         $pictureBook->user_id = $request->user()->id;
         $pictureBook->save();
 
-        return redirect()->route('families.index', ['id' => Auth::user()->family_id]);
+        return redirect()->route('families.index', ['name' => Auth::user()->family->name]);
     }
 
     /**
@@ -75,7 +75,7 @@ class PictureBookController extends Controller
     public function destroy(PictureBook $pictureBook)
     {
         $pictureBook->delete();
-        return redirect()->route('families.index', ['id' => Auth::user()->family_id]);
+        return redirect()->route('families.index', ['name' => Auth::user()->family->name]);
     }
 
     /**
@@ -132,7 +132,7 @@ class PictureBookController extends Controller
     {
         if ($request->picture_book_id) {
             return redirect()->route('families.show', [
-                'id' => Auth::user()->family_id,
+                'name' => Auth::user()->family->name,
                 'picture_book' => $request->picture_book_id
             ]);
         } else {

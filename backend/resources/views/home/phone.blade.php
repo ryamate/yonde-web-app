@@ -23,7 +23,7 @@
                 @endguest
                 @auth
                 <div class="d-flex justify-content-center px-auto">
-                    <a href="{{ route('families.bookshelf', ["id" => Auth::user()->family_id]) }}"
+                    <a href="{{ route('families.bookshelf', ['name' => Auth::user()->family->name]) }}"
                         class="btn btn-block btn-teal1 mb-2 shadow rounded-pill text-shadow">
                         <span>本棚をみる</span>
                     </a>
@@ -337,7 +337,7 @@
             </a>
 
             <a href="{{ route('login.guest') }}"
-                class="btn btn-block btn-sm bg-white btn-outline-secondary text-secondary my-2">
+                class="btn btn-block btn-sm bg-white btn-outline-mocha text-mocha my-2">
                 <b>ゲストログイン</b>
             </a>
         </div>

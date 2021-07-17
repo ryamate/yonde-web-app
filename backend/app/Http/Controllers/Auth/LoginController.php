@@ -82,7 +82,7 @@ class LoginController extends Controller
     public function guestLogin()
     {
         if (Auth::loginUsingId(config('const.GUEST_USER_ID'))) {
-            return redirect()->route('families.bookshelf', ["id" => Auth::user()->family_id]);
+            return redirect()->route('families.bookshelf', ["name" => Auth::user()->family->name]);
         }
 
         return redirect()->route('home');

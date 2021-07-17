@@ -4,7 +4,7 @@
         {{-- thumbnail --}}
         <div class="col-sm-2 d-flex justify-content-center align-items-top">
             <a href="{{ route('families.show', [
-                        'id' => $family->id,
+                        'name' => $family->name,
                         'picture_book' => $readRecord->pictureBook,
                         ]) }}" class="m-3 text-decoration-none">
                 <div class="card-img-top book-cover m-auto">
@@ -38,7 +38,7 @@
 
                         @if ($hasReadRecord)
                         <a href="{{ route('families.show', [
-                        'id' => $family->id,
+                        'name' => $family->name,
                         'picture_book' => $readRecord->pictureBook,
                         ]) }}" class="text-teal1 mr-4"
                             title="作者：{{ $readRecord->pictureBook->authors !== null ? $readRecord->pictureBook->authors : '' }}">
@@ -178,7 +178,7 @@
 
                                 @if ($child->gender_code === 1)
                                 <p class="mb-0">
-                                    <span class="badge badge-dark">男の子</span>
+                                    <span class="badge badge-dark-mocha">男の子</span>
                                 </p>
                                 @elseif ($child->gender_code === 2)
                                 <p class="mb-0">

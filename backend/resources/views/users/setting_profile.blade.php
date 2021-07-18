@@ -118,6 +118,12 @@
                 パスワードの変更
             </a>
         </div>
+        <div class="mx-4">
+            <a href="{{ route('users.resign') }}"
+                class="btn btn-block bg-white btn-outline-pink text-decoration-none text-pink">
+                退会
+            </a>
+        </div>
     </div>
 </div>
 </div>

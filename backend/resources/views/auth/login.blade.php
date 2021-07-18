@@ -48,7 +48,7 @@
                 <div class="card-body px-0">
                     <p class="card-title text-center"><b>または</b></p>
                     <a href="{{ route('login.{provider}', ['provider' => 'google']) }}"
-                        class="btn btn-block btn-danger">
+                        class="btn btn-block btn-outline-danger">
                         <i class="fab fa-google mr-4"></i><b>Googleでログイン</b>
                     </a>
                 </div>
@@ -61,8 +61,7 @@
 
                 <div class="card-body px-0">
                     <p class="card-title text-center">ユーザー登録せずに機能を試したい方はこちら</p>
-                    <a href="{{ route('login.guest') }}"
-                        class="btn btn-block bg-white btn-outline-mocha text-decoration-none text-mocha">
+                    <a href="{{ route('login.guest') }}" class="btn btn-block btn-outline-mocha">
                         <b>ゲストユーザーログイン</b>
                     </a>
                 </div>

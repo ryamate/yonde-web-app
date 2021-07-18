@@ -42,12 +42,12 @@
 
                         @include('picture_books.form')
 
-                        <button type="submit" class="btn btn-outline-teal1 shadow-sm btn-block">編集完了する</button>
+                        <button type="submit" class="btn btn-teal1 shadow-sm btn-block">編集完了する</button>
                     </form>
                 </div>
                 <div class="card-text">
                     <a href="{{ route('families.index', ['name' => Auth::user()->family->name]) }}"
-                        class="btn btn-block btn-outline-secondary bg-white text-decoration-none text-secondary mt-4">
+                        class="btn btn-block btn-outline-teal1 bg-white text-decoration-none text-teal1 mt-3">
                         <i class="fas fa-chevron-circle-left mr-1"></i>戻る
                     </a>
                 </div>

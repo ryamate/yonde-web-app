@@ -147,6 +147,7 @@ return [
 
     'attributes' => [
         'name' => 'よんでID',
+        'nickname' => 'ニックネーム',
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'relation' => '子どもとの関係',

@@ -138,7 +138,6 @@ class RegisterController extends Controller
             $checkUniqueName = Family::where('name', $familyName)->exists();
         }
 
-
         $family = Family::create([
             'name' => $familyName,
             'nickname' => 'よんで',
@@ -171,7 +170,6 @@ class RegisterController extends Controller
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }
-
 
     /**
      * ユーザー名登録画面表示処理（招待ユーザー登録）
@@ -226,7 +224,6 @@ class RegisterController extends Controller
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());
     }
-
 
     /**
      * The user has been registered.

@@ -18,10 +18,13 @@
 
                 <form action="{{ route('children.update', ['id' => $child->id]) }}" method="post">
                     @include('children.form')
-                    <button type="submit"
-                        class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-4">
+                    <button type="submit" class="btn btn-block btn-teal1  mt-4">
                         <b>編集完了する</b>
                     </button>
+                    <a href="{{ route('families.setting') }}"
+                        class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-3">
+                        <i class="fas fa-angle-double-left mr-1"></i>戻る
+                    </a>
                 </form>
             </div>
         </div>

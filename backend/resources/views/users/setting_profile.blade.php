@@ -54,12 +54,18 @@
         </div>
         @endif
 
+        @if (session('status'))
+        <div class="card-text alert alert-success">
+            {{ session('status') }}
+        </div>
+        @endif
+
         <h3>プロフィール設定</h3>
         @include('families.setting_tabs', [
         'hasUser' => true,
         'hasFamily' => false,
         ])
-        <div class="card p-4 shadow-sm">
+        <div class="card shadow-sm p-4 mb-4">
             <div class="card-body py-2">
                 <p class="card-title text-secondary mb-1">プロフィール画像</p>
                 @if ($user->icon_path)
@@ -68,7 +74,7 @@
                 @else
                 <p class="d-flex align-items-center mb-0">
                     <i class="far fa-user-circle fa-5x text-secondary"></i>
-                    <span class="badge">未設定</span>
+                    <span class="small text-muted ml-1">(未設定)</span>
                 </p>
                 @endif
             </div>
@@ -85,7 +91,11 @@
 
             <div class="card-body pt-2">
                 <p class="card-title text-secondary mb-1">子どもとの関係</p>
+                @if ($user->relation !== null)
                 <h5 class="card-text">{{ $user->relation }}</h5>
+                @else
+                <h5 class="text-muted">(未設定)</h5>
+                @endif
             </div>
 
             @if( Auth::id() === $user->id )
@@ -94,6 +104,19 @@
                 プロフィールを編集
             </a>
             @endif
+        </div>
+
+        <h4>ログイン設定</h4>
+        <div class="card shadow-sm p-4 mb-4">
+            <a href="{{ route('users.edit_email') }}"
+                class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1">
+                メールアドレスの変更
+            </a>
+
+            <a href="{{ route('users.edit_password') }}"
+                class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1">
+                パスワードの変更
+            </a>
         </div>
     </div>
 </div>

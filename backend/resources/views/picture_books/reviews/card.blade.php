@@ -110,7 +110,7 @@
                         @endif
                     </span>
                     @if ($reviewedPictureBook->five_star_rating !== 0)
-                    <span class="small text-warning">
+                    <span class="small text-lemon-tea">
                         @for ($i = 0; $i < (int)$reviewedPictureBook->five_star_rating; $i++)
                             <i class="fas fa-star"></i>
                             @endfor

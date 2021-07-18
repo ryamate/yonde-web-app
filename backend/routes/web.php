@@ -60,6 +60,12 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/edit', 'UserController@edit')->name('edit');
         Route::post('/update', 'UserController@update')->name('update');
+        Route::get('/edit_email', 'UserController@editEmail')->name('edit_email');
+        Route::post('/update_email', 'UserController@updateEmail')->name('update_email');
+        Route::get('/create_password', 'UserController@createPassword')->name('create_password');
+        Route::post('/store_password', 'UserController@storePassword')->name('store_password');
+        Route::get('/edit_password', 'UserController@editPassword')->name('edit_password');
+        Route::post('/update_password', 'UserController@updatePassword')->name('update_password');
         Route::get('/setting_profile', 'UserController@settingProfile')->name('setting_profile');
         Route::get('/{name}', 'UserController@index')->name('index');
         Route::get('/{name}/read_record', 'UserController@readRecord')->name('read_record');

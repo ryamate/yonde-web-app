@@ -99,7 +99,7 @@
                                         <i class="fas fa-book-reader"></i>
                                         <b>{{ $searchedBook->read_records_count }}</b><span class="text-dark">回</span>
                                     </span>
-                                    <span class="text-warning mx-2">
+                                    <span class="text-lemon-tea mx-2">
                                         <i class="fas fa-star"></i>
                                         <b>{{ $searchedBook->five_star_avg }}</b>
                                     </span>
@@ -154,7 +154,7 @@
                             @if ($family->isStoredBy($searchedBook))
                             <a class="btn btn-sm btn-block btn-outline-teal1 text-teal1 bg-white shadow-sm"
                                 href="{{ route("families.show", [
-                                            'id' => Auth::user()->family_id,
+                                            'name' => Auth::user()->family->name,
                                             'picture_book' => $family->pictureBooks->firstWhere('google_books_id', $searchedBook->id)]) }}">
                                 <i class="fas fa-book mr-1"></i>登録済み
                             </a>

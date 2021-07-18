@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
-use Auth;
 
 class RegisterController extends Controller
 {
@@ -57,8 +56,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nickname' => ['required', 'string', 'alpha_num', 'max:50', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'nickname' => ['required', 'string', 'alpha_num', 'max:50'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,NULL,id,deleted_at,NULL'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -71,6 +70,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $user = User::onlyTrashed('email', $data['email'])->first();
+        if ($user) {
+            User::onlyTrashed()->where('id', $user->id)->restore();
+            $user = User::find($user->id);
+            $user->nickname = $data['nickname'];
+            $user->password = Hash::make($data['password']);
+            $user->save();
+
+            return $user;
+        }
+
         $checkUniqueName = true;
         while ($checkUniqueName) {
             $familyName = Str::random(16);
@@ -134,50 +144,46 @@ class RegisterController extends Controller
 
         $providerUser = Socialite::driver($provider)->userFromToken($token);
 
+        // 論理削除ユーザーである場合の再登録処理
         $user = User::onlyTrashed('email', $providerUser->getEmail())->first();
         if ($user) {
             User::onlyTrashed()->where('id', $user->id)->restore();
             $user->nickname = $request->nickname;
             $user->save();
+        } else {
+            $checkUniqueName = true;
+            while ($checkUniqueName) {
+                $familyName = Str::random(16);
+                $checkUniqueName = Family::where('name', $familyName)->exists();
+            }
 
-            $this->guard()->login($user, true);
+            $family = Family::create([
+                'name' => $familyName,
+                'nickname' => 'よんで',
+                'introduction' => 'よろしくお願いします。',
+            ]);
 
-            return $this->reRegistered($request, $user);
+            Child::create([
+                'name' => 'お子さま',
+                'family_id' => $family->id,
+            ]);
+
+            $checkUniqueName = true;
+            while ($checkUniqueName) {
+                $userName = Str::random(16);
+                $checkUniqueName = User::where('name', $userName)->exists();
+            }
+
+            $user = User::create([
+                'name' => $userName,
+                'nickname' => $request->nickname,
+                'email' => $providerUser->getEmail(),
+                'email_verified_at' => now(),
+                'password' => null,
+                'family_id' => $family->id,
+
+            ]);
         }
-
-
-        $checkUniqueName = true;
-        while ($checkUniqueName) {
-            $familyName = Str::random(16);
-            $checkUniqueName = Family::where('name', $familyName)->exists();
-        }
-
-        $family = Family::create([
-            'name' => $familyName,
-            'nickname' => 'よんで',
-            'introduction' => 'よろしくお願いします。',
-        ]);
-
-        Child::create([
-            'name' => 'お子さま',
-            'family_id' => $family->id,
-        ]);
-
-        $checkUniqueName = true;
-        while ($checkUniqueName) {
-            $userName = Str::random(16);
-            $checkUniqueName = User::where('name', $userName)->exists();
-        }
-
-        $user = User::create([
-            'name' => $userName,
-            'nickname' => $request->nickname,
-            'email' => $providerUser->getEmail(),
-            'email_verified_at' => now(),
-            'password' => null,
-            'family_id' => $family->id,
-
-        ]);
 
         $this->guard()->login($user, true);
 
@@ -211,25 +217,37 @@ class RegisterController extends Controller
         }
 
         $request->validate([
-            'nickname' => ['required', 'string', 'alpha_num', 'max:50', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'nickname' => ['required', 'string', 'alpha_num', 'max:50'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,NULL,id,deleted_at,NULL'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $checkUniqueName = true;
-        while ($checkUniqueName) {
-            $userName = Str::random(16);
-            $checkUniqueName = User::where('name', $userName)->exists();
-        }
+        // 論理削除ユーザーである場合の再登録処理
+        $user = User::onlyTrashed('email', $request->email)->first();
+        if ($user) {
+            User::onlyTrashed()->where('id', $user->id)->restore();
+            $user->nickname = $request->nickname;
+            $user->email = $request->email;
+            $user->email_verified_at = now();
+            $user->password = Hash::make($request->password);
+            $user->family_id = $request->family_id;
+            $user->save();
+        } else {
+            $checkUniqueName = true;
+            while ($checkUniqueName) {
+                $userName = Str::random(16);
+                $checkUniqueName = User::where('name', $userName)->exists();
+            }
 
-        $user = User::create([
-            'name' => $userName,
-            'nickname' => $request->nickname,
-            'email' => $request->email,
-            'email_verified_at' => now(),
-            'password' => Hash::make($request->password),
-            'family_id' => $request->family_id,
-        ]);
+            $user = User::create([
+                'name' => $userName,
+                'nickname' => $request->nickname,
+                'email' => $request->email,
+                'email_verified_at' => now(),
+                'password' => Hash::make($request->password),
+                'family_id' => $request->family_id,
+            ]);
+        }
 
         $this->guard()->login($user, true);
 
@@ -251,10 +269,5 @@ class RegisterController extends Controller
         return $user->email_verified_at === null
             ? view('auth.registered') // 通常の新規登録
             : redirect($this->redirectPath()); // Googleアカウントでの新規登録
-    }
-
-    protected function reRegistered(Request $request, $user)
-    {
-        return view('auth.re_registered');
     }
 }

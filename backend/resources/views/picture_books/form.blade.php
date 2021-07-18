@@ -22,7 +22,7 @@
 
     <div class="form-group">
         <label for="five_star_rating">評価(5点満点)</label>
-        <select name="five_star_rating" id="five_star_rating" class="form-control text-lemon-tea">
+        <select name="five_star_rating" id="five_star_rating" class="form-control">
             <option value="0" {{ ($pictureBook->five_star_rating ?? old('five_star_rating') == 0) ? 'selected' : '' }}>
                 まだ評価しない
             </option>

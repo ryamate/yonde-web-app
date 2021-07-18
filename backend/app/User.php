@@ -11,11 +11,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
+    use SoftDeletes;
+
+    protected $table = 'users';
+    protected $dates = ['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *

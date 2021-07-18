@@ -247,7 +247,7 @@ class UserController extends Controller
     }
 
     /**
-     * ユーザーメールアドレス変更画面表示
+     * メールアドレス変更画面表示
      */
     public function editEmail()
     {
@@ -265,7 +265,7 @@ class UserController extends Controller
     }
 
     /**
-     * ユーザープロフィール設定更新する
+     * メールアドレスを更新する
      */
     public function updateEmail(UserRequest $request)
     {
@@ -282,7 +282,7 @@ class UserController extends Controller
     }
 
     /**
-     * ユーザープロフィール編集画面表示
+     * パスワード設定画面表示
      */
     public function createPassword()
     {
@@ -310,7 +310,7 @@ class UserController extends Controller
     }
 
     /**
-     * ユーザープロフィール編集画面表示
+     * パスワード変更画面表示
      */
     public function editPassword()
     {
@@ -337,5 +337,35 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('users.setting_profile')->with('status', 'パスワードを変更しました。');
+    }
+
+    /**
+     * ユーザープロフィール編集画面表示
+     */
+    public function resign()
+    {
+        $user = Auth::user();
+
+        return view('users.resign', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * ユーザーアカウントを論理削除する
+     */
+
+    public function deleteData(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->delete();
+
+        return $this->resigned($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
+    protected function resigned()
+    {
+        return  view('users.resigned');
     }
 }

@@ -67,6 +67,8 @@ Route::prefix('users')->name('users.')->group(function () {
         Route::get('/edit_password', 'UserController@editPassword')->name('edit_password');
         Route::post('/update_password', 'UserController@updatePassword')->name('update_password');
         Route::get('/setting_profile', 'UserController@settingProfile')->name('setting_profile');
+        Route::get('/resign', 'UserController@resign')->name('resign');
+        Route::post('/delete_data', 'UserController@deleteData')->name('delete_data');
         Route::get('/{name}', 'UserController@index')->name('index');
         Route::get('/{name}/read_record', 'UserController@readRecord')->name('read_record');
         Route::get('/{name}/likes', 'UserController@likes')->name('likes');
@@ -74,6 +76,7 @@ Route::prefix('users')->name('users.')->group(function () {
         Route::get('/{name}/followings', 'UserController@followings')->name('followings');
         Route::get('/{name}/followers', 'UserController@followers')->name('followers');
     });
+    Route::get('/resigned', 'UserController@resigned')->name('resigned');
 });
 
 Route::prefix('tags')->name('tags.')->group(

@@ -221,8 +221,7 @@
                         <b>Googleで登録</b>
                     </a>
 
-                    <a href="{{ route('login.guest') }}"
-                        class="btn btn-block btn-sm bg-white btn-outline-mocha text-mocha my-2">
+                    <a href="{{ route('login.guest') }}" class="btn btn-block btn-sm btn-outline-mocha my-2">
                         <b>ゲストログイン</b>
                     </a>
                 </div>

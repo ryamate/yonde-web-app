@@ -81,14 +81,12 @@
 
             <div class="card-body pt-0">
                 <p class="card-title text-center border-top pt-4">アカウントをお持ちの方はこちら</p>
-                <a href="{{ route('login') }}"
-                    class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1"><b>ログイン</b></a>
+                <a href="{{ route('login') }}" class="btn btn-block btn-outline-teal1"><b>ログイン</b></a>
             </div>
 
             <div class="card-body pt-0">
                 <p class="card-title text-center border-top pt-4">ユーザー登録せずに機能を試したい方はこちら</p>
-                <a href="{{ route('login.guest') }}"
-                    class="btn btn-block bg-white btn-outline-mocha text-decoration-none text-mocha">
+                <a href="{{ route('login.guest') }}" class="btn btn-block btn-outline-mocha">
                     <b>ゲストユーザーログイン</b>
                 </a>
             </div>

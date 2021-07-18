@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -123,6 +124,7 @@ class RegisterController extends Controller
      */
     public function registerProviderUser(Request $request, string $provider)
     {
+
         $request->validate([
             'nickname' => ['required', 'string', 'alpha_num', 'max:50'],
             'token' => ['required', 'string'],
@@ -131,6 +133,18 @@ class RegisterController extends Controller
         $token = $request->token;
 
         $providerUser = Socialite::driver($provider)->userFromToken($token);
+
+        $user = User::onlyTrashed('email', $providerUser->getEmail())->first();
+        if ($user) {
+            User::onlyTrashed()->where('id', $user->id)->restore();
+            $user->nickname = $request->nickname;
+            $user->save();
+
+            $this->guard()->login($user, true);
+
+            return $this->reRegistered($request, $user);
+        }
+
 
         $checkUniqueName = true;
         while ($checkUniqueName) {
@@ -237,5 +251,10 @@ class RegisterController extends Controller
         return $user->email_verified_at === null
             ? view('auth.registered') // 通常の新規登録
             : redirect($this->redirectPath()); // Googleアカウントでの新規登録
+    }
+
+    protected function reRegistered(Request $request, $user)
+    {
+        return view('auth.re_registered');
     }
 }

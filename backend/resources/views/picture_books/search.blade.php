@@ -52,7 +52,7 @@
     </div>
 </header>
 
-<div class="bg-paper">
+<div class="bg-paper pb-4">
     <div class="container" style="max-width: 900px;">
         @if ($searchedBooks !== null)
         <h3>検索結果</h3>

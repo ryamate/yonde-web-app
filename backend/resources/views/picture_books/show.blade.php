@@ -77,7 +77,7 @@
                                         <i class="fas fa-book-reader"></i>
                                         <b>{{ $pictureBook->read_records_count }}</b><span class="text-dark">回</span>
                                     </span>
-                                    <span class="text-warning mx-2">
+                                    <span class="text-lemon-tea mx-2">
                                         <i class="fas fa-star"></i>
                                         <b>{{ $pictureBook->five_star_avg }}</b>
                                     </span>

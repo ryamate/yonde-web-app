@@ -148,7 +148,7 @@
 
                         <p class="card-text small text-secondary">
                             @if ($child->gender_code === 1)
-                            <span class="badge badge-dark">
+                            <span class="badge badge-dark-mocha">
                                 男の子
                             </span>
                             @elseif($child->gender_code === 2)

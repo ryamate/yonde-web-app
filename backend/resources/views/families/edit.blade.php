@@ -57,12 +57,12 @@
                     </div>
 
                     @if (Auth::id() !== config('const.GUEST_USER_ID'))
-                    <button type="submit"
-                        class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-4"><b>変更する</b></button>
-                    @else
-                    <a href="{{ route('families.setting') }}"
-                        class="btn btn-block bg-white btn-outline-danger text-decoration-none text-danger mt-4">戻る</a>
+                    <button type="submit" class="btn btn-block btn-teal1 mt-4"><b>変更する</b></button>
                     @endif
+                    <a href="{{ route('families.setting') }}"
+                        class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-3">
+                        <i class="fas fa-angle-double-left mr-1"></i>戻る
+                    </a>
 
                 </form>
             </div>

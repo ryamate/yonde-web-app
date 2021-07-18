@@ -25,6 +25,7 @@
                     method="post">
                     <input name="utf8" type="hidden" value="&#x2713;" />
                     <input type="hidden" name="id" value="{{ $user->id }}" />
+                    <input type="hidden" name="email" value="{{ $user->email }}" />
                     @csrf
                     <div class="form-group">
                         <label for="icon_path">プロフィール画像</label><br>
@@ -62,19 +63,13 @@
                             {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />
                     </div>
 
-                    <div class="form-group">
-                        <label for="email">メールアドレス</label>
-                        <input class="form-control" type="text" id="email" value="{{ old('email',$user->email) }}"
-                            name="email" required
-                            {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />
-                    </div>
                     @if (Auth::id() !== config('const.GUEST_USER_ID'))
-                    <button type="submit"
-                        class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-4"><b>変更する</b></button>
-                    @else
-                    <a href="{{ route('users.setting_profile') }}"
-                        class="btn btn-block bg-white btn-outline-danger text-decoration-none text-danger mt-4">戻る</a>
+                    <button type="submit" class="btn btn-block btn-teal1  mt-4"><b>変更する</b></button>
                     @endif
+                    <a href="{{ route('users.setting_profile') }}"
+                        class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-3">
+                        <i class="fas fa-angle-double-left mr-1"></i>戻る
+                    </a>
 
                 </form>
             </div>

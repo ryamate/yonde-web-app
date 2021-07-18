@@ -10,6 +10,8 @@ use Storage;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UpdatePasswordRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -242,5 +244,98 @@ class UserController extends Controller
         $user->fill($request->validated())->save();
 
         return redirect()->route('users.setting_profile');
+    }
+
+    /**
+     * ユーザーメールアドレス変更画面表示
+     */
+    public function editEmail()
+    {
+        $user = Auth::user();
+
+        if ($user->password === null) {
+            return
+                redirect()->route('users.create_password')
+                ->with('status', 'SNSログインをご利用の方はパスワード未設定のため、パスワードの設定をお願いします。');
+        }
+
+        return view('users.edit_email', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * ユーザープロフィール設定更新する
+     */
+    public function updateEmail(UserRequest $request)
+    {
+        $user = User::find($request->id);
+        if ($user->email !== $request->email) {
+            $user->email_verified_at = null;
+            $user->email = $request->email;
+        }
+
+        $user->fill($request->validated())->save();
+
+        return redirect()->route('users.setting_profile')
+            ->with('status', 'メールアドレスを変更しました。');
+    }
+
+    /**
+     * ユーザープロフィール編集画面表示
+     */
+    public function createPassword()
+    {
+        $user = Auth::user();
+
+        return view('users.create_password', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * パスワードを設定する
+     */
+    public function storePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::find($request->id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('users.setting_profile')->with('status', 'パスワードを設定しました。');
+    }
+
+    /**
+     * ユーザープロフィール編集画面表示
+     */
+    public function editPassword()
+    {
+        $user = Auth::user();
+
+        if ($user->password === null) {
+            return
+                redirect()->route('users.create_password')
+                ->with('status', 'SNSログインをご利用の方はパスワード未設定のため、パスワードの設定をお願いします。');
+        }
+
+        return view('users.edit_password', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * パスワードを変更する
+     */
+    public function updatePassword(UpdatePasswordRequest $request)
+    {
+        $user = User::find($request->id);
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        return redirect()->route('users.setting_profile')->with('status', 'パスワードを変更しました。');
     }
 }

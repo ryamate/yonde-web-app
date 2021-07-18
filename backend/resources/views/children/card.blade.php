@@ -132,7 +132,7 @@
 
                         @if ($anotherChild->gender_code === 1)
                         <p class="mb-0">
-                            <span class="badge badge-dark">
+                            <span class="badge badge-dark-mocha">
                                 男の子
                             </span>
                         </p>

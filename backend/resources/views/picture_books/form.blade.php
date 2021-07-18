@@ -12,7 +12,7 @@
                 きになる
             </label>
             <label
-                class="btn btn-sm btn-outline-secondary {{ (($pictureBook->read_status ?? old('read_status')) == 1) ? 'active' : '' }}">
+                class="btn btn-sm btn-outline-teal1 {{ (($pictureBook->read_status ?? old('read_status')) == 1) ? 'active' : '' }}">
                 <input type="radio" name="read_status" id="read_status1" autocomplete="off" value="1"
                     {{ (($pictureBook->read_status ?? old('read_status')) == 1) ? 'checked' : '' }}>
                 よんだ
@@ -22,7 +22,7 @@
 
     <div class="form-group">
         <label for="five_star_rating">評価(5点満点)</label>
-        <select name="five_star_rating" id="five_star_rating" class="form-control">
+        <select name="five_star_rating" id="five_star_rating" class="form-control text-lemon-tea">
             <option value="0" {{ ($pictureBook->five_star_rating ?? old('five_star_rating') == 0) ? 'selected' : '' }}>
                 まだ評価しない
             </option>

@@ -29,7 +29,7 @@ class UserController extends Controller
         $data = $this->collectUserInfo($name);
         $pictureBooks = PictureBook::with('readRecords', 'user')
             ->where('user_id', $data['user']->id);
-        $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(10);
+        $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->simplePaginate(10);
 
         $data['hasFollows'] = false;
         $data['hasTimeLine'] = true;
@@ -50,7 +50,7 @@ class UserController extends Controller
         $data['readRecords'] = ReadRecord::with('pictureBook', 'user', 'children')
             ->where('user_id', $data['user']->id)
             ->orderBy('updated_at', 'DESC')
-            ->paginate(30);
+            ->simplePaginate(15);
 
         $data['hasFollows'] = false;
         $data['hasTimeLine'] = true;
@@ -129,7 +129,7 @@ class UserController extends Controller
                 return $followingFamily;
             })
             ->sortByDesc('created_at')
-            ->paginate(30);
+            ->paginate(10);
 
         $data['hasFollows'] = true;
         $data['hasTimeLine'] = false;
@@ -157,7 +157,7 @@ class UserController extends Controller
                 return $followerFamily;
             })
             ->sortByDesc('created_at')
-            ->paginate(30);
+            ->paginate(10);
 
         $data['hasFollows'] = true;
         $data['hasTimeLine'] = false;

@@ -7,13 +7,24 @@
 
 @if (count($followers))
 
-@foreach($followers as $family)
-@if (!$loop->first)
-<div class="border-top"></div>
-@endif
-@include('users.follows.card')
-@endforeach
-{{ $followers->links( 'vendor.pagination.bootstrap-4_teal' ) }}
+<div
+    data-infinite-scroll='{ "path": ".pagination a[rel=next]", "append": ".post", "scrollThreshold": 400, "history": false, "hideNav": ".pagination", "status": ".page-load-status" }'>
+    <div class="post">
+        @foreach($followers as $family)
+        <div class="border-top">
+            @include('users.follows.card')
+        </div>
+        @endforeach
+    </div>
+    <div class="pagination">
+        {{ $followers->links() }}
+    </div>
+</div>
+<div class="page-load-status d-flex justify-content-center">
+    <div class="infinite-scroll-request spinner-border text-teal1" role="status" style="display:none;">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
 
 @else
 

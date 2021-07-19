@@ -29,7 +29,7 @@ class FamilyController extends Controller
         $pictureBooks = PictureBook::with('readRecords', 'user')
             ->where('family_id', $data['family']->id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
-        $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(5);
+        $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->simplePaginate(10);
 
         $data['hasBookshelf'] = false;
         $data['hasTimeLine'] = true;
@@ -51,7 +51,7 @@ class FamilyController extends Controller
         $data['readRecords'] = ReadRecord::with('pictureBook', 'user', 'children')
             ->where('family_id', $data['family']->id)
             ->orderBy('updated_at', 'DESC')
-            ->paginate(10);
+            ->simplePaginate(15);
 
         $data['hasBookshelf'] = false;
         $data['hasTimeLine'] = true;
@@ -70,7 +70,7 @@ class FamilyController extends Controller
         $data = $this->collectFamilyInfo($name);
         $pictureBooks = PictureBook::where('family_id', $data['family']->id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
-        $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->paginate(30);
+        $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->simplePaginate(18);
 
         $data['hasBookshelf'] = true;
         $data['hasTimeLine'] = false;
@@ -91,7 +91,7 @@ class FamilyController extends Controller
         $pictureBooks = PictureBook::where('family_id', $data['family']->id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->where('read_status', '!=', 0)
-            ->orderBy('updated_at', 'DESC')->paginate(30);
+            ->orderBy('updated_at', 'DESC')->simplePaginate(18);
 
         $data['hasBookshelf'] = true;
         $data['hasTimeLine'] = false;
@@ -112,7 +112,7 @@ class FamilyController extends Controller
         $pictureBooks = PictureBook::where('family_id', $data['family']->id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->where('read_status', '=', 0)
-            ->orderBy('updated_at', 'DESC')->paginate(30);
+            ->orderBy('updated_at', 'DESC')->simplePaginate(18);
 
         $data['hasBookshelf'] = true;
         $data['hasTimeLine'] = false;

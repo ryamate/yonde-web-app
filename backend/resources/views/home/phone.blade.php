@@ -345,7 +345,7 @@
     @endguest
     {{-- twitter account --}}
     <div class="mt-4 mx-4">
-        <p class="mb-0">管理者のTwitter</p>
+        <p class="mb-0">かんりにんのつぶやき</p>
     </div>
     <div class="card mb-4 mx-4">
         <a class="twitter-timeline" data-lang="ja" data-height="400" data-theme="light"

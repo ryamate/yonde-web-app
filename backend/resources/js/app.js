@@ -1,4 +1,5 @@
 import './bootstrap'
+import 'infinite-scroll'
 import Vue from 'vue'
 import ReviewLike from './components/ReviewLike'
 import ReadRecordTagsInput from './components/ReadRecordTagsInput'

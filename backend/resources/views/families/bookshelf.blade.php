@@ -46,7 +46,7 @@
 
         @if (count($pictureBooks))
         @include('families.bookshelf.card')
-        {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }}
+        {{-- {{ $pictureBooks->links( 'vendor.pagination.bootstrap-4_teal' ) }} --}}
 
         @else
         <p class="alert border text-muted my-4" style="background-color: #E6D7D2">

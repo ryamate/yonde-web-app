@@ -229,7 +229,7 @@
             @endguest
             {{-- twitter account --}}
             <div class="mt-4 mx-2">
-                <p class="mb-0">管理者のTwitter</p>
+                <p class="mb-0">かんりにんのつぶやき</p>
             </div>
             <div class="card mx-2 mb-2">
                 <a class="twitter-timeline" data-lang="ja" data-height="400" data-theme="light"

@@ -110,8 +110,6 @@
                             @else
                             <form action="{{ route('picture_books.create') }}" method="GET">
                                 @csrf
-                                <button type="submit" class="btn btn-sm btn-teal1 shadow-sm btn-block"><i
-                                        class="fas fa-book-medical mr-1"></i>登録する</button>
                                 <input type="hidden" name="google_books_id"
                                     value="{{ $pictureBook->google_books_id }}" />
                                 <input type="hidden" name="isbn_13" value="{{ $pictureBook->isbn_13 }}" />
@@ -120,6 +118,10 @@
                                 <input type="hidden" name="published_date" value="{{ $pictureBook->published_date }}" />
                                 <input type="hidden" name="thumbnail_url" value="{{ $pictureBook->thumbnail_url }}" />
                                 <input type="hidden" name="description" value="{{ $pictureBook->description }}" />
+
+                                <button type="submit" class="btn btn-sm btn-teal1 shadow-sm btn-block">
+                                    <i class="fas fa-plus mr-1"></i>登録する
+                                </button>
                             </form>
                             @endif
                             @endauth

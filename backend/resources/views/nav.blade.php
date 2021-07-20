@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light shadow-sm bd-navbar py-1"
-    style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #26A69A, #94E7DE) fixed;">
+    style="vertical-align: middle; position: sticky; top: 0; z-index: 1071; background: linear-gradient(-135deg, #26a69a, #f2f7f7) fixed;">
 
     {{-- left: application logo --}}
     <a class="navbar-brand mr-2 p-0" href="{{ route('home') }}">

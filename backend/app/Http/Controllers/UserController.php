@@ -206,11 +206,7 @@ class UserController extends Controller
      */
     public function edit()
     {
-        $user = Auth::user();
-
-        return view('users.edit', [
-            'user' => $user,
-        ]);
+        return view('users.edit', ['user' => Auth::user()]);
     }
 
     /**
@@ -253,15 +249,13 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->password === null) {
+        if ($user->password === null && $user->id !== config('const.GUEST_USER_ID')) {
             return
                 redirect()->route('users.create_password')
                 ->with('status', 'SNSログインをご利用の方はパスワード未設定のため、パスワードの設定をお願いします。');
         }
 
-        return view('users.edit_email', [
-            'user' => $user,
-        ]);
+        return view('users.edit_email', ['user' => $user]);
     }
 
     /**
@@ -286,11 +280,7 @@ class UserController extends Controller
      */
     public function createPassword()
     {
-        $user = Auth::user();
-
-        return view('users.create_password', [
-            'user' => $user,
-        ]);
+        return view('users.create_password', ['user' => Auth::user()]);
     }
 
     /**
@@ -316,15 +306,13 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-        if ($user->password === null) {
+        if ($user->password === null && $user->id !== config('const.GUEST_USER_ID')) {
             return
                 redirect()->route('users.create_password')
                 ->with('status', 'SNSログインをご利用の方はパスワード未設定のため、パスワードの設定をお願いします。');
         }
 
-        return view('users.edit_password', [
-            'user' => $user,
-        ]);
+        return view('users.edit_password', ['user' => $user]);
     }
 
     /**
@@ -340,15 +328,11 @@ class UserController extends Controller
     }
 
     /**
-     * ユーザープロフィール編集画面表示
+     * ユーザーアカウント退会画面表示
      */
     public function resign()
     {
-        $user = Auth::user();
-
-        return view('users.resign', [
-            'user' => $user,
-        ]);
+        return view('users.resign', ['user' => Auth::user()]);
     }
 
     /**
@@ -364,6 +348,9 @@ class UserController extends Controller
             ?: redirect($this->redirectPath());
     }
 
+    /**
+     * ユーザーアカウント退会完了画面表示
+     */
     protected function resigned()
     {
         return  view('users.resigned');

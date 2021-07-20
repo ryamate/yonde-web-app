@@ -91,12 +91,12 @@
                             <div class="card-text small mt-2 mb-2">
                                 @if ($searchedBook->stored_count !== 0)
                                 <span class="d-flex justify-content-start flex-wrap">
-                                    <span class="text-info mx-2" title="登録数">
+                                    <span class="text-mocha mx-2" title="登録数">
                                         <i class="fas fa-book"></i>
                                         <b>{{ $searchedBook->stored_count }}</b>
                                     </span>
                                     <span class="text-teal1 mx-2" title="読み聞かせ回数">
-                                        <i class="fas fa-book-reader"></i>
+                                        <i class="fas fa-book-open"></i>
                                         <b>{{ $searchedBook->read_records_count }}</b><span class="text-dark">回</span>
                                     </span>
                                     <span class="text-lemon-tea mx-2">
@@ -116,7 +116,7 @@
                                         {{ $searchedBook->stored_count }}
                                     </span>
                                     <span class="mx-2" title="読み聞かせ回数">
-                                        <i class="fas fa-book-reader mr-1"></i> -回
+                                        <i class="fas fa-book-open mr-1"></i> -回
                                     </span>
                                     <span class="mx-2">
                                         <i class="fas fa-star mr-1"></i> -
@@ -152,7 +152,7 @@
                         <div class="card-body">
                             @auth
                             @if ($family->isStoredBy($searchedBook))
-                            <a class="btn btn-sm btn-block btn-outline-teal1 text-teal1 bg-white shadow-sm"
+                            <a class="btn btn-sm btn-block btn-outline-mocha text-mocha bg-white shadow-sm"
                                 href="{{ route("families.show", [
                                             'name' => Auth::user()->family->name,
                                             'picture_book' => $family->pictureBooks->firstWhere('google_books_id', $searchedBook->id)]) }}">
@@ -162,7 +162,7 @@
                             <form action="{{ route('picture_books.create') }}" method="GET">
                                 @csrf
                                 <button type="submit" class="btn btn-sm btn-teal1 shadow-sm btn-block"><i
-                                        class="fas fa-plus-circle mr-1"></i>登録する</button>
+                                        class="fas fa-plus mr-1"></i>本棚へ登録する</button>
                                 <input type="hidden" name="google_books_id" value="{{ $searchedBook->id }}" />
                                 <input type="hidden" name="isbn_13"
                                     value="{{ @$searchedBook->industryIdentifiers[1]->identifier }}" />
@@ -178,7 +178,7 @@
                             @endauth
                             @if ($searchedBook->stored_count !== 0)
                             <a href="{{ route('picture_books.show', ['picture_book' => $searchedBook->picture_book]) }}"
-                                class="btn btn-sm btn-outline-teal1 bg-white text-teal1 shadow-sm btn-block mt-2">
+                                class="btn btn-sm btn-outline-info bg-white text-info shadow-sm btn-block mt-2">
                                 レビューを読む
                             </a>
                             @endif

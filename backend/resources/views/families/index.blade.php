@@ -95,7 +95,7 @@
             </div>
         </div>
         <div class="page-load-status d-flex justify-content-center">
-            <div class="infinite-scroll-request spinner-border text-mocha" role="status" style="display:none;">
+            <div class="infinite-scroll-request spinner-border text-teal1" role="status" style="display:none;">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>

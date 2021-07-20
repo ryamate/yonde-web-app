@@ -18,7 +18,7 @@
                 @guest
                 <div class="d-flex justify-content-center">
                     <a href="{{ route('register') }}"
-                        class="btn btn-lg btn-warning text-white mb-4 shadow-sm rounded-pill text-shadow">
+                        class="btn btn-lg btn-pink text-white mb-4 shadow-sm rounded-pill text-shadow">
                         <span class="px-4">本棚をつくる</span>
                     </a>
                 </div>
@@ -37,67 +37,68 @@
 </div>
 
 @guest
-<div class="container-lg">
-    <div style="margin-top: 60px; margin-bottom: 60px;">
-        <div class="text-center my-5 text-dark">
-            <h1><b>よんで</b>とは</h1>
+<div class="bg-paper">
+    <div class="container-lg">
+        <div class="text-center py-5 text-dark">
+            <h1 class="pt-5"><b>よんで</b>とは</h1>
             <p class="mt-3">
                 <b>「よんで」は、Webで本棚をかんたんに作成したり、絵本読み聞かせをしたときに記録して、<br>
                     いつでも記録を見返すことができるサービスです。</b>
             </p>
         </div>
-    </div>
 
-    <div class="mt-4">
-        <div class="card-deck row no-gutters">
-            <div class="col-4">
-                <div class="card border-0 p-4">
-                    <img src="{{ asset('image/index_3-1.png') }}" width="100%" alt="">
-                    <div class="card-body p-0 text-secondary">
-                        <p class="card-title">
-                            <b>絵本のWeb本棚</b>
-                        </p>
-                        <small class="card-text">
-                            これから読みたい絵本、これまで読んだ絵本をいれておくことができます。
-                        </small>
+        <div class="mt-4">
+            <div class="card-deck row no-gutters">
+                <div class="col-4">
+                    <div class="card border-0 p-4 bg-paper">
+                        <img src="{{ asset('image/index_3-1.png') }}" width="100%" alt="">
+                        <div class="card-body p-0 text-secondary">
+                            <p class="card-title">
+                                <b>絵本のWeb本棚</b>
+                            </p>
+                            <small class="card-text">
+                                これから読みたい絵本、これまで読んだ絵本をいれておくことができます。
+                            </small>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="card border-0 p-4">
-                    <img src="{{ asset('image/index_3-2.png') }}" width="100%" alt="">
-                    <div class="card-body p-0 text-secondary">
-                        <p class="card-title">
-                            <b>読み聞かせ記録・管理</b>
-                        </p>
-                        <small class="card-text">
-                            絵本の読み聞かせをした記録をかんたんにつけることができます。
-                        </small>
+                <div class="col-4">
+                    <div class="card border-0 p-4 bg-paper">
+                        <img src="{{ asset('image/index_3-2.png') }}" width="100%" alt="">
+                        <div class="card-body p-0 text-secondary">
+                            <p class="card-title">
+                                <b>読み聞かせ記録・管理</b>
+                            </p>
+                            <small class="card-text">
+                                絵本の読み聞かせをした記録をかんたんにつけることができます。
+                            </small>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="card border-0 p-4">
-                    <img src="{{ asset('image/index_3-3-0.png') }}" width="100%" alt="">
-                    <img src="{{ asset('image/index_3-3.png') }}" width="100%" alt="">
-                    <img src="{{ asset('image/index_3-3-2.png') }}" width="100%" alt="">
-                    <div class="card-body p-0 text-secondary">
-                        <p class="card-title">
-                            <b>家族と共有</b>
-                        </p>
-                        <small class="card-text">
-                            登録した絵本・読み聞かせ記録を家族と共有することができます。
-                        </small>
+                <div class="col-4">
+                    <div class="card border-0 p-4 bg-paper">
+                        <img src="{{ asset('image/index_3-3-0.png') }}" width="100%" alt="">
+                        <img src="{{ asset('image/index_3-3.png') }}" width="100%" alt="">
+                        <img src="{{ asset('image/index_3-3-2.png') }}" width="100%" alt="">
+                        <div class="card-body p-0 text-secondary">
+                            <p class="card-title">
+                                <b>家族と共有</b>
+                            </p>
+                            <small class="card-text">
+                                登録した絵本・読み聞かせ記録を家族と共有することができます。
+                            </small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="d-flex justify-content-center pb-2">
-        <a href="{{ route('about') }}" class="btn btn-outline-teal1 my-2" role="button" style="border-radius: 24px">
-            <span class="mx-4">よんでについて</span>
-            <i class="fas fa-chevron-right"></i>
-        </a>
+        <div class="d-flex justify-content-center pb-2">
+            <a href="{{ route('about') }}" class="btn btn-outline-teal1 bg-white text-teal1 rounded-pill my-4"
+                role="button">
+                <span class="mx-4">よんでについて</span>
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
     </div>
 </div>
 @endguest
@@ -213,7 +214,9 @@
                 <div class="card-body">
                     <p class="card-title"><b>「よんで」をはじめよう</b></p>
                     <a href="{{ route('register') }}"
-                        class="btn btn-block btn-sm btn-warning text-decoration-none text-white my-2"><b>新規登録</b></a>
+                        class="btn btn-block btn-sm btn-pink text-decoration-none text-white text-shadow my-2">
+                        <b>新規登録</b>
+                    </a>
 
                     <p class="card-title text-center my-2"><b>または</b></p>
                     <a href="{{ route('login.{provider}', ['provider' => 'google']) }}"

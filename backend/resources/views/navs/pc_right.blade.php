@@ -28,17 +28,16 @@
             <i class="fas fa-book fa-lg fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right mt-0">
-            <a class="dropdown-item small text-center"
+            <a class="dropdown-item small"
                 href="{{ route('families.bookshelf', ['name' => Auth::user()->family->name]) }}">
-                <i class="fas fa-book fa-lg mr-1"></i>本棚
+                <i class="fas fa-book fa-lg text-mocha mr-1"></i>家族の本棚
             </a>
-            <a class="dropdown-item small text-center"
-                href="{{ route('families.read', ['name' => Auth::user()->family->name]) }}">
-                よんだ絵本
+            <a class="dropdown-item small" href="{{ route('families.read', ['name' => Auth::user()->family->name]) }}">
+                <i class="fas fa-book fa-lg text-latte mr-1"></i>よんだ絵本
             </a>
-            <a class="dropdown-item small text-center"
+            <a class="dropdown-item small"
                 href="{{ route('families.curious', ['name' => Auth::user()->family->name]) }}">
-                きになる絵本
+                <i class="fas fa-book fa-lg text-latte mr-1"></i>きになる絵本
             </a>
         </div>
     </li>
@@ -56,13 +55,12 @@
             <i class="far fa-clock fa-lg fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right mt-0">
-            <a class="dropdown-item small text-center"
-                href="{{ route('families.index', ['name' => Auth::user()->family->name]) }}">
-                <i class="far fa-clock fa-lg mr-1"></i>タイムライン
+            <a class="dropdown-item small" href="{{ route('families.index', ['name' => Auth::user()->family->name]) }}">
+                <i class="far fa-clock fa-lg text-teal1 mr-1"></i>タイムライン
             </a>
-            <a class="dropdown-item small text-center"
+            <a class="dropdown-item small"
                 href="{{ route('families.read_record', ['name' => Auth::user()->family->name]) }}">
-                <i class="fas fa-book-reader mr-1"></i>よんだよ記録
+                <i class="fas fa-book-open text-teal1 mr-1"></i>よんだよ記録
             </a>
         </div>
     </li>
@@ -77,11 +75,11 @@
             <i class="fas fa-cog fa-lg fa-fw"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right mt-0">
-            <a class="dropdown-item small text-center" href="{{ route('users.setting_profile') }}">
-                <i class="fas fa-cog fa-lg mr-1"></i>ユーザー設定
+            <a class="dropdown-item small" href="{{ route('users.setting_profile') }}">
+                <i class="fas fa-cog fa-lg text-secondary mr-1"></i>ユーザー設定
             </a>
-            <a class="dropdown-item small text-center" href="{{ route('families.setting') }}">
-                <i class="fas fa-cogs mr-1"></i>家族設定
+            <a class="dropdown-item small" href="{{ route('families.setting') }}">
+                <i class="fas fa-cogs text-secondary mr-1"></i>家族設定
             </a>
         </div>
     </li>
@@ -107,15 +105,14 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right mt-0" aria-labelledby="dropdownMenuLink">
-                    <a href="{{ route('users.index', ['name' => Auth::user()->name]) }}"
-                        class="dropdown-item small text-center">
-                        <i class="fas fa-user-circle mr-1"></i>マイページ
+                    <a href="{{ route('users.index', ['name' => Auth::user()->name]) }}" class="dropdown-item small">
+                        <i class="far fa-user-circle text-secondary mr-1"></i>マイページ
                     </a>
-                    <a href="{{ route('home') }}" class="dropdown-item small text-center">
-                        <i class="fas fa-home mr-1"></i>ホーム
+                    <a href="{{ route('home') }}" class="dropdown-item small">
+                        <i class="fas fa-home text-dark-mocha mr-1"></i>ホーム
                     </a>
-                    <button form="logout-button" class="dropdown-item small text-center"><i
-                            class="fas fa-sign-out-alt mr-1"></i>ログアウト</button>
+                    <button form="logout-button" class="dropdown-item small"><i
+                            class="fas fa-sign-out-alt text-pink mr-1"></i>ログアウト</button>
                 </div>
             </div>
         </div>
@@ -137,9 +134,9 @@
 {{-- register user button --}}
 <div class="d-none d-md-block">
     <li class="nav-item">
-        <a href="{{ route('register') }}"
-            class="btn btn-sm shadow-sm bg-warning text-decoration-none text-white font-weight-bold mx-2"
-            role="button">新規登録</a>
+        <a href="{{ route('register') }}" class="btn btn-sm btn-pink shadow-sm text-white mx-2" role="button">
+            <b>新規登録</b>
+        </a>
     </li>
 </div>
 {{-- login user button --}}
@@ -147,7 +144,9 @@
     <li class="nav-item">
         <a href="{{ route('login') }}"
             class="btn btn-sm shadow-sm btn-outline-teal1 bg-white text-decoration-none text-teal1 font-weight-bold mx-2"
-            role="button" disabled>ログイン</a>
+            role="button" disabled>
+            <b>ログイン</b>
+        </a>
     </li>
 </div>
 @endguest

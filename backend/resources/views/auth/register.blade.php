@@ -57,20 +57,18 @@
                     </div>
 
                     <input type="checkbox" id="agree" required>
-                    <label for="agree" class="small">
-                        <a href="{{ route('privacy') }}" class="text-teal1" target="_blank">
-                            プライバシーポリシー
-                        </a>
-                        を確認し、同意しました。
-                    </label><span class="text-danger">*</span>
+                    <label for="agree" class="small" role="button">
+                        プライバシーポリシーを<a href="{{ route('privacy') }}" class="text-teal1" target="_blank"
+                            title="プライバシーポリシーをブラウザの別画面で開く">確認</a>し、同意しました。<span class="text-danger">*</span>
+                    </label>
 
-                    <button type="submit" class="btn btn-block btn-warning text-white mt-4" id="submit" value="submit">
+                    <button type="submit" class="btn btn-block btn-pink text-white mt-4" id="submit" value="submit">
                         <b>登録</b>
                     </button>
                 </form>
             </div>
 
-            <div class=" card-body pt-0">
+            <div class="card-body pt-0">
                 <p class="card-title text-center">
                     <b>または</b>
                 </p>
@@ -80,12 +78,18 @@
             </div>
 
             <div class="card-body pt-0">
-                <p class="card-title text-center border-top pt-4">アカウントをお持ちの方はこちら</p>
+                <p class="card-title border-top d-flex justify-content-center flex-wrap pt-4">
+                    <span>アカウントを</span>
+                    <span>お持ちの方はこちら</span>
+                </p>
                 <a href="{{ route('login') }}" class="btn btn-block btn-outline-teal1"><b>ログイン</b></a>
             </div>
 
             <div class="card-body pt-0">
-                <p class="card-title text-center border-top pt-4">ユーザー登録せずに機能を試したい方はこちら</p>
+                <p class="card-title border-top d-flex justify-content-center flex-wrap pt-4">
+                    <span>ユーザー登録せずに</span>
+                    <span>機能を試したい方はこちら</span>
+                </p>
                 <a href="{{ route('login.guest') }}" class="btn btn-block btn-outline-mocha">
                     <b>ゲストユーザーログイン</b>
                 </a>

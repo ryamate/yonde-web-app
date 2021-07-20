@@ -1,22 +1,26 @@
 <div class="card-body pb-0">
     <div class="row no-gutters">
         <div class="col-sm-6 p-2">
-            <p class="card-title text-secondary">
+            <p class="card-title text-secondary mb-1">
                 {{ $user->nickname }}さんのページ
             </p>
 
             <div class="d-flex align-items-center flex-wrap ml-2">
                 <span class="p-2">
-                    @if ($user->icon_path)
-                    <img src="{{ asset($user->icon_path) }}" class="bg-white border" alt="プロフィール画像"
-                        style="width: 90px; height:90px;background-position: center;border-radius: 50%;object-fit:cover;" />
-                    @else
-                    <i class="far fa-user-circle fa-5x text-secondary"></i>
-                    @endif
+                    <a href="{{ route("users.index", ["name" => $user->name]) }}" class="text-decoration-none">
+                        @if ($user->icon_path)
+                        <img src="{{ asset($user->icon_path) }}" class="bg-white border" alt="プロフィール画像"
+                            style="width: 90px; height:90px;background-position: center;border-radius: 50%;object-fit:cover;" />
+                        @else
+                        <i class="far fa-user-circle fa-5x text-secondary"></i>
+                        @endif
+                    </a>
                 </span>
                 <span class="p-2">
                     <p class="card-text mb-0">
-                        <b>{{ $user->nickname }}</b>
+                        <a href="{{ route("users.index", ["name" => $user->name]) }}" class="text-dark">
+                            <b>{{ $user->nickname }}</b>
+                        </a>
                         <span class="badge badge-paper ml-1">
                             {{ $user->relation }}
                         </span>

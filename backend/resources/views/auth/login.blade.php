@@ -46,21 +46,29 @@
                 </form>
 
                 <div class="card-body px-0">
-                    <p class="card-title text-center"><b>または</b></p>
+                    <p class="card-title text-center">
+                        <b>または</b>
+                    </p>
                     <a href="{{ route('login.{provider}', ['provider' => 'google']) }}"
                         class="btn btn-block btn-outline-danger">
                         <i class="fab fa-google mr-4"></i><b>Googleでログイン</b>
                     </a>
                 </div>
 
-                <div class="card-body border-top border-bottom mt-4 px-0">
-                    <p class="card-title text-center"><b>アカウントをお持ちでない方はこちら</b></p>
+                <div class="card-body pt-0 px-0">
+                    <p class="card-title border-top d-flex justify-content-center flex-wrap pt-4">
+                        <span><b>アカウントを</b></span>
+                        <span><b>お持ちでない方はこちら</b></span>
+                    </p>
                     <a href="{{ route('register') }}"
-                        class="btn btn-block btn-warning  text-decoration-none text-white"><b>新規登録</b></a>
+                        class="btn btn-block btn-pink  text-decoration-none text-white"><b>新規登録</b></a>
                 </div>
 
-                <div class="card-body px-0">
-                    <p class="card-title text-center">ユーザー登録せずに機能を試したい方はこちら</p>
+                <div class="card-body pt-0 px-0">
+                    <p class="card-title border-top d-flex justify-content-center flex-wrap pt-4">
+                        <span>ユーザー登録せずに</span>
+                        <span>機能を試したい方はこちら</span>
+                    </p>
                     <a href="{{ route('login.guest') }}" class="btn btn-block btn-outline-mocha">
                         <b>ゲストユーザーログイン</b>
                     </a>

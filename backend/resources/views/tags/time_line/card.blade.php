@@ -50,7 +50,7 @@
                         <div class="dropdown-menu mr-0 pt-0">
                             <a class="dropdown-item bg-teal1 text-white small text-center py-2"
                                 href="{{ route('read_records.create', ['picture_book_id' => $readRecord->picture_book_id]) }}">
-                                <i class="fas fa-book-reader mr-1"></i><b>よんだよ</b>
+                                <i class="fas fa-book-open mr-1"></i><b>よんだよ</b>
                             </a>
                             <div class="dropdown-divider mt-0"></div>
                             <a class="dropdown-item small text-center text-teal1"

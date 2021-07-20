@@ -14,14 +14,8 @@
                     <li class="breadcrumb-item">
                         <a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('families.index', ['name' => Auth::user()->family->name]) }}"
-                            class="text-teal1">
-                            {{ Auth::user()->family->nickname }}ファミリーのタイムライン
-                        </a>
-                    </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $pictureBook->title }}
+                        『{{ $pictureBook->title }}』のよんだよ記録の編集
                     </li>
                 </ol>
             </nav>
@@ -48,12 +42,10 @@
                         <input type="hidden" name="picture_book_id" value="{{ $pictureBook->id }}" />
                     </form>
                 </div>
-                <div class="card-text">
-                    <a href="{{ route('families.read_record', ["name" =>  Auth::user()->family->name]) }}"
-                        class="btn btn-block btn-outline-teal1 bg-white text-decoration-none text-teal1 mt-3">
-                        <i class="fas fa-chevron-circle-left mr-1"></i>戻る
-                    </a>
-                </div>
+                <button type="button" onClick="history.back()"
+                    class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-3">
+                    <i class="fas fa-arrow-left mr-1"></i>戻る
+                </button>
             </div>
         </section>
     </div>

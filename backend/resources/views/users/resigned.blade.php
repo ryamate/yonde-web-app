@@ -18,7 +18,7 @@
 
         <div class="alert alert-teal1" role="alert">
             <h5>
-                ご家族のしあわせを願っております！
+                お子さまとご家族のしあわせを願っております！
             </h5>
             <a class="text-decoration-none text-teal1 h6" href="{{ route('home') }}">
                 ホーム画面に戻る<i class="fas fa-chevron-circle-right ml-1"></i>

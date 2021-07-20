@@ -12,10 +12,11 @@
     data-infinite-scroll='{ "path": ".pagination a[rel=next]", "append": ".post", "scrollThreshold": 400, "history": false, "hideNav": ".pagination", "status": ".page-load-status" }'>
     <div class="post">
         @foreach($pictureBooks as $pictureBook)
-        <div class="border-top">
-            @include('families.time_line.stored_picture_books.message')
-            @include('families.time_line.stored_picture_books.card')
-        </div>
+        @if (!$loop->first)
+        <div class="border-top"></div>
+        @endif
+        @include('families.time_line.stored_picture_books.message')
+        @include('families.time_line.stored_picture_books.card')
         @endforeach
     </div>
     <div class="pagination">
@@ -42,10 +43,11 @@
     data-infinite-scroll='{ "path": ".pagination a[rel=next]", "append": ".post", "scrollThreshold": 400, "history": false, "hideNav": ".pagination", "status": ".page-load-status" }'>
     <div class="post">
         @foreach($readRecords as $readRecord)
-        <div class="border-top">
-            @include('families.time_line.read_records.message')
-            @include('families.time_line.read_records.card')
-        </div>
+        @if (!$loop->first)
+        <div class="border-top"></div>
+        @endif
+        @include('families.time_line.read_records.message')
+        @include('families.time_line.read_records.card')
         @endforeach
     </div>
     <div class="pagination">
@@ -71,10 +73,11 @@
     data-infinite-scroll='{ "path": ".pagination a[rel=next]", "append": ".post", "scrollThreshold": 400, "history": false, "hideNav": ".pagination", "status": ".page-load-status" }'>
     <div class="post">
         @foreach($pictureBooks as $pictureBook)
-        <div class="border-top">
-            @include('users.time_line.likes.message')
-            @include('families.time_line.stored_picture_books.card')
-        </div>
+        @if (!$loop->first)
+        <div class="border-top"></div>
+        @endif
+        @include('users.time_line.likes.message')
+        @include('families.time_line.stored_picture_books.card')
         @endforeach
     </div>
     <div class="pagination">

@@ -70,7 +70,7 @@
                             <div class="dropdown-menu mr-0 pt-0">
                                 <a class="dropdown-item bg-teal1 text-white small text-center py-2"
                                     href="{{ route('read_records.create', ['picture_book_id' => $readRecord->picture_book_id]) }}">
-                                    <i class="fas fa-book-reader mr-1"></i><b>よんだよ</b>
+                                    <i class="fas fa-book-open mr-1"></i><b>よんだよ</b>
                                 </a>
                                 <div class="dropdown-divider mt-0"></div>
                                 @else
@@ -83,7 +83,7 @@
 
                                     <div class="dropdown-divider"></div>
 
-                                    <a class="dropdown-item small text-center text-danger" data-toggle="modal"
+                                    <a class="dropdown-item small text-center text-pink" data-toggle="modal"
                                         data-target="#modal-delete-{{ $readRecord->id }}" style="cursor: pointer;">
                                         <i class="fas fa-eraser mr-1"></i>よんだよ削除
                                     </a>
@@ -109,10 +109,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <div class="modal-body">
-                                            {{ $readRecord->pictureBook->title }}
-                                            の
-                                            {{Carbon\Carbon::parse($readRecord->read_date)->format("Y年m月d日") }}
-                                            の記録を削除します。よろしいですか？
+                                            『{{ $readRecord->pictureBook->title }}』の“{{Carbon\Carbon::parse($readRecord->read_date)->format("Y年m月d日") }}”の記録を削除します。よろしいですか？
                                         </div>
                                         <div class="modal-footer justify-content-between">
                                             <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>

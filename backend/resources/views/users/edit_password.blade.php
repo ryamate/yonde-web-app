@@ -55,10 +55,10 @@
                         <b>変更する</b>
                     </button>
                     @endif
-                    <a href="{{ route('users.setting_profile') }}"
+                    <button type="button" onClick="history.back()"
                         class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-3">
-                        <i class="fas fa-angle-double-left mr-1"></i>戻る
-                    </a>
+                        <i class="fas fa-arrow-left mr-1"></i>戻る
+                    </button>
                     <div class="card-text text-center mt-2">
                         <a href="{{ route('password.request') }}" class="text-teal1 text-decoration-none small">
                             パスワードを忘れた方

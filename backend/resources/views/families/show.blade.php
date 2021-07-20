@@ -30,7 +30,7 @@
 
 <div class="bg-paper pb-4">
     <div class="container" style="max-width: 900px;">
-        <div class="card shadow-sm">
+        <div class="card">
             @include('families.card')
             @include('families.tabs', [
             'hasBookshelf' => $hasBookshelf,

@@ -3,8 +3,8 @@
         {{-- thumbnail --}}
         <div class="col-sm-3 d-flex justify-content-center align-items-top">
             <a href="{{ $hasStored
-            ? route('families.show', ['name' => $family->name,'picture_book' => $pictureBook,])
-            : route('picture_books.show', ['picture_book' => $pictureBook,])
+            ? route('families.show', ['name' => $family->name,'picture_book' => $pictureBook])
+            : route('picture_books.show', ['picture_book' => $pictureBook])
              }}" class="m-4 text-decoration-none">
                 <div class="card-img-top book-cover m-auto">
                     @if ($pictureBook->thumbnail_url !== null)
@@ -28,8 +28,8 @@
             <div class="card-body">
                 <div class="card-title mb-0 d-flex align-items-center flex-wrap">
                     <a href="{{ $hasStored
-            ? route('families.show', ['name' => $family->name,'picture_book' => $pictureBook,])
-            : route('picture_books.show', ['picture_book' => $pictureBook,])
+            ? route('families.show', ['name' => $family->name,'picture_book' => $pictureBook])
+            : route('picture_books.show', ['picture_book' => $pictureBook])
              }}" class="text-teal1 mr-2">
                         <b>{{ $pictureBook->title }}</b>
                     </a>
@@ -45,7 +45,7 @@
                     <div class="btn-group drop-hover d-flex ml-auto">
                         <a class="btn btn-sm btn-teal1"
                             href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}">
-                            <i class="fas fa-book-reader mr-1"></i>よんだよ
+                            <i class="fas fa-book-open mr-1"></i>よんだよ
                         </a>
                         <button type="button" class="btn btn-sm btn-teal1 dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,10 +55,10 @@
                         <div class="dropdown-menu dropdown-menu-right mt-0 mr-0">
                             <a class="dropdown-item btn btn-white btn-sm text-center"
                                 href="{{ route("picture_books.edit", ['picture_book' => $pictureBook->id]) }}">
-                                <i class="fas fa-pen mr-1"></i>レビュー編集
+                                <i class="fas fa-pen text-dark mr-1"></i>レビュー編集
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item btn btn-white btn-sm text-danger text-center" data-toggle="modal"
+                            <a class="dropdown-item btn btn-white btn-sm text-pink text-center" data-toggle="modal"
                                 data-target="#modal-delete-{{ $pictureBook->id }}" style="cursor: pointer;">
                                 <i class="fas fa-trash-alt mr-1"></i>本棚から削除
                             </a>
@@ -80,7 +80,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <div class="modal-body">
-                                        『{{ $pictureBook->title }}』を削除します。よろしいですか？
+                                        『{{ $pictureBook->title }}』を本棚から削除します。よろしいですか？
                                     </div>
                                     <div class="modal-footer justify-content-between">
                                         <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
@@ -95,9 +95,10 @@
                 </div>
 
                 <div class="card-title mb-0">
-                    <span class="text-dark">
+                    <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
+                        class="text-dark text-decoration-none">
                         <b>絵本のレビュー</b>
-                    </span>
+                    </a>
                 </div>
                 {{-- よみきかせ状況 --}}
                 <div class="card-body pt-0 pl-0 pb-2 d-flex align-items-end flex-wrap">

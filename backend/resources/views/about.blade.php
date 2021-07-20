@@ -56,8 +56,10 @@
                             @guest
                             <div class="text-center">
                                 <a href="{{ route('register') }}"
-                                    class="btn btn-block btn-warning mt-2 mb-2 rounded-pill text-white shadow"
-                                    role="button">いますぐはじめる！</a>
+                                    class="btn btn-block btn-pink rounded-pill text-white text-shadow shadow my-2"
+                                    role="button">
+                                    いますぐはじめる！
+                                </a>
                             </div>
                             @endguest
                             @auth
@@ -83,7 +85,7 @@
                 <h2>
                     <b>絵本読み聞かせの記録を<br>
                         かんたんに管理できるサービス<br>
-                        『よんで』</b>
+                        「よんで」</b>
                 </h2>
                 <p class="text-dark pt-4">
                     「よんで」<br>
@@ -103,7 +105,7 @@
             <div class="container mt-2 mb-4 text-left d-block d-md-none">
                 <h5>
                     <b>絵本読み聞かせの記録を<br>
-                        かんたんに管理できるアプリ『よんで』</b>
+                        かんたんに管理できるアプリ「よんで」</b>
                 </h5>
                 <p class="small mt-4">
                     「よんで」<br><br>
@@ -175,15 +177,15 @@
             @guest
             {{-- pc --}}
             <div class="text-center d-none d-md-block border-bottom pb-4 mx-5">
-                <a href="{{ route('login.guest') }}" class="btn btn-outline-info mt-2 mb-2" role="button"
-                    style="border-radius: 24px" title="ゲストユーザーとしてログイン">
-                    　　　サンプル本棚をみてみる　　<i class="fas fa-chevron-right"></i>
+                <a href="{{ route('login.guest') }}" class="btn btn-outline-mocha rounded-pill px-5 my-2" role="button"
+                    title="ゲストユーザーとしてログイン">
+                    サンプル本棚をみてみる<i class="fas fa-chevron-right ml-3"></i>
                 </a>
             </div>
             {{-- smart phone --}}
             <div class="container">
                 <div class="text-center d-block d-md-none border-bottom py-4">
-                    <a href="{{ route('login.guest') }}" class="btn btn-block btn-outline-info mt-2 mb-2 rounded-pill"
+                    <a href="{{ route('login.guest') }}" class="btn btn-block btn-outline-mocha rounded-pill my-2"
                         role="button" title="ゲストユーザーとしてログイン">
                         サンプル本棚をみてみる<i class="fas fa-chevron-right ml-1"></i>
                     </a>
@@ -242,19 +244,19 @@
                             いい絵本とたくさん出会ってもらいたい。<br>
                             何度も「よんで」と言ってもらえる心に残る絵本を読んであげたい。<br><br>
                         </p>
-                        <h4 class="text-teal1 text-shadow">
+                        <h4 class="text-teal1">
                             こどもの「よんで」に<br>
                             いつでもこたえてあげる気持ちになる
                         </h4>
                     </div>
                     @guest
                     <div class="text-center d-none d-md-block">
-                        <a class="btn btn-teal1 btn-lg shadow mt-2 mb-2" href="{{ route('register') }}"
-                            role="button">新規登録する</a>
+                        <a class="btn btn-teal1 rounded-pill text-white text-shadow btn-lg shadow my-2 px-5"
+                            href="{{ route('register') }}" role="button">新規登録する</a>
                     </div>
                     <div class="container d-block d-md-none">
-                        <a class="btn btn-teal1 btn-block shadow mt-2 mb-2" href="{{ route('register') }}"
-                            role="button">新規登録する</a>
+                        <a class="btn btn-teal1 rounded-pill text-white text-shadow btn-block shadow my-2"
+                            href="{{ route('register') }}" role="button">新規登録する</a>
                     </div>
                     @endguest
                 </div>

@@ -4,7 +4,7 @@
             onclick="location.href='{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}'">
             <div class="card-img-top book-cover my-auto">
                 @if ($pictureBook->thumbnail_url !== null)
-                <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image">
+                <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover" class="book-cover-image shadow">
                 @else
                 <div class="no-image-background book-cover-image" style="width: 128px">
                     <div class="no-image-title">

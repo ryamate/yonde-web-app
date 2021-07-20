@@ -39,9 +39,12 @@
                         </ul>
                     </div>
 
-                    <button type="submit"
-                        class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-4">
+                    <button type="submit" class="btn btn-block btn-teal1 mt-4">
                         <b>送信する</b>
+                    </button>
+                    <button type="button" onClick="history.back()"
+                        class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-3">
+                        <i class="fas fa-arrow-left mr-1"></i>戻る
                     </button>
                 </form>
             </div>

@@ -30,7 +30,7 @@
                         <div class=" dropdown-menu dropdown-menu-center p-0 m-0 shadow">
                             <a href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}"
                                 class="dropdown-item btn btn-sm bg-teal1 text-center text-white">
-                                <i class="fas fa-book-reader mr-1"></i><b>よんだよ</b>
+                                <i class="fas fa-book-open mr-1"></i><b>よんだよ</b>
                             </a>
                         </div>
                         @endif

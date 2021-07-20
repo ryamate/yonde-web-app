@@ -14,12 +14,8 @@
                     <li class="breadcrumb-item">
                         <a href="{{ route('home') }}" class="text-teal1">よんで</a>
                     </li>
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('families.index', ['name' => Auth::user()->family->name]) }}"
-                            class="text-teal1">{{ Auth::user()->family->nickname }}ファミリーのタイムライン</a>
-                    </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        {{ $pictureBook->title }}
+                        『{{ $pictureBook->title }}』の登録絵本情報の編集
                     </li>
                 </ol>
             </nav>
@@ -42,14 +38,14 @@
 
                         @include('picture_books.form')
 
-                        <button type="submit" class="btn btn-teal1 shadow-sm btn-block">編集完了する</button>
+                        <button type="submit" class="btn btn-teal1 shadow-sm btn-block">
+                            <b>編集完了する</b>
+                        </button>
+                        <button type="button" onClick="history.back()"
+                            class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-3">
+                            <i class="fas fa-arrow-left mr-1"></i>戻る
+                        </button>
                     </form>
-                </div>
-                <div class="card-text">
-                    <a href="{{ route('families.index', ['name' => Auth::user()->family->name]) }}"
-                        class="btn btn-block btn-outline-teal1 bg-white text-decoration-none text-teal1 mt-3">
-                        <i class="fas fa-chevron-circle-left mr-1"></i>戻る
-                    </a>
                 </div>
             </div>
         </section>

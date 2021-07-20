@@ -42,12 +42,10 @@
                     </div>
 
                     <input type="checkbox" id="agree" required>
-                    <label for="agree" class="small">
-                        <a href="{{ route('privacy') }}" class="text-teal1" target="_blank">
-                            プライバシーポリシー
-                        </a>
-                        を確認し、同意しました。
-                    </label><span class="text-danger">*</span>
+                    <label for="agree" class="small" role="button">
+                        プライバシーポリシーを<a href="{{ route('privacy') }}" class="text-teal1" target="_blank"
+                            title="プライバシーポリシーをブラウザの別画面で開く">確認</a>し、同意しました。<span class="text-danger">*</span>
+                    </label>
 
                     <button type="submit" class="btn btn-block bg-warning text-decoration-none text-white mt-4">
                         <b>登録</b>

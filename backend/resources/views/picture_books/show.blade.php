@@ -74,7 +74,7 @@
                                         <b>{{ $pictureBook->stored_count }}</b>
                                     </span>
                                     <span class="text-teal1 mx-2" title="読み聞かせ回数">
-                                        <i class="fas fa-book-reader"></i>
+                                        <i class="fas fa-book-open"></i>
                                         <b>{{ $pictureBook->read_records_count }}</b><span class="text-dark">回</span>
                                     </span>
                                     <span class="text-lemon-tea mx-2">
@@ -101,9 +101,9 @@
                             @auth
                             @if ($family->pictureBooks->firstWhere('google_books_id',
                             $pictureBook->google_books_id))
-                            <a class="btn btn-sm btn-block btn-outline-teal1 text-teal1 bg-white shadow-sm"
+                            <a class="btn btn-sm btn-block btn-outline-mocha text-mocha bg-white shadow-sm"
                                 href="{{ route("families.show", [
-                                            'id' => Auth::user()->family_id,
+                                            'name' => Auth::user()->family->name,
                                             'picture_book' => $family->pictureBooks->firstWhere('google_books_id', $pictureBook->google_books_id)]) }}">
                                 <i class="fas fa-book mr-1"></i>登録済み
                             </a>
@@ -111,7 +111,7 @@
                             <form action="{{ route('picture_books.create') }}" method="GET">
                                 @csrf
                                 <button type="submit" class="btn btn-sm btn-teal1 shadow-sm btn-block"><i
-                                        class="fas fa-plus-circle mr-1"></i>登録する</button>
+                                        class="fas fa-book-medical mr-1"></i>登録する</button>
                                 <input type="hidden" name="google_books_id"
                                     value="{{ $pictureBook->google_books_id }}" />
                                 <input type="hidden" name="isbn_13" value="{{ $pictureBook->isbn_13 }}" />

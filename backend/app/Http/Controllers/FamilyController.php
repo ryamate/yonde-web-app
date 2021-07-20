@@ -26,7 +26,7 @@ class FamilyController extends Controller
     public function index(string $name)
     {
         $data = $this->collectFamilyInfo($name);
-        $pictureBooks = PictureBook::with('readRecords', 'user')
+        $pictureBooks = PictureBook::with('user')
             ->where('family_id', $data['family']->id);
         $data['pictureBookNames'] = $this->booksSearchingTab($pictureBooks);
         $data['pictureBooks'] = $pictureBooks->orderBy('updated_at', 'DESC')->simplePaginate(10);

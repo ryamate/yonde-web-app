@@ -40,7 +40,6 @@
 
                         @include('picture_books.form')
 
-                        <button type="submit" class="btn btn-teal1 shadow-sm btn-block">本棚へ登録する</button>
                         <input type="hidden" name="google_books_id" value="{{ $pictureBook->google_books_id }}" />
                         <input type="hidden" name="isbn_13" value="{{ $pictureBook->isbn_13 }}" />
                         <input type="hidden" name="title" value="{{ $pictureBook->title }}" />
@@ -48,6 +47,14 @@
                         <input type="hidden" name="published_date" value="{{ $pictureBook->published_date }}" />
                         <input type="hidden" name="description" value="{{ $pictureBook->description }}" />
                         <input type="hidden" name="thumbnail_url" value="{{ $pictureBook->thumbnail_url }}" />
+
+                        <button type="submit" class="btn btn-teal1 shadow-sm btn-block">
+                            <b>本棚へ登録する</b>
+                        </button>
+                        <button type="button" onClick="history.back()"
+                            class="btn btn-block btn-outline-teal1 bg-white text-teal1 mt-3">
+                            <i class="fas fa-arrow-left mr-1"></i>戻る
+                        </button>
                     </form>
                 </div>
             </div>

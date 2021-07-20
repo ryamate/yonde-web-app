@@ -47,7 +47,7 @@
                             title="プライバシーポリシーをブラウザの別画面で開く">確認</a>し、同意しました。<span class="text-danger">*</span>
                     </label>
 
-                    <button type="submit" class="btn btn-block bg-warning text-decoration-none text-white mt-4">
+                    <button type="submit" class="btn btn-block bg-pink text-decoration-none text-white mt-4">
                         <b>登録</b>
                     </button>
                 </form>

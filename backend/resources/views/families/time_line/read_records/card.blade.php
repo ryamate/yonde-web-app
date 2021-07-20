@@ -163,8 +163,9 @@
                                 <b>{{ $child->name }}</b>
                                 @endif
                             </a>
-                            <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center"
-                                style="max-width: 180px; border-color:#26a69a;">
+                            @if ($child->birthday !== null || $child->gender_code === 1 || $child->gender_code === 2 )
+                            <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center border-latte"
+                                style="max-width: 180px">
 
                                 @if ($child->birthday !== null)
                                 <p class="mb-0">
@@ -183,6 +184,7 @@
                                 </p>
                                 @endif
                             </div>
+                            @endif
                         </span>
                         @endforeach
                     </div>

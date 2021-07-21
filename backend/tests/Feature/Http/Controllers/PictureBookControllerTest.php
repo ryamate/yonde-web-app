@@ -9,38 +9,30 @@ use Tests\TestCase;
 
 class PictureBookControllerTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
-    // public function testHome()
-    // {
-    //     $response = $this->get(route('home'));
+    public function testHome()
+    {
+        $response = $this->get(route('home'));
 
-    //     $response->assertStatus(200)
-    //         ->assertViewIs('home');
-    // }
+        $response->assertStatus(200)
+            ->assertViewIs('home');
+    }
 
-    // public function testAbout()
-    // {
-    //     $response = $this->get(route('about'));
+    public function testAbout()
+    {
+        $response = $this->get(route('about'));
 
-    //     $response->assertStatus(200)
-    //         ->assertViewIs('about');
-    // }
+        $response->assertStatus(200)
+            ->assertViewIs('about');
+    }
 
-    // public function testIndex()
-    // {
-    //     $response = $this->get(route('home'));
+    public function testGuestCreate()
+    {
+        $response = $this->get(route('picture_books.create'));
 
-    //     $response->assertStatus(200)
-    //         ->assertViewIs('home');
-    // }
-
-    // public function testGuestCreate()
-    // {
-    //     $response = $this->get(route('picture_books.create'));
-
-    //     $response->assertRedirect(route('login'));
-    // }
+        $response->assertRedirect(route('login'));
+    }
 
     // public function testAuthCreate()
     // {

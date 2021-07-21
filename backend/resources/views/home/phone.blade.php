@@ -40,16 +40,16 @@
         {{-- smart phone --}}
         <div class="py-4 text-dark">
             <h3 class="text-center">
-                <b>よんで</b>とは
+                <b>よんで</b> とは
             </h3>
             <small>
-                <b>　「よんで」は、Web上の本棚をかんたんに作成したり、絵本読み聞かせをしたときに記録して、いつでも記録を見返すことができるサービスです。</b>
+                <b>　よんで は、Web上の本棚をかんたんに作成したり、絵本読み聞かせをしたときに記録して、いつでも記録を見返すことができるサービスです。</b>
             </small>
         </div>
 
         <div class="mt-4">
             <div class="card mb-2">
-                <div class="card-body shadow-lg">
+                <div class="card-body shadow">
                     <div class="row no-gutters">
                         <div class="col-6 pr-3">
                             <img src="{{ asset('image/index_3-1.png') }}" class="d-block mx-auto" width="80%" alt="">
@@ -59,8 +59,8 @@
                         </div>
                         <div class="col-6 d-flex align-items-center border-left">
                             <div class="card-body pr-0">
-                                <p class="card-text x-small">
-                                    これから読みたい絵本、これまで読んだ絵本をいれておくことができます。
+                                <p class="card-text small">
+                                    　これから読みたい絵本、これまで読んだ絵本を、いれておくことができます。
                                 </p>
                             </div>
                         </div>
@@ -69,12 +69,12 @@
             </div>
 
             <div class="card mb-2">
-                <div class="card-body shadow-lg">
+                <div class="card-body shadow">
                     <div class="row no-gutters">
                         <div class="col-6 d-flex align-items-center pr-3">
                             <div class="card-body pl-0">
-                                <p class="card-text x-small">
-                                    絵本の読み聞かせをした記録をかんたんにつけることができます。
+                                <p class="card-text small">
+                                    　絵本の読み聞かせをした記録を、かんたんにつけることができます。
                                 </p>
                             </div>
                         </div>
@@ -90,7 +90,7 @@
             </div>
 
             <div class="card mb-2">
-                <div class="card-body shadow-lg">
+                <div class="card-body shadow">
                     <div class="row no-gutters">
                         <div class="col-6 pr-3">
                             <img src="{{ asset('image/index_3-3-0.png') }}" width="80%" alt="">
@@ -102,8 +102,8 @@
                         </div>
                         <div class="col-6 d-flex align-items-center border-left">
                             <div class="card-body pr-0">
-                                <p class="card-text x-small">
-                                    登録した絵本・読み聞かせ記録を家族と共有することができます。
+                                <p class="card-text small">
+                                    　登録した絵本・読み聞かせ記録を、家族と共有することができます。
                                 </p>
                             </div>
                         </div>
@@ -116,7 +116,8 @@
     <div class="container bg-paper">
         <div class="text-center py-4">
             <a href="{{ route('about') }}"
-                class="btn btn-block btn-outline-teal1 bg-white text-teal1 mt-2 mb-2 rounded-pill shadow" role="button">
+                class="btn btn-block btn-outline-teal1 bg-white text-teal1 mt-2 mb-2 rounded-pill shadow-sm"
+                role="button">
                 <span class="mx-4">よんでについて</span>
                 <i class="fas fa-chevron-right"></i>
             </a>

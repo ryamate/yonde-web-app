@@ -29,7 +29,7 @@
     <div class="container" style="max-width: 540px;">
         @if (Auth::user()->email_verified_at === null)
         <div class="mb-4">
-            <h3>認証用メールの送信</h3>
+            <h4>認証用メールの送信</h4>
             <small>
                 新規登録時のメールアドレスの認証用メールを送信します。
             </small>
@@ -60,7 +60,7 @@
         </div>
         @endif
 
-        <h3>プロフィール設定</h3>
+        <h4>プロフィール設定</h4>
         @include('families.setting_tabs', [
         'hasUser' => true,
         'hasFamily' => false,
@@ -80,21 +80,21 @@
             </div>
 
             <div class="card-body py-2">
-                <p class="card-title text-secondary mb-1">よんでID</p>
-                <h5 class="card-text">{{ $user->name }}</h5>
+                <p class="card-title text-secondary small mb-1">よんでID</p>
+                <p class="card-text">{{ $user->name }}</p>
             </div>
 
             <div class="card-body py-2">
-                <p class="card-title text-secondary mb-1">ニックネーム</p>
-                <h5 class="card-text">{{ $user->nickname }}</h5>
+                <p class="card-title text-secondary small mb-1">ニックネーム</p>
+                <p class="card-text">{{ $user->nickname }}</p>
             </div>
 
             <div class="card-body pt-2">
-                <p class="card-title text-secondary mb-1">子どもとの関係</p>
+                <p class="card-title text-secondary small mb-1">子どもとの関係</p>
                 @if ($user->relation !== null)
-                <h5 class="card-text">{{ $user->relation }}</h5>
+                <p class="card-text">{{ $user->relation }}</p>
                 @else
-                <h5 class="text-muted">(未設定)</h5>
+                <p class="text-muted">(未設定)</p>
                 @endif
             </div>
 

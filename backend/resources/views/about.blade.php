@@ -51,7 +51,7 @@
                         </div>
                         <div class="container p-2">
                             <p class="text-shadow">
-                                Web上の本棚にいれた絵本の、読み聞かせ記録・管理をして、家族と共有できるサービスです。
+                                　Web上の本棚にいれた絵本の、読み聞かせ記録・管理をして、家族と共有できるサービスです。
                             </p>
                             @guest
                             <div class="text-center">
@@ -82,43 +82,72 @@
         <!-- pc -->
         <div style="margin-top: 74px;">
             <div class="container mt-4 mb-4 text-center d-none d-md-block">
-                <h2>
-                    <b>絵本読み聞かせの記録を<br>
-                        かんたんに管理できるサービス<br>
-                        「よんで」</b>
+                <h2 class="d-flex justify-content-center flex-wrap">
+                    <span>絵本の読み聞かせを</span>
+                    <span>かんたんに</span>
+                    <span>記録・管理できる</span>
+                    <span>サービス</span>
                 </h2>
-                <p class="text-dark pt-4">
-                    「よんで」<br>
-                    こどもが絵本をおねだりするときのおきまりの言葉。<br><br>
-
-                    こどもは、たくさんの絵本を読んでもらう。<br>
-                    同じ絵本を何度も読むことも。<br><br>
-
-                    でも、その絵本を読んだ記憶は埋もれてしまって、<br>
-                    いつか大きくなった日、ほとんどは忘れてしまう。<br><br>
-
-                    だから、記録して、家族と共有しておくと、<br>
-                    いつでも記録から、あの日読んだ記憶を思い出せる。
+                <h1 class="pb-4">『よんで』</h1>
+                <p class="d-flex justify-content-center flex-wrap mt-4">
+                    <span>「よんで」</span>
+                </p>
+                <p class="d-flex justify-content-center flex-wrap mt-4">
+                    <span>こどもが絵本を読んでほしいときの</span>
+                    <span>お決まりの</span>
+                    <span>ことば。</span><br><br>
+                </p>
+                <p class="d-flex justify-content-center flex-wrap mt-4">
+                    <span> こどもは、たくさんの絵本を読んでもらう。</span>
+                    <span>同じ絵本を何度も読むことも。</span>
+                </p>
+                <p class="d-flex justify-content-center flex-wrap mt-4">
+                    <span>でも、好きな絵本を読んだ記憶は</span>
+                    <span>薄れていって、</span>
+                    <span>いつか大きくなった日には、</span>
+                    <span>あんまり覚えてない。</span>
+                </p>
+                <p class="d-flex justify-content-center flex-wrap mt-4">
+                    <span>記録して、</span>
+                    <span>家族と共有しておくと、</span>
+                    <span>いつでも記録から、</span>
+                    <span>あの日読んだ記憶を</span>
+                    <span>思い出せる。</span>
                 </p>
             </div>
             <!-- smart phone -->
             <div class="container mt-2 mb-4 text-left d-block d-md-none">
-                <h5>
-                    <b>絵本読み聞かせの記録を<br>
-                        かんたんに管理できるアプリ「よんで」</b>
-                </h5>
-                <p class="small mt-4">
-                    「よんで」<br><br>
-
-                    こどもが絵本をおねだりするときのおきまりの言葉。<br><br>
-
-                    こどもは、たくさんの絵本を読んでもらう。同じ絵本を何度も読むことも。<br><br>
-
-                    でも、その絵本を読んだ記憶は埋もれてしまって、<br>
-                    いつか大きくなった日、ほとんどは忘れてしまう。<br><br>
-
-                    だから、記録して、家族と共有しておくと、<br>
-                    いつでも記録から、あの日読んだ記憶を思い出せる。
+                <h4 class="d-flex justify-content-start flex-wrap mb-4">
+                    <span>絵本の読み聞かせを</span>
+                    <span>かんたんに</span>
+                    <span>記録・管理できる</span>
+                    <span>サービス</span>
+                    <span>『よんで』</span>
+                </h4>
+                <p class="d-flex justify-content-start flex-wrap mt-4">
+                    <span>「よんで」</span>
+                </p>
+                <p class="d-flex justify-content-start flex-wrap mt-4">
+                    <span>こどもが絵本を読んでほしいときの</span>
+                    <span>お決まりの</span>
+                    <span>ことば。</span><br><br>
+                </p>
+                <p class="d-flex justify-content-start flex-wrap mt-4">
+                    <span> こどもは、たくさんの絵本を読んでもらう。</span>
+                    <span>同じ絵本を何度も読むことも。</span>
+                </p>
+                <p class="d-flex justify-content-start flex-wrap mt-4">
+                    <span>でも、好きな絵本を読んだ記憶は</span>
+                    <span>薄れていって、</span>
+                    <span>いつか大きくなった日には、</span>
+                    <span>あんまり覚えてない。</span>
+                </p>
+                <p class="d-flex justify-content-start flex-wrap mt-4">
+                    <span>記録して、</span>
+                    <span>家族と共有しておくと、</span>
+                    <span>いつでも記録から、</span>
+                    <span>あの日読んだ記憶を</span>
+                    <span>思い出せる。</span>
                 </p>
             </div>
         </div>
@@ -134,8 +163,7 @@
                                 <b>絵本のWeb本棚</b>
                             </p>
                             <p class="card-text small">
-                                気になる絵本、これまで読んだ絵本をいれることができます。<br>
-                                Web本棚を見れば、どの絵本が読みたいか、こどもが教えてくれるかもしれません。
+                                　気になる絵本、これまで読んだ絵本をいれることができます。他の家族のWeb本棚を見ていると、新しい絵本が発見できるかもしれません。
                             </p>
                         </div>
                     </div>
@@ -145,13 +173,12 @@
                         <div class="d-flex justify-content-end">
                             <img src="{{ asset('image/index_3-2.png') }}" width="100%" alt="" style="max-width: 250px">
                         </div>
-                        <div class="card-body p-0 text-secondary text-right text-md-left">
-                            <p class="card-title">
+                        <div class="card-body p-0 text-secondary">
+                            <p class="card-title text-right text-md-left">
                                 <b>読み聞かせの記録・管理</b>
                             </p>
                             <p class="card-text small">
-                                絵本の読み聞かせをした記録を付けることができます。<br>
-                                いつ読んだか、何回目かなど、具体的な記録が簡単にできます。
+                                　絵本の読み聞かせをした記録をつけることができます。いつ読んだか、どんな反応だったか、具体的な記録が簡単にできます。
                             </p>
                         </div>
                     </div>
@@ -166,8 +193,7 @@
                                 <b>家族と共有</b>
                             </p>
                             <p class="card-text small">
-                                本棚・読み聞かせ記録を家族と共有することができます。<br>
-                                絵本を読んだ記録が、家族のアルバムのように残ります。
+                                　本棚・読み聞かせ記録を家族と共有することができます。絵本を読んだ記録を、家族の思い出、こどもの成長の記録として残せます。
                             </p>
                         </div>
                     </div>
@@ -197,56 +223,59 @@
             <div style="margin-top: 74px;">
                 <div class="bg-paper pt-5 pb-4 rounded">
                     <div class="container mb-4 text-center d-none d-md-block">
-                        <h3 class="mb-4">
+                        <h3 class="text-shadow mb-4">
                             <b>サービス名に込めた想い</b>
                         </h3>
-                        <p>
-                            こどもに「よんで」と言われるとき、こころよく読んであげられないときがある。<br>
-                            いつでもこどもに心を込めて絵本を読んであげたくなる気持ちになれたら。<br>
-                            疲れているとき、気分が乗らないときでも。<br><br>
-
-                            読んだ記録をつけていくことで、<br>
-                            読んだ記録が積み上がっていって、読んであげるのが楽しく感じられたら。<br><br>
-
-                            こどもの成長の記録としても楽しいし、<br>
-                            こどもが成長したときに、<br>
-                            こどもに読んであげた絵本の記録を、<br>
-                            いつでも見返すことができる。<br><br>
-
-                            みんなが実際に何度も読んでいる絵本を知れることで、<br>
-                            いい絵本とたくさん出会ってもらいたい。<br>
-                            何度も「よんで」と言ってもらえる心に残る絵本を読んであげたい。<br><br>
+                        <p class="d-flex justify-content-center flex-wrap mt-4">
+                            <span>こどもに「よんで」と言われるとき、</span>
+                            <span>こころよく読んであげられないときがあった。</span>
                         </p>
-                        <h2 class="text-teal1">
-                            <b>こどもの「よんで」に<br>
-                                いつでもこたえてあげる気持ちになる</b>
+                        <p class="d-flex justify-content-center flex-wrap mt-4">
+                            <span>疲れているとき、気分が乗らないときでも、</span>
+                            <span>いつでもこどもに心を込めて絵本を読んであげたくなる気持ちになれたら…。</span>
+                        </p>
+                        <p class="d-flex justify-content-center flex-wrap mt-4">
+                            <span>読んだ記録をつけていくことで、</span>
+                            <span>読んだ記録が増えていくことを楽しく感じられたら、こどもの「よんで」が待ち遠しくなる。</span>
+                        </p>
+                        <p class="d-flex justify-content-center flex-wrap mt-4">
+                            <span>こどもの成長の記録としても楽しいし、</span>
+                            <span>こどもが成長したときに、</span>
+                            <span>こどもに読んできた絵本の記録を、</span>
+                            <span>見せてあげることができたら、</span>
+                        </p>
+                        <h2 class="d-flex justify-content-center flex-wrap text-teal1 mt-4">
+                            <span>こどもの「よんで」に</span>
+                            <span>いつでもこたえてあげる気持ちになる。</span>
                         </h2>
                     </div>
                     <!-- smart phone -->
                     <div class="container mb-4 d-block d-md-none">
-                        <h5 class="mb-4">
+                        <h5 class="text-center mb-4">
                             <b>サービス名に込めた想い</b>
                         </h5>
-                        <p class="small">
-                            こどもに「よんで」と言われるとき、こころよく読んであげられないときがある。<br>
-                            いつでもこどもに心を込めて絵本を読んであげたくなる気持ちになれたら。<br>
-                            疲れているとき、気分が乗らないときでも。<br><br>
-
-                            読んだ記録をつけていくことで、<br>
-                            読んだ記録が積み上がっていって、読んであげるのが楽しく感じられたら。<br><br>
-
-                            こどもの成長の記録としても楽しいし、<br>
-                            こどもが成長したときに、<br>
-                            こどもに読んであげた絵本の記録を、<br>
-                            いつでも見返すことができる。<br><br>
-
-                            みんなが実際に何度も読んでいる絵本を知れることで、<br>
-                            いい絵本とたくさん出会ってもらいたい。<br>
-                            何度も「よんで」と言ってもらえる心に残る絵本を読んであげたい。<br><br>
+                        <p class="d-flex justify-content-start flex-wrap mt-4">
+                            <span>こどもに「よんで」と言われるとき、</span>
+                            <span>こころよく読んであげられないときがあった。</span>
                         </p>
-                        <h4 class="text-teal1">
-                            こどもの「よんで」に<br>
-                            いつでもこたえてあげる気持ちになる
+                        <p class="d-flex justify-content-start flex-wrap mt-4">
+                            <span>疲れているとき、気分が乗らないときでも、</span>
+                            <span>いつでもこどもに心を込めて絵本を読んであげたくなる気持ちになれたら…。</span>
+                        </p>
+                        <p class="d-flex justify-content-start flex-wrap mt-4">
+                            <span>読んだ記録をつけていくことで、</span>
+                            <span>読んだ記録が増えていくことを楽しく感じられたら、こどもの「よんで」が待ち遠しくなる。</span>
+                        </p>
+                        <p class="d-flex justify-content-start flex-wrap mt-4">
+                            <span>こどもの成長の記録としても楽しいし、</span>
+                            <span>こどもが成長したときに、</span>
+                            <span>こどもに読んできた絵本の記録を、</span>
+                            <span>見せてあげることができたら、</span>
+                        </p>
+                        <h4 class="d-flex justify-content-start flex-wrap text-teal1 mt-4">
+                            <span>こどもの「よんで」に</span>
+                            <span>いつでもこたえてあげる</span>
+                            <span>気持ちになる。</span>
                         </h4>
                     </div>
                     @guest

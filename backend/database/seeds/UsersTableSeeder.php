@@ -37,22 +37,22 @@ class UsersTableSeeder extends Seeder
         User::create([
             'family_id' => $family->id,
             'name' => 'guest_user',
-            'nickname' => 'げん（ゲスト）',
+            'nickname' => 'げん(ゲスト)',
             'email' => 'guest_user@guest.com',
             'email_verified_at' => now(),
             'password' => null,
-            'icon_path' => 'storage/user_images/1.jpg',
+            'icon_path' => 'image/1.jpg',
             'relation' => 'パパ',
         ]);
 
         User::create([
             'family_id' => $family->id,
             'name' => 'guest_partner',
-            'nickname' => 'ゆい（パートナー）',
+            'nickname' => 'ゆい(パートナー)',
             'email' => 'guest_partner@guest.com',
             'email_verified_at' => now(),
             'password' => null,
-            'icon_path' => '/storage/user_images/2.jpg',
+            'icon_path' => 'image/2.jpg',
             'relation' => 'ママ',
         ]);
     }

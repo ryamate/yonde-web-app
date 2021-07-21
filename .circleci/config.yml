@@ -46,7 +46,7 @@ jobs:
       - run:
           name: deploy
           command: |
-            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd Yonde-app && \
+            ssh -o StrictHostKeyChecking=no -t webapp@${HOST_NAME} "cd yonde && \
               git pull origin main && \
               cd backend && \
               composer install -n --no-dev --prefer-dist && \

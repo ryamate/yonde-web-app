@@ -13,7 +13,8 @@
         </h3>
         <p style="font-size: 14px;">
             　よんで に登録している方は、下記からログインしてください。<br>
-            　まだ登録していない方は<a class="text-decoration-none text-teal1" href="{{ route('register') }}">こちらから登録</a>してください。</p>
+            　まだ登録していない方は、<a class="text-decoration-none text-teal1" href="{{ route('register') }}">こちらから登録</a>してください。
+        </p>
         <div class="card shadow-sm mb-4">
             <div class="card-body">
 

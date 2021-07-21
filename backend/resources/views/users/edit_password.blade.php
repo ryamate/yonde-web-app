@@ -59,11 +59,13 @@
                         class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-3">
                         <i class="fas fa-arrow-left mr-1"></i>戻る
                     </button>
+                    @if (Auth::id() !== config('const.GUEST_USER_ID'))
                     <div class="card-text text-center mt-2">
                         <a href="{{ route('password.request') }}" class="text-teal1 text-decoration-none small">
                             パスワードを忘れた方
                         </a>
                     </div>
+                    @endif
                 </form>
             </div>
         </div>

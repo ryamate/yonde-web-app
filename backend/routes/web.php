@@ -58,7 +58,6 @@ Route::resource('/read_records', 'ReadRecordController')->middleware('auth');
 
 Route::prefix('users')->name('users.')->group(function () {
     Route::middleware('auth')->group(function () {
-        Route::get('/re_registered', 'UserController@reRegistered')->name('re_registered');
         Route::get('/edit', 'UserController@edit')->name('edit');
         Route::post('/update', 'UserController@update')->name('update');
         Route::get('/edit_email', 'UserController@editEmail')->name('edit_email');

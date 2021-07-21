@@ -10,37 +10,37 @@ use Tests\TestCase;
 
 class PictureBookTest extends TestCase
 {
-    // use RefreshDatabase;
+    use RefreshDatabase;
 
-    // public function testIsLikedByNull()
-    // {
-    //     $pictureBook = factory(PictureBook::class)->create();
+    public function testIsLikedByNull()
+    {
+        $pictureBook = factory(PictureBook::class)->create();
 
-    //     $result = $pictureBook->isLikedBy(null);
+        $result = $pictureBook->isLikedBy(null);
 
-    //     $this->assertFalse($result);
-    // }
+        $this->assertFalse($result);
+    }
 
-    // public function testIsLikedByTheUser()
-    // {
-    //     $pictureBook = factory(PictureBook::class)->create();
-    //     $user = factory(User::class)->create();
-    //     $pictureBook->likes()->attach($user);
+    public function testIsLikedByTheUser()
+    {
+        $pictureBook = factory(PictureBook::class)->create();
+        $user = factory(User::class)->create();
+        $pictureBook->likes()->attach($user);
 
-    //     $result = $pictureBook->isLikedBy($user);
+        $result = $pictureBook->isLikedBy($user);
 
-    //     $this->assertTrue($result);
-    // }
+        $this->assertTrue($result);
+    }
 
-    // public function testIsLikedByAnother()
-    // {
-    //     $pictureBook = factory(PictureBook::class)->create();
-    //     $user = factory(User::class)->create();
-    //     $another = factory(User::class)->create();
-    //     $pictureBook->likes()->attach($another);
+    public function testIsLikedByAnother()
+    {
+        $pictureBook = factory(PictureBook::class)->create();
+        $user = factory(User::class)->create();
+        $another = factory(User::class)->create();
+        $pictureBook->likes()->attach($another);
 
-    //     $result = $pictureBook->isLikedBy($user);
+        $result = $pictureBook->isLikedBy($user);
 
-    //     $this->assertFalse($result);
-    // }
+        $this->assertFalse($result);
+    }
 }

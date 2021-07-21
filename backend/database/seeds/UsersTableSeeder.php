@@ -26,6 +26,7 @@ class UsersTableSeeder extends Seeder
             'gender_code' => 1,
             'birthday' => '2020-04-01',
         ]);
+
         Child::create([
             'family_id' => $family->id,
             'name' => 'みくり',
@@ -43,6 +44,7 @@ class UsersTableSeeder extends Seeder
             'icon_path' => 'storage/user_images/1.jpg',
             'relation' => 'パパ',
         ]);
+
         User::create([
             'family_id' => $family->id,
             'name' => 'guest_partner',

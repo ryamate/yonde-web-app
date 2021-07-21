@@ -2,8 +2,8 @@
     <div class="container">
         <!-- <span class="text-muted">Place sticky footer content here.</span> -->
         <span class="d-flex justify-content-center flex-wrap small">
-            <a href="{{ route('home') }}" class="btn btn-sm text-teal1"><b>よんでホーム</b></a>
-            <a href="{{ route('about') }}" class="btn btn-sm text-teal1"><b>「よんで」とは</b></a>
+            <a href="{{ route('home') }}" class="btn btn-sm text-teal1"><b>ホーム</b></a>
+            <a href="{{ route('about') }}" class="btn btn-sm text-teal1"><b>よんでとは</b></a>
             <a href="{{ route('terms') }}" class="btn btn-sm text-teal1"><b>利用規約</b></a>
             <a href="{{ route('privacy') }}" class="btn btn-sm text-teal1"><b>プライバシーポリシー</b></a>
             <a href="{{ route('contact.show') }}" class="btn btn-sm text-teal1"><b>お問い合わせ</b></a>

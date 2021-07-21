@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Family;
 use App\PictureBook;
 use App\User;
 use Faker\Generator as Faker;
@@ -19,6 +20,9 @@ $factory->define(PictureBook::class, function (Faker $faker) {
         'review' => $faker->text(500),
         'user_id' => function () {
             return factory(User::class);
+        },
+        'family_id' => function () {
+            return factory(Family::class);
         }
     ];
 });

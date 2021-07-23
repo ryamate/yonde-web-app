@@ -126,10 +126,12 @@
 </div>
 @endguest
 
-<div class="container-xl border-top pt-4">
-    <h5>
-        <b>みんなの新しい絵本</b>
-    </h5>
+<div class="border-top pt-4 bg-paper">
+    <div class="container-xl">
+        <h5 class="mb-0 pb-1">
+            <b>みんなの新しい絵本</b>
+        </h5>
+    </div>
 </div>
 <div id="carousel-card-2" class="carousel slide pb-4 border-bottom" data-ride="carousel" data-wrap="true">
     <ol class="carousel-indicators">

@@ -70,10 +70,10 @@ export default {
     color: #fff;
     margin-right: 4px;
     border-radius: 1px;
-    font-size: 13px;
+    font-size: 14px;
   }
   .vue-tags-input .ti-autocomplete {
-    font-size: 12px;
+    font-size: 14px;
   }
   .vue-tags-input .ti-item.ti-selected-item {
     background: #26a69a;

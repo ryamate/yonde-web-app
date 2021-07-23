@@ -164,7 +164,7 @@
                                 @endif
                             </a>
                             @if ($child->birthday !== null || $child->gender_code === 1 || $child->gender_code === 2 )
-                            <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center border-latte"
+                            <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center border-linen"
                                 style="max-width: 180px">
 
                                 @if ($child->birthday !== null)

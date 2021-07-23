@@ -146,8 +146,7 @@
                             class="card-text text-teal1 text-decoration-none">
                             {{ $child->name }}
                         </a>
-
-                        <p class="card-text small text-secondary">
+                        <p class="card-text d-flex flex-wrap align-items-center small text-secondary">
                             @if ($child->gender_code === 1)
                             <span class="badge badge-dark-mocha">
                                 男の子
@@ -159,9 +158,14 @@
                             @endif
 
                             @if ($child->birthday !== null)
-                            /
-                            {{ Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y歳%mヶ月') }}
-                            / {{ Carbon\Carbon::parse($child->birthday)->format("Y年m月d日") }}
+                            <span class="mx-1">/</span>
+                            <span>
+                                {{ Carbon\Carbon::parse($child->birthday)->diff(Carbon\Carbon::now())->format('%y歳%mヶ月') }}
+                            </span>
+                            <span class="mx-1">/</span>
+                            <span>
+                                {{ Carbon\Carbon::parse($child->birthday)->format("Y年m月d日") }}生まれ
+                            </span>
                             @endif
                         </p>
 

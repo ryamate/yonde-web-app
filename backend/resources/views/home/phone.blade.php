@@ -133,7 +133,7 @@
         </h5>
     </div>
 </div>
-<div id="carousel-card-2" class="carousel slide pb-4 border-bottom" data-ride="carousel" data-wrap="true">
+<div id="carousel-card-2" class="carousel slide pb-4 border-bottom bg-paper" data-ride="carousel" data-wrap="true">
     <ol class="carousel-indicators">
         <li data-target="#carousel-card-2" data-slide-to="0" class="active bg-teal1"></li>
         <li data-target="#carousel-card-2" data-slide-to="1" class="bg-teal1"></li>

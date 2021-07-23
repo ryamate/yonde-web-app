@@ -7,6 +7,13 @@
             alt="yonde">
     </a>
 
+    {{-- left: application name --}}
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link text-white text-shadow text-decoration-none mb-0 h4" href="{{ route('home') }}">よんで</a>
+        </li>
+    </ul>
+
     {{-- toggle button --}}
     <button class="navbar-toggler p-1" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,16 +22,8 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        {{-- left: application name --}}
-        <ul class="navbar-nav mr-auto d-none d-md-block">
-            <li class="nav-item">
-                <a class="nav-link text-white text-shadow text-decoration-none mb-0 h4"
-                    href="{{ route('home') }}">よんで</a>
-            </li>
-        </ul>
-
         {{-- right: --}}
-        <ul class="navbar-nav">
+        <ul class="navbar-nav ml-auto">
             @include('navs.pc_right')
             @include('navs.phone_toggle')
         </ul>

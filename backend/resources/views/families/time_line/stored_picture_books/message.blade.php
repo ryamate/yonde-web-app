@@ -7,7 +7,7 @@
             @else
             <i class="far fa-user-circle text-muted"></i>
             @endif
-            <span class="small">
+            <span class="small font-weight-bold">
                 {{ ' ' . $pictureBook->user->nickname}}
             </span>
         </a>

@@ -60,13 +60,23 @@
                             name="password_confirmation" required>
                     </div>
 
-                    <input type="checkbox" id="agree" required>
                     <label for="agree" class="small" role="button">
-                        プライバシーポリシーを<a href="{{ route('privacy') }}" class="text-teal1" target="_blank"
-                            title="プライバシーポリシーをブラウザの別画面で開く">確認</a>し、同意しました。<span class="text-danger">*</span>
+                        <span class="d-flex flex-wrap">
+                            <span>
+                                <input type="checkbox" id="agree" required>
+                                <a href="{{ route('privacy') }}" class="text-teal1 ml-2" target="_blank"
+                                    title="プライバシーポリシーをブラウザの別画面で開く">プライバシーポリシー</a>
+                                <span>を確認し、</span>
+                            </span>
+                            <span>同意</span>
+                            <span>
+                                <span>
+                                    <span>しました。</span><span class="text-danger">*</span>
+                                </span>
+                            </span>
                     </label>
 
-                    <button type="submit" class="btn btn-block bg-warning text-decoration-none text-white mt-4">
+                    <button type="submit" class="btn btn-block bg-pink text-decoration-none text-white mt-4">
                         <b>登録</b>
                     </button>
 

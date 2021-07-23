@@ -6,35 +6,41 @@
                 <div class="d-flex justify-content-center align-items-end flex-wrap">
                     @foreach($pictureBooks as $pictureBook)
                     <div class="btn-group drop-hover my-3 px-1">
-                        <a href="{{ route('families.show', [
-                        'name' => $family->name,
-                        'picture_book' => $pictureBook,
-                        ]) }}" class="text-decoration-none">
-                            <div class="card-img-top book-cover my-auto">
-                                @if ($pictureBook->thumbnail_url !== null)
-                                <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover"
-                                    class="book-cover-image shadow">
-                                @else
-                                <div class="no-image-background book-cover-image" style="width: 128px">
-                                    <div class="no-image-title">
-                                        <div class="ml-3 mr-2">
-                                            <p class="text-dark text-shadow x-small mb-0" style="line-height:14px;">
-                                                {{ $pictureBook->title }}
-                                            </p>
-                                        </div>
+
+                        <div class="card-img-top book-cover my-auto">
+                            @if ($pictureBook->thumbnail_url !== null)
+                            <img src="{{ $pictureBook->thumbnail_url }}" alt="book-cover"
+                                class="book-cover-image shadow">
+                            @else
+                            <div class="no-image-background book-cover-image" style="width: 128px">
+                                <div class="no-image-title">
+                                    <div class="ml-3 mr-2">
+                                        <p class="text-dark text-shadow x-small mb-0" style="line-height:14px;">
+                                            {{ $pictureBook->title }}
+                                        </p>
                                     </div>
                                 </div>
-                                @endif
                             </div>
-                        </a>
-                        @if ($pictureBook->family_id === Auth::user()->family_id)
-                        <div class=" dropdown-menu dropdown-menu-center p-0 m-0 shadow">
+                            @endif
+                        </div>
+
+                        <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center border-linen"
+                            style="max-width: 180px">
+                            <a href="{{ route('families.show', [
+                                                    'name' => $family->name,
+                                                    'picture_book' => $pictureBook,
+                                                    ]) }}"
+                                class="dropdown-item btn btn-sm border bg-white text-center text-teal1 mb-1">
+                                記録をみる
+                            </a>
+
+                            @if ($pictureBook->family_id === Auth::user()->family_id)
                             <a href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}"
                                 class="dropdown-item btn btn-sm bg-teal1 text-center text-white">
                                 <i class="fas fa-book-open mr-1"></i><b>よんだよ</b>
                             </a>
+                            @endif
                         </div>
-                        @endif
                     </div>
                     @endforeach
                 </div>

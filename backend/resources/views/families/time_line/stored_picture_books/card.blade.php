@@ -45,7 +45,7 @@
                     <div class="btn-group drop-hover d-flex ml-auto">
                         <a class="btn btn-sm btn-teal1"
                             href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}">
-                            <i class="fas fa-book-open mr-1"></i>よんだよ
+                            <i class="fas fa-book-open mr-1"></i><b>よんだよ</b>
                         </a>
                         <button type="button" class="btn btn-sm btn-teal1 dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -95,8 +95,7 @@
                 </div>
 
                 <div class="card-title mb-0">
-                    <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}"
-                        class="text-dark text-decoration-none">
+                    <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}" class="text-dark">
                         <b>絵本のレビュー</b>
                     </a>
                 </div>

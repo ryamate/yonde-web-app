@@ -7,7 +7,7 @@
             @else
             <i class="far fa-user-circle text-secondary"></i>
             @endif
-            <span class="small">
+            <span class="small font-weight-bold">
                 {{ ' ' . $readRecord->user->nickname}}
             </span>
         </a>

@@ -54,11 +54,6 @@ class InvitationFamilyNotification extends Notification
                 'url' => route('register.invited.{token}', [
                     'token' => $notifiable->token,
                 ]),
-                'count' => config(
-                    'auth.passwords.' .
-                        config('auth.defaults.passwords') .
-                        '.expire'
-                ),
             ]);
     }
 

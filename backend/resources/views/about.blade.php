@@ -99,7 +99,7 @@
                 </p>
                 <p class="d-flex justify-content-center flex-wrap mt-4">
                     <span> こどもは、たくさんの絵本を読んでもらう。</span>
-                    <span>同じ絵本を何度も読むことも。</span>
+                    <span>同じ絵本を何度も読むこともある。</span>
                 </p>
                 <p class="d-flex justify-content-center flex-wrap mt-4">
                     <span>でも、好きな絵本を読んだ記憶は</span>
@@ -134,7 +134,7 @@
                 </p>
                 <p class="d-flex justify-content-start flex-wrap mt-4">
                     <span> こどもは、たくさんの絵本を読んでもらう。</span>
-                    <span>同じ絵本を何度も読むことも。</span>
+                    <span>同じ絵本を何度も読むこともある。</span>
                 </p>
                 <p class="d-flex justify-content-start flex-wrap mt-4">
                     <span>でも、好きな絵本を読んだ記憶は</span>
@@ -235,6 +235,12 @@
                             <span>いつでもこどもに心を込めて絵本を読んであげたくなる気持ちになれたら…。</span>
                         </p>
                         <p class="d-flex justify-content-center flex-wrap mt-4">
+                            <span>そうだ、</span>
+                            <span>読んだ記録を手軽に楽しく付けられる</span>
+                            <span>サービスを</span>
+                            <span>つくってみよう。</span>
+                        </p>
+                        <p class="d-flex justify-content-center flex-wrap mt-4">
                             <span>読んだ記録をつけていくことで、</span>
                             <span>読んだ記録が増えていくことを楽しく感じられたら、こどもの「よんで」が待ち遠しくなる。</span>
                         </p>
@@ -261,6 +267,12 @@
                         <p class="d-flex justify-content-start flex-wrap mt-4">
                             <span>疲れているとき、気分が乗らないときでも、</span>
                             <span>いつでもこどもに心を込めて絵本を読んであげたくなる気持ちになれたら…。</span>
+                        </p>
+                        <p class="d-flex justify-content-start flex-wrap mt-4">
+                            <span>そうだ、</span>
+                            <span>読んだ記録を手軽に楽しく付けられる</span>
+                            <span>サービスを</span>
+                            <span>つくってみよう。</span>
                         </p>
                         <p class="d-flex justify-content-start flex-wrap mt-4">
                             <span>読んだ記録をつけていくことで、</span>

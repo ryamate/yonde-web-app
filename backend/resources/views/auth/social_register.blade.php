@@ -32,7 +32,7 @@
                         <input class="form-control" type="text" id="nickname" name="nickname" placeholder="ユーザーネームを入力"
                             required value="{{ old('nickname') }}">
                         <ul class="text-dark small">
-                            <li>～50文字</li>
+                            <li>50文字以内</li>
                         </ul>
                     </div>
 
@@ -41,10 +41,20 @@
                         <input class="form-control" type="email" id="email" name="email" value="{{ $email }}" disabled>
                     </div>
 
-                    <input type="checkbox" id="agree" required>
                     <label for="agree" class="small" role="button">
-                        プライバシーポリシーを<a href="{{ route('privacy') }}" class="text-teal1" target="_blank"
-                            title="プライバシーポリシーをブラウザの別画面で開く">確認</a>し、同意しました。<span class="text-danger">*</span>
+                        <span class="d-flex flex-wrap">
+                            <span>
+                                <input type="checkbox" id="agree" required>
+                                <a href="{{ route('privacy') }}" class="text-teal1 ml-2" target="_blank"
+                                    title="プライバシーポリシーをブラウザの別画面で開く">プライバシーポリシー</a>
+                                <span>を確認し、</span>
+                            </span>
+                            <span>同意</span>
+                            <span>
+                                <span>
+                                    <span>しました。</span><span class="text-danger">*</span>
+                                </span>
+                            </span>
                     </label>
 
                     <button type="submit" class="btn btn-block bg-pink text-decoration-none text-white mt-4">

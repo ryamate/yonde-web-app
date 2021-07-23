@@ -103,11 +103,13 @@
 </div>
 @endguest
 
-<div class="container-xl border-top pt-4">
-    <h4><b>みんなの新しい絵本</b></h4>
+<div class="container-xl border-top pt-4 bg-paper">
+    <h4 class="mb-0 pb-1">
+        <b>みんなの新しい絵本</b>
+    </h4>
 </div>
-<div id="carousel-card-1" class="carousel slide pb-4 border-bottom" data-ride="carousel" data-wrap="true"
-    style="min-height: 250px">
+<div id="carousel-card-1" class="carousel slide pb-4 border-bottom bg-paper" data-ride="carousel" data-wrap="true"
+    style="min-height: 200px">
     <ol class="carousel-indicators">
         <li data-target="#carousel-card-1" data-slide-to="0" class="active bg-teal1"></li>
         <li data-target="#carousel-card-1" data-slide-to="1" class="bg-teal1"></li>

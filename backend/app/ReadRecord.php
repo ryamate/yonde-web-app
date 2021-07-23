@@ -21,6 +21,11 @@ class ReadRecord extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function family(): BelongsTo
+    {
+        return $this->belongsTo('App\Family');
+    }
+
     public function pictureBook(): BelongsTo
     {
         return $this->belongsTo('App\PictureBook');

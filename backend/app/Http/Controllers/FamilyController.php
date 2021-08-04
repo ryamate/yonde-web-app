@@ -21,7 +21,7 @@ class FamilyController extends Controller
     }
 
     /**
-     * 家族のタイムライン画面表示
+     * 家族の登録絵本タイムライン画面表示
      */
     public function index(string $name)
     {
@@ -125,7 +125,7 @@ class FamilyController extends Controller
     }
 
     /**
-     * 登録絵本の詳細画面表示（家族の登録情報、読み聞かせ記録一覧）
+     * 登録絵本一件についての詳細画面表示（家族の登録情報、読み聞かせ記録一覧）
      */
     public function show(string $name, PictureBook $pictureBook)
     {
@@ -178,6 +178,9 @@ class FamilyController extends Controller
         return $data;
     }
 
+    /**
+     * 登録絵本検索バー
+     */
     private function booksSearchingTab($pictureBooks)
     {
         return $pictureBooks->get()

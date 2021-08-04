@@ -58,7 +58,7 @@ class ChildController extends Controller
     }
 
     /**
-     * お子さま追加フォーム画面表示
+     * お子さま情報の追加フォーム画面表示
      */
     public function create()
     {
@@ -66,7 +66,7 @@ class ChildController extends Controller
     }
 
     /**
-     * お子さまを追加する
+     * お子さま情報を追加する
      */
     public function store(ChildRequest $request, Child $child)
     {
@@ -78,7 +78,7 @@ class ChildController extends Controller
     }
 
     /**
-     * お子さま情報編集画面表示
+     * お子さま情報の編集フォーム画面表示
      */
     public function edit(string $child_id)
     {

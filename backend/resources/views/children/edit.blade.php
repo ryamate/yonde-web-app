@@ -11,6 +11,13 @@
         <h3 class="text-center">
             お子さま情報
         </h3>
+
+        @if (Auth::id() === config('const.GUEST_USER_ID'))
+        <p class="text-danger">
+            ※ゲストユーザーは、お子さま情報を編集できません。
+        </p>
+        @endif
+
         <div class="card shadow-sm">
             <div class="card-body">
 
@@ -18,9 +25,11 @@
 
                 <form action="{{ route('children.update', ['id' => $child->id]) }}" method="post">
                     @include('children.form')
+                    @if (Auth::id() !== config('const.GUEST_USER_ID'))
                     <button type="submit" class="btn btn-block btn-teal1  mt-4">
                         <b>編集完了する</b>
                     </button>
+                    @endif
                     <button type="button" onClick="history.back()"
                         class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-3">
                         <i class="fas fa-arrow-left mr-1"></i>戻る
@@ -45,6 +54,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    @if (Auth::id() !== config('const.GUEST_USER_ID'))
                     <form method="POST" action="{{ route('children.destroy', ['id' => $child->id]) }}">
                         @csrf
                         @method('DELETE')
@@ -56,6 +66,14 @@
                             <button type="submit" class="btn btn-danger">削除する</button>
                         </div>
                     </form>
+                    @else
+                    <div class="modal-body">
+                        ゲストユーザーは、お子さまの情報を削除できません。
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <a class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

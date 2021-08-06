@@ -12,6 +12,12 @@
             お子さま追加
         </h3>
 
+        @if (Auth::id() === config('const.GUEST_USER_ID'))
+        <p class="text-danger">
+            ※ゲストユーザーは、お子さまを追加できません。
+        </p>
+        @endif
+
         <div class="card shadow-sm mb-4">
             <div class="card-body">
 
@@ -19,9 +25,11 @@
 
                 <form action="{{ route('children.store') }}" method="post">
                     @include('children.form')
+                    @if (Auth::id() !== config('const.GUEST_USER_ID'))
                     <button type="submit" class="btn btn-block btn-teal1 mt-4">
                         <b>追加完了する</b>
                     </button>
+                    @endif
                     <button type="button" onClick="history.back()"
                         class="btn btn-block bg-white btn-outline-teal1 text-decoration-none text-teal1 mt-3">
                         <i class="fas fa-arrow-left mr-1"></i>戻る

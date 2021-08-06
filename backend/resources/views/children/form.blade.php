@@ -3,7 +3,7 @@
     <div class="form-group">
         <label for="name">お子さまのお名前</label>
         <input autofocus class="form-control" type="text" id="name" value="{{ $child->name ?? old('name') }}"
-            name="name" required />
+            name="name" required {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />
         <ul class="text-dark small">
             <li>半角・全角スペース、半角スラッシュ(/)は使用できません</li>
         </ul>
@@ -36,6 +36,7 @@
     <div class="form-group">
         <label for="birthday">お誕生日</label>
         <input autofocus class="form-control" type="date" id="birthday"
-            value="{{ $child->birthday ?? old('birthday') }}" name="birthday" required />
+            value="{{ $child->birthday ?? old('birthday') }}" name="birthday" required
+            {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />
     </div>
 </section>

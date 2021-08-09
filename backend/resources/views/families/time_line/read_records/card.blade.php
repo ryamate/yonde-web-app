@@ -40,7 +40,7 @@
                         <a href="{{ route('families.show', [
                         'name' => $family->name,
                         'picture_book' => $readRecord->pictureBook,
-                        ]) }}" class="text-teal1 mr-4"
+                        ]) }}" class="text-teal1 mr-2"
                             title="作者：{{ $readRecord->pictureBook->authors !== null ? $readRecord->pictureBook->authors : '' }}">
                             <b>{{ $readRecord->pictureBook->title }}</b>
                         </a>
@@ -57,6 +57,17 @@
                         @endif
 
                         @if (Auth::user()->family_id === $readRecord->pictureBook->family_id)
+                        @if ($hasReadRecord)
+                        <a class="btn m-0 p-0 shadow-none"
+                            href="{{ route('read_records.create', ['picture_book_id' => $readRecord->picture_book_id]) }}"
+                            title="よんだよ記録をする">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle text-teal1 text-shadow fa-stack-2x"></i>
+                                <i class="fas fa-book-open text-paper fa-stack-1x"></i>
+                            </span>
+                        </a>
+                        @endif
+
                         <!-- dropdown (edit & delete) -->
                         <div class="btn-group dropleft drop-hover d-flex ml-auto">
                             <button type="button" class="btn btn-sm btn-white dropdown-toggle pl-0 text-secondary"
@@ -66,32 +77,20 @@
                                 </span>
                             </button>
 
-                            @if ($hasReadRecord)
-                            <div class="dropdown-menu mr-0 pt-0">
-                                <a class="dropdown-item bg-teal1 text-white small text-center py-2"
-                                    href="{{ route('read_records.create', ['picture_book_id' => $readRecord->picture_book_id]) }}">
-                                    <i class="fas fa-book-open mr-1"></i><b>よんだよ</b>
+
+                            <div class="dropdown-menu mr-0">
+                                <a class="dropdown-item small text-center text-teal1"
+                                    href="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}">
+                                    <i class="fas fa-pen mr-1"></i>よんだよ編集
                                 </a>
-                                <div class="dropdown-divider mt-0"></div>
-                                @else
-                                <div class="dropdown-menu mr-0">
-                                    @endif
-                                    <a class="dropdown-item small text-center text-teal1"
-                                        href="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}">
-                                        <i class="fas fa-pen mr-1"></i>よんだよ編集
-                                    </a>
 
-                                    <div class="dropdown-divider"></div>
+                                <div class="dropdown-divider"></div>
 
-                                    <a class="dropdown-item small text-center text-pink" data-toggle="modal"
-                                        data-target="#modal-delete-{{ $readRecord->id }}" style="cursor: pointer;">
-                                        <i class="fas fa-eraser mr-1"></i>よんだよ削除
-                                    </a>
-                                    @if ($hasReadRecord)
-                                </div>
-                                @else
+                                <a class="dropdown-item small text-center text-pink" data-toggle="modal"
+                                    data-target="#modal-delete-{{ $readRecord->id }}" style="cursor: pointer;">
+                                    <i class="fas fa-eraser mr-1"></i>よんだよ削除
+                                </a>
                             </div>
-                            @endif
                         </div>
                         <!-- dropdown -->
 

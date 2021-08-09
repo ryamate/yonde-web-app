@@ -33,32 +33,34 @@
              }}" class="text-teal1 mr-2">
                         <b>{{ $pictureBook->title }}</b>
                     </a>
-                </div>
-                <div class="card-text d-flex align-items-center flex-wrap">
-                    <span class="text-secondary small mb-1">
-                        @if ($pictureBook->authors !== null)
-                        {{ $pictureBook->authors }}
-                        @endif
-                    </span>
                     @if( Auth::user()->family_id === $pictureBook->family_id )
+                    <a class="btn m-0 p-0 shadow-none d-flex align-items-center flex-wrap"
+                        href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}"
+                        title="よんだよ記録をする">
+                        <span class="fa-stack fa-lg">
+                            <i class="fas fa-circle text-teal1 text-shadow fa-stack-2x"></i>
+                            <i class="fas fa-book-open text-paper fa-stack-1x"></i>
+                        </span>
+                    </a>
                     <!-- dropdown (edit & delete) -->
-                    <div class="btn-group drop-hover d-flex ml-auto">
-                        <a class="btn btn-sm btn-teal1"
-                            href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}">
-                            <i class="fas fa-book-open mr-1"></i><b>よんだよ</b>
-                        </a>
-                        <button type="button" class="btn btn-sm btn-teal1 dropdown-toggle dropdown-toggle-split"
+                    <div class="btn-group dropleft drop-hover d-flex ml-auto">
+                        <button type="button" class="btn btn-sm btn-white dropdown-toggle pl-0 text-secondary"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="sr-only">Toggle Dropdown</span>
+                            <span class="mx-1">
+                                <i class="fas fa-edit"></i>
+                            </span>
                         </button>
 
-                        <div class="dropdown-menu dropdown-menu-right mt-0 mr-0">
-                            <a class="dropdown-item btn btn-white btn-sm text-center"
+
+                        <div class="dropdown-menu mr-0">
+                            <a class="dropdown-item small text-center text-dark"
                                 href="{{ route("picture_books.edit", ['picture_book' => $pictureBook->id]) }}">
-                                <i class="fas fa-pen text-dark mr-1"></i>レビュー編集
+                                <i class="fas fa-pen mr-1"></i>レビュー編集
                             </a>
+
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item btn btn-white btn-sm text-pink text-center" data-toggle="modal"
+
+                            <a class="dropdown-item small text-center text-pink" data-toggle="modal"
                                 data-target="#modal-delete-{{ $pictureBook->id }}" style="cursor: pointer;">
                                 <i class="fas fa-trash-alt mr-1"></i>本棚から削除
                             </a>
@@ -92,6 +94,14 @@
                     </div>
                     <!-- modal -->
                     @endif
+                </div>
+
+                <div class="card-text d-flex align-items-center flex-wrap">
+                    <span class="text-secondary small mb-1">
+                        @if ($pictureBook->authors !== null)
+                        {{ $pictureBook->authors }}
+                        @endif
+                    </span>
                 </div>
 
                 <div class="card-title mb-0">

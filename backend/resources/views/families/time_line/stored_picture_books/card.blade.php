@@ -26,24 +26,36 @@
 
         <div class="col-sm-9 d-flex align-items-top">
             <div class="card-body">
-                <div class="card-title mb-0 d-flex align-items-center flex-wrap">
-                    <a href="{{ $hasStored
+                <div class="d-flex align-items-center flex-wrap">
+                    <div>
+                        <div class="card-title mb-0">
+                            <a href="{{ $hasStored
             ? route('families.show', ['name' => $family->name,'picture_book' => $pictureBook])
             : route('picture_books.show', ['picture_book' => $pictureBook])
              }}" class="text-teal1 mr-2">
-                        <b>{{ $pictureBook->title }}</b>
-                    </a>
+                                <b>{{ $pictureBook->title }}</b>
+                            </a>
+                        </div>
+                        <div class="card-text">
+                            <span class="text-secondary small mb-1">
+                                @if ($pictureBook->authors !== null)
+                                {{ $pictureBook->authors }}
+                                @endif
+                            </span>
+                        </div>
+                    </div>
+
                     @if( Auth::user()->family_id === $pictureBook->family_id )
-                    <a class="btn m-0 p-0 shadow-none d-flex align-items-center flex-wrap"
+                    <a class="btn m-0 p-0 shadow-none ml-2"
                         href="{{ route('read_records.create', ['picture_book_id' => $pictureBook->id]) }}"
                         title="よんだよ記録をする">
                         <span class="fa-stack fa-lg">
-                            <i class="fas fa-circle text-teal1 text-shadow fa-stack-2x"></i>
-                            <i class="fas fa-book-open text-paper fa-stack-1x"></i>
+                            <i class="fas fa-circle text-paper text-shadow fa-stack-2x"></i>
+                            <i class="fas fa-book-open text-teal1 fa-stack-1x"></i>
                         </span>
                     </a>
                     <!-- dropdown (edit & delete) -->
-                    <div class="btn-group dropleft drop-hover d-flex ml-auto">
+                    <div class="btn-group dropdown drop-hover ml-auto">
                         <button type="button" class="btn btn-sm btn-white dropdown-toggle pl-0 text-secondary"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mx-1">
@@ -52,7 +64,7 @@
                         </button>
 
 
-                        <div class="dropdown-menu mr-0">
+                        <div class="dropdown-menu dropdown-menu-right mt-0">
                             <a class="dropdown-item small text-center text-dark"
                                 href="{{ route("picture_books.edit", ['picture_book' => $pictureBook->id]) }}">
                                 <i class="fas fa-pen mr-1"></i>レビュー編集
@@ -96,13 +108,6 @@
                     @endif
                 </div>
 
-                <div class="card-text d-flex align-items-center flex-wrap">
-                    <span class="text-secondary small mb-1">
-                        @if ($pictureBook->authors !== null)
-                        {{ $pictureBook->authors }}
-                        @endif
-                    </span>
-                </div>
 
                 <div class="card-title mb-0">
                     <a href="{{ route('picture_books.show', ['picture_book' => $pictureBook]) }}" class="text-dark">

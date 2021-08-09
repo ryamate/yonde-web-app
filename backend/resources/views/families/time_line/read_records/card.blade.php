@@ -62,14 +62,14 @@
                             href="{{ route('read_records.create', ['picture_book_id' => $readRecord->picture_book_id]) }}"
                             title="よんだよ記録をする">
                             <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle text-teal1 text-shadow fa-stack-2x"></i>
-                                <i class="fas fa-book-open text-paper fa-stack-1x"></i>
+                                <i class="fas fa-circle text-paper text-shadow fa-stack-2x"></i>
+                                <i class="fas fa-book-open text-teal1 fa-stack-1x"></i>
                             </span>
                         </a>
                         @endif
 
                         <!-- dropdown (edit & delete) -->
-                        <div class="btn-group dropleft drop-hover d-flex ml-auto">
+                        <div class="btn-group dropdown drop-hover ml-auto">
                             <button type="button" class="btn btn-sm btn-white dropdown-toggle pl-0 text-secondary"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mx-1">
@@ -78,7 +78,7 @@
                             </button>
 
 
-                            <div class="dropdown-menu mr-0">
+                            <div class="dropdown-menu dropdown-menu-right mt-0">
                                 <a class="dropdown-item small text-center text-teal1"
                                     href="{{ route("read_records.edit", ['read_record' => $readRecord->id]) }}">
                                     <i class="fas fa-pen mr-1"></i>よんだよ編集

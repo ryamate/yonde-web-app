@@ -31,9 +31,7 @@
                         <label for="nickname">ユーザーネーム</label><span class="text-danger">*</span>
                         <input class="form-control" type="text" id="nickname" name="nickname" placeholder="ユーザーネームを入力"
                             required value="{{ old('nickname') }}">
-                        <ul class="text-dark small">
-                            <li>50文字以内</li>
-                        </ul>
+                        <p class="text-muted small ml-1">50文字以内</p>
                     </div>
 
                     <div class="form-group">

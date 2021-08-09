@@ -32,9 +32,7 @@
                         <input autofocus class="form-control" type="text" id="name"
                             value="{{ old('name',$family->name) }}" name="name" required
                             {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />
-                        <ul class="text-dark small">
-                            <li>半角英数小文字：3～16文字</li>
-                        </ul>
+                        <p class="text-muted small ml-1">半角英数小文字：3～16文字</p>
                     </div>
 
                     <div class="form-group">
@@ -42,18 +40,14 @@
                         <input autofocus class="form-control" type="text" id="nickname"
                             value="{{ old('nickname',$family->nickname) }}" name="nickname" required
                             {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />
-                        <ul class="text-dark small">
-                            <li>50文字以内</li>
-                        </ul>
+                        <p class="text-muted small ml-1">50文字以内</p>
                     </div>
 
                     <div class="form-group">
                         <label for="introduction">家族紹介</label>
                         <textarea type="text" name="introduction" id="introduction" rows="5" class="form-control"
                             {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }}>{{ $family->introduction ?? old('introduction') }}</textarea>
-                        <ul class="text-dark small">
-                            <li>160文字以内</li>
-                        </ul>
+                        <p class="text-muted small ml-1">160文字以内</p>
                     </div>
 
                     @if (Auth::id() !== config('const.GUEST_USER_ID'))

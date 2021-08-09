@@ -81,10 +81,10 @@
                                         <i class="fas fa-star"></i>
                                         <b>{{ $pictureBook->five_star_avg }}</b>
                                     </span>
-                                    <a href="" class="text-info mx-2" title="レビュー件数">
+                                    <span class="text-info mx-2" title="レビュー件数">
                                         <i class="fas fa-pen"></i>
                                         <b>{{ $pictureBook->review_count }}</b><span class="text-dark">件</span>
-                                    </a>
+                                    </span>
                                 </span>
                             </div>
                             @if ($pictureBook->description !== null)

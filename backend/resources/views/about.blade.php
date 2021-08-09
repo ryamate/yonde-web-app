@@ -152,7 +152,6 @@
             </div>
         </div>
 
-        {{-- pc --}}
         <div style="margin-top: 74px;">
             <div class="card-deck row no-gutters">
                 <div class="col-md-4">
@@ -170,11 +169,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card border-0 p-4">
-                        <div class="d-flex justify-content-end">
-                            <img src="{{ asset('image/index_3-2.png') }}" width="100%" alt="" style="max-width: 250px">
-                        </div>
+                        <img src="{{ asset('image/index_3-2.png') }}" width="100%" alt="" style="max-width: 250px">
                         <div class="card-body p-0 text-secondary">
-                            <p class="card-title text-right text-md-left">
+                            <p class="card-title">
                                 <b>読み聞かせの記録・管理</b>
                             </p>
                             <p class="card-text small">
@@ -202,18 +199,24 @@
 
             @guest
             {{-- pc --}}
-            <div class="text-center d-none d-md-block border-bottom pb-4 mx-5">
+            <div class="text-center d-none d-md-block border-bottom py-4 mx-5">
+                <p class="text-mocha">
+                    サンプル本棚をみてみる<i class="fas fa-chevron-down ml-2"></i>
+                </p>
                 <a href="{{ route('login.guest') }}" class="btn btn-outline-mocha rounded-pill px-5 my-2" role="button"
-                    title="ゲストユーザーとしてログイン">
-                    サンプル本棚をみてみる<i class="fas fa-chevron-right ml-3"></i>
+                    title="ゲストユーザーとしてログインする">
+                    <b>ゲストユーザーログイン</b>
                 </a>
             </div>
             {{-- smart phone --}}
             <div class="container">
                 <div class="text-center d-block d-md-none border-bottom py-4">
+                    <p class="text-mocha">
+                        サンプル本棚をみてみる<i class="fas fa-chevron-down ml-2"></i>
+                    </p>
                     <a href="{{ route('login.guest') }}" class="btn btn-block btn-outline-mocha rounded-pill my-2"
-                        role="button" title="ゲストユーザーとしてログイン">
-                        サンプル本棚をみてみる<i class="fas fa-chevron-right ml-1"></i>
+                        role="button" title="ゲストユーザーとしてログインする">
+                        <b>ゲストユーザーログイン</b>
                     </a>
                 </div>
             </div>

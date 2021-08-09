@@ -15,7 +15,8 @@
                             @else
                             <i class="far fa-user-circle fa-2x text-secondary"></i>
                             @endif
-                            <div class="dropdown-menu p-1 text-center border-linen" style="max-width: 180px">
+                            <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center border-linen"
+                                style="max-width: 180px">
                                 <p class="mb-0">
                                     <b>{{ $familyUser->nickname }}</b>
                                 </p>
@@ -49,11 +50,13 @@
                             @endif
                             <div class="dropdown-menu dropdown-menu-center p-1 mt-0 text-center border-linen"
                                 style="max-width: 180px">
+                                @auth
                                 @if ($child->family_id === Auth::user()->family_id)
                                 <p class="mb-0">
                                     <b>{{ $child->name }}</b>
                                 </p>
                                 @endif
+                                @endauth
 
                                 @if ($child->birthday !== null)
                                 <p class="mb-0">

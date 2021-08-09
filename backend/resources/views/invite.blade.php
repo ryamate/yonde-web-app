@@ -40,14 +40,8 @@
                         <input class="form-control" type="email" id="email" name="email" required
                             placeholder="メールアドレスを入力" value="{{ old('email') }}"
                             {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }}>
-                        <ul class="text-dark small">
-                            <li>
-                                招待したい家族のメールアドレスを入力してください。
-                            </li>
-                            <li>
-                                メール送信後、24時間以内に登録してください。
-                            </li>
-                        </ul>
+                        <p class="text-muted small ml-1 mb-0">※招待したい家族のメールアドレスを入力してください。</p>
+                        <p class="text-muted small ml-1">※メール送信後、24時間以内に登録してください。</p>
                     </div>
 
                     @if (Auth::id() !== config('const.GUEST_USER_ID'))

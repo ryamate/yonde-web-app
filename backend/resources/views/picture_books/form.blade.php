@@ -48,8 +48,6 @@
         <label for="review">レビュー・感想</label>
         <textarea type="text" name="review" id="review" rows="5"
             class="form-control">{{ $pictureBook->review ?? old('review') }}</textarea>
-        <ul class="text-dark small">
-            <li>1000文字以内</li>
-        </ul>
+        <p class="text-muted small ml-1">1000文字以内</p>
     </div>
 </section>

@@ -39,9 +39,7 @@
                         <input class="form-control" type="password" id="password" name="password" required
                             placeholder="新しいパスワードを作成"
                             {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }}>
-                        <ul class="text-dark small">
-                            <li>半角英数・記号：8文字以上</li>
-                        </ul>
+                        <p class="text-muted small ml-1">半角英数・記号：8文字以上</p>
                     </div>
                     <div class="form-group">
                         <label for="password_confirmation">新しいパスワード(確認)</label>

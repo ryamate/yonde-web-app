@@ -61,9 +61,7 @@
                         <span class="text-danger">*</span>
                         <textarea type="text" name="body" id="body" rows="5" class="form-control"
                             required>{{ old('body') }}</textarea>
-                        <ul class="text-dark small">
-                            <li>1000文字以内</li>
-                        </ul>
+                        <p class="text-muted small ml-1">1000文字以内</p>
                     </div>
 
                     <label for="agree" class="small" role="button">

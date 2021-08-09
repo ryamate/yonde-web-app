@@ -31,9 +31,7 @@
                         <label for="email">メールアドレス</label>
                         <input class="form-control" type="email" id="email" name="email" required
                             placeholder="メールアドレスを入力" value="{{ old('email') }}">
-                        <ul class="text-dark small">
-                            <li>ご登録のメールアドレスを入力してください。</li>
-                        </ul>
+                        <p class="text-muted small ml-1">ご登録のメールアドレスを入力してください。</p>
                     </div>
 
                     <button type="submit" class="btn btn-block btn-teal1 mt-4">

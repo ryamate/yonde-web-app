@@ -3,9 +3,9 @@
         <div class="col-sm-3">
             <div class="card-body">
                 <div class="d-flex justify-content-start align-items-center flex-wrap">
-                    @foreach ($reviewedPictureBook->family->users as $familyUser)
+                    @foreach ($pictureBook->family->users as $familyUser)
                     @auth
-                    <a href="{{ route('families.bookshelf', ["name" => $reviewedPictureBook->family->name]) }}"
+                    <a href="{{ route('families.bookshelf', ["name" => $pictureBook->family->name]) }}"
                         class="text-decoration-none">
                         @endauth
                         <span class="btn-group drop-hover">
@@ -31,9 +31,9 @@
                     </a>
                     @endauth
                     @endforeach
-                    @foreach ($reviewedPictureBook->family->children->sortBy('birthday') as $child)
+                    @foreach ($pictureBook->family->children->sortBy('birthday') as $child)
                     @auth
-                    <a href="{{ route('families.bookshelf', ["name" => $reviewedPictureBook->family->name]) }}"
+                    <a href="{{ route('families.bookshelf', ["name" => $pictureBook->family->name]) }}"
                         class="text-decoration-none">
                         @endauth
                         <span class="btn-group drop-hover">
@@ -90,34 +90,34 @@
                     <span class="d-flex justify-content-start flex-wrap my-2">
                         <span class="small">
                             @auth
-                            <a href="{{ route('families.bookshelf', ["name" => $reviewedPictureBook->family->name]) }}"
+                            <a href="{{ route('families.bookshelf', ["name" => $pictureBook->family->name]) }}"
                                 class="text-dark">
                                 @endauth
-                                <b>{{ $reviewedPictureBook->family->nickname }}ファミリー</b>
+                                <b>{{ $pictureBook->family->nickname }}ファミリー</b>
                                 @auth
                             </a>
                             @endauth
                             のレビュー
                         </span>
                         <span
-                            class="d-flex flex-wrap ml-auto mr-2 text-muted small">{{ $reviewedPictureBook->updated_at->format('Y年m月d日') }}</span>
+                            class="d-flex flex-wrap ml-auto mr-2 text-muted small">{{ $pictureBook->updated_at->format('Y年m月d日') }}</span>
                     </span>
                 </div>
                 {{-- よみきかせ状況 --}}
                 <div class="card-text pt-0 pl-0 pb-2 d-flex align-items-end flex-wrap">
                     <span class="small text-secondary mb-0 mr-4">
-                        @if ($reviewedPictureBook->read_status === 0)
+                        @if ($pictureBook->read_status === 0)
                         よみきかせ状況：<span class="badge badge-secondary">きになる</span>
-                        @elseif($reviewedPictureBook->read_status === 1)
+                        @elseif($pictureBook->read_status === 1)
                         よみきかせ状況：<span class="badge badge-teal1">よんだ</span>
                         @endif
                     </span>
-                    @if ($reviewedPictureBook->five_star_rating !== 0)
+                    @if ($pictureBook->five_star_rating !== 0)
                     <span class="small text-lemon-tea">
-                        @for ($i = 0; $i < (int)$reviewedPictureBook->five_star_rating; $i++)
+                        @for ($i = 0; $i < (int)$pictureBook->five_star_rating; $i++)
                             <i class="fas fa-star"></i>
                             @endfor
-                            @for ($i = 0; $i < 5 - (int)$reviewedPictureBook->five_star_rating;
+                            @for ($i = 0; $i < 5 - (int)$pictureBook->five_star_rating;
                                 $i++)
                                 <i class="far fa-star"></i>
                                 @endfor
@@ -130,10 +130,9 @@
 
                     @auth
                     <span class="small ml-auto mr-2">
-                        <review-like :initial-is-liked-by='@json($reviewedPictureBook->isLikedBy(Auth::user()))'
-                            :initial-count-likes='@json($reviewedPictureBook->count_likes)'
-                            :authorized='@json(Auth::check())'
-                            endpoint="{{ route('picture_books.like', ['picture_book' => $reviewedPictureBook]) }}">
+                        <review-like :initial-is-liked-by='@json($pictureBook->isLikedBy(Auth::user()))'
+                            :initial-count-likes='@json($pictureBook->count_likes)' :authorized='@json(Auth::check())'
+                            endpoint="{{ route('picture_books.like', ['picture_book' => $pictureBook]) }}">
                         </review-like>
                     </span>
                     @endauth
@@ -142,7 +141,7 @@
                 {{-- レビュー・感想 --}}
                 <div class="card-body pt-0 pb-2 pl-0">
                     <p class="card-text" style="font-size: 14px; ">
-                        {!! nl2br(e($reviewedPictureBook->review, false)) !!}
+                        {!! nl2br(e($pictureBook->review, false)) !!}
                     </p>
                 </div>
             </div>

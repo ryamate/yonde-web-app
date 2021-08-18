@@ -136,8 +136,8 @@
             <div>
                 <h5>みんなのレビュー</h5>
             </div>
-            @if ($pictureBook->review_count !== 0)
-            @foreach ($reviewedPictureBooks as $reviewedPictureBook)
+            @if ($pictureBook->stored_count !== 0)
+            @foreach ($storedPictureBooks as $pictureBook)
 
             @include('picture_books.reviews.card')
 

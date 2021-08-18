@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', $child->name . '（お子さま）のページ-よんで-')
+@section('title', 'お子さまのページ-よんで-')
 
 @section('content')
 
@@ -18,7 +18,11 @@
                     </li>
                     @auth
                     <li class="breadcrumb-item active" aria-current="page">
+                        @if ($child->family_id === Auth::user()->family_id)
                         {{ $child->name }}（お子さま）のページ
+                        @else
+                        お子さまのページ
+                        @endif
                     </li>
                     @endauth
                 </ol>

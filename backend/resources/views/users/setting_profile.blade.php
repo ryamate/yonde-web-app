@@ -85,7 +85,7 @@
             </div>
 
             <div class="card-body py-2">
-                <p class="card-title text-secondary small mb-1">ニックネーム</p>
+                <p class="card-title text-secondary small mb-1">ユーザーネーム</p>
                 <p class="card-text">{{ $user->nickname }}</p>
             </div>
 

@@ -51,7 +51,7 @@
                         </div>
                         <div class="container p-2">
                             <p class="text-shadow">
-                                　Web上の本棚にいれた絵本の、読み聞かせ記録・管理をして、家族と共有できるサービスです。
+                                　Web上の本棚に登録した絵本の、読み聞かせ記録・管理をして、家族と共有できるサービスです。
                             </p>
                             @guest
                             <div class="text-center">
@@ -82,9 +82,9 @@
         <!-- pc -->
         <div style="margin-top: 74px;">
             <div class="container mt-4 mb-4 text-center d-none d-md-block">
-                <h2 class="d-flex justify-content-center flex-wrap">
+                <h2 class="d-flex justify-content-center flex-wrap pb-4">
                     <span>絵本の読み聞かせを</span>
-                    <span>かんたんに</span>
+                    <span>簡単に</span>
                     <span>記録・管理できる</span>
                     <span>サービス</span>
                 </h2>
@@ -95,7 +95,7 @@
                 <p class="d-flex justify-content-center flex-wrap mt-4">
                     <span>こどもが絵本を読んでほしいときの</span>
                     <span>お決まりの</span>
-                    <span>ことば。</span><br><br>
+                    <span>言葉。</span><br><br>
                 </p>
                 <p class="d-flex justify-content-center flex-wrap mt-4">
                     <span> こどもは、たくさんの絵本を読んでもらう。</span>
@@ -112,14 +112,14 @@
                     <span>家族と共有しておくと、</span>
                     <span>いつでも記録から、</span>
                     <span>あの日読んだ記憶を</span>
-                    <span>思い出せる。</span>
+                    <span>振り返ることができる。</span>
                 </p>
             </div>
             <!-- smart phone -->
             <div class="container mt-2 mb-4 text-left d-block d-md-none">
                 <h4 class="d-flex justify-content-start flex-wrap mb-4">
                     <span>絵本の読み聞かせを</span>
-                    <span>かんたんに</span>
+                    <span>簡単に</span>
                     <span>記録・管理できる</span>
                     <span>サービス</span>
                     <span>『よんで』</span>
@@ -130,10 +130,10 @@
                 <p class="d-flex justify-content-start flex-wrap mt-4">
                     <span>こどもが絵本を読んでほしいときの</span>
                     <span>お決まりの</span>
-                    <span>ことば。</span><br><br>
+                    <span>言葉。</span><br><br>
                 </p>
                 <p class="d-flex justify-content-start flex-wrap mt-4">
-                    <span> こどもは、たくさんの絵本を読んでもらう。</span>
+                    <span>こどもは、たくさんの絵本を読んでもらう。</span>
                     <span>同じ絵本を何度も読むこともある。</span>
                 </p>
                 <p class="d-flex justify-content-start flex-wrap mt-4">
@@ -147,7 +147,7 @@
                     <span>家族と共有しておくと、</span>
                     <span>いつでも記録から、</span>
                     <span>あの日読んだ記憶を</span>
-                    <span>思い出せる。</span>
+                    <span>振り返ることができる。</span>
                 </p>
             </div>
         </div>
@@ -162,7 +162,7 @@
                                 <b>絵本のWeb本棚</b>
                             </p>
                             <p class="card-text small">
-                                　気になる絵本、これまで読んだ絵本をいれることができます。他の家族のWeb本棚を見ていると、新しい絵本が発見できるかもしれません。
+                                気になる絵本やこれまで読んだ絵本をいれることができます。他の家族の本棚を見て、新しい絵本が発見できるかもしれません。
                             </p>
                         </div>
                     </div>
@@ -175,7 +175,7 @@
                                 <b>読み聞かせの記録・管理</b>
                             </p>
                             <p class="card-text small">
-                                　絵本の読み聞かせをした記録をつけることができます。いつ読んだか、どんな反応だったか、具体的な記録が簡単にできます。
+                                絵本の読み聞かせをした記録をつけることができます。いつ読んだか、どんな反応だったか、具体的な記録が簡単にできます。
                             </p>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
                                 <b>家族と共有</b>
                             </p>
                             <p class="card-text small">
-                                　本棚・読み聞かせ記録を家族と共有することができます。絵本を読んだ記録を、家族の思い出、こどもの成長の記録として残せます。
+                                本棚・読み聞かせ記録を家族と共有することができます。絵本を読んだ記録を、家族の思い出、こどもの成長の記録として残せます。
                             </p>
                         </div>
                     </div>
@@ -230,8 +230,8 @@
                             <b>サービス名に込めた想い</b>
                         </h3>
                         <p class="d-flex justify-content-center flex-wrap mt-4">
-                            <span>こどもに「よんで」と言われるとき、</span>
-                            <span>こころよく読んであげられないときがあった。</span>
+                            <span>こどもが「よんで」と言うとき、</span>
+                            <span>快く読んであげられないときがあった。</span>
                         </p>
                         <p class="d-flex justify-content-center flex-wrap mt-4">
                             <span>疲れているとき、気分が乗らないときでも、</span>
@@ -241,7 +241,7 @@
                             <span>そうだ、</span>
                             <span>読んだ記録を手軽に楽しく付けられる</span>
                             <span>サービスを</span>
-                            <span>つくってみよう。</span>
+                            <span>作ってみよう。</span>
                         </p>
                         <p class="d-flex justify-content-center flex-wrap mt-4">
                             <span>読んだ記録をつけていくことで、</span>
@@ -264,8 +264,8 @@
                             <b>サービス名に込めた想い</b>
                         </h5>
                         <p class="d-flex justify-content-start flex-wrap mt-4">
-                            <span>こどもに「よんで」と言われるとき、</span>
-                            <span>こころよく読んであげられないときがあった。</span>
+                            <span>こどもが「よんで」と言うとき、</span>
+                            <span>快く読んであげられないときがあった。</span>
                         </p>
                         <p class="d-flex justify-content-start flex-wrap mt-4">
                             <span>疲れているとき、気分が乗らないときでも、</span>
@@ -275,7 +275,7 @@
                             <span>そうだ、</span>
                             <span>読んだ記録を手軽に楽しく付けられる</span>
                             <span>サービスを</span>
-                            <span>つくってみよう。</span>
+                            <span>作ってみよう。</span>
                         </p>
                         <p class="d-flex justify-content-start flex-wrap mt-4">
                             <span>読んだ記録をつけていくことで、</span>

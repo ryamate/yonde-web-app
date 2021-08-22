@@ -40,10 +40,10 @@
         {{-- smart phone --}}
         <div class="py-4 text-dark">
             <h3 class="text-center">
-                <b>よんで</b> とは
+                <span class="text-shadow">よんで</span> とは
             </h3>
             <small>
-                <b>　よんで は、Web上の本棚をかんたんに作成したり、絵本読み聞かせをしたときに記録して、いつでも記録を見返すことができるサービスです。</b>
+                <b>よんで は、Web上の本棚を簡単に作成したり、絵本読み聞かせをしたときに記録して、いつでも記録を振り返ることができるサービスです。</b>
             </small>
         </div>
 
@@ -60,7 +60,7 @@
                         <div class="col-6 d-flex align-items-center border-left">
                             <div class="card-body pr-0">
                                 <p class="card-text small">
-                                    　これから読みたい絵本、これまで読んだ絵本を、いれておくことができます。
+                                    気になる絵本や読んだ絵本を、登録しておくことができます。
                                 </p>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                         <div class="col-6 d-flex align-items-center pr-3">
                             <div class="card-body pl-0">
                                 <p class="card-text small">
-                                    　絵本の読み聞かせをした記録を、かんたんにつけることができます。
+                                    絵本の読み聞かせをした記録を、簡単につけることができます。
                                 </p>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                         <div class="col-6 d-flex align-items-center border-left">
                             <div class="card-body pr-0">
                                 <p class="card-text small">
-                                    　登録した絵本・読み聞かせ記録を、家族と共有することができます。
+                                    登録した絵本・読み聞かせ記録を、家族と共有することができます。
                                 </p>
                             </div>
                         </div>
@@ -133,7 +133,8 @@
         </h5>
     </div>
 </div>
-<div id="carousel-card-2" class="carousel slide pb-4 border-bottom bg-paper" data-ride="carousel" data-wrap="true">
+<div id="carousel-card-2" class="carousel slide pb-4 border-bottom bg-paper" data-ride="carousel" data-wrap="true"
+    data-touch="true" data-pause="hover">
     <ol class="carousel-indicators">
         <li data-target="#carousel-card-2" data-slide-to="0" class="active bg-teal1"></li>
         <li data-target="#carousel-card-2" data-slide-to="1" class="bg-teal1"></li>
@@ -352,7 +353,7 @@
     @endguest
     {{-- twitter account --}}
     <div class="mt-4 mx-4">
-        <p class="mb-0">かんりにんのつぶやき</p>
+        <p class="mb-0">管理人のつぶやき</p>
     </div>
     <div class="card mb-4 mx-4">
         <a class="twitter-timeline" data-lang="ja" data-height="400" data-theme="light"

@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="nickname">ニックネーム</label>
+                        <label for="nickname">ユーザーネーム</label>
                         <input class="form-control" type="text" id="nickname"
                             value="{{ old('nickname',$user->nickname) }}" name="nickname" required
                             {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />

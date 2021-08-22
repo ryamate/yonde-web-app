@@ -39,7 +39,7 @@
                     </div>
                     <div class="py-2">
                         <p class="card-title text-secondary mb-1">
-                            ニックネーム
+                            ユーザーネーム
                         </p>
                         <p class="card-text">
                             {{ $user->nickname }}

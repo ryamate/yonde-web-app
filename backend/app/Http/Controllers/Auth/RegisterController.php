@@ -57,7 +57,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nickname' => ['required', 'string', 'alpha_num', 'max:50'],
+            'nickname' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->whereNull('deleted_at'),],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -127,7 +127,7 @@ class RegisterController extends Controller
     {
 
         $request->validate([
-            'nickname' => ['required', 'string', 'alpha_num', 'max:50'],
+            'nickname' => ['required', 'string', 'max:50'],
             'token' => ['required', 'string'],
         ]);
 
@@ -200,7 +200,7 @@ class RegisterController extends Controller
         }
 
         $request->validate([
-            'nickname' => ['required', 'string', 'alpha_num', 'max:50'],
+            'nickname' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->whereNull('deleted_at'),],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);

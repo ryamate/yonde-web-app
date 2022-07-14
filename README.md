@@ -2,29 +2,51 @@
 
 ![home_top](https://user-images.githubusercontent.com/57904570/128121282-59478da6-d32b-449b-8389-c1f4c991eafa.png)
 
+<br><br>
+
+## ローカル環境でのアプリケーションの起動
+
+以下のコマンドを実行してアプリケーションを起動します。
+
+※ Git と Docker を使用します
+
+```bash
+git clone https://github.com/ryamate/yonde-web-app.git
+cd yonde-web-app
+make init
+docker compose exec web npm install
+docker compose exec web npm run dev
+```
+
+※ `make init` コマンドについては、Makefile を参照ください
+
+ブラウザで、下記にアクセスします。
+
+[http://localhost/](http://localhost/)
+
 <br>
-<br>
+
+### アプリケーションの削除
+
+```bash
+make destroy
+cd ..
+rm -rf yonde-web-app/
+```
+
+<br><br>
 
 ## 1. アプリ概要
 
 **絵本の読み聞かせの記録・管理を、家族と共有できる Web アプリケーション**です。
 
-URL ▶︎ https://yonde-iiyo.com/
-
--   スマホからもご覧いただけます。
--   「トップページ」や「ログイン画面」から**ゲストログイン**できます。
-
-    ![guest_login](https://user-images.githubusercontent.com/57904570/128120894-8cb3de67-6f5e-4175-965e-0222509c0f32.png)
-
-<br><br>
+<br>
 
 私の子どもが絵本大好きで、夫婦でたくさんの絵本を読み聞かせしてきました。
 
-<br><br>
-
 生活の一部になっている絵本の読み聞かせですが、以下のような困りごともありました。
 
-<br><br>
+<br>
 
 **絵本を読み聞かせしてきたことは成長とともに子どもは忘れてしまう。**
 
@@ -33,20 +55,14 @@ URL ▶︎ https://yonde-iiyo.com/
 **絵本選びに困ることがある。**
 
 <br>
-<br>
 
 これらの困りごとを解決したい、という思いでアプリを作成しました。
 
 <br>
 
-アプリ作成についての記事を Qiita に投稿していますので、ご覧いただけますと幸いです。
+アプリ作成についての記事を [Qiita](https://t.co/pqX4XJz5Tk?amp=1) に投稿していますので、ご覧いただけますと幸いです（ Qiita 記事には、アプリ自体のご紹介のほか、アプリ作成に至るまでの学習内容などをまとめております）。
 
-▶︎ [Qiita 記事](https://t.co/pqX4XJz5Tk?amp=1)
-
-※アプリ自体のご紹介のほか、アプリ作成に至るまでの学習内容などをまとめております。
-
-<br>
-<br>
+<br><br>
 
 ## 2. 使用技術
 
@@ -79,22 +95,19 @@ URL ▶︎ https://yonde-iiyo.com/
 -   PHPMyAdmin
 -   VSCode（Remote Development）
 
-<br>
-<br>
+<br><br>
 
 ## 3. インフラ構成図 & 自動デプロイの流れ
 
 ![20210731_Infra](https://user-images.githubusercontent.com/57904570/128120512-4821e512-0118-46e8-8e6c-fccc00988238.png)
 
-<br>
-<br>
+<br><br>
 
 ## 4. ER 図
 
 ![20210729_yonde_erd](https://user-images.githubusercontent.com/57904570/128120475-584212de-37a2-4401-8743-adb138d495bb.png)
 
-<br>
-<br>
+<br><br>
 
 ## 5. アプリの特徴
 
@@ -160,8 +173,7 @@ SendGrid を用いて、招待メールが自動送信されるよう機能を�
 -   プロフィール編集
 -   退会
 
-<br>
-<br>
+<br><br>
 
 #### （参考）絵本検索
 
@@ -181,14 +193,13 @@ Google Books API で書籍データを取得しています。なお、検索さ
 
 <br>
 
-#### （参考）ユーザー登録
+#### （参考）ゲストログイン
 
-![sign_in](https://user-images.githubusercontent.com/57904570/128122868-b62b7eca-aa6b-443d-9312-2a11b3f2e1bc.png)
+![guest_login](https://user-images.githubusercontent.com/57904570/128120894-8cb3de67-6f5e-4175-965e-0222509c0f32.png)
 
-<br>
-<br>
+<br><br>
 
-## 作者
+## 開発者
 
--   Ryuzo Yamate
+-   R.Yamate
 -   Twitter アカウント：https://twitter.com/r_yamate

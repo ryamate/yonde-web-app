@@ -103,11 +103,12 @@ class PictureBookController extends Controller
             ->Where('five_star_rating', '!=', 0)
             ->avg('five_star_rating'), 2, PHP_ROUND_HALF_UP);
 
-        $reviewedPictureBooks = $pictureBooks
-            ->where('google_books_id', $pictureBook->google_books_id)
-            ->whereNotNull('review');
+        $storedPictureBooks = $pictureBooks
+            ->where('google_books_id', $pictureBook->google_books_id);
+
         // レビュー数付加
-        $pictureBook->review_count = $reviewedPictureBooks->count();
+        $pictureBook->review_count =
+            $storedPictureBooks->whereNotNull('review')->count();
 
         // ログイン or 未ログイン
         if (Auth::user()) {
@@ -118,7 +119,7 @@ class PictureBookController extends Controller
 
         $data = [
             'pictureBook' => $pictureBook,
-            'reviewedPictureBooks' => $reviewedPictureBooks,
+            'storedPictureBooks' => $storedPictureBooks,
             'family' => $family,
         ];
 

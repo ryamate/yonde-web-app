@@ -40,18 +40,14 @@
                         <label for="nickname">ユーザーネーム</label><span class="text-danger">*</span>
                         <input class="form-control" type="text" id="nickname" name="nickname" placeholder="ユーザーネームを入力"
                             required value="{{ old('nickname') }}">
-                        <ul class="text-dark small">
-                            <li>50文字以内</li>
-                        </ul>
+                        <p class="text-muted small ml-1">50文字以内</p>
                     </div>
 
                     <div class="form-group">
                         <label for="password">パスワード</label><span class="text-danger">*</span>
                         <input class="form-control" type="password" placeholder="パスワードを作成" id="password" name="password"
                             required>
-                        <ul class="text-dark small">
-                            <li>半角英数・記号：8文字以上</li>
-                        </ul>
+                        <p class="text-muted small ml-1">半角英数・記号：8文字以上</p>
                     </div>
 
                     <div class="form-group">

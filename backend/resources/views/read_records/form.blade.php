@@ -24,9 +24,7 @@
         <label for="memo">メモ</label>
         <textarea type="text" name="memo" id="memo" rows="5"
             class="form-control">{{ $readRecord->memo ?? old('memo') }}</textarea>
-        <ul class="text-dark small">
-            <li>140文字以内</li>
-        </ul>
+        <p class="text-muted small ml-1">140文字以内</p>
     </div>
 
 </section>

@@ -44,13 +44,11 @@
                         <input autofocus class="form-control" type="text" id="name"
                             value="{{ old('name',$user->name) }}" name="name" required
                             {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />
-                        <ul class="text-dark small">
-                            <li>半角英数小文字：3～16文字</li>
-                        </ul>
+                        <p class="text-muted small ml-1">半角英数小文字：3～16文字</p>
                     </div>
 
                     <div class="form-group">
-                        <label for="nickname">ニックネーム</label>
+                        <label for="nickname">ユーザーネーム</label>
                         <input class="form-control" type="text" id="nickname"
                             value="{{ old('nickname',$user->nickname) }}" name="nickname" required
                             {{ Auth::id() === config('const.GUEST_USER_ID') ? 'readonly' : '' }} />

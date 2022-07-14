@@ -39,7 +39,7 @@
                     </div>
                     <div class="py-2">
                         <p class="card-title text-secondary mb-1">
-                            ニックネーム
+                            ユーザーネーム
                         </p>
                         <p class="card-text">
                             {{ $user->nickname }}
@@ -53,9 +53,7 @@
                             よんでを退会する
                         </a>
                     </div>
-                    <ul class="text-muted small">
-                        <li>退会しても、登録絵本、よんだよ記録は消えません。</li>
-                    </ul>
+                    <p class="text-muted small ml-1">※退会しても、登録絵本、よんだよ記録は消えません。</p>
                     <!-- dropdown -->
 
                     <!-- modal -->

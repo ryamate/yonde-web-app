@@ -40,10 +40,10 @@
 <div class="bg-paper">
     <div class="container-lg">
         <div class="text-center py-5 text-dark">
-            <h1 class="pt-5"><b>よんで</b>とは</h1>
+            <h1 class="pt-5"><span class="text-shadow">よんで</span> とは</h1>
             <p class="mt-3">
-                <b>「よんで」は、Webで本棚をかんたんに作成したり、絵本読み聞かせをしたときに記録して、<br>
-                    いつでも記録を見返すことができるサービスです。</b>
+                <b>よんで は、Web上の本棚を簡単に作成したり、絵本読み聞かせをしたときに記録して、<br>
+                    いつでも記録を振り返ることができるサービスです。</b>
             </p>
         </div>
 
@@ -57,7 +57,7 @@
                                 <b>絵本のWeb本棚</b>
                             </p>
                             <small class="card-text">
-                                これから読みたい絵本、これまで読んだ絵本をいれておくことができます。
+                                気になる絵本や読んだ絵本を、登録しておくことができます。
                             </small>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                                 <b>読み聞かせ記録・管理</b>
                             </p>
                             <small class="card-text">
-                                絵本の読み聞かせをした記録をかんたんにつけることができます。
+                                絵本の読み聞かせをした記録を、簡単につけることができます。
                             </small>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                                 <b>家族と共有</b>
                             </p>
                             <small class="card-text">
-                                登録した絵本・読み聞かせ記録を家族と共有することができます。
+                                登録した絵本・読み聞かせ記録を、家族と共有することができます。
                             </small>
                         </div>
                     </div>
@@ -111,7 +111,7 @@
     </div>
 </div>
 <div id="carousel-card-1" class="carousel slide pb-4 border-bottom bg-paper" data-ride="carousel" data-wrap="true"
-    style="min-height: 200px">
+    data-touch="true" style="min-height: 200px" data-pause="hover">
     <ol class="carousel-indicators">
         <li data-target="#carousel-card-1" data-slide-to="0" class="active bg-teal1"></li>
         <li data-target="#carousel-card-1" data-slide-to="1" class="bg-teal1"></li>
@@ -236,7 +236,7 @@
             @endguest
             {{-- twitter account --}}
             <div class="mt-4 mx-2">
-                <p class="mb-0">かんりにんのつぶやき</p>
+                <p class="mb-0">管理人のつぶやき</p>
             </div>
             <div class="card mx-2 mb-2">
                 <a class="twitter-timeline" data-lang="ja" data-height="400" data-theme="light"

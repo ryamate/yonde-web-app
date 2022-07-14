@@ -35,9 +35,7 @@
                         <label for="password">新しいパスワード</label>
                         <input class="form-control" type="password" id="password" name="password" required
                             placeholder="パスワードを作成">
-                        <ul class="text-dark small">
-                            <li>半角英数・記号：8文字以上</li>
-                        </ul>
+                        <p class="text-muted small ml-1">半角英数・記号：8文字以上</p>
                     </div>
                     <div class="form-group">
                         <label for="password_confirmation">新しいパスワード(確認)</label>

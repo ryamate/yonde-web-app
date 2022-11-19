@@ -181,6 +181,10 @@ class RegisterController extends Controller
     {
         $invite = Invite::where('token', $token)->first();
 
+        if (!isset($invite)) {
+            abort(401);
+        }
+
         return view('auth.invite_register', [
             'token' => $invite->token,
             'family_id' => $invite->family_id,
@@ -193,10 +197,8 @@ class RegisterController extends Controller
      */
     public function registerInvitedUser(Request $request)
     {
-
         if (!$invite = Invite::where('token', $request->token)->first()) {
-            //if the invite doesn't exist do something more graceful than this
-            abort(404);
+            abort(401);
         }
 
         $request->validate([
